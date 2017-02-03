@@ -1,3 +1,6 @@
 'use strict';
 
-angular.module('driverDetails',[]);
+angular.module('driverDetails',[
+	'ui.bootstrap',
+	'driverModal'
+	]);

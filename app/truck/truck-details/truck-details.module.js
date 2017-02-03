@@ -1,3 +1,5 @@
 'use strict';
 
-angular.module('truckDetails',[]);
+angular.module('truckDetails',[
+	'truckModal'	
+	]);

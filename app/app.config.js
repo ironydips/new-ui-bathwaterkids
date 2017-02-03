@@ -23,39 +23,20 @@ angular.
         })
         .state('adminLayout',{
           url:'/admin',
+          abstract: true,
           views:{
             '':{
               template:'<admin-layout></admin-layout>'
-            },
-            'header@adminLayout':{
-              template:'<header></header>'
             },
             'adminPanel@adminLayout':{
               template:'<admin-panel></admin-panel>'
             },
             'adminSubPanel@adminLayout':{
               template:'<admin-sub-panel></admin-sub-panel>'
-            },
-            'contentTabs@adminLayout':{
-              template:'<drivers-tab></drivers-tab>'
-            },
-            'contentSection@adminLayout':{
-              template:'<driver-details></driver-details>'
             }
           }
         })
-        .state('adminLayout.adminDrivers',{
-          url:'/adminDrivers',
-          views:{
-            'contentTabs@adminLayout':{
-              template:'<drivers-tab></drivers-tab>'
-            },
-            'contentSection@adminLayout':{
-              template:'<driver-details></driver-details>'
-            }
-          }
-        })
-        .state('adminLayout.driverDetails',{
+        .state('adminLayout.drivers',{
           url:'/drivers',
           views:{
             'contentSection@adminLayout':{
@@ -63,44 +44,11 @@ angular.
             }
           }
         })
-        .state('adminLayout.addDriver',{
-          url:'/addDriver',
+        .state('adminLayout.trucks',{
+          url:'/truks',
           views:{
-            'contentSection@adminLayout':{
-              template:'<add-driver></add-driver>'
-            }
-          }
-        })
-        .state('adminLayout.adminTrucks',{
-          url:'/adminTrucks',
-          views:{
-            'contentTabs@adminLayout':{
-              template:'<trucks-tab></trucks-tab>'
-            },
             'contentSection@adminLayout':{
               template:'<truck-details></truck-details>'
-            }
-          }
-        })
-        .state('adminLayout.truckDetails',{
-          url:'/trucks',
-          views:{
-            'contentTabs@adminLayout':{
-              template:'<trucks-tab></trucks-tab>'
-            },
-            'contentSection@adminLayout':{
-              template:'<truck-details></truck-details>'
-            }
-          }
-        })
-        .state('adminLayout.addTruck',{
-          url:'/addTruck',
-          views:{
-            'contentTabs@adminLayout':{
-              template:'<trucks-tab></trucks-tab>'
-            },
-            'contentSection@adminLayout':{
-              template:'<add-truck></add-truck>'
             }
           }
         })

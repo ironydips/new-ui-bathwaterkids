@@ -37,14 +37,39 @@ header, section, footer, aside, nav, main, article, figure { display: block; }
 .component4 { margin-bottom: 100px; width: 100%; overflow: hidden; }
 .component-bg { padding: 15px 15px 0 15px; overflow: hidden; border-radius: 0px 4px 4px 4px; background: #eaeefa; }
 .component-bg ul { padding: 10px 10px 0 10px; background: #dbdeef; margin: 0px 0 10px 0; list-style: none; overflow: hidden; }
-.component-bg li { margin-right: 1%; position: relative; margin-bottom: 1%; width: 19.2%; float: left; min-height: 248px; border: 1px dashed #969697; }
+.component-bg li { margin-right: 1%; position: relative; margin-bottom: 1%; width: 19.2%; float: left; min-height: 282px; border: 1px dashed #969697; }
 .component-bg li.full { margin-right: 1%; margin-bottom: 1%; width: 19.2%; float: left; border: none; }
 .component-bg .blank { display: none; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; border-radius: 4px; border: 3px solid #fdba96; }
 .component-bg li.full:hover .blank { display: block; }
 .component-bg li img { margin: 0 auto; display: block; width: 100%; height: auto; } 
 .component-bg li:nth-child(5n) { margin-right: 0px; }
-.component-bg .drive { margin: 110px auto 0 auto; display: block; line-height: 36px; text-align: center; color: #fff; font-size: 13px; width: 150px; height: 36px; background: #b0b0b0; border-radius: 4px; }
+.component-bg .drive { margin: 122px auto 0 auto; display: block; line-height: 36px; text-align: center; color: #fff; font-size: 13px; width: 150px; height: 36px; background: #b0b0b0; border-radius: 4px; }
 .component-bg .drive:hover { text-decoration: none; }
 .component-bg h2 { margin: 0px; font-size: 15px; color: #706f75; line-height: 40px; text-align: center; background: #fff; }
 .component-bg h2 a { color: #706f75; text-decoration: none; }
+
+/* profileComponent */
+.profileComponent { padding-top: 30px; padding-bottom: 30px; width: 100%; overflow: hidden; }
+.profileComponent .profileBg { border-radius: 6px; width: 94%; margin: 0 auto; background: #fff; box-shadow: 0px 0 10px 0px #cfcfcf; }
+.profileComponent h2 { border-radius: 6px 6px 0 0; margin: 0px; background: #5a5887; font-size: 20px; color: #fff; text-align: center; text-transform: uppercase; line-height: 52px; }
+.profileComponent .inner-adjust { padding: 15px; }
+.profileComponent h3 { margin: 0px 0 15px 0; padding-left: 15px; background: #8483a5; font-size: 14px; color: #fff; text-transform: uppercase; line-height: 44px; }
+.profileComponent .image { margin: 15px; position: relative; width: 20%; min-height: 200px; border: 1px dashed #969697; }
+.profileComponent .drive { margin: 82px auto 0 auto; display: block; line-height: 36px; text-align: center; color: #fff; font-size: 13px; width: 150px; height: 36px; background: #b0b0b0; border-radius: 4px; }
+.profileComponent .drive:hover { text-decoration: none; }
+.profileComponent .table-responsive,.profileComponent .table-responsive tbody,.profileComponent .table-responsive tr { display: block; }
+.profileComponent tr:nth-child(odd) { background-color:#eceff6; }
+.profileComponent tr { padding-left: 10px; line-height: 28px; font-size: 14px; color: #748ca4; }
+.profileComponent .form-controls { margin: 2px; padding:2px 5px; border: 1px dotted #ccc; width: 250px; color: #666; background: rgba(255,255,255,.5); }
+.profileComponent .form-controls:focus, .profileComponent .form-controls:active{color: #222;border: 1px solid #aaa;background: rgba(255,255,255,1); }
+.profileComponent .gap { margin-right: 15px; width: 260px; border-right: 1px solid #b5c1d1;}
+.profileComponent .gap2 { padding-left: 15px; padding-right: 20px; }
+.profileComponent .gap2.gap3 { padding-right: 120px; border-right: 2px solid #fff; }
+.profileComponent .gap.gap4 { padding-left: 15px; }
+
+/*Modal Classes*/
+
+.app-modal-window-large .modal-dialog, .app-modal-window-semimid .modal-dialog {width:90%; max-width:1350px;}
+
+
 
