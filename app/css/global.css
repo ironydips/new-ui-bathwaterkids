@@ -1,0 +1,50 @@
+* { padding: 0px; margin: 0px; }
+body,html { font-family: Arial, Helvetica, 'sans-serif'; font-size: 12px; color: #000; width: 100%; }
+input,textarea { border: 0; display: block; outline: none; font-family: Arial, Helvetica, 'sans-serif'; font-size: 12px; color: #000; }
+body { background: #fafafa; }
+img,input { border: none; display: block; outline: none; }
+
+header, section, footer, aside, nav, main, article, figure { display: block; } 
+
+/* general */
+.clear { clear: both; overflow: hidden; height: 0px; }
+
+/* component1 */
+.menu-bg{ background: #4f628d; }
+.navbar-default { background: none; border: none; padding-top: 10px; margin-bottom: 10px; }
+.navbar-brand { padding: 8px 0 0 0px; }
+.navbar-default .navbar-nav > li > a { transition: all 0.5s ease; font-size: 15px; color: #fff; line-height: 22px; text-transform: uppercase; }
+.container-fluid,.navbar-collapse { padding: 0px; }
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus { background: none; color: #f1bea8; }
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus { color: #f1bea8; }
+
+
+/* component2 */
+.component2 { padding-top: 15px; width: 100%; overflow: hidden; }
+.component2 ul { list-style: none; }
+.component2 li { padding: 0 10px; float: left; }
+.component2 li a { padding: 0 12px 1px 12px; transition: all 0.7s ease; float: left; font-size: 15px; color: #575587; line-height: 24px; border: 1px solid #575587; border-radius: 15px; }
+.component2 li.active a,.component2 li a:hover { color: #fff; border: 1px solid #4f4d82; background: #5a588a; text-decoration: none; }
+
+/* component3 */
+.component3 { width: 100%; overflow: hidden; }
+.component3 ul { margin: 0px; padding: 0px; list-style: none; }
+.component3 li { float: left; }
+.component3 li a { padding: 0 20px; transition: all 0.5s ease; margin-right: 1px; float: left; font-size: 15px; line-height: 38px; border-radius: 4px 4px 0 0; background: #dbdeef; }
+.component3 li.active a,.component3 li a:hover,.component3 li a:focus,.component3 li a:active { background: #eaeefa; text-decoration: none; } 
+
+/* component4 */
+.component4 { margin-bottom: 100px; width: 100%; overflow: hidden; }
+.component-bg { padding: 15px 15px 0 15px; overflow: hidden; border-radius: 0px 4px 4px 4px; background: #eaeefa; }
+.component-bg ul { padding: 10px 10px 0 10px; background: #dbdeef; margin: 0px 0 10px 0; list-style: none; overflow: hidden; }
+.component-bg li { margin-right: 1%; position: relative; margin-bottom: 1%; width: 19.2%; float: left; min-height: 248px; border: 1px dashed #969697; }
+.component-bg li.full { margin-right: 1%; margin-bottom: 1%; width: 19.2%; float: left; border: none; }
+.component-bg .blank { display: none; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; border-radius: 4px; border: 3px solid #fdba96; }
+.component-bg li.full:hover .blank { display: block; }
+.component-bg li img { margin: 0 auto; display: block; width: 100%; height: auto; } 
+.component-bg li:nth-child(5n) { margin-right: 0px; }
+.component-bg .drive { margin: 110px auto 0 auto; display: block; line-height: 36px; text-align: center; color: #fff; font-size: 13px; width: 150px; height: 36px; background: #b0b0b0; border-radius: 4px; }
+.component-bg .drive:hover { text-decoration: none; }
+.component-bg h2 { margin: 0px; font-size: 15px; color: #706f75; line-height: 40px; text-align: center; background: #fff; }
+.component-bg h2 a { color: #706f75; text-decoration: none; }
+

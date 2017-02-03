@@ -1,0 +1,59 @@
+<!-- / component6 \ -->
+<div class="component6">                                   
+    <div class="form-container">
+        <form role="form" id="createForm" ng-submit="$ctrl.submit()">
+            <div class="form-group">
+                <div class="col-lg-4">
+                    <label for="truckType">Truck Type*</label>
+                    <input class="form-control" id="truckType" name="truckType" type="text">
+                </div>
+                <div class="col-lg-4">
+                    <label for="plateNumber">License Plate Number*</label>
+                    <input class="form-control" id="plateNumber" name="plateNumber" type="text">
+                </div>
+                <div class="col-lg-4">
+                    <label for="dealerName">Dealer Name*</label>
+                    <input class="form-control" id="dealerName" name="dealerName" type="text">
+                </div>
+
+                <div class="col-lg-4" id="break">
+                    <label for="streetAddress">Dealer Street Address*</label>
+                    <input class="form-control" id="streetAddress" name="streetAddress" type="text">
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <div class="col-lg-4">
+                    <label for="dealerCity">Dealer City*</label>
+                    <input class="form-control" id="dealerCity" name="dealerCity" type="text">
+                </div>
+                <div class="col-lg-4">
+                    <label for="dealerState">Dealer State*</label>
+                    <input class="form-control" id="dealerState" name="dealerState" type="text">
+                </div>
+                <div class="col-lg-4">
+                    <label for="dealerZip">Dealer Zip*</label>
+                    <input class="form-control" id="dealerZip" name="dealerZip" type="text">
+                </div>
+
+                <div class="col-lg-4" id="break">
+                    <label for="phNumber">Dealer Phone Number*</label>
+                    <input class="form-control" id="phNumber" name="phoneNumber" type="text">
+                </div>
+                <div class="col-lg-4" id="break">
+                    <label for="expirationDate">Lease Expiration Date*</label>
+                    <input class="form-control" id="expirationDate" name="expirationDate" type="text">
+                </div>
+                <div class="col-lg-4" id="break">
+                    <label for="truckImage">Truck Image*</label>
+                    <input class="form-control ng-pristine ng-untouched ng-isolate-scope ng-invalid ng-invalid-required" type="file" id="truckImage" name="truckImage" ng-model="$ctrl.newTruck.truckImage" base-sixty-four-input required accept="image/*">
+                </div>
+            </div>
+
+            <input class="btn btn-primary pull-right" style="margin-right: 15px;" type="submit">
+
+            <input class="btn pull-right" style="margin-right: 15px;" ui-sref="adminLayout.truckDetails" type="button" value="Cancel">
+        </form>
+    </div>
+</div>
+    <!-- \ component6 end / -- >             
