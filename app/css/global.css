@@ -73,3 +73,23 @@ header, section, footer, aside, nav, main, article, figure { display: block; }
 .btn-main .btn-sm { padding: 8px 35px; margin-right: 15px; width:  100px; margin-top: 15px; margin-bottom: 15px; }
 
 
+/* slotComponent */
+.slotComponent { padding-top: 30px; width: 100%; overflow: hidden; }
+.slotComponent .slotBg { overflow: hidden; border-radius: 6px; width: 94%; margin: 20px auto 30px auto; background: #fff; box-shadow: 0px 0 10px 0px #cfcfcf; }
+.slotComponent h2 { border-radius: 6px 6px 0 0; margin: 0px; background: #5a5887; font-size: 20px; color: #fff; text-align: center; text-transform: uppercase; line-height: 52px; }
+.slotComponent .inner-adjust { padding: 15px; margin-bottom: 15px; overflow: hidden; }
+.slotComponent .same { margin: 0 1% 0 0; width: 19.2%; float: left; }
+.slotComponent .same.last { margin-right: 0px; }
+.slotComponent h3 { margin: 0px 0 15px 0; padding-left: 15px; border-radius: 4px; background: #8483a5; font-size: 12px; color: #fff; text-transform: uppercase; line-height: 44px; }slotComponent { }
+.slotComponent .check { margin-right: 15px; float: left; }
+.slotComponent .month { padding: 10px 0 0 15px; display: block; border: 1px solid #e1e0e9; border-radius: 4px; background: #efeef4; height: 42px; margin-bottom: 16px; }
+.slotComponent label { font-size: 12px; color: #9795b5; line-height: 18px; font-weight: bold; }
+.slotComponent .same.last .month { text-align: center; padding: 0px; line-height: 38px; }
+.slotComponent .same.last .month label { color: #acabc2; }
+.slotComponent .bottom-btn { padding: 20px 0; text-align: center; background: #eceff6; overflow: hidden; width: 100%; }
+.slotComponent .bottom-btn .btn { width: 160px; height: 42px; text-transform: uppercase; }
+.slotComponent .bottom-btn .btn.cancel { background: #bfcbd7; border: 1px solid #bfcbd7; }
+.slotComponent .bottom-btn .btn.cancel:hover { background: #00d87f; border: 1px solid #00d87f; }
+.slotComponent .bottom-btn .btn.save { background: #00d87f; border: 1px solid #00d87f; }
+.slotComponent .bottom-btn .btn.save:hover { background: #bfcbd7; border: 1px solid #bfcbd7; }
+

@@ -14,4 +14,5 @@ angular.module('bathwaterApp', [
 	'adminSubPanel',
 	'driverDetails',
 	'truckDetails',
+	'timeslotDetails'
 ]);

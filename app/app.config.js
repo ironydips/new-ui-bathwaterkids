@@ -52,5 +52,13 @@ angular.
             }
           }
         })
+          .state('adminLayout.timeslot',{
+          url:'/timeslot',
+          views:{
+            'contentSection@adminLayout':{
+              template:'<timeslot-details></timeslot-details>'
+            }
+          }
+        })
     }
   ]);
