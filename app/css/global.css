@@ -62,7 +62,7 @@ header, section, footer, aside, nav, main, article, figure { display: block; }
 .profileComponent tr { padding-left: 10px; line-height: 28px; font-size: 14px; color: #748ca4; }
 .profileComponent .form-controls { margin: 2px; padding:2px 5px; border: 1px dotted #ccc; width: 250px; color: #666; background: rgba(255,255,255,.5); }
 .profileComponent .form-controls:focus, .profileComponent .form-controls:active{color: #222;border: 1px solid #aaa;background: rgba(255,255,255,1); }
-.profileComponent .gap { margin-right: 15px; width: 260px; border-right: 1px solid #b5c1d1;}
+.profileComponent .gap { margin-right: 15px; width: 175px; border-right: 1px solid #b5c1d1;}
 .profileComponent .gap2 { padding-left: 15px; padding-right: 20px; }
 .profileComponent .gap2.gap3 { padding-right: 120px; border-right: 2px solid #fff; }
 .profileComponent .gap.gap4 { padding-left: 15px; }
@@ -70,6 +70,6 @@ header, section, footer, aside, nav, main, article, figure { display: block; }
 /*Modal Classes*/
 
 .app-modal-window-large .modal-dialog, .app-modal-window-semimid .modal-dialog {width:90%; max-width:1350px;}
-
+.btn-main .btn-sm { padding: 8px 35px; margin-right: 15px; width:  100px; margin-top: 15px; margin-bottom: 15px; }
 
 

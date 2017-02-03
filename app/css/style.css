@@ -380,13 +380,13 @@ table th {
     text-align: center;
     background-color: #ced2da;
 }
-
+/*
 table td {
     text-align: center;
     align-items: center;
     background-color: white;
     border-color: #4d648d;
-}
+}*/
 
 .table-bordered, .table-bordered td {
     border-color: #4d648d;
