@@ -2,21 +2,26 @@
 
 function DriverModalController($rootScope,$state, $http) {
 	var ctrl = this;
-	ctrl.newDriver = {};
-	ctrl.submit = function(){                  
-		var dataString = angular.element("#createForm").serialize();
+	ctrl.driver = {};
 
+	ctrl.save = function(){                  
 		$http({
 			url: 'https://staging.bathwaterkids.com/rest/addDriver',
             method: "POST",
-            data: dataString,
+            data: ctrl.driver,
+            transformRequest: function(obj) {
+		        var str = [];
+		        for(var p in obj)
+		        	str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+		        return str.join("&");
+		    },
             headers: {
                 'Authorization': "Basic YWRtaW46YWRtaW4=",
                 "Content-Type": "application/x-www-form-urlencoded"
             }
 		})
 		.then(function(result){
-			$state.go('adminLayout.driverDetails');
+			ctrl.modalInstance.close('update');
 		})
 		.catch(function(err){
 			console.log('Error Adding Driver');

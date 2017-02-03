@@ -32,6 +32,7 @@ function DriverDetailsController($rootScope, $state, $http, $uibModal) {
 
 		modalInstance.result.then(function(data){
 			//data passed when pop up closed.
+			if(data == "update") $state.reload();
 			
 		}, function(err){
 			console.log('Error in add-driver Modal');

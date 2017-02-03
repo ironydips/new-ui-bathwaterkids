@@ -24,38 +24,38 @@
              <table class="table-responsive">
                 <tbody>
                   <tr>
-                    <td class="gap">First Name</td>
-                    <td class="gap2 gap3"><input type="text" class="form-controls" value=""></td>
-                    <td class="gap gap4">Last Name</td>
-                    <td class="gap2"><input type="text" class="form-controls" value=""></td>
+                    <td class="gap" for="firstName">First Name*</td>
+                    <td class="gap2 gap3" ><input type="text" name="firstName" class="form-controls" ng-model="$ctrl.driver.firstName"></td>
+                    <td class="gap gap4" for="lastName">Last Name</td>
+                    <td class="gap2"><input type="text" class="form-controls" ng-model="$ctrl.driver.lastName"></td>
                   </tr>
                   <tr>
-                    <td class="gap">Driver License ID</td>
-                    <td class="gap2 gap3"><input type="text" class="form-controls" value=""></td>
+                    <td class="gap" for="licenceId">Driver License ID</td>
+                    <td class="gap2 gap3"><input type="text" class="form-controls" ng-model="$ctrl.driver.licenceId"></td>
                     <td class="gap gap4">Street Address</td>
-                    <td class="gap2"><input type="text" class="form-controls" value=""></td>
+                    <td class="gap2"><input type="text" class="form-controls" ng-model="$ctrl.driver.streetAddress"></td>
                   </tr>
                   <tr>
                     <td class="gap">Apt</td>
-                    <td class="gap2 gap3"><input type="text" class="form-controls" value=""></td>
+                    <td class="gap2 gap3"><input type="text" class="form-controls" ng-model="$ctrl.driver.apartment"></td>
                     <td class="gap gap4">City</td>
-                    <td class="gap2"><input type="text" class="form-controls" value=""></td>
+                    <td class="gap2"><input type="text" class="form-controls" ng-model="$ctrl.driver.city"></td>
                   </tr>
                   <tr>
                     <td class="gap">State</td>
-                    <td class="gap2 gap3"><input type="text" class="form-controls" value=""></td>
+                    <td class="gap2 gap3"><input type="text" class="form-controls" ng-model="$ctrl.driver.state"></td>
                     <td class="gap gap4">Zip</td>
-                    <td class="gap2"><input type="text" class="form-controls" value=""></td>
+                    <td class="gap2"><input type="text" class="form-controls" ng-model="$ctrl.driver.zipCode"></td>
                   </tr>
                   <tr>
                     <td class="gap">Phone Number</td>
-                    <td class="gap2 gap3"><input type="text" class="form-controls" value=""></td>
+                    <td class="gap2 gap3"><input type="text" class="form-controls" ng-model="$ctrl.driver.phoneNumber"></td>
                     <td class="gap gap4">Emergency Phone Number</td>
-                    <td class="gap2"><input type="text" class="form-controls" value=""></td>
+                    <td class="gap2"><input type="text" class="form-controls" ng-model="$ctrl.driver.emergencyPhNumber"></td>
                   </tr>
                   <tr>
                     <td class="gap">Email</td>
-                    <td class="gap2 gap3"><input type="text" class="form-controls" value=""></td>
+                    <td class="gap2 gap3"><input type="text" class="form-controls" ng-model="$ctrl.driver.emailAddress"></td>
                    
                   </tr>
                   
@@ -70,8 +70,7 @@
         <div class="btn-main">
 
           <button type="button" ng-click = "$ctrl.cancel()" class="btn btn-sm btn-default">Cancel</button>
-
-          <button type="button" class="btn btn-sm btn-success">Save</button>
+          <button type="button" ng-click = "$ctrl.save()" class="btn btn-sm btn-success">Save</button>
 
         </div>
           
