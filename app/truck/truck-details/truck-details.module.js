@@ -1,5 +1,10 @@
+(function(angular) {
 'use strict';
 
 angular.module('truckDetails',[
-	'truckModal'	
+	'truckModal',
+	'images-resizer',
+	'ui.bootstrap'
 	]);
+
+})(window.angular);

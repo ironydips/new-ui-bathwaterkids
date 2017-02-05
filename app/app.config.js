@@ -7,7 +7,7 @@ angular.
 
       //HTTP Provider Config
       $httpProvider.defaults.useXDomain = true;
-      // $httpProvider.interceptors.push('InterceptorService');
+      $httpProvider.interceptors.push('InterceptorService');
 
       // UI-Routing Config
       $urlRouterProvider.otherwise('/');
@@ -52,11 +52,19 @@ angular.
             }
           }
         })
-          .state('adminLayout.timeslot',{
-          url:'/timeslot',
-          views:{
+        .state('adminLayout.timeslot',{
+        url:'/timeslot',
+        views:{
             'contentSection@adminLayout':{
               template:'<timeslot-details></timeslot-details>'
+            }
+          }
+        })
+        .state('adminLayout.zipCodes',{
+        url:'/zipCodes',
+        views:{
+            'contentSection@adminLayout':{
+              template:'<zipcode-details></zipcode-details>'
             }
           }
         })

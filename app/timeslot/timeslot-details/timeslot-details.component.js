@@ -5,10 +5,9 @@
 function TimeslotController($rootScope,$state,$http,$uibModal) {
 	var ctrl = this;
 
-	ctrl.initTimeslot = function(){
-
-	$http({
-		    url: 'https://staging.bathwaterkids.com/rest/getTimeslotsForTheWeek',
+	ctrl.init = function(){
+		$http({
+		    url: '/rest/getTimeslotsForTheWeek',
 		    method: "GET",
 		    headers:{
 		    	"Authorization": 'Basic YWRtaW46YWRtaW4='
@@ -23,7 +22,7 @@ function TimeslotController($rootScope,$state,$http,$uibModal) {
 		})
 	};
 
-		ctrl.addTimeslot = function(){
+	ctrl.addTimeslot = function(){
 		var modalInstance = $uibModal.open({
 			component: 'timeslotModal',
 			windowClass: 'app-modal-window-large',
@@ -31,16 +30,17 @@ function TimeslotController($rootScope,$state,$http,$uibModal) {
 			backdrop: 'static'
 		});
 
-		modalInstance.result.then(function(){
+		modalInstance.result.then(function(data){
 			//data passed when pop up closed.
-			//if(data == "update") $state.reload();
+			if(data == "update") $state.reload();
 			
 		}, function(err){
 			console.log('Error in add-driver Modal');
 			console.log(err);
 		})
 	};
-	ctrl.initTimeslot(); 
+
+	ctrl.init(); 
 }
 
 

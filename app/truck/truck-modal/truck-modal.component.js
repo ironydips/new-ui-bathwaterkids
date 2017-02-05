@@ -1,34 +1,56 @@
+(function(angular) {
 'use strict';
 
-function TruckModalController($rootScope,$state,$http) {
+function TruckModalController($scope, $rootScope,$state,$http, resizeService) {
 	var ctrl = this;
-	ctrl.newTruck = {};
+	ctrl.truck = (ctrl.resolve && ctrl.resolve.details) || {};
+	ctrl.isDisabled = Object.keys(ctrl.truck).length > 0;
+	if(ctrl.truck.images && ctrl.truck.images.length > 0){
+		ctrl.imageUrl = ctrl.truck.images[0].url;
+	}
 
-	ctrl.submit = function(){
-		var dataString = angular.element("#createForm").serialize();
-		dataString += "&truckImage="+ ctrl.newTruck.truckImage.base64;
+	// Watch the image change and show from base 64 value
+	// $scope is only used here for watch.
+	$scope.$watch(angular.bind(this, function(){
+		return this.selectedImage;
+	}), function(value){
+		value ? 
+			(ctrl.imageUrl = 'data:image/jpeg;base64, ' + value.base64, ctrl.truck.truckImage = value.base64)
+			: (ctrl.truck.truckImage = '');
+	});
 
+	ctrl.save = function(){
 		$http({
-			url: 'https://staging.bathwaterkids.com/rest/addTruck',
+			url: '/rest/addTruckwithImage',
             method: "POST",
-            data: dataString,
+            data: JSON.stringify(ctrl.truck),
             headers: {
                 'Authorization': "Basic YWRtaW46YWRtaW4=",
-                "Content-Type": "application/x-www-form-urlencoded"
+                'Content-Type': 'text/plain'
             }
 		})
 		.then(function(result){
-			$state.go('adminLayout.truckDetails');
+			ctrl.modalInstance.close('update');
 		})
 		.catch(function(err){
-			console.log('Error Adding Driver');
+			console.log('Error Adding Truck');
 			console.log(err);
 		});
+	}
+
+	ctrl.cancel = function(){
+		ctrl.modalInstance.close();
 	}
 }
 
 angular.module('truckModal')
 	.component('truckModal',{
 		templateUrl: 'truck/truck-modal/truck-modal.template.html',
-		controller:['$rootScope','$state','$http', TruckModalController]
+		controller:['$scope','$rootScope','$state','$http', 'resizeService', TruckModalController],
+		bindings:{
+			modalInstance: '<',
+			resolve: '<'
+		}
 	});
+
+})(window.angular);

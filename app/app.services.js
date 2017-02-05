@@ -4,11 +4,12 @@ angular.module('bathwaterApp')
 
 		object = {
 			'request': function(config){
-				config.headers["Authorization"] = "BASIC YWRtaW46YWRtaW4=";
-				config.useXDomain = true;
-				if(config.method == "POST"){
-					config.headers["Content-Type"] = "application/x-www-form-urlencoded";
+
+				//Adding base URL to the Request object
+				if(["GET","POST"].indexOf(config.method) > -1 && !config.url.includes('.html')){
+					config.url = angular.config.baseUrl + config.url;
 				}
+
 				return config;
 			},
 			'requestError':function(rejection){

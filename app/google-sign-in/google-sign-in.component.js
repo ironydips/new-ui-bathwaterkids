@@ -15,7 +15,7 @@ this.login = function(){
 			                        name: profile.name	
 		                    	});
 
-	                $http.post("https://staging.bathwaterkids.com/rest/oauth/login",params)
+	                $http.post("/rest/oauth/login",params)
 	                .then(function (data) {
                         if (data.data.message === 'success') {
                             $state.go('index');

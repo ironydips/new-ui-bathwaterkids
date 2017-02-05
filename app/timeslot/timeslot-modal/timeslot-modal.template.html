@@ -13,11 +13,25 @@
 			<div class="same">
 				
 				<h3>Start Date</h3>
+				<datepicker date-format="MM.dd.yyyy" selector="form-control">
+				    <div class="input-group">
+				        <input ng-model="$ctrl.timeslot.start" class="form-control" placeholder="Choose a date"/>
+				        <span class="input-group-addon" style="cursor: pointer">
+				        </span>
+    				</div>
+				</datepicker>
 				
 			</div>						
 			<div class="same">
 				
 				<h3>End Date</h3>
+				<datepicker date-format="MM.dd.yyyy" selector="form-control">
+				    <div class="input-group">
+				        <input ng-model="$ctrl.timeslot.until" class="form-control" placeholder="Choose a date"/>
+				        <span class="input-group-addon" style="cursor: pointer">
+				        </span>
+    				</div>
+				</datepicker>
 				
 			</div>						
 			<div class="same">
@@ -26,58 +40,51 @@
 				
 				<span class="month">
 					
-					<input type="checkbox" class="check" name="chk">
+					<input type="checkbox" class="check" name="chk" ng-model="$ctrl.timeslot.days.Mon">
 					
 					<label>Monday</label>
 					
 				</span>
 				<span class="month">
 					
-					<input type="checkbox" class="check" name="chk">
+					<input type="checkbox" class="check" name="chk" ng-model="$ctrl.timeslot.days.Tue">
 					
-					<label>Monday</label>
-					
-				</span>
-				<span class="month">
-					
-					<input type="checkbox" class="check" name="chk">
-					
-					<label>Monday</label>
+					<label>Tuesday</label>
 					
 				</span>
 				<span class="month">
 					
-					<input type="checkbox" class="check" name="chk">
+					<input type="checkbox" class="check" name="chk" ng-model="$ctrl.timeslot.days.Wed">
 					
-					<label>Monday</label>
-					
-				</span>
-				<span class="month">
-					
-					<input type="checkbox" class="check" name="chk">
-					
-					<label>Monday</label>
+					<label>Wednesday</label>
 					
 				</span>
 				<span class="month">
 					
-					<input type="checkbox" class="check" name="chk">
+					<input type="checkbox" class="check" name="chk" ng-model="$ctrl.timeslot.days.Thu">
 					
-					<label>Monday</label>
-					
-				</span>
-				<span class="month">
-					
-					<input type="checkbox" class="check" name="chk">
-					
-					<label>Monday</label>
+					<label>Thursday</label>
 					
 				</span>
 				<span class="month">
 					
-					<input type="checkbox" class="check" name="chk">
+					<input type="checkbox" class="check" name="chk" ng-model="$ctrl.timeslot.days.Fri">
 					
-					<label>Monday</label>
+					<label>Friday</label>
+					
+				</span>
+				<span class="month">
+					
+					<input type="checkbox" class="check" name="chk" ng-model="$ctrl.timeslot.days.Sat">
+					
+					<label>Saturday</label>
+					
+				</span>
+				<span class="month">
+					
+					<input type="checkbox" class="check" name="chk" ng-model="$ctrl.timeslot.days.Sun">
+					
+					<label>Sunday</label>
 					
 				</span>
 				
@@ -88,58 +95,44 @@
 
 				<span class="month">
 					
-					<input type="checkbox" class="check" name="chk">
+					<input type="checkbox" class="check" name="chk" ng-model="$ctrl.timeslot.timeslots.s0">
 					
-					<label>7 am - 9 am</label>
-					
-				</span>
-				<span class="month">
-					
-					<input type="checkbox" class="check" name="chk">
-					
-					<label>7 am - 9 am</label>
+					<label>8am - 10am</label>
 					
 				</span>
 				<span class="month">
 					
-					<input type="checkbox" class="check" name="chk">
+					<input type="checkbox" class="check" name="chk" ng-model="$ctrl.timeslot.timeslots.s1">
 					
-					<label>7 am - 9 am</label>
-					
-				</span>
-				<span class="month">
-					
-					<input type="checkbox" class="check" name="chk">
-					
-					<label>7 am - 9 am</label>
+					<label>10am - 12pm</label>
 					
 				</span>
 				<span class="month">
 					
-					<input type="checkbox" class="check" name="chk">
+					<input type="checkbox" class="check" name="chk" ng-model="$ctrl.timeslot.timeslots.s2">
 					
-					<label>7 am - 9 am</label>
-					
-				</span>
-				<span class="month">
-					
-					<input type="checkbox" class="check" name="chk">
-					
-					<label>7 am - 9 am</label>
+					<label>12pm - 2pm</label>
 					
 				</span>
 				<span class="month">
 					
-					<input type="checkbox" class="check" name="chk">
+					<input type="checkbox" class="check" name="chk" ng-model="$ctrl.timeslot.timeslots.s3">
 					
-					<label>7 am - 9 am</label>
+					<label>2pm - 4pm</label>
 					
 				</span>
 				<span class="month">
 					
-					<input type="checkbox" class="check" name="chk">
+					<input type="checkbox" class="check" name="chk" ng-model="$ctrl.timeslot.timeslots.s4">
 					
-					<label>7 am - 9 am</label>
+					<label>4pm - 6pm</label>
+					
+				</span>
+				<span class="month">
+					
+					<input type="checkbox" class="check" name="chk" ng-model="$ctrl.timeslot.timeslots.s5">
+					
+					<label>6pm - 8pm</label>
 					
 				</span>
 				
@@ -148,56 +141,43 @@
 				
 				<h3>Availability Count</h3>
 
+				<span >
+					<input class="form-control month" type="number" name="available" placeholder="enter # of available timeslots" ng-model="$ctrl.timeslot.availables.s1">
+				</span>
 				<span class="month">
 					
-					<label>enter # of available timeslots</label>
+					<input class="form-control month" type="number" name="available" placeholder="enter # of available timeslots" ng-model="$ctrl.timeslot.availables.s2">
 					
 				</span>
 				<span class="month">
 					
-					<label>enter # of available timeslots</label>
+					<input class="form-control month" type="number" name="available" placeholder="enter # of available timeslots" ng-model="$ctrl.timeslot.availables.s3">
 					
 				</span>
 				<span class="month">
 					
-					<label>enter # of available timeslots</label>
+					<input class="form-control month" type="number" name="available" placeholder="enter # of available timeslots" ng-model="$ctrl.timeslot.availables.s4">
 					
 				</span>
 				<span class="month">
 					
-					<label>enter # of available timeslots</label>
+					<input class="form-control month" type="number" name="available" placeholder="enter # of available timeslots" ng-model="$ctrl.timeslot.availables.s5">
 					
 				</span>
 				<span class="month">
 					
-					<label>enter # of available timeslots</label>
+					<input class="form-control month" type="number" name="available" placeholder="enter # of available timeslots" ng-model="$ctrl.timeslot.availables.s6">
 					
 				</span>
-				<span class="month">
-					
-					<label>enter # of available timeslots</label>
-					
-				</span>
-				<span class="month">
-					
-					<label>enter # of available timeslots</label>
-					
-				</span>
-				<span class="month">
-					
-					<label>enter # of available timeslots</label>
-					
-				</span>
-				
 			</div>
 			
 		</div>
 		
 		<div class="bottom-btn">			
 			
-			<input class="btn btn-primary cancel" style="margin-right: 15px;" ng-click ="$ctrl.canceltimeslot()" value="Cancel" type="button">
+			<input class="btn btn-primary cancel" style="margin-right: 15px;" ng-click ="$ctrl.cancel()" value="Cancel" type="button">
 
-			<input class="btn btn-primary save" style="margin-right: 15px;" value="Save" type="button">
+			<input class="btn btn-primary save" style="margin-right: 15px;" ng-click ="$ctrl.save()" value="Save" type="button">
 			
 		</div>
 		

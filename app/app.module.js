@@ -8,11 +8,14 @@ angular.module('bathwaterApp', [
 	'googleSignIn',
 	'naif.base64',
 	'ui.bootstrap',
+	'images-resizer',
+	'720kb.datepicker',
 	'index',
 	'adminLayout',
 	'adminPanel',
 	'adminSubPanel',
 	'driverDetails',
 	'truckDetails',
-	'timeslotDetails'
+	'timeslotDetails',
+	'zipcodeDetails'
 ]);
