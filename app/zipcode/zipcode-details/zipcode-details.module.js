@@ -2,7 +2,8 @@
 'use strict';
 
 angular.module('zipcodeDetails',[
-	'ui.bootstrap'
+	'ui.bootstrap',
+	'zipModal'
 	]);
 
 })(window.angular);

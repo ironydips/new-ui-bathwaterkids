@@ -9,12 +9,12 @@
 	<ul>
 		<li class="full"><a href="" ng-click="$ctrl.addZipCode()">Add Zip</a></li>
 		<li class="active full" ng-repeat="code in $ctrl.zipCodes">
-			<a href=""><span>{{code.zipCode}}</span></a>
+			<a href=""><span>{{code.zipCode}}<img ng-click="$ctrl.deleteZipCode(code.zipCode)" style="width: 20px; height: 20px" src="img/cross-icon.png"></a></span>
 		</li>
 	</ul>
 	      
 	<div class="clear"></div>
-	      
+
 	</div>	 
 	</div>
 </div>

@@ -3,8 +3,8 @@
 
 function openPopUp(details){
 	var modalInstance = this.$uibModal.open({
-			component: 'driverModal',
-			windowClass: 'app-modal-window-large',
+			component: 'zipModal',
+			windowClass: 'app-modal-window-small',
 			keyboard: false,
 			resolve:{
 				details: function(){
@@ -51,6 +51,25 @@ function ZipCodeDetailsController($rootScope, $state, $http, $uibModal) {
 	ctrl.addZipCode = function(){
 		angular.bind(ctrl, openPopUp, null)();
 	};
+
+	ctrl.deleteZipCode = function(zipcode){
+		//Show alert and then delete if Yes.
+
+		$http({
+		    url: '/rest/deleteZipCode/' + zipcode,
+		    method: "GET",
+		    headers:{
+		    	"Authorization": 'Basic YWRtaW46YWRtaW4='
+		    }
+		})
+		.then(function(zipCodes){
+			$state.reload();
+		})
+		.catch(function(err){
+			console.log('Error getting zipcode details:');
+			console.log(err);
+		})
+	}
 
 	ctrl.init();
 }

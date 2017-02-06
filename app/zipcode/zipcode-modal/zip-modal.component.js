@@ -1,16 +1,16 @@
 (function(angular) {
 'use strict';
 
-function DriverModalController($rootScope,$state, $http) {
+function ZipModalModalController($rootScope,$state, $http) {
 	var ctrl = this;
-	ctrl.driver = (ctrl.resolve && ctrl.resolve.details) || {};
-	ctrl.isDisabled = Object.keys(ctrl.driver).length > 0;
+	ctrl.zip = (ctrl.resolve && ctrl.resolve.details) || {};
+	ctrl.isDisabled = Object.keys(ctrl.zip).length > 0;
 
 	ctrl.save = function(){                  
 		$http({
-			url: '/rest/addDriver',
+			url: '/rest/addZipCode',
             method: "POST",
-            data: ctrl.driver,
+            data: ctrl.zip,
             transformRequest: function(obj) {
 		        var str = [];
 		        for(var p in obj)
@@ -36,10 +36,10 @@ function DriverModalController($rootScope,$state, $http) {
 	}
 }
 
-angular.module('driverModal')
-	.component('driverModal',{
-		templateUrl: 'driver/driver-modal/driver-modal.template.html',
-		controller:['$rootScope','$state','$http', DriverModalController],
+angular.module('zipModal')
+	.component('zipModal',{
+		templateUrl: 'zipcode/zipcode-modal/zip-modal.template.html',
+		controller:['$rootScope','$state','$http', ZipModalModalController],
 		bindings:{
 			modalInstance: '<',
 			resolve: '<'
