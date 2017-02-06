@@ -2,5 +2,6 @@
 
 angular.module('timeslotDetails',[
 		'ui.bootstrap',
-	    'timeslotModal'
+	    'timeslotModal',
+	    'timeslotShowAllModal'
 	]);

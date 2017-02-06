@@ -6,10 +6,21 @@
 
 	<div class="component-bg">
 		
-	<ul>
-		<li><a href="" ng-click="$ctrl.addDriver()" class="drive">Add Drivers</a></li>
+	
+	<div class="row">
+	<div class="col-sm-1"></div>
+	<div class="col-sm-3">
+		<button type="button"  ng-click = "$ctrl.notstarted()" class="btn btn-lg btn-success" style="margin-bottom: 1cm;">Not Started</button>
+	</div>
+	<div class="col-sm-3">
+		<button type="button"  ng-click = "$ctrl.inprogress()" class="btn btn-lg btn-success" style="margin-bottom: 1cm;">In Progress</button>
+	</div>
+	<div class="col-sm-3">
+		<button type="button" ng-click = "$ctrl.complete()" class="btn btn-lg btn-success" style="margin-bottom: 1cm;">Completed</button>
+	</div>
+	<div class="col-sm-1"></div>
 		
-	</ul>
+	</div>
 
 	<div class="clear"></div>
 	      

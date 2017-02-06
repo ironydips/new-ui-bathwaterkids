@@ -3,7 +3,9 @@
 
 angular.module('userRequest',[
 	'ui.bootstrap',
-	'driverModal'
+	'userRequestCompleteModal',
+	'userRequestNotStartedModal',
+	'userRequestInProgressModal'
 	]);
 
 })(window.angular);

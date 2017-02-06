@@ -39,6 +39,23 @@ function TimeslotController($rootScope,$state,$http,$uibModal) {
 			console.log(err);
 		})
 	};
+	ctrl.showallTimeslot = function(){
+		var modalInstance = $uibModal.open({
+			component: 'timeslotShowAllModal',
+			windowClass: 'app-modal-window-large',
+			keyboard: false,
+			backdrop: 'static'
+		});
+
+		modalInstance.result.then(function(data){
+			//data passed when pop up closed.
+			//if(data == "update") $state.reload();
+			
+		}, function(err){
+			console.log('Error in Show-all Modal');
+			console.log(err);
+		})
+	};
 
 	ctrl.init(); 
 }
