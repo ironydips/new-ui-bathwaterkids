@@ -23,8 +23,8 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav pull-right">
-          <li class="active"><a href="#">Admin</a></li>
-          <li><a href="#">Events</a></li>
+          <li  ng-class="{'active': $root.$state.includes('admin')}"><a href="" ui-sref="adminLayout.drivers">Admin</a></li>
+          <li  ng-class="{'active': $root.$state.includes('delivery')}"><a href="" ui-sref="deliveryLayout.userRequests">Pickup/Delivery</a></li>
           <li><a href="#">Customers</a></li>
           <li><a href="#">Inventory</a></li>
           <li><a href="#">Warehouse</a></li>

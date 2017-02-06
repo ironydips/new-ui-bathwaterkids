@@ -76,5 +76,28 @@ angular.
             }
           }
         })
+        .state('deliveryLayout',{
+          url:'/delivery',
+          abstract: true,
+          views:{
+            '':{
+              template:'<admin-layout></admin-layout>'
+            },
+            'adminPanel@deliveryLayout':{
+              template:'<admin-panel></admin-panel>'
+            },
+            'adminSubPanel@deliveryLayout':{
+              template:'<delivery-sub-panel></delivery-sub-panel>'
+            }
+          }
+        })
+        .state('deliveryLayout.userRequests',{
+          url:'/userRequests',
+          views:{
+            'contentSection@deliveryLayout':{
+              template:'<user-request></user-request>'
+            }
+          }
+        })
     }
   ]);

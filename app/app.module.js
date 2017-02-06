@@ -13,10 +13,14 @@ angular.module('bathwaterApp', [
 	'index',
 	'adminLayout',
 	'adminPanel',
+	// Admin Panel Modules
 	'adminSubPanel',
 	'driverDetails',
 	'truckDetails',
 	'timeslotDetails',
 	'zipcodeDetails',
-	'promocodeDetails'
+	'promocodeDetails',
+	// Pickup/Delivery Panel Modules
+	'deliverySubPanel',
+	'userRequest'
 ]);
