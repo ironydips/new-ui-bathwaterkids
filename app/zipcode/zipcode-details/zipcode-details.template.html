@@ -9,7 +9,8 @@
 	<ul>
 		<li class="full"><a href="" ng-click="$ctrl.addZipCode()">Add Zip</a></li>
 		<li class="active full" ng-repeat="code in $ctrl.zipCodes">
-			<a href=""><span>{{code.zipCode}}<img ng-click="$ctrl.deleteZipCode(code.zipCode)" style="width: 20px; height: 20px" src="img/cross-icon.png"></a></span>
+			<a href=""><span style="float:left">{{code.zipCode}}</span>
+			<img ng-confirm-click ng-click="$ctrl.deleteZipCode(code.zipCode)" style="width: 20px; height: 20px;float: left; margin-left:1px; margin-top: 3px" src="img/DeleteIcon.png"></a>
 		</li>
 	</ul>
 	      
