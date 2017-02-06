@@ -68,5 +68,13 @@ angular.
             }
           }
         })
+        .state('adminLayout.promoCode',{
+          url:'/promoCode',
+          views:{
+            'contentSection@adminLayout':{
+              template:'<promocode-details></promocode-details>'
+            }
+          }
+        })
     }
   ]);

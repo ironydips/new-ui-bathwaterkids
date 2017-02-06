@@ -57,8 +57,8 @@ header, section, footer, aside, nav, main, article, figure { display: block; }
 
 .component-bg-small { padding: 15px 15px 0 15px; overflow: hidden; border-radius: 0px 4px 4px 4px; background: #eaeefa; }
 .component-bg-small ul { padding: 10px 10px 0 10px; background: #dbdeef; margin: 0px 0 10px 0; list-style: none; overflow: hidden; }
-.component-bg-small li { margin-right: 1%; position: relative; margin-bottom: 3%; width: 10%; float: left; border: 1px dashed #969697; }
-.component-bg-small li.full { margin-right: 1%; margin-bottom: 3%; margin-top: 3%; width: 10%; float: left; border: none; }
+.component-bg-small li { margin-right: 1%; position: relative; margin-bottom: 3%; width: 12%; float: left; border: 1px dashed #969697; }
+.component-bg-small li.full { margin-right: 1%; margin-bottom: 3%; margin-top: 3%; width: 12%; float: left; border: none; }
 .component-bg-small .blank { display: none; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; border-radius: 4px; border: 3px solid #fdba96; }
 .component-bg-small li.full:hover .blank { display: block; }
 .component-bg-small li img { margin: 0 auto; display: block; width: 100%; height: auto; } 

@@ -17,5 +17,6 @@ angular.module('bathwaterApp', [
 	'driverDetails',
 	'truckDetails',
 	'timeslotDetails',
-	'zipcodeDetails'
+	'zipcodeDetails',
+	'promocodeDetails'
 ]);
