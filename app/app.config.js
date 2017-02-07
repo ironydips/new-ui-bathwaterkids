@@ -99,5 +99,12 @@ angular.
             }
           }
         })
+        .state('deliveryLayout.trucks',{
+          url: '/deliveryLayoutTrucks',
+          views:{
+            'contentSection@deliveryLayout':{
+              template:'<delivery-trucks></delivery-trucks>'
+            }          }
+        })
     }
   ]);

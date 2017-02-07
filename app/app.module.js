@@ -22,5 +22,6 @@ angular.module('bathwaterApp', [
 	'promocodeDetails',
 	// Pickup/Delivery Panel Modules
 	'deliverySubPanel',
-	'userRequest'
+	'userRequest',
+	'deliveryTrucks'
 ]);
