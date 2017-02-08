@@ -14,6 +14,8 @@ angular.module('bathwaterApp', [
 	'index',
 	'adminLayout',
 	'adminPanel',
+	// Common Module
+	'bathwaterApp.common',
 	// Admin Panel Modules
 	'adminSubPanel',
 	'driverDetails',

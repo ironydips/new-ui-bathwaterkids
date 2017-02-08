@@ -9,41 +9,17 @@
 
 
         ctrl.saveAdmin = function() {
-
-            // adminArrayService.addadmin(ctrl.admin);
-
             ctrl.modalInstance.close('update');
-
-        }
-
+        };
 
         ctrl.cancel = function() {
             ctrl.modalInstance.close();
-        }
-        ctrl.selectAll = function(){
-        	if(ctrl.admin.All == true){
-        		ctrl.admin.Owner = true;
-        ctrl.admin.Admin = true;
-        ctrl.admin.Pickup = true;
-        ctrl.admin.Customers = true;
-        ctrl.admin.Inventory = true;
-        ctrl.admin.Warehouse = true;
-        ctrl.admin.SuperAdmin = true;
-    }else{
-    	ctrl.admin.Owner = false;
-        ctrl.admin.Admin = false;
-        ctrl.admin.Pickup = false;
-        ctrl.admin.Customers = false;
-        ctrl.admin.Inventory = false;
-        ctrl.admin.Warehouse = false;
-        ctrl.admin.SuperAdmin = false;
-    }
-        	
+        };
 
-        
-       
+        ctrl.checkAll = function(){
+            ctrl.admin.SuperAdmin = ctrl.admin.Warehouse = ctrl.admin.Inventory = 
+            ctrl.admin.Customers = ctrl.admin.Pickup = ctrl.admin.Admin = ctrl.admin.Owner = ctrl.admin.All;
       };
-
     }
 
     angular.module('addAdminModal')

@@ -23,7 +23,8 @@ function openPopUpAddAdmin(details){
 			console.log(err);
 		})
 		)
-}	
+}
+
 function openPopUpEdit(details){
 		var modalInstance = this.$uibModal.open({
 			component: 'editAdminModal',
@@ -48,19 +49,15 @@ function openPopUpEdit(details){
 		)
 }
 
-
-function manageAdminController($state,$http,$uibModal){
+function manageAdminController($state,$http,$uibModal,AdminRightsService){
 
 	var ctrl= this;
 	ctrl.$uibModal = $uibModal;
 	ctrl.$state = $state;
 
-	//ctrl.adminArr = adminArrayService.addadmin();
 	ctrl.arrayOfAdmin=[
             {email:'test123',username:'test',All:'No',Owner: 'Yes',Pickup:'No',Admin:'Yes',Customers:'Yes',Inventory:'No',Warehouse: 'No',SuperAdmin: 'Yes'},
             {email:'test456',username:'test1',All:'No',Owner: 'Yes',Pickup:'No',Admin:'Yes',Customers:'Yes',Inventory:'No',Warehouse: 'No',SuperAdmin: 'Yes'},
-
-            
           ];
 
 	ctrl.init = function(){
@@ -73,10 +70,9 @@ function manageAdminController($state,$http,$uibModal){
 		    }
 		})
 		.then(function(response){
-			if(response.data.role == 1){
+			if(response && response.data && response.data.role == 1){
 				ctrl.value = response.data.role;
 			}
-			
 		})
 		.catch(function(err){
 			console.log('Error getting driver details:');
@@ -88,6 +84,7 @@ function manageAdminController($state,$http,$uibModal){
 		angular.bind(ctrl,openPopUpEdit, null)();
 	}
 	ctrl.delete = function(index){
+		//TODO: Make API Hit for this
 		ctrl.arrayOfAdmin.splice(index, 1);
 	}
 
@@ -101,7 +98,7 @@ function manageAdminController($state,$http,$uibModal){
 angular.module('manageAdmin')
 .component('manageAdmin',{
 	templateUrl: 'manage-admin/manage-admin-details/manage-admin-details.template.html',
-	controller: ['$state','$http','$uibModal', manageAdminController]
+	controller: ['$state','$http','$uibModal','AdminRightsService', manageAdminController]
 });
 
 
