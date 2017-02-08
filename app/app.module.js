@@ -10,6 +10,7 @@ angular.module('bathwaterApp', [
 	'ui.bootstrap',
 	'images-resizer',
 	'720kb.datepicker',
+	'manageAdmin',
 	'index',
 	'adminLayout',
 	'adminPanel',

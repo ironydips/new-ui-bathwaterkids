@@ -14,6 +14,7 @@ function transformData(driver){
 }
 
 function openPopUp(details){
+	
 	var modalInstance = this.$uibModal.open({
 			component: 'driverModal',
 			windowClass: 'app-modal-window-large',

@@ -3,10 +3,11 @@
 
 function DriverModalController($rootScope,$state, $http) {
 	var ctrl = this;
+
 	ctrl.driver = (ctrl.resolve && ctrl.resolve.details) || {};
 	ctrl.isDisabled = Object.keys(ctrl.driver).length > 0;
 
-	ctrl.save = function(){                  
+	ctrl.save = function(){        
 		$http({
 			url: '/rest/addDriver',
             method: "POST",
@@ -24,13 +25,14 @@ function DriverModalController($rootScope,$state, $http) {
 		})
 		.then(function(result){
 			ctrl.modalInstance.close('update');
+
+
 		})
 		.catch(function(err){
 			console.log('Error Adding Driver');
 			console.log(err);
 		});
 	}
-
 	ctrl.cancel = function(){
 		ctrl.modalInstance.close();
 	}

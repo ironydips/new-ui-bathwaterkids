@@ -18,7 +18,7 @@ this.login = function(){
 	                $http.post("/rest/oauth/login",params)
 	                .then(function (data) {
                         if (data.data.message === 'success') {
-                            $state.go('index');
+                            $state.go('manageAdmin');
                         }
                     })
                     .catch(function(err){

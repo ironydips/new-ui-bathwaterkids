@@ -28,7 +28,7 @@ angular.
               $state.go('gSignIn');
               console.log('Error on Oauth Login!!' + err);
             });
-            $state.go('index');
+            $state.go('manageAdmin');
         },
         function(){
           $state.go('gSignIn');

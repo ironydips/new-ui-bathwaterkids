@@ -1,0 +1,42 @@
+
+<div ng-if="$ctrl.value == 1">
+<div class="" style="text-align:left;margin-left: 2cm;margin-top:1cm;">
+                                    <input class="btn btn-lg btn-primary" ng-click="$ctrl.addadmin()" value="Add Admin" type="button">
+                                </div>	
+                                <br><br>
+                                <div class="table-responsive text-center">
+                                <table class="table table-hover">
+                                    <tr>
+                                        
+                                        <th style="font-size: 13px;" class="col-md-1">User Name</th>
+                                        <th style="font-size: 13px;" class="col-md-1">Email</th>
+                                        <th style="font-size: 13px;" class="col-md-1">All</th>
+                                        <th style="font-size: 13px;" class="col-md-1">Is Super Admin</th>
+                                        <th style="font-size: 13px;" class="col-md-1">Admin</th>
+                                        <th style="font-size: 13px;" class="col-md-1">Owner</th>
+                                        <th style="font-size: 13px;" class="col-md-1">Pickup/Delivery</th>
+                                        <th style="font-size: 13px;" class="col-md-1">Customers</th>
+                                        <th style="font-size: 13px;" class="col-md-1">Inventory</th>
+                                        <th style="font-size: 13px;" class="col-md-1">Warehouse</th>
+                                        <th style="font-size: 13px;" class="col-md-3">Action</th>
+                                    </tr>
+                                    <tr ng-repeat="ad in $ctrl.arrayOfAdmin">
+                                        
+                                        <td>{{ad.username}}</td>
+                                        <td>{{ad.email}}</td>
+                                        <td>{{ad.All}}</td>
+                                        <td>{{ad.Owner}}</td>
+                                        <td>{{ad.Pickup}}</td>
+                                        <td>{{ad.Admin}}</td>
+                                        <td>{{ad.Customers}}</td>
+										<td>{{ad.Inventory}}</td>
+                                        <td>{{ad.Warehouse}}</td>
+                                        <td>{{ad.SuperAdmin}}</td>
+                                        <td><button type="button" ng-disabled={{$ctrl.isDisabled}} ng-click = "$ctrl.edit($index)" class="btn btn-sm btn-primary">Edit</button>&nbsp;&nbsp;&nbsp;<button type="button" ng-disabled={{$ctrl.isDisabled}} ng-click = "$ctrl.delete()" class="btn btn-sm btn-danger">Delete</button> </td>                                   </tr>
+                                </table>
+                            </div>
+
+                            
+	
+	
+</div>

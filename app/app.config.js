@@ -17,6 +17,10 @@ angular.
           url:'/',
           template: '<g-sign></g-sign>'
         })
+        .state('manageAdmin',{
+          url:'/manageAdmin',
+          template: '<manage-admin></manage-admin>'
+        })
         .state('index',{
           url:'/index',
           template: '<index></index>'
