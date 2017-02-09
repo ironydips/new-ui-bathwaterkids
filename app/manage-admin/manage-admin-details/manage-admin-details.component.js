@@ -1,105 +1,99 @@
-	'use strict'
+(function(angular) {
 
-function openPopUpAddAdmin(details){
+    'use strict'
 
-	var modalInstance = this.$uibModal.open({
-			component: 'addAdminModal',
-			windowClass: 'app-modal-window-large',
-			keyboard: false,
-			resolve:{
-				details: function(){
-					return (details || {});
-				}
-			},
-			backdrop: 'static'
-		});
+    function transformData(adminrights) {
+        adminrights.Owner = adminrights.Owner,
+            adminrights.All = adminrights.All,
+            adminrights.Admin = adminrights.Admin,
+            adminrights.Pickup = adminrights.Pickup,
+            adminrights.Customers = adminrights.Customers,
+            adminrights.Inventory = adminrights.Inventory,
+            adminrights.Warehouse = adminrights.Warehouse,
+            adminrights.SuperAdmin = adminrights.SuperAdmin,
+            adminrights.username = adminrights.username,
+            adminrights.email = adminrights.email
 
-		modalInstance.result.then(angular.bind(this, function(data){
-			//data passed when pop up closed.
-			if(data == "update") this.$state.reload();
-			
-		}), angular.bind(this, function(err){
-			console.log('Error in add-driver Modal');
-			console.log(err);
-		})
-		)
-}
+        return adminrights;
+    }
 
-function openPopUpEdit(details){
-		var modalInstance = this.$uibModal.open({
-			component: 'editAdminModal',
-			windowClass: 'app-modal-window-large',
-			keyboard: false,
-			resolve:{
-				details: function(){
-					return (details || {});
-				}
-			},
-			backdrop: 'static'
-		});
+    function openPopUpAdmin(details) {
 
-		modalInstance.result.then(angular.bind(this, function(data){
-			//data passed when pop up closed.
-			if(data == "update") this.$state.reload();
-			
-		}), angular.bind(this, function(err){
-			console.log('Error in add-driver Modal');
-			console.log(err);
-		})
-		)
-}
+        var modalInstance = this.$uibModal.open({
+            component: 'addAdminModal',
+            windowClass: 'app-modal-window-large',
+            keyboard: false,
+            resolve: {
+                details: function() {
+                    return (details || {});
+                }
+            },
+            backdrop: 'static'
+        });
 
-function manageAdminController($state,$http,$uibModal,AdminRightsService){
+        modalInstance.result.then(angular.bind(this, function(data) {
+            //data passed when pop up closed.
+            if (data == "update") this.$state.reload();
 
-	var ctrl= this;
-	ctrl.$uibModal = $uibModal;
-	ctrl.$state = $state;
+        }), angular.bind(this, function(err) {
+            console.log('Error in add-driver Modal');
+            console.log(err);
+        }))
+    }
 
-	ctrl.arrayOfAdmin=[
-            {email:'test123',username:'test',All:'No',Owner: 'Yes',Pickup:'No',Admin:'Yes',Customers:'Yes',Inventory:'No',Warehouse: 'No',SuperAdmin: 'Yes'},
-            {email:'test456',username:'test1',All:'No',Owner: 'Yes',Pickup:'No',Admin:'Yes',Customers:'Yes',Inventory:'No',Warehouse: 'No',SuperAdmin: 'Yes'},
-          ];
 
-	ctrl.init = function(){
-		//get driver details.
-		$http({
-		    url: '/rest/admin/login',
-		    method: "POST",
-		    headers:{
-		    	"Authorization": 'Basic YWRtaW46YWRtaW4='
-		    }
-		})
-		.then(function(response){
-			if(response && response.data && response.data.role == 1){
-				ctrl.value = response.data.role;
-			}
-		})
-		.catch(function(err){
-			console.log('Error getting driver details:');
-			console.log(err);
-		})
-	};
+    function manageAdminController($state, $http, $uibModal, AdminRightsService) {
 
-	ctrl.edit = function(a){
-		angular.bind(ctrl,openPopUpEdit, null)();
-	}
-	ctrl.delete = function(index){
-		//TODO: Make API Hit for this
-		ctrl.arrayOfAdmin.splice(index, 1);
-	}
+        var ctrl = this;
+        ctrl.$uibModal = $uibModal;
+        ctrl.$state = $state;
 
-	ctrl.addadmin = function(){
-		angular.bind(ctrl,openPopUpAddAdmin, null)();
-	}
-	ctrl.init();
-
-}
-
-angular.module('manageAdmin')
-.component('manageAdmin',{
-	templateUrl: 'manage-admin/manage-admin-details/manage-admin-details.template.html',
-	controller: ['$state','$http','$uibModal','AdminRightsService', manageAdminController]
-});
+        ctrl.arrayOfAdmin = AdminRightsService.getRights();
 
 
 
+        ctrl.init = function() {
+            //get admin details.
+            $http({
+                    url: '/rest/admin/login',
+                    method: "POST",
+                    headers: {
+                        "Authorization": 'Basic YWRtaW46YWRtaW4='
+                    }
+                })
+                .then(function(response) {
+                    if (response && response.data && response.data.role == 1) {
+                        ctrl.value = response.data.role;
+                    }
+                })
+                .catch(function(err) {
+                    console.log('Error getting driver details:');
+                    console.log(err);
+                })
+        };
+
+        ctrl.edit = function(adminrights) {
+
+            AdminRightsService.setAdmin("editadmin");
+            angular.bind(ctrl, openPopUpAdmin, transformData(adminrights))();
+
+        }
+        ctrl.delete = function(index) {
+            //TODO: Make API Hit for this
+            ctrl.arrayOfAdmin.splice(index, 1);
+        }
+
+        ctrl.addadmin = function() {
+            angular.bind(ctrl, openPopUpAdmin, null)();
+            AdminRightsService.setAdmin("addadmin");
+        }
+        ctrl.init();
+
+    }
+
+    angular.module('manageAdmin')
+        .component('manageAdmin', {
+            templateUrl: 'manage-admin/manage-admin-details/manage-admin-details.template.html',
+            controller: ['$state', '$http', '$uibModal', 'AdminRightsService', manageAdminController]
+        });
+})(window.angular);

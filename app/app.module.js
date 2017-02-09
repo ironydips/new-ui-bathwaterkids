@@ -26,5 +26,7 @@ angular.module('bathwaterApp', [
 	// Pickup/Delivery Panel Modules
 	'deliverySubPanel',
 	'userRequest',
-	'deliveryTrucks'
+	'deliveryTrucks',
+	//Customer Panel Modules
+	'customersSubPanel'
 ]);

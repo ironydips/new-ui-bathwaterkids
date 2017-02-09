@@ -1,6 +1,7 @@
 (function(angular) {
+
 'use strict';
 
-angular.module('editAdminModal',[]);
+angular.module('customersUser',[]);
 
 })(window.angular);

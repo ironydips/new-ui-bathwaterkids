@@ -20,19 +20,20 @@
                                         <th style="font-size: 13px;" class="col-md-1">Warehouse</th>
                                         <th style="font-size: 13px;" class="col-md-3">Action</th>
                                     </tr>
-                                    <tr ng-repeat="ad in $ctrl.arrayOfAdmin">
-                                        
-                                        <td>{{ad.username}}</td>
+                                    <tr ng-repeat="ad in $ctrl.arrayOfAdmin track by $index">
+
+<!--                                         <td>{{$index}}</td>    
+ -->                                        <td>{{ad.username}}</td>
                                         <td>{{ad.email}}</td>
                                         <td>{{ad.All}}</td>
+                                        <td>{{ad.SuperAdmin}}</td>
+                                        <td>{{ad.Admin}}</td>
                                         <td>{{ad.Owner}}</td>
                                         <td>{{ad.Pickup}}</td>
-                                        <td>{{ad.Admin}}</td>
-                                        <td>{{ad.Customers}}</td>
-										<td>{{ad.Inventory}}</td>
+										<td>{{ad.Customers}}</td>
+                                        <td>{{ad.Inventory}}</td>
                                         <td>{{ad.Warehouse}}</td>
-                                        <td>{{ad.SuperAdmin}}</td>
-                                        <td><button type="button" ng-disabled={{$ctrl.isDisabled}} ng-click = "$ctrl.edit($index)" class="btn btn-sm btn-primary">Edit</button>&nbsp;&nbsp;&nbsp;<button type="button" ng-disabled={{$ctrl.isDisabled}} ng-click = "$ctrl.delete()" class="btn btn-sm btn-danger">Delete</button> </td>                                   </tr>
+                                        <td><button type="button" ng-disabled={{$ctrl.isDisabled}} ng-click = "$ctrl.edit(ad)" class="btn btn-sm btn-primary">Edit</button>&nbsp;&nbsp;&nbsp;<button type="button" ng-disabled={{$ctrl.isDisabled}} ng-click = "$ctrl.delete($index)" class="btn btn-sm btn-danger">Delete</button> </td>                                   </tr>
                                 </table>
                             </div>
 

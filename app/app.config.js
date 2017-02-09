@@ -110,5 +110,37 @@ angular.
               template:'<delivery-trucks></delivery-trucks>'
             }          }
         })
+          .state('customers',{
+          url:'/customers',
+          abstract: true,
+          views:{
+            '':{
+              template:'<admin-layout></admin-layout>'
+            },
+            'adminPanel@customers':{
+              template:'<admin-panel></admin-panel>'
+            },
+            'adminSubPanel@customers':{
+              template:'<customers-sub-panel></customers-sub-panel>'
+            }
+          }
+        })
+           .state('customers.user',{
+          url:'/user',
+          views:{
+            'contentSection@customers':{
+              template:'<customers-user></customers-user>'
+            }
+          }
+        })
+            .state('customers.memberships',{
+          url:'/memberships',
+          views:{
+            'contentSection@customers':{
+              template:'<customers-membership></customers-membership>'
+            }
+          }
+        })
+        
     }
   ]);

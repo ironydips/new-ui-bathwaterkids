@@ -31,7 +31,7 @@
                      <label>All</label>
                   </div>
                   <div class="col-sm-4">
-                     <input type="checkbox" ng-click="$ctrl.checkAll()" ng-model="$ctrl.admin.All" ng-checked="$ctrl.admin.Owner && $ctrl.admin.Admin && $ctrl.admin.Pickup && $ctrl.admin.Customers && $ctrl.admin.Inventory && $ctrl.admin.Warehouse &&$ctrl.admin.SuperAdmin">
+                     <input type="checkbox" ng-click="$ctrl.checkAll()" ng-true-value="'YES'" ng-false-value="'NO'" ng-model="$ctrl.admin.All" ng-checked="$ctrl.admin.All">
                   </div>
                </div>
                <div class="col-sm-6">
@@ -39,7 +39,7 @@
                      <label>Owner</label>
                   </div>
                   <div class="col-sm-4">
-                     <input type="checkbox" ng-model="$ctrl.admin.Owner" ng-checked="$ctrl.admin.Owner">
+                     <input type="checkbox" ng-model="$ctrl.admin.Owner" ng-click="$ctrl.checkOwner()" ng-true-value="'YES'" ng-false-value="'NO'" ng-checked="$ctrl.admin.Owner" >
                   </div>
                </div>
             </div>
@@ -49,7 +49,7 @@
                      <label>Admin</label>
                   </div>
                   <div class="col-sm-4">
-                     <input type="checkbox" ng-model="$ctrl.admin.Admin" ng-checked="$ctrl.admin.Admin">
+                     <input type="checkbox" ng-model="$ctrl.admin.Admin" ng-true-value="'YES'" ng-click = "$ctrl.checkAdmin()" ng-false-value="'NO'" ng-checked="$ctrl.admin.Admin">
                   </div>
                </div>
                <div class="col-sm-6">
@@ -57,7 +57,7 @@
                      <label>Pickup/Delivery</label>
                   </div>
                   <div class="col-sm-4">
-                     <input type="checkbox" ng-model="$ctrl.admin.Pickup" ng-checked="$ctrl.admin.Pickup">
+                     <input type="checkbox" ng-model="$ctrl.admin.Pickup" ng-false-value="'NO'" ng-true-value="'YES'" ng-click = "$ctrl.checkPickup()">
                   </div>
                </div>
             </div>
@@ -67,7 +67,7 @@
                      <label>Customers</label>
                   </div>
                   <div class="col-sm-4">
-                     <input type="checkbox" ng-model="$ctrl.admin.Customers" ng-checked="$ctrl.admin.Customers">
+                     <input type="checkbox" ng-model="$ctrl.admin.Customers" ng-false-value="'NO'" ng-true-value="'YES'" ng-click = "$ctrl.checkCustomer()">
                   </div>
                </div>
                <div class="col-sm-6">
@@ -75,7 +75,7 @@
                      <label>Inventory</label>
                   </div>
                   <div class="col-sm-4">
-                     <input type="checkbox" ng-model="$ctrl.admin.Inventory" ng-checked="$ctrl.admin.Inventory">
+                     <input type="checkbox" ng-model="$ctrl.admin.Inventory" ng-false-value="'NO'" ng-true-value="'YES'" ng-click = "$ctrl.checkInventory()">
                   </div>
                </div>
             </div>
@@ -85,7 +85,7 @@
                      <label>Warehouse</label>
                   </div>
                   <div class="col-sm-4">
-                     <input type="checkbox" ng-model="$ctrl.admin.Warehouse" ng-checked="$ctrl.admin.Warehouse">
+                     <input type="checkbox" ng-model="$ctrl.admin.Warehouse" ng-false-value="'NO'" ng-true-value="'YES'" ng-click = "$ctrl.checkWarehouse()">
                   </div>
                </div>
                <div class="col-sm-6">
@@ -93,7 +93,7 @@
                      <label>Is Super Admin</label>
                   </div>
                   <div class="col-sm-4">
-                     <input type="checkbox" ng-model="$ctrl.admin.SuperAdmin" ng-checked="$ctrl.admin.SuperAdmin">
+                     <input type="checkbox" ng-model="$ctrl.admin.SuperAdmin" ng-false-value="'NO'" ng-true-value="'YES'" ng-click = "$ctrl.checkSuperAdmin()">
                   </div>
                </div>
               
@@ -104,8 +104,10 @@
                <div class="col-sm-2">
                </div>
                <div class="btn-main">
-                  <button type="button" ng-click = "$ctrl.cancel()" class="btn btn-sm btn-default">Cancel</button>
-                  <button type="button" ng-disabled={{$ctrl.isDisabled}} ng-click = "$ctrl.saveAdmin()" class="btn btn-sm btn-success">Save</button>
+                  <button type="button"  ng-click = "$ctrl.cancel()" class="btn btn-sm btn-default">Cancel</button>
+                  <button ng-show="$ctrl.save" type="button"  ng-click = "$ctrl.saveAdmin()" class="btn btn-sm btn-success">Save</button>
+                  <button ng-show="$ctrl.update" type="button"  ng-click = "$ctrl.updateAdmin()" class="btn btn-sm btn-success">Update</button>
+                  
                </div>
             </div>
          </div>

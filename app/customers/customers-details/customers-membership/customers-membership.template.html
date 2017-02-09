@@ -1,0 +1,28 @@
+<div class="userComponent">
+    <div class="container">
+        <br>
+        <input type="text" class="form-control pull-right" style="width: 200px;" ng-model="searchMember" placeholder="Search">
+        <br>
+        <br><br>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="col-md-1">First Name</th>
+                    <th class="col-md-1">Last Name</th>
+                    <th class="col-md-3">Email</th>
+                    <th class="col-md-3">Current Subscription</th>
+                    <th class="col-md-3">Action</th>
+                </tr>
+                <tr ng-repeat="user in $ctrl.listofUsers| filter:searchMember" class="text-center">
+                    <td>{{user.firstName}}</td>
+                    <td>{{user.lastName}}</td>
+                    <td>{{user.emailAddress}}</td>
+                    <td>{{user.membership.name}}</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm">Add/Update Subscription</a>
+                    </td>
+                </tr>
+                </tbody>
+        </table>
+    </div>
+</div>
