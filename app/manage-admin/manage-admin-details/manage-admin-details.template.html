@@ -25,16 +25,20 @@
 <!--                                         <td>{{$index}}</td>    
  -->                                        <td>{{ad.username}}</td>
                                         <td>{{ad.email}}</td>
-                                        <td>{{ad.All}}</td>
-                                        <td>{{ad.SuperAdmin}}</td>
-                                        <td>{{ad.Admin}}</td>
-                                        <td>{{ad.Owner}}</td>
-                                        <td>{{ad.Pickup}}</td>
-										<td>{{ad.Customers}}</td>
-                                        <td>{{ad.Inventory}}</td>
-                                        <td>{{ad.Warehouse}}</td>
-                                        <td><button type="button" ng-disabled={{$ctrl.isDisabled}} ng-click = "$ctrl.edit(ad)" class="btn btn-sm btn-primary">Edit</button>&nbsp;&nbsp;&nbsp;<button type="button" ng-disabled={{$ctrl.isDisabled}} ng-click = "$ctrl.delete($index)" class="btn btn-sm btn-danger">Delete</button> </td>                                   </tr>
+                                        <td>{{ad.All | YesNo}}</td>
+                                        <td>{{ad.SuperAdmin | YesNo}}</td>
+                                        <td>{{ad.Admin | YesNo}}</td>
+                                        <td>{{ad.Owner | YesNo}}</td>
+                                        <td>{{ad.Pickup | YesNo}}</td>
+										<td>{{ad.Customers | YesNo}}</td>
+                                        <td>{{ad.Inventory | YesNo}}</td>
+                                        <td>{{ad.Warehouse | YesNo}}</td>
+                                        <td><button type="button" ng-disabled={{$ctrl.isDisabled}} ng-click = "$ctrl.edit(ad, $index)" class="btn btn-sm btn-primary">Edit</button>&nbsp;&nbsp;&nbsp;<button type="button" ng-disabled={{$ctrl.isDisabled}} ng-click = "$ctrl.delete($index)" class="btn btn-sm btn-danger">Delete</button> </td>                                   </tr>
                                 </table>
+                            </div>
+                            <div style="margin-top: 400px;margin-right: 30px;" class="pull-right">
+                                <input class="btn btn-lg btn-primary" ui-sref="index" value="Continue" type="button">
+                                </div> 
                             </div>
 
                             

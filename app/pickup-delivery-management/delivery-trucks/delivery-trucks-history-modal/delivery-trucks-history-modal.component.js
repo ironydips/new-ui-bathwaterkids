@@ -17,7 +17,7 @@ function historyModalController($scope, $rootScope,$state,$http) {
 				ctrl.trkhistories = truckDetails.data;
 			})
 			.catch(function(err){
-				console.log('Error getting truck details:');
+				console.log('Error getting truck histories details:');
 				console.log(err);
 			})
 	};

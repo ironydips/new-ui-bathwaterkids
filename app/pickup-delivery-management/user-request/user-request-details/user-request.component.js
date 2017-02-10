@@ -20,7 +20,7 @@ function openPopUpCompleted(details){
 			if(data == "update") this.$state.reload();
 			
 		}), angular.bind(this, function(err){
-			console.log('Error in add-driver Modal');
+			console.log('Error in user-request-completed Modal');
 			console.log(err);
 		})
 		)
@@ -43,7 +43,7 @@ function openPopUpnotstarted(details){
 			if(data == "update") this.$state.reload();
 			
 		}), angular.bind(this, function(err){
-			console.log('Error in add-driver Modal');
+			console.log('Error in user-request-notStarted Modal');
 			console.log(err);
 		})
 		)
@@ -66,7 +66,7 @@ function openPopUpinProgress(details){
 			if(data == "update") this.$state.reload();
 			
 		}), angular.bind(this, function(err){
-			console.log('Error in add-driver Modal');
+			console.log('Error in user-request-inProgress Modal');
 			console.log(err);
 		})
 		)

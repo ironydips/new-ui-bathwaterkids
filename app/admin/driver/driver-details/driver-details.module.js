@@ -4,6 +4,6 @@
 angular.module('driverDetails',[
 	'ui.bootstrap',
 	'driverModal'
-	]);
+		]);
 
 })(window.angular);

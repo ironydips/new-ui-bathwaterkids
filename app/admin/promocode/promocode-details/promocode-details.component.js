@@ -30,7 +30,7 @@ function PromoCodeDetailsController($rootScope,$state,$http,$uibModal){
 	ctrl.$state = $state;
 
 	ctrl.init = function(){
-		//get driver details.
+		//get promocode details.
 		$http({
 		    url: '/rest/getPromos',
 		    method: "GET",

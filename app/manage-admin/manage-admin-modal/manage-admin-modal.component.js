@@ -6,9 +6,11 @@
         ctrl.admin = (ctrl.resolve && ctrl.resolve.details) || {};
 
         ctrl.isDisabled = Object.keys(ctrl.admin).length > 0;
+        ctrl.isEdited = Object.keys(ctrl.admin).length > 0;
 
 
-        ctrl.saveAdmin = function() {
+
+        ctrl.saveAdmin = function() {                
             AdminRightsService.addRights(ctrl.admin);
             ctrl.modalInstance.close('update');
         };
@@ -19,29 +21,16 @@
 
         ctrl.checkAll = function() {
             ctrl.admin.SuperAdmin = ctrl.admin.Warehouse = ctrl.admin.Inventory =
-                ctrl.admin.Customers = ctrl.admin.Pickup = ctrl.admin.Admin = ctrl.admin.Owner = ctrl.admin.All;
+            ctrl.admin.Customers = ctrl.admin.Pickup = ctrl.admin.Admin = ctrl.admin.Owner = ctrl.admin.All;
         };
-        ctrl.uncheckAll = function() {
-            ctrl.admin.SuperAdmin = ctrl.admin.Warehouse = ctrl.admin.Inventory =
-                ctrl.admin.Customers = ctrl.admin.Pickup = ctrl.admin.Admin = ctrl.admin.All = ctrl.admin.Owner = "NO";
-        };
-
-        if (AdminRightsService.getAdmin() == "addadmin") {
-
-            ctrl.save = true;
-            ctrl.update = false;
-            ctrl.uncheckAll();
-
-        }
-        if (AdminRightsService.getAdmin() == "editadmin") {
-            ctrl.save = false;
-            ctrl.update = true;
-
-        }
+        
         ctrl.updateAdmin = function() {
-            // AdminRightsService.editRights(ctrl.admin);
+            console.log(ctrl.admin);
+
             ctrl.modalInstance.close('update');
-        }
+
+        };
+       
     }
 
     angular.module('addAdminModal')

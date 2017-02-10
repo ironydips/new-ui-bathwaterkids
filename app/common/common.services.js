@@ -1,24 +1,14 @@
 (function (angular) {
 function AdminRightsService() {
 	var rights = [];
-  var addadmin;
+  var copyrights = {};
 
   function addRights(rightsList) {
-      rights.push(rightsList);
-      //console.log(rights);
+      copyrights = angular.copy(rightsList);
+      rights.push(copyrights);
+      
+   };
 
-  };
-
-  function setAdmin(value){
-     addadmin = value;
-  };
-  function editRights(value){
-      console.log(value);
-  }
-
-  function getAdmin(){
-     return addadmin;
-  };
 
   function getRights(){
   	return rights;
@@ -26,10 +16,7 @@ function AdminRightsService() {
 
   return {
   	addRights: addRights,
-  	getRights: getRights,
-    setAdmin: setAdmin,
-    getAdmin: getAdmin,
-    editRights: editRights
+  	getRights: getRights
   }
 }
 

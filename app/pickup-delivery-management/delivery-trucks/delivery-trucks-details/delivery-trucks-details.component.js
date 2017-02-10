@@ -19,7 +19,7 @@
 			if(data == "update") this.$state.reload();
 			
 		}), angular.bind(this, function(err){
-			console.log('Error in add-driver Modal');
+			console.log('Error in assign trucks details Modal');
 			console.log(err);
 		})
 		)
@@ -41,7 +41,7 @@
 			if(data == "update") this.$state.reload();
 			
 		}), angular.bind(this, function(err){
-			console.log('Error in add-driver Modal');
+			console.log('Error in history of trucks details Modal');
 			console.log(err);
 		})
 		)

@@ -1,3 +1,5 @@
 'use strict';
 
-angular.module('adminPanel',[]);
+angular.module('adminPanel',[
+	'bathwaterApp.common'
+	]);

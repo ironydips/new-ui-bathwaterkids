@@ -18,7 +18,7 @@ function customersUserController($state, $http) {
 				ctrl.listofUsers = userlist.data;
 			})
 			.catch(function(err){
-				console.log('Error getting truck details:');
+				console.log('Error getting user details:');
 				console.log(err);
 			})
 	};
