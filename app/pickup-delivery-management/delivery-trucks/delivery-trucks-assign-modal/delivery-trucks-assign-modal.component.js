@@ -50,7 +50,7 @@ function deliverytruckModalController($scope, $rootScope,$state,$http) {
 			//ctrl.modalInstance.close('update');
 		})
 		.catch(function(err){
-			console.log('Error Adding Driver');
+			console.log('Error in assigning truck & driver');
 			console.log(err);
 		});
 

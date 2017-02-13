@@ -24,7 +24,7 @@ function PromoModalModalController($rootScope,$state,$http){
 			ctrl.modalInstance.close('update');
 		})
 		.catch(function(err){
-			console.log('Error Adding Driver');
+			console.log('Error Adding promocode');
 			console.log(err);
 		});
 	}

@@ -4,7 +4,6 @@
 function UserRequestNotStartedModalController($scope, $rootScope,$state,$http) {
 	var ctrl = this;
 	ctrl.notstarted = (ctrl.resolve && ctrl.resolve.details) || {};
-	ctrl.isDisabled = Object.keys(ctrl.notstarted).length > 0;
 	ctrl.init = function(){
 		$http({
         url: "/rest/getUserTS",

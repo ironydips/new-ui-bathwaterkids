@@ -19,7 +19,7 @@
 			if(data == "update") this.$state.reload();
 			
 		}), angular.bind(this, function(err){
-			console.log('Error in assign trucks details Modal');
+			console.log('Error in assign trucks & driver Modal');
 			console.log(err);
 		})
 		)

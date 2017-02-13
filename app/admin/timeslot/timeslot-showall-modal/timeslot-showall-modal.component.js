@@ -10,7 +10,6 @@ function TimeslotShowAllModal($rootScope, $state, $http) {
         }
     }).then(function(timeslotShowAllModal) {
         ctrl.alltimeslot = timeslotShowAllModal.data;
-        console.log(ctrl.alltimeslot);
     });
     ctrl.cancelshowall= function(){
 		ctrl.modalInstance.close();

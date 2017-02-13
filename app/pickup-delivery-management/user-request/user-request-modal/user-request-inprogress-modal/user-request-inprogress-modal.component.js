@@ -4,7 +4,6 @@
 function UserRequestInProgressModalController($scope, $rootScope,$state,$http) {
 	var ctrl = this;
 	ctrl.inprogress = (ctrl.resolve && ctrl.resolve.details) || {};
-	ctrl.isDisabled = Object.keys(ctrl.inprogress).length > 0;
 	ctrl.init = function(){
 		$http({
         url: "/rest/getUserTS",

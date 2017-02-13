@@ -35,7 +35,7 @@ function TimeslotController($rootScope,$state,$http,$uibModal) {
 			if(data == "update") $state.reload();
 			
 		}, function(err){
-			console.log('Error in add-driver Modal');
+			console.log('Error in add-timeslot Modal');
 			console.log(err);
 		})
 	};

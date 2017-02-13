@@ -50,11 +50,10 @@ function TimeslotModalController($rootScope,$state,$http) {
             }
 		})
 		.then(function(result){
-			debugger;
 			ctrl.modalInstance.close('update');
 		})
 		.catch(function(err){
-			console.log('Error Adding Driver');
+			console.log('Error Timeslot detail');
 			console.log(err);
 		});
 		

@@ -4,7 +4,6 @@
 function UserRequestCompletedModalController($scope, $rootScope,$state,$http) {
 	var ctrl = this;
 	ctrl.complete = (ctrl.resolve && ctrl.resolve.details) || {};
-	ctrl.isDisabled = Object.keys(ctrl.complete).length > 0;
 	ctrl.init = function(){
 		$http({
         url: "/rest/getUserTS",
