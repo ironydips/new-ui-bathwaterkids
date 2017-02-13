@@ -2,6 +2,8 @@
 
     'use strict'
 
+     
+
     function openPopUpAdmin(details) {
 
         var modalInstance = this.$uibModal.open({
@@ -18,9 +20,12 @@
 
         modalInstance.result.then(angular.bind(this, function(data) {
             //data passed when pop up closed.
-            if (data.action == "update") this.getAdminList();
+            //if (data.action == "update") this.getAdminList();
             if(data.action == "add") this.adminList.push(data.details);
-            if(data.action == "edit") this.adminList.push(data.details);
+            if(data.action == "edit") {
+                var index = this.adminList.map(function(row){return row.email }).indexOf(data.details.email);
+                this.adminList[index] = angular.copy(data.details);
+            }
 
         }), angular.bind(this, function(err) {
             console.log('Error in manage-admin Modal');
@@ -28,9 +33,8 @@
         }))
     }
 
-    function manageAdminController($state, $stateParams, $http, $uibModal, AdminRightsService) {
+    function manageAdminController($state, $scope,  $stateParams, $http, $uibModal, AdminRightsService) {
 
-        debugger;
         var ctrl = this;
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
@@ -55,6 +59,21 @@
             adminLogin();
         };
 
+        $scope.$watchCollection(angular.bind(ctrl, function(){
+                return ctrl.adminList;
+            }), function(newValue){
+                ctrl.disallowContinue = newValue.map(function(data){return data.email}).indexOf(ctrl.userProfile.email) == -1;
+            });
+
+        ctrl.continue = function(){
+            var loggedinUserData = ctrl.adminList.filter(function(element){
+                                    return element.email == ctrl.userProfile.email;
+                                });
+            AdminRightsService.addRights(loggedinUserData[0]);
+            $state.go('index');
+        };
+
+
         ctrl.edit = function(adminrights) {
             angular.bind(ctrl, openPopUpAdmin, angular.copy(adminrights))();
 
@@ -62,7 +81,7 @@
 
         ctrl.delete = function(index) {
             //TODO: Make API Hit for this
-            ctrl.arrayOfAdmin.splice(index, 1);
+            ctrl.adminList.splice(index, 1);
         }
 
         ctrl.addadmin = function() {
@@ -70,6 +89,8 @@
         }
 
         ctrl.init();
+
+        // Find Login Admin Function
 
         // Function inside scope controller.
         function adminLogin(){
@@ -101,7 +122,6 @@
 
                             ctrl.getAdminList();
                         }
-                        ctrl.value = response.data.role;
                     }
                 })
                 .catch(function(err) {
@@ -125,6 +145,9 @@
                 .then(function(response) {
                     if (response && response.data) {
                         ctrl.adminList = response.data;
+                        if (ctrl.adminList.indexOf(ctrl.userProfile.email) >= 0) {
+                          ctrl.isDisabled = false;
+                        }
                     }
                 })
                 .catch(function(err) {
@@ -132,12 +155,14 @@
                     console.log(err);
                 })
         }
+        
+
 
     }
 
     angular.module('manageAdmin')
         .component('manageAdmin', {
             templateUrl: 'manage-admin/manage-admin-details/manage-admin-details.template.html',
-            controller: ['$state','$stateParams', '$http', '$uibModal', 'AdminRightsService', manageAdminController]
+            controller: ['$state','$scope', '$stateParams', '$http', '$uibModal', 'AdminRightsService', manageAdminController]
         });
 })(window.angular);

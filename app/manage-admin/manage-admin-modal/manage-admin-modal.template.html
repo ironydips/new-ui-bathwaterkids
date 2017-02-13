@@ -2,8 +2,8 @@
 <div class="profileComponent">
    <div class="container">
       <div class="profileBg">
-         <h2 ng-show="$ctrl.isEdited == false">Add Admin</h2>
-         <h2 ng-show="$ctrl.isEdited == true">Edit Admin</h2>
+         <h2 ng-hide="$ctrl.isEdited">Add Admin</h2>
+         <h2 ng-show="$ctrl.isEdited">Edit Admin</h2>
 
           <div class="inner-adjust">
             <h3>Details</h3>
@@ -107,8 +107,8 @@
                </div>
                <div class="btn-main">
                   <button type="button"  ng-click = "$ctrl.cancel()" class="btn btn-sm btn-default">Cancel</button>
-                  <button ng-show="$ctrl.isEdited == false" type="button"  ng-click = "$ctrl.saveAdmin()" class="btn btn-sm btn-success">Save</button>
-                  <button ng-show="$ctrl.isEdited == true" type="button"  ng-click = "$ctrl.updateAdmin()" class="btn btn-sm btn-success">Update</button>
+                  <button ng-hide="$ctrl.isEdited" type="button"  ng-click = "$ctrl.saveAdmin()" class="btn btn-sm btn-success">Save</button>
+                  <button ng-show="$ctrl.isEdited" type="button"  ng-click = "$ctrl.updateAdmin()" class="btn btn-sm btn-success">Update</button>
                   
                </div>
             </div>

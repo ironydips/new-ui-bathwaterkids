@@ -46,9 +46,31 @@
         };
         
         ctrl.updateAdmin = function() {
-            console.log(ctrl.admin);
-
-            ctrl.modalInstance.close('update');
+            //Edit Admin
+                var params = JSON.stringify({
+                          email: ctrl.admin.email,
+                          name: ctrl.admin.username,
+                          role: 1
+                      });
+            $http({
+                    url: '/rest/admin/editAdmin',
+                    method: "POST",
+                    data: params,
+                    headers: {
+                        "Authorization": 'Basic YWRtaW46YWRtaW4='
+                    }
+                })
+                .then(function(response) {
+                    if (response && response.data) {
+                        console.log(ctrl.admin);
+                        // ctrl.modalInstance.close({action: 'update'});
+                        ctrl.modalInstance.close({action: 'edit', details: ctrl.admin});
+                    }
+                })
+                .catch(function(err) {
+                    console.log('Error getting Admin lists:');
+                    console.log(err);
+                })
 
         };
        

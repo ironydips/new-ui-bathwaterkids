@@ -1,13 +1,10 @@
 (function (angular) {
 function AdminRightsService() {
-	var rights = [];
-  var copyrights = {};
-
+	var rights={};
   var profile = {};
 
   function addRights(rightsList) {
-      copyrights = angular.copy(rightsList);
-      rights.push(copyrights);
+      rights = angular.copy(rightsList);
    };
 
   function getRights(){
