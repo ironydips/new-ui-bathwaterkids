@@ -1,5 +1,5 @@
 
-<div ng-if="$ctrl.value == 1">
+<div ng-if="$ctrl.isSuperAdmin">
 <div class="" style="text-align:left;margin-left: 2cm;margin-top:1cm;">
                                     <input class="btn btn-lg btn-primary" ng-click="$ctrl.addadmin()" value="Add Admin" type="button">
                                 </div>	
@@ -10,7 +10,6 @@
                                         
                                         <th style="font-size: 13px;" class="col-md-1">User Name</th>
                                         <th style="font-size: 13px;" class="col-md-1">Email</th>
-                                        <th style="font-size: 13px;" class="col-md-1">All</th>
                                         <th style="font-size: 13px;" class="col-md-1">Is Super Admin</th>
                                         <th style="font-size: 13px;" class="col-md-1">Admin</th>
                                         <th style="font-size: 13px;" class="col-md-1">Owner</th>
@@ -20,12 +19,11 @@
                                         <th style="font-size: 13px;" class="col-md-1">Warehouse</th>
                                         <th style="font-size: 13px;" class="col-md-3">Action</th>
                                     </tr>
-                                    <tr ng-repeat="ad in $ctrl.arrayOfAdmin track by $index">
+                                    <tr ng-repeat="ad in $ctrl.adminList track by $index">
 
 <!--                                         <td>{{$index}}</td>    
- -->                                        <td>{{ad.username}}</td>
+-->                                        <td>{{ad.username}}</td>
                                         <td>{{ad.email}}</td>
-                                        <td>{{ad.All | YesNo}}</td>
                                         <td>{{ad.SuperAdmin | YesNo}}</td>
                                         <td>{{ad.Admin | YesNo}}</td>
                                         <td>{{ad.Owner | YesNo}}</td>
@@ -40,8 +38,4 @@
                                 <input class="btn btn-lg btn-primary" ui-sref="index" value="Continue" type="button">
                                 </div> 
                             </div>
-
-                            
-	
-	
 </div>

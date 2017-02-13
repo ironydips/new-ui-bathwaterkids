@@ -17,8 +17,8 @@ this.login = function(){
 
 	                $http.post("/rest/oauth/login",params)
 	                .then(function (data) {
-                        if (data.data.message === 'success') {
-                            $state.go('manageAdmin');
+                        if (data.data.message == 'success') {
+                            $state.go('manageAdmin',{'profile': angular.toJson(profile)});
                         }
                     })
                     .catch(function(err){

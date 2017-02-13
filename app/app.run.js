@@ -21,16 +21,18 @@ angular.
             $http.post("/rest/oauth/login",params)
             .then(function (data) {
                 if (data.data.message != 'success') {
-                    $state.go('gSignIn');
+                  $state.go('gSignIn');
+                }
+                else{
+                  $state.go('manageAdmin',{'profile': angular.toJson(profile)});
                 }
             })
             .catch(function(err){
               $state.go('gSignIn');
               console.log('Error on Oauth Login!!' + err);
             });
-            $state.go('manageAdmin');
         },
-        function(){
+        function(error){
           $state.go('gSignIn');
         })
     .catch(function(err){

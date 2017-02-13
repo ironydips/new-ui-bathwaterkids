@@ -18,7 +18,7 @@ angular.
           template: '<g-sign></g-sign>'
         })
         .state('manageAdmin',{
-          url:'/manageAdmin',
+          url:'/manageAdmin/:profile',
           template: '<manage-admin></manage-admin>'
         })
         .state('index',{
@@ -110,7 +110,7 @@ angular.
               template:'<delivery-trucks></delivery-trucks>'
             }          }
         })
-          .state('customers',{
+        .state('customers',{
           url:'/customers',
           abstract: true,
           views:{
@@ -125,7 +125,7 @@ angular.
             }
           }
         })
-           .state('customers.user',{
+        .state('customers.user',{
           url:'/user',
           views:{
             'contentSection@customers':{
@@ -133,7 +133,7 @@ angular.
             }
           }
         })
-            .state('customers.memberships',{
+        .state('customers.memberships',{
           url:'/memberships',
           views:{
             'contentSection@customers':{
@@ -141,6 +141,5 @@ angular.
             }
           }
         })
-        
     }
   ]);

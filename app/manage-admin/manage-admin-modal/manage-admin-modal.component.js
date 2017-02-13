@@ -10,9 +10,30 @@
 
 
 
-        ctrl.saveAdmin = function() {                
-            AdminRightsService.addRights(ctrl.admin);
-            ctrl.modalInstance.close('update');
+        ctrl.saveAdmin = function() {
+            var params = JSON.stringify({
+                          email: ctrl.admin.email,
+                          name: ctrl.admin.username,
+                          role: 1
+                      });
+            $http({
+                    url: '/rest/admin/addAdmin',
+                    method: "POST",
+                    data: params,
+                    headers: {
+                        "Authorization": 'Basic YWRtaW46YWRtaW4='
+                    }
+                })
+                .then(function(response) {
+                    if (response && response.data) {
+                        // ctrl.modalInstance.close({action: 'update'});
+                        ctrl.modalInstance.close({action: 'add', details: ctrl.admin});
+                    }
+                })
+                .catch(function(err) {
+                    console.log('Error getting Admin lists:');
+                    console.log(err);
+                })
         };
 
         ctrl.cancel = function() {
