@@ -1,4 +1,10 @@
+(function(angular){
+
 'use strict';
 
 
-angular.module('timeslotShowAllModal',[]);
+angular.module('timeslotShowAllModal',[
+		'bathwaterApp.services'
+	]);
+
+})(window.angular);

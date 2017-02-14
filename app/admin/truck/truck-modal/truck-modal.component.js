@@ -1,7 +1,7 @@
 (function(angular) {
 'use strict';
 
-function TruckModalController($scope, $rootScope,$state,$http, resizeService) {
+function TruckModalController($scope, $rootScope,$state, resizeService, TruckService) {
 	var ctrl = this;
 	ctrl.truck = (ctrl.resolve && ctrl.resolve.details) || {};
 	ctrl.isDisabled = Object.keys(ctrl.truck).length > 0;
@@ -20,15 +20,8 @@ function TruckModalController($scope, $rootScope,$state,$http, resizeService) {
 	});
 
 	ctrl.save = function(){
-		$http({
-			url: '/rest/addTruckwithImage',
-            method: "POST",
-            data: angular.toJson(ctrl.truck),
-            headers: {
-                'Authorization': "Basic YWRtaW46YWRtaW4=",
-                'Content-Type': 'text/plain'
-            }
-		})
+
+		TruckService.addTruckwithImage(ctrl.truck)
 		.then(function(result){
 			ctrl.modalInstance.close('update');
 		})
@@ -46,7 +39,7 @@ function TruckModalController($scope, $rootScope,$state,$http, resizeService) {
 angular.module('truckModal')
 	.component('truckModal',{
 		templateUrl: 'admin/truck/truck-modal/truck-modal.template.html',
-		controller:['$scope','$rootScope','$state','$http', 'resizeService', TruckModalController],
+		controller:['$scope','$rootScope','$state', 'resizeService','TruckService', TruckModalController],
 		bindings:{
 			modalInstance: '<',
 			resolve: '<'

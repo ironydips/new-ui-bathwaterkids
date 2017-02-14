@@ -1,3 +1,5 @@
+(function(angular) {
+
 'use strict';
 
 function openPopUpPromo(detailsofPromo){
@@ -24,20 +26,14 @@ function openPopUpPromo(detailsofPromo){
 		)
 }
 
-function PromoCodeDetailsController($rootScope,$state,$http,$uibModal){
+function PromoCodeDetailsController($rootScope,$state,$uibModal,PromocodeService){
 	var ctrl = this;
 	ctrl.$uibModal = $uibModal;
 	ctrl.$state = $state;
 
 	ctrl.init = function(){
 		//get promocode details.
-		$http({
-		    url: '/rest/getPromos',
-		    method: "GET",
-		    headers:{
-		    	"Authorization": 'Basic YWRtaW46YWRtaW4='
-		    }
-		})
+		PromocodeService.getPromos()
 		.then(function(promoCodes){
 			ctrl.promocode = promoCodes.data;
 		})
@@ -52,13 +48,7 @@ function PromoCodeDetailsController($rootScope,$state,$http,$uibModal){
 	ctrl.deletePromoCode = function(promocode){
 		//Show alert and then delete if Yes.
 
-		$http({
-		    url: '/rest/deletePromoCode/' + promocode,
-		    method: "GET",
-		    headers:{
-		    	"Authorization": 'Basic YWRtaW46YWRtaW4='
-		    }
-		})
+		PromocodeService.deletePromoCode(promocode)
 		.then(function(promoCodes){
 			$state.reload();
 		})
@@ -77,5 +67,6 @@ function PromoCodeDetailsController($rootScope,$state,$http,$uibModal){
 angular.module('promocodeDetails')
 	.component('promocodeDetails',{
 		templateUrl: 'admin/promocode/promocode-details/promocode-details.template.html',
-		controller:['$rootScope','$state','$http','$uibModal', PromoCodeDetailsController]
+		controller:['$rootScope','$state','$uibModal','PromocodeService', PromoCodeDetailsController]
 	});
+})(window.angular);

@@ -1,18 +1,12 @@
 (function(angular) {
 'use strict';
 
-function historyModalController($scope, $rootScope,$state,$http) {
+function historyModalController($scope, $rootScope,$state,PickupTruckService) {
 	var ctrl = this;
 	
 	ctrl.histories = function(){
 		//get truck details.
-		$http({
-	            url: '/rest/getAllDriverTruckHistory',
-	            method: "GET",
-	            headers:{
-	            	"Authorization": 'Basic YWRtaW46YWRtaW4='
-	            }
-	        })
+		 PickupTruckService.getAllDriverTruckHistory()
 			.then(function(truckDetails){
 				ctrl.trkhistories = truckDetails.data;
 			})
@@ -32,7 +26,7 @@ function historyModalController($scope, $rootScope,$state,$http) {
 angular.module('historyModal')
 	.component('historyModal',{
 		templateUrl: 'pickup-delivery-management/delivery-trucks/delivery-trucks-history-modal/delivery-trucks-history-modal.template.html',
-		controller:['$scope','$rootScope','$state','$http', historyModalController],
+		controller:['$scope','$rootScope','$state','PickupTruckService', historyModalController],
 		bindings:{
 			modalInstance: '<',
 			resolve: '<'

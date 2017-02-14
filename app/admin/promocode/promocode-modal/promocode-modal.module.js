@@ -1,4 +1,10 @@
+(function(angular) {
 'use strict';
 
-angular.module('promoModal',[]);
+angular.module('promoModal',[
+	   'bathwaterApp.services'
+	]);
+
+})(window.angular);
+
 

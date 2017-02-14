@@ -1,25 +1,14 @@
+(function(angular) {
+
 'use strict';
-function PromoModalModalController($rootScope,$state,$http){
+function PromoModalModalController($rootScope,$state,PromocodeService){
 	var ctrl = this;
 	ctrl.promo = (ctrl.resolve && ctrl.resolve.detailsofPromo) || {};
 	ctrl.isDisabled = Object.keys(ctrl.promo).length > 0;
 
 	ctrl.save = function(promocode){            
-		$http({
-			url: '/rest/uploadPromoFile/' + promocode,
-            method: "POST",
-            data: ctrl.promo,
-            transformRequest: function(obj) {
-		        var str = [];
-		        for(var p in obj)
-		        	str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-		        return str.join("&");
-		    },
-            headers: {
-                'Authorization': "Basic YWRtaW46YWRtaW4=",
-                "Content-Type": "application/x-www-form-urlencoded"
-            }
-		})
+		
+		PromocodeService.uploadPromoFile(promocode,ctrl.promo)
 		.then(function(result){
 			ctrl.modalInstance.close('update');
 		})
@@ -40,9 +29,10 @@ function PromoModalModalController($rootScope,$state,$http){
 angular.module('promoModal')
 	.component('promoModal',{
 		templateUrl: 'admin/promocode/promocode-modal/promocode-modal.template.html',
-		controller:['$rootScope','$state','$http', PromoModalModalController],
+		controller:['$rootScope','$state','PromocodeService', PromoModalModalController],
 		bindings:{
 			modalInstance: '<',
 			resolve: '<'
 		}
 	});
+})(window.angular);

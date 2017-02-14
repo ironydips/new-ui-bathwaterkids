@@ -18,7 +18,10 @@ angular.
           template: '<g-sign></g-sign>'
         })
         .state('manageAdmin',{
-          url:'/manageAdmin/:profile',
+          url:'/manageAdmin',
+          params: {
+          profile: null,
+          },
           template: '<manage-admin></manage-admin>'
         })
         .state('index',{
@@ -138,6 +141,29 @@ angular.
           views:{
             'contentSection@customers':{
               template:'<customers-membership></customers-membership>'
+            }
+          }
+        })
+         .state('inventory',{
+          url:'/inventory',
+          views:{
+             '':{
+              template:'<admin-layout></admin-layout>'
+            },
+            'adminPanel@inventory':{
+              template:'<admin-panel></admin-panel>'
+            },
+            'adminSubPanel@inventory':{
+              template:'<inventory-sub-panel></inventory-sub-panel>'
+            }
+
+          }
+        })
+         .state('inventory.allinventories',{
+          url:'/allinventories',
+          views:{
+            'contentSection@inventory':{
+              template:'<allinventories-details></allinventories-details>'
             }
           }
         })

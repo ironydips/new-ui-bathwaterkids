@@ -28,7 +28,7 @@
           <li ng-show="$ctrl.userRights.Admin"  ng-class="{'active': $root.$state.includes('admin')}"><a href="" ui-sref="adminLayout.drivers">Admin</a></li>
           <li ng-show="$ctrl.userRights.Pickup"  ng-class="{'active': $root.$state.includes('delivery')}"><a href="" ui-sref="deliveryLayout.userRequests">Pickup/Delivery</a></li>
           <li ng-show="$ctrl.userRights.Customers" ng-class="{'active': $root.$state.includes('customers')}"><a href="" ui-sref="customers.user">Customers</a></li>
-          <li><a ng-show="$ctrl.userRights.Inventory" href="#">Inventory</a></li>
+          <li ng-show="$ctrl.userRights.Inventory" ng-class="{'active': $root.$state.includes('inventory')}"><a ui-sref="inventory.allinventories"  href="">Inventory</a></li> 
           <li><a ng-show="$ctrl.userRights.Warehouse" href="#">Warehouse</a></li>
         </ul>      
         

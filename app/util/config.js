@@ -2,4 +2,4 @@
 	angular.config = {
 		baseUrl: "https://staging.bathwaterkids.com"
 	}
-})(window.angular)
+})(window.angular);

@@ -29,7 +29,7 @@
 
         }), angular.bind(this, function(err) {
             console.log('Error in manage-admin Modal');
-            console.log(err);
+            console.log$http(err);
         }))
     }
 
@@ -145,9 +145,6 @@
                 .then(function(response) {
                     if (response && response.data) {
                         ctrl.adminList = response.data;
-                        if (ctrl.adminList.indexOf(ctrl.userProfile.email) >= 0) {
-                          ctrl.isDisabled = false;
-                        }
                     }
                 })
                 .catch(function(err) {
