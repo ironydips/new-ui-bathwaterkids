@@ -62,7 +62,6 @@
                 })
                 .then(function(response) {
                     if (response && response.data) {
-                        console.log(ctrl.admin);
                         // ctrl.modalInstance.close({action: 'update'});
                         ctrl.modalInstance.close({action: 'edit', details: ctrl.admin});
                     }

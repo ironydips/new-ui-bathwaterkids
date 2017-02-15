@@ -6,9 +6,9 @@
 		
 	<ul class="pull-right">
 		<li ng-class="{'active': $root.$state.includes('allinventories')}"><a ui-sref="inventory.allinventories">Inventory</a></li>
-		<li><a>Incoming</a></li>
-		<li><a>Outgoing</a></li>
-		<li><a>Swapped</a></li>
+		<li ng-class="{'active': $root.$state.includes('incoming')}"><a ui-sref="inventory.incoming">Incoming</a></li>
+		<li ng-class="{'active': $root.$state.includes('outcoming')}"><a ui-sref="inventory.outcoming">Outgoing</a></li>
+		<li ng-class="{'active': $root.$state.includes('swapped')}"><a ui-sref="inventory.swapped">Swapped</a></li>
 	</ul>
 	      
 	</div>

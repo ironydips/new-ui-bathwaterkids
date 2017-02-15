@@ -1,7 +1,31 @@
 (function(angular) {
 
     'use strict'
+    function openPopUpDelete(details){
+        var modalInstance = this.$uibModal.open({
+            component:'deleteAdminModal',
+            windowClass: 'app-modal-window-small',
+            keyboard: false,
+            resolve: {
+                details: function(){
+                    return (details || {});
+            }
+                
+            },
+            backdrop: 'static'
 
+        });
+
+        modalInstance.result.then(angular.bind(this, function(data) {
+            if(data.action == "delete") {
+                var index = data.details;
+                this.adminList.splice(index, 1);
+            }
+
+        }), angular.bind(this, function(dismiss){
+            console.log('Delete Operation is '+ dismiss);
+        }))
+    };
      
 
     function openPopUpAdmin(details) {
@@ -19,6 +43,7 @@
         });
 
         modalInstance.result.then(angular.bind(this, function(data) {
+            console.log(data);
             //data passed when pop up closed.
             //if (data.action == "update") this.getAdminList();
             if(data.action == "add") this.adminList.push(data.details);
@@ -29,7 +54,7 @@
 
         }), angular.bind(this, function(err) {
             console.log('Error in manage-admin Modal');
-            console.log$http(err);
+            console.log(err);
         }))
     }
 
@@ -81,7 +106,7 @@
 
         ctrl.delete = function(index) {
             //TODO: Make API Hit for this
-            ctrl.adminList.splice(index, 1);
+            angular.bind(ctrl,openPopUpDelete,index)();
         }
 
         ctrl.addadmin = function() {
@@ -145,7 +170,20 @@
                 .then(function(response) {
                     if (response && response.data) {
                         ctrl.adminList = response.data;
-                    }
+                        ctrl.adminList.push(
+                        {
+                            email: 'supriyasingh9327@gmail.com',
+                            username: 'supriya',
+                            Admin: true,
+                            Customer: true,
+                            Pickup: true,
+                            Warehouse: true,
+                            Owner: true,
+                            Inventory: true
+                        }
+                            );
+                        }
+                    
                 })
                 .catch(function(err) {
                     console.log('Error getting Admin lists:');
