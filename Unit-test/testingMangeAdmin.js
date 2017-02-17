@@ -4,41 +4,128 @@
   describe('Unit testing', function () {
 
   	var $state, $stateParams, $http, $uibModal, service;
+  	var state = "manageAdmin";
+  	var DriverService = {};
+
    
-	beforeEach(module('ngResource',	function($provide){
-		$provide.value('testValue', 45);
-	}) 
-	);
+	beforeEach(module('ngResource',	function($provide, $controllerProvider){
+		$provide.value('testValue', 4);
+		$controllerProvider.register('testCtrl', function($scope){
+			this.word = "heya";
+			$scope.reverse = function(value){
+				return value.split('').reverse().join('');
+			};
+		});
+	}));
+	beforeEach(module('bathwaterApp.services', function($provide){
+		$provide.value('myservice',34);
+	}));
+	
+
+	
 	it('tests', function(){
 		expect(true).toBe(true);
 	});
 
 	it('should include dependencies', inject(function($resource, testValue){
 		expect($resource).toBeDefined();
-		expect(testValue).toBe(45);
+		expect(testValue).toBe(4);
 	}));
-	beforeEach(module('manageAdmin'));
-	beforeEach(module('bathwaterApp.services'));
-	 beforeEach(module(function($provide){
-     AdminRightsServiceMock = {};        
-    $provide.value('AdminRightsService', AdminRightsServiceMock);
-  }));
-	it('admin manager controller', inject(function($rootScope, $componentController,AdminRightsService){
+
+	// beforeEach(inject(function(_myservice_){
+	// 	myservice = _myservice_;
+	it('test service provider function', inject(function(myservice){
+		expect(myservice).toBe(34);
+	}));
+	it("test angular injection", function(){
+		var $injector = angular.injector();
+		expect($injector).toBeDefined();
+
+	});
+	it("evaluating expression", inject(function($rootScope,$compile){
+		$rootScope.sum =4;
+		var expression = '<p>2+2 == {{sum}}</p>';
+		var element = $compile(expression)($rootScope);
+		$rootScope.$digest();
+		expect(element.html()).toBe('2+2 == 4');
+	}));
+	it("test of resource controller", inject(function($rootScope,$controller){
 		var $scope = $rootScope.$new();
-		service = AdminRightsService;
+	    $controller = $controller("testCtrl", {$scope: $scope});
+		expect($controller).toBeDefined();
+		expect($controller.word).toBe("heya");
+		expect($scope.reverse('test')).toBe('tset');
 
-		var ctrl = $componentController('manageAdmin',
-		{	
-			$scope: $scope,
-			$state: $state,
-			$stateParams: $stateParams,
-			$http: $http,
-			$uibModal: $uibModal,
-			AdminRightsService: service
-
-		});
-		expect(ctrl).toBeDefined();
 	}));
+	//beforeEach(module('bathwaterApp'));
+	//beforeEach(module('ngMessages'));
+	beforeEach(module('manageAdmin'));
+	beforeEach(module('ui.bootstrap'));
+	beforeEach(module('bathwaterApp.common'));
+	beforeEach(module('addAdminModal'));
+	beforeEach(module('deleteAdminModal'));
+	beforeEach(module('ui.router'));
+
+	it("testing the route of admin manager", inject(function(_$state_,_$rootScope_, $templateCache){
+		$state = _$state_;
+        $rootScope = _$rootScope_;
+        $templateCache.get('app/manage-admin/manage-admin-details/manage-admin-details.template.html');
+       
+
+	}));
+
+	 // it('verifies state configuration', function () {
+  //           var config = $state.get(state);
+  //           console.log(config);
+  //          // expect(config.abstract).toBeTruthy();
+  //           //expect(config.url).toBeUndefined();
+  //       });
+
+
+
+
+////service test	
+	beforeEach(module('bathwaterApp.services'));
+
+	beforeEach(inject(function(DriverService, $http){
+		DriverService = DriverService;
+		it("test my user service", function(){
+		//expect(DriverService.gotcha).toBe("test");
+		expect(DriverService.getAllDrivers).toBeDefined();
+
+	});
+
+	}));
+	
+	
+	//}));
+	
+
+	//
+
+///////controller test
+	// beforeEach(module('manageAdmin'));
+	// beforeEach(module('bathwaterApp.services'));
+	//  beforeEach(module(function($provide){
+ //     AdminRightsServiceMock = {};        
+ //    $provide.value('AdminRightsService', AdminRightsServiceMock);
+ //  }));
+	// it('admin manager controller', inject(function($rootScope, $componentController,AdminRightsService){
+	// 	var $scope = $rootScope.$new();
+	// 	service = AdminRightsService;
+
+	// 	var ctrl = $componentController('manageAdmin',
+	// 	{	
+	// 		$scope: $scope,
+	// 		$state: $state,
+	// 		$stateParams: $stateParams,
+	// 		$http: $http,
+	// 		$uibModal: $uibModal,
+	// 		AdminRightsService: service
+
+	// 	});
+	// 	expect(ctrl).toBeDefined();
+	// }));
 
  });
 

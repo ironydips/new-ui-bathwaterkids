@@ -19,10 +19,16 @@ module.exports = function(config) {
 	'node_modules/angular-resource/angular-resource.js',
 	'node_modules/angular-mocks/angular-mocks.js',
 	'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
+    'app/bower_components/angular-ui-router/release/angular-ui-router.min.js',
+    'app/bower_components/angular-messages/angular-messages.min.js',
+
+    'app/services/services.module.js',
+    'app/services/admin.driver.services.js',
 
 	//'app/manage-admin/manage-admin-details.component.js',
 	//'app/manage-admin/manage-admin-details.module.js',
 	'Unit-test/*.js',
+
 	
 	'app/**/*.module.js',
 	'app/**/*.component.js'
