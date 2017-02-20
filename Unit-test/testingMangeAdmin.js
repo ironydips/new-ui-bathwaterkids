@@ -1,11 +1,23 @@
 // 'use strict';
 
 
-  describe('Unit testing', function () {
+  describe('Unit testing of bathwaterApp:', function () {
 
   	var $state, $stateParams, $http, $uibModal, service;
+  	var $componentController, controller;
+  	var $filter, filter;
   	var state = "manageAdmin";
   	var DriverService = {};
+
+  	beforeEach(module('manageAdmin'));
+	beforeEach(module('ui.bootstrap'));
+	beforeEach(module('bathwaterApp.common'));
+	beforeEach(module('addAdminModal'));
+	beforeEach(module('deleteAdminModal'));
+	beforeEach(module('ui.router'));
+  	beforeEach(module('incomingDetails'));
+  	beforeEach(module('bathwaterApp.services'));
+
 
    
 	beforeEach(module('ngResource',	function($provide, $controllerProvider){
@@ -32,8 +44,6 @@
 		expect(testValue).toBe(4);
 	}));
 
-	// beforeEach(inject(function(_myservice_){
-	// 	myservice = _myservice_;
 	it('test service provider function', inject(function(myservice){
 		expect(myservice).toBe(34);
 	}));
@@ -57,15 +67,7 @@
 		expect($scope.reverse('test')).toBe('tset');
 
 	}));
-	//beforeEach(module('bathwaterApp'));
-	//beforeEach(module('ngMessages'));
-	beforeEach(module('manageAdmin'));
-	beforeEach(module('ui.bootstrap'));
-	beforeEach(module('bathwaterApp.common'));
-	beforeEach(module('addAdminModal'));
-	beforeEach(module('deleteAdminModal'));
-	beforeEach(module('ui.router'));
-
+	
 	it("testing the route of admin manager", inject(function(_$state_,_$rootScope_, $templateCache){
 		$state = _$state_;
         $rootScope = _$rootScope_;
@@ -81,11 +83,36 @@
   //           //expect(config.url).toBeUndefined();
   //       });
 
+  //inventory controller test
+	beforeEach(inject(function($rootScope, $componentController){
+  	var $scope = $rootScope.$new();
+  	controller = $componentController('incomingDetails', {$scope: $scope });
+
+  	}));
+  	it("incomining details controller test", inject(function(){
+  	//expect(controller.call).toEqual(0);
+  	expect(controller).toBeDefined();
+  	}));
+
+  	//testing filters:
+
+  	
+
+  	beforeEach(function(){
+  		inject(function($injector){
+  			$filter = $injector.get("$filter");
+  			filter = $filter("YesNo");
+
+  		});
+  	});
+  	it("test YesNo filters", function(){
+  		expect(filter(true)).toEqual('YES');
+  		expect(filter(false)).toEqual('NO');
+  	});
 
 
 
 ////service test	
-	beforeEach(module('bathwaterApp.services'));
 
 	beforeEach(inject(function(DriverService, $http){
 		DriverService = DriverService;

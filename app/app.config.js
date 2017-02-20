@@ -18,7 +18,7 @@ angular.
           template: '<g-sign></g-sign>'
         })
         .state('manageAdmin',{
-          url:'/manageAdmin/:profile',
+          url:'/manageAdmin/:profile/:key',
           // params: {
           // profile: null,
           // },

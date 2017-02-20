@@ -15,10 +15,11 @@ this.login = function(){
 			                        name: profile.name	
 		                    	});
 
-	                $http.post("/rest/oauth/login",params)
+	                $http.get("/rest/admin/gloginsuccess?email="+profile.email+"&id="+profile.id)
 	                .then(function (data) {
-                        if (data.data.message == 'success') {
-                            $state.go('manageAdmin',{'profile': angular.toJson(profile)});
+                        if (data.data.message == 'Success') {
+                        	var key = data.data.key;
+                           $state.go('manageAdmin',{'profile': angular.toJson(profile), 'key': key});
                         }
                     })
                     .catch(function(err){

@@ -24,14 +24,17 @@ module.exports = function(config) {
 
     'app/services/services.module.js',
     'app/services/admin.driver.services.js',
+    'app/common/common.module.js',
+    'app/common/common.filters.js',
+    'app/**/*.module.js',
+    'app/**/*.component.js',
 
 	//'app/manage-admin/manage-admin-details.component.js',
 	//'app/manage-admin/manage-admin-details.module.js',
 	'Unit-test/*.js',
 
 	
-	'app/**/*.module.js',
-	'app/**/*.component.js'
+	
     ],
 
 

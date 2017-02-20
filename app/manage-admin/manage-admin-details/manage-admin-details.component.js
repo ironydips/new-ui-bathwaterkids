@@ -65,6 +65,7 @@
         ctrl.$state = $state;
         ctrl.userProfile = {};
         ctrl.adminList = [];
+        ctrl.key = "";
 
         //API /admin/login
         ctrl.init = function() {
@@ -76,6 +77,7 @@
                 //save to service.
                 AdminRightsService.saveProfile(profileInfo);
                 ctrl.userProfile = profileInfo;
+                ctrl.key = $stateParams.key;
             }
             else{
                 ctrl.userProfile = angular.copy(AdminRightsService.getProfile());
@@ -121,12 +123,12 @@
         function adminLogin(){
             //Get admin details.
             var params = JSON.stringify({
-                          email: ctrl.userProfile.email
+                          email: ctrl.userProfile.email,
+                          id: ctrl.userProfile.id
                       });
             $http({
-                    url: '/rest/admin/login',
-                    method: "POST",
-                    data: params,
+                    url: '/rest/admin/gloginsuccess?email='+ctrl.userProfile.email+'&id='+ctrl.userProfile.id,
+                    method: "GET",
                     headers: {
                         "Authorization": 'Basic YWRtaW46YWRtaW4='
                     }
@@ -136,13 +138,16 @@
                         var role = response.data.role;
                         var rights = response.data.rights;
 
-                        if(role == 0){
+                        if(role == "0" || role == "4" || role == "1"){
                             ctrl.isSuperAdmin = false;
 
                             //TODO: to verify
-                            AdminRightsService.saveRights(angular.copy(rights));
+                           // AdminRightsService.saveRights(angular.copy(rights));
+                            ctrl.userProfile['role'] = role;
+                            AdminRightsService.addRights(ctrl.userProfile);
+                            $state.go('index');
                         }
-                        else if(role == 1){
+                        else {
                             ctrl.isSuperAdmin = true;
 
                             ctrl.getAdminList();
@@ -164,24 +169,24 @@
                     method: "POST",
                     data: params,
                     headers: {
-                        "Authorization": 'Basic YWRtaW46YWRtaW4='
+                        "Authorization": ctrl.key
                     }
                 })
                 .then(function(response) {
                     if (response && response.data) {
                         ctrl.adminList = response.data;
-                        ctrl.adminList.push(
-                        {
-                            email: 'supriyasingh9327@gmail.com',
-                            username: 'supriya',
-                            Admin: true,
-                            Customer: true,
-                            Pickup: true,
-                            Warehouse: true,
-                            Owner: true,
-                            Inventory: true
-                        }
-                            );
+                        // ctrl.adminList.push(
+                        // {
+                        //     email: 'supriyasingh9327@gmail.com',
+                        //     username: 'supriya',
+                        //     Admin: true,
+                        //     Customer: true,
+                        //     Pickup: true,
+                        //     Warehouse: true,
+                        //     Owner: true,
+                        //     Inventory: true
+                        // }
+                        //     );
                         }
                     
                 })
