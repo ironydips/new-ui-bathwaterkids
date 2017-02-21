@@ -3,7 +3,6 @@
 
 angular.module('zipcodeDetails',[
 	'ui.bootstrap',
-	'bathwaterApp.services',
 	'zipModal'
 	]);
 

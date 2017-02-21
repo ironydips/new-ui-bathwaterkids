@@ -16,7 +16,6 @@ angular.module('bathwaterApp', [
 	'adminPanel',
 	// Common Module
 	'bathwaterApp.common',
-	'bathwaterApp.services',
 	// Admin Panel Modules
 	'adminSubPanel',
 	'driverDetails',
@@ -29,11 +28,5 @@ angular.module('bathwaterApp', [
 	'userRequest',
 	'deliveryTrucks',
 	//Customer Panel Modules
-	'customersSubPanel',
-	//Inventory Panel Module
-	'inventorySubPanel',
-	'allinventoriesDetails',
-	'incomingDetails',
-	'outcomingDetails',
-	'swappedDetails'
+	'customersSubPanel'
 ]);

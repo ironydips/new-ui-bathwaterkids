@@ -25,14 +25,20 @@ function openPopUp(details){
 		)
 }
 
-function ZipCodeDetailsController($rootScope, $state, $uibModal, ZipcodeService) {
+function ZipCodeDetailsController($rootScope, $state, $http, $uibModal) {
 	var ctrl = this;
 	ctrl.$uibModal = $uibModal;
 	ctrl.$state = $state;
 
 	ctrl.init = function(){
 		//get driver details.
-		ZipcodeService.getZipCodes()
+		$http({
+		    url: '/rest/getZipCodes',
+		    method: "GET",
+		    headers:{
+		    	"Authorization": 'Basic YWRtaW46YWRtaW4='
+		    }
+		})
 		.then(function(zipCodes){
 			ctrl.zipCodes = zipCodes.data;
 		})
@@ -49,7 +55,13 @@ function ZipCodeDetailsController($rootScope, $state, $uibModal, ZipcodeService)
 	ctrl.deleteZipCode = function(zipcode){
 		//Show alert and then delete if Yes.
 
-		ZipcodeService.deleteZipCode(zipcode)
+		$http({
+		    url: '/rest/deleteZipCode/' + zipcode,
+		    method: "GET",
+		    headers:{
+		    	"Authorization": 'Basic YWRtaW46YWRtaW4='
+		    }
+		})
 		.then(function(zipCodes){
 			$state.reload();
 		})
@@ -65,6 +77,6 @@ function ZipCodeDetailsController($rootScope, $state, $uibModal, ZipcodeService)
 angular.module('zipcodeDetails')
 	.component('zipcodeDetails',{
 		templateUrl: 'admin/zipcode/zipcode-details/zipcode-details.template.html',
-		controller:['$rootScope','$state', '$uibModal','ZipcodeService', ZipCodeDetailsController]
+		controller:['$rootScope','$state','$http', '$uibModal', ZipCodeDetailsController]
 	});
 })(window.angular);

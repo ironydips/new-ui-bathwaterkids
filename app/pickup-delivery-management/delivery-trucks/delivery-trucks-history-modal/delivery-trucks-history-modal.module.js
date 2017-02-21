@@ -1,8 +1,6 @@
 (function(angular) {
 'use strict';
 
-angular.module('historyModal',[
-		'bathwaterApp.services'
-	]);
+angular.module('historyModal',[]);
 
 })(window.angular);

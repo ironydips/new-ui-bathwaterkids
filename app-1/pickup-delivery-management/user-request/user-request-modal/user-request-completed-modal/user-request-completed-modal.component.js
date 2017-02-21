@@ -1,0 +1,57 @@
+(function(angular) {
+'use strict';
+
+function UserRequestCompletedModalController($scope, $rootScope,$state,UserRequestService,DriverService) {
+	var ctrl = this;
+	ctrl.complete = (ctrl.resolve && ctrl.resolve.details) || {};
+
+	ctrl.init = function(){
+		UserRequestService.getUserList()
+            .then(function (uqcompleted) {
+            ctrl.timeslots = uqcompleted.data;
+        });
+	};
+
+	ctrl.listofdriver = function(){
+
+        DriverService.getAllDrivers()
+		   .then(function (response) {
+               ctrl.drivers = response.data;
+        });
+	};
+
+	 ctrl.assignDriver = function (reqId, drC) {
+	 	var updatedDriverC = angular.fromJson(drC.selecteddriverC);
+
+        UserRequestService.assignDriver(reqId,updatedDriverC)
+        .then(function (response) {
+        		if(response.data.response == "success"){
+        		drC.driver = drC.driver || {};
+        		drC.driver.firstName = updatedDriverC.firstName;
+        	    drC.driver.lastName = updatedDriverC.lastName;
+        	}else{
+        		console.log("Invalid driver");
+
+        	}
+        });
+    };
+
+
+	ctrl.cancel = function(){
+		ctrl.modalInstance.close();
+	}
+	ctrl.init();
+	ctrl.listofdriver();
+}
+
+angular.module('userRequestCompleteModal')
+	.component('userRequestCompleteModal',{
+		templateUrl: 'pickup-delivery-management/user-request/user-request-modal/user-request-completed-modal/user-request-completed-modal.template.html',
+		controller:['$scope','$rootScope','$state','UserRequestService','DriverService', UserRequestCompletedModalController],
+		bindings:{
+			modalInstance: '<',
+			resolve: '<'
+		}
+	});
+
+})(window.angular);

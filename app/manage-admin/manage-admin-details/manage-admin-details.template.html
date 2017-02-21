@@ -1,16 +1,19 @@
 
-<div ng-show="$ctrl.isSuperAdmin">
-         <div class="row" style="margin-top:1cm;">
-                    <div class="pull-left" style="margin-left: 2cm;">
-                                 <input class="btn btn-lg btn-primary" ng-click="$ctrl.addadmin()" value="Add Admin" type="button">
-                        </div>
-                            <div class="pull-right" style="margin-right:2cm;">
+<div ng-if="$ctrl.isSuperAdmin">
+<div class="row" style="margin-top:1cm;">
+
+    <div class="pull-left" style="margin-left: 2cm;">
+     <input class="btn btn-lg btn-primary" ng-click="$ctrl.addadmin()" value="Add Admin" type="button">
+                                </div>
+                                
+                                <div class="pull-right" style="margin-right:2cm;">
                                     <input class="btn btn-lg btn-primary" value="Continue" type="button" ng-disabled="$ctrl.disallowContinue" ng-click="$ctrl.continue()">
                                     <br/>
-                                    <span ng-show="$ctrl.disallowContinue">Please add yourself in list to continue.</span>
-                            </div>
-            </div>
-    </div>
+                                    <span ng-show="$ctrl.disallowContinue"> Please add yourself in list to continue.</span>
+                                </div>
+</div>
+</div>
+<div class="">
                                    	
                                 <br>
                                 <div class="table-responsive text-center">
@@ -33,15 +36,16 @@
                                         <!-- <td>{{$index}}</td>     -->
                                         <td>{{ad.username}}</td>
                                         <td>{{ad.email}}</td>
-                                        <td>{{ad.SuperAdmin | YesNo}}</td>
-                                        <td>{{ad.Admin | YesNo}}</td>
+                                        <td>{{ad.role == 10 | YesNo}}</td>
+                                        <td>{{ad.role == 4 | YesNo}}</td>
                                         <td>{{ad.Owner | YesNo}}</td>
-                                        <td>{{ad.Pickup | YesNo}}</td>
-										<td>{{ad.Customers | YesNo}}</td>
-                                        <td>{{ad.Inventory | YesNo}}</td>
-                                        <td>{{ad.Warehouse | YesNo}}</td>
-                                        <td><button type="button" ng-click = "$ctrl.edit(ad, $index)" class="btn btn-sm btn-primary">Edit</button>&nbsp;&nbsp;&nbsp;<button type="button" ng-click = "$ctrl.delete($index)" class="btn btn-sm btn-danger">Delete</button> </td>
-                                     </tr>
+                                        <td>{{ad.role == 0 | YesNo}}</td>
+                                        <td>{{ad.role == 1 | YesNo}}</td>
+                                        <td>{{ad.role == 2 | YesNo}}</td>
+                                        <td>{{ad.role == 3 | YesNo}}</td>
+                                        <td><button type="button" ng-click = "$ctrl.edit(ad, $index)" class="btn btn-sm btn-primary">Edit</button>&nbsp;&nbsp;&nbsp;<button type="button" ng-click = "$ctrl.delete($index)" class="btn btn-sm btn-danger">Delete</button> </td>                                   </tr>
                                 </table>
                             </div>
                            
+                            </div>
+</div>

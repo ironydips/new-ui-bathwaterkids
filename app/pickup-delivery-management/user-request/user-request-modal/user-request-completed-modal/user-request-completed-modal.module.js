@@ -1,8 +1,6 @@
 (function(angular) {
 'use strict';
 
-angular.module('userRequestCompleteModal',[
-		'bathwaterApp.services'
-	]);
+angular.module('userRequestCompleteModal',[]);
 
 })(window.angular);

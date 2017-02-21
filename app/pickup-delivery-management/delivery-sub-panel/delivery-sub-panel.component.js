@@ -1,5 +1,3 @@
-(function(angular) {
-
 'use strict';
 
 function DeliverySubPanelController($state) {
@@ -11,5 +9,3 @@ angular.module('deliverySubPanel')
 	templateUrl: 'pickup-delivery-management/delivery-sub-panel/delivery-sub-panel.template.html',
 	controller:['$state', DeliverySubPanelController]
 });
-
-})(window.angular);

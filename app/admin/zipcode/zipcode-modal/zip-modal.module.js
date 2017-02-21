@@ -1,8 +1,6 @@
 (function(angular) {
 'use strict';
 
-angular.module('zipModal',[
-		'bathwaterApp.services',
-	]);
+angular.module('zipModal',[]);
 
 })(window.angular);

@@ -15,16 +15,18 @@ this.login = function(){
 			                        name: profile.name	
 		                    	});
 
-	                $http.get("/rest/admin/gloginsuccess?email="+profile.email+"&id="+profile.id)
-	                .then(function (data) {
-                        if (data.data.message == 'Success') {
-                        	var key = data.data.key;
-                           $state.go('manageAdmin',{'profile': angular.toJson(profile), 'key': key});
-                        }
-                    })
-                    .catch(function(err){
-                    	console.log('Error on Oauth Login!!' + err);
-                    })
+                    var url = "/rest/admin/gloginsuccess?email="+profile.email+"&id="+profile.id;                                   
+	                
+                    $http.get(url)
+		                .then(function (data) {
+	                        if (data.data.message == 'Success') {
+	                            var key = data.data.key;
+	                            $state.go('manageAdmin',{'profile': angular.toJson(profile), 'key': key });
+	                        }
+	                    })
+	                    .catch(function(err){
+	                    	console.log('Error on Oauth Login!!' + err);
+	                    })
                 });
 	    	console && console.clear ? console.clear() : null;
 		},2000);

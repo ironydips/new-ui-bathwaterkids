@@ -1,4 +1,6 @@
 (function(angular) {
+
+
 'use strict';
 
 function customersSubPanelController($state) {

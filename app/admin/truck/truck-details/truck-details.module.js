@@ -2,7 +2,6 @@
 'use strict';
 
 angular.module('truckDetails',[
-	'bathwaterApp.services',
 	'truckModal',
 	'images-resizer',
 	'ui.bootstrap'

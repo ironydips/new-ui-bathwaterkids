@@ -1,31 +1,7 @@
 (function(angular) {
 
     'use strict'
-    function openPopUpDelete(details){
-        var modalInstance = this.$uibModal.open({
-            component:'deleteAdminModal',
-            windowClass: 'app-modal-window-small',
-            keyboard: false,
-            resolve: {
-                details: function(){
-                    return (details || {});
-            }
-                
-            },
-            backdrop: 'static'
 
-        });
-
-        modalInstance.result.then(angular.bind(this, function(data) {
-            if(data.action == "delete") {
-                var index = data.details;
-                this.adminList.splice(index, 1);
-            }
-
-        }), angular.bind(this, function(dismiss){
-            console.log('Delete Operation is '+ dismiss);
-        }))
-    };
      
 
     function openPopUpAdmin(details) {
@@ -43,7 +19,6 @@
         });
 
         modalInstance.result.then(angular.bind(this, function(data) {
-            console.log(data);
             //data passed when pop up closed.
             //if (data.action == "update") this.getAdminList();
             if(data.action == "add") this.adminList.push(data.details);
@@ -64,8 +39,8 @@
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
         ctrl.userProfile = {};
-        ctrl.adminList = [];
         ctrl.key = "";
+        ctrl.adminList = [];
 
         //API /admin/login
         ctrl.init = function() {
@@ -108,7 +83,7 @@
 
         ctrl.delete = function(index) {
             //TODO: Make API Hit for this
-            angular.bind(ctrl,openPopUpDelete,index)();
+            ctrl.adminList.splice(index, 1);
         }
 
         ctrl.addadmin = function() {
@@ -129,6 +104,7 @@
             $http({
                     url: '/rest/admin/gloginsuccess?email='+ctrl.userProfile.email+'&id='+ctrl.userProfile.id,
                     method: "GET",
+                    data: params,
                     headers: {
                         "Authorization": 'Basic YWRtaW46YWRtaW4='
                     }
@@ -137,17 +113,18 @@
                     if (response && response.data) {
                         var role = response.data.role;
                         var rights = response.data.rights;
-
+                        ctrl.key = response.data.key;    
                         if(role == "0" || role == "4" || role == "1"){
                             ctrl.isSuperAdmin = false;
 
                             //TODO: to verify
-                           // AdminRightsService.saveRights(angular.copy(rights));
+                            
+                            //AdminRightsService.saveRights(angular.copy(rights));
                             ctrl.userProfile['role'] = role;
-                            AdminRightsService.addRights(ctrl.userProfile);
-                            $state.go('index');
+            AdminRightsService.addRights(ctrl.userProfile);
+            $state.go('index');
                         }
-                        else {
+                        else if(role == "10"){
                             ctrl.isSuperAdmin = true;
 
                             ctrl.getAdminList();
@@ -175,20 +152,10 @@
                 .then(function(response) {
                     if (response && response.data) {
                         ctrl.adminList = response.data;
-                        // ctrl.adminList.push(
-                        // {
-                        //     email: 'supriyasingh9327@gmail.com',
-                        //     username: 'supriya',
-                        //     Admin: true,
-                        //     Customer: true,
-                        //     Pickup: true,
-                        //     Warehouse: true,
-                        //     Owner: true,
-                        //     Inventory: true
-                        // }
-                        //     );
+                        if (ctrl.adminList.indexOf(ctrl.userProfile.email) >= 0) {
+                          ctrl.isDisabled = false;
                         }
-                    
+                    }
                 })
                 .catch(function(err) {
                     console.log('Error getting Admin lists:');
