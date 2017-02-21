@@ -1,0 +1,50 @@
+<div class="userComponent">
+    <div class="container">
+        <br>
+        <input type="text" class="form-control pull-right" style="width: 200px;" ng-model="searchUser" placeholder="Search">
+        <br>
+        <br><br>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Active</th>
+                    <th>Credits</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in $ctrl.listofUsers | filter: searchUser" class="text-center">
+                    <td>{{user.firstName}}</td>
+                    <td>{{user.lastName}}</td>
+                    <td>{{user.emailAddress}}</td>
+                    <td>
+                        <div ng-switch="user.active">
+                            <div ng-switch-when="1">
+                                <div class="text-success text-center">
+                                    <strong>Active</strong>
+                                    <a href="" class="editbtn deactivate-btn" type="button"><span class="text-danger glyphicon glyphicon-remove"></span></a>
+                                </div>
+
+                            </div>
+                            <div ng-switch-default>
+                                <div class="text-danger">
+                                    <strong>Inactive</strong>
+                                    <a href="" class="editbtn activate-btn" type="button"><span class="text-success glyphicon glyphicon-ok"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>{{user.credits}}</td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" type="button">&#9998;edit</a>
+                    </td>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
