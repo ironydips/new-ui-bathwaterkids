@@ -8,6 +8,7 @@ function IndexController($state , AdminRightsService) {
 				if(userRights.Admin) $state.go('adminLayout.drivers');
 				else if(userRights.Pickup) $state.go('deliveryLayout.userRequests');
 				else if(userRights.Customers) $state.go('customers.user');
+				else $state.go('adminLayout.drivers');
 				break;
 			}
 			case 'junit': break;
