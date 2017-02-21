@@ -45,12 +45,12 @@
         modalInstance.result.then(angular.bind(this, function(data) {
             console.log(data);
             //data passed when pop up closed.
-            //if (data.action == "update") this.getAdminList();
-            if(data.action == "add") this.adminList.push(data.details);
-            if(data.action == "edit") {
-                var index = this.adminList.map(function(row){return row.email }).indexOf(data.details.email);
-                this.adminList[index] = angular.copy(data.details);
-            }
+            if (data.action == "update") this.getAdminList();
+            // if(data.action == "add") this.adminList.push(data.details);
+            // if(data.action == "edit") {
+            //     var index = this.adminList.map(function(row){return row.email }).indexOf(data.details.email);
+            //     this.adminList[index] = angular.copy(data.details);
+            // }
 
         }), angular.bind(this, function(err) {
             console.log('Error in manage-admin Modal');

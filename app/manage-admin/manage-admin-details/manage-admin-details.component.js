@@ -2,8 +2,6 @@
 
     'use strict'
 
-     
-
     function openPopUpAdmin(details) {
 
         var modalInstance = this.$uibModal.open({
@@ -20,12 +18,12 @@
 
         modalInstance.result.then(angular.bind(this, function(data) {
             //data passed when pop up closed.
-            //if (data.action == "update") this.getAdminList();
-            if(data.action == "add") this.adminList.push(data.details);
-            if(data.action == "edit") {
-                var index = this.adminList.map(function(row){return row.email }).indexOf(data.details.email);
-                this.adminList[index] = angular.copy(data.details);
-            }
+            if (data.action == "update") this.getAdminList();
+            // if(data.action == "add") this.adminList.push(data.details);
+            // if(data.action == "edit") {
+            //     var index = this.adminList.map(function(row){return row.email }).indexOf(data.details.email);
+            //     this.adminList[index] = angular.copy(data.details);
+            // }
 
         }), angular.bind(this, function(err) {
             console.log('Error in manage-admin Modal');
@@ -78,7 +76,6 @@
 
         ctrl.edit = function(adminrights) {
             angular.bind(ctrl, openPopUpAdmin, angular.copy(adminrights))();
-
         }
 
         ctrl.delete = function(index) {
@@ -97,6 +94,15 @@
         // Function inside scope controller.
         function adminLogin(){
             //Get admin details.
+            ctrl.isSuperAdmin = false;
+            var rights = {
+                Admin: false,
+                Pickup: false,
+                Customers: false,
+                Inventory: false,
+                Warehouse: false
+            };
+
             var params = JSON.stringify({
                           email: ctrl.userProfile.email,
                           id: ctrl.userProfile.id
@@ -112,22 +118,29 @@
                 .then(function(response) {
                     if (response && response.data) {
                         var role = response.data.role;
-                        var rights = response.data.rights;
-                        ctrl.key = response.data.key;    
-                        if(role == "0" || role == "4" || role == "1"){
-                            ctrl.isSuperAdmin = false;
+                        ctrl.key = response.data.key;
 
-                            //TODO: to verify
-                            
-                            //AdminRightsService.saveRights(angular.copy(rights));
-                            ctrl.userProfile['role'] = role;
-            AdminRightsService.addRights(ctrl.userProfile);
-            $state.go('index');
-                        }
-                        else if(role == "10"){
-                            ctrl.isSuperAdmin = true;
-
-                            ctrl.getAdminList();
+                        switch(role){
+                            case "0":
+                                break;
+                            case "1":
+                                rights.Customers = true;
+                                break;
+                            case "2":
+                                rights.Inventory = true;
+                                break;
+                            case "3":
+                                rights.Warehouse = true;
+                                break;
+                            case "4":
+                                rights.Admin = true;
+                                AdminRightsService.addRights(rights);
+                                $state.go('index');
+                                break;
+                            case "10":
+                                ctrl.isSuperAdmin = true;
+                                ctrl.getAdminList();
+                                break;
                         }
                     }
                 })
@@ -162,9 +175,6 @@
                     console.log(err);
                 })
         }
-        
-
-
     }
 
     angular.module('manageAdmin')

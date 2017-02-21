@@ -18,19 +18,18 @@ angular.
                           name: profile.name  
                       });
 
-            $http.post("/rest/oauth/login",params)
+            var url = "/rest/admin/gloginsuccess?email="+profile.email+"&id="+profile.id;                                   
+                  
+            $http.get(url)
             .then(function (data) {
-                if (data.data.message != 'success') {
-                  $state.go('gSignIn');
-                }
-                else{
-                  $state.go('manageAdmin',{'profile': angular.toJson(profile)});
-                }
-            })
-            .catch(function(err){
-              $state.go('gSignIn');
-              console.log('Error on Oauth Login!!' + err);
-            });
+                  if (data.data.message == 'Success') {
+                      var key = data.data.key;
+                      $state.go('manageAdmin',{'profile': angular.toJson(profile), 'key': key });
+                  }
+              })
+              .catch(function(err){
+                console.log('Error on Oauth Login!!' + err);
+              })
         },
         function(error){
           $state.go('gSignIn');

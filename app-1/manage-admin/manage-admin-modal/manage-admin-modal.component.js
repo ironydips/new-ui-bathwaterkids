@@ -27,7 +27,7 @@
                 .then(function(response) {
                     if (response && response.data) {
                         // ctrl.modalInstance.close({action: 'update'});
-                        ctrl.modalInstance.close({action: 'add', details: ctrl.admin});
+                        ctrl.modalInstance.close({action: 'update'});
                     }
                 })
                 .catch(function(err) {
@@ -63,7 +63,7 @@
                 .then(function(response) {
                     if (response && response.data) {
                         // ctrl.modalInstance.close({action: 'update'});
-                        ctrl.modalInstance.close({action: 'edit', details: ctrl.admin});
+                        ctrl.modalInstance.close({action: 'update'});
                     }
                 })
                 .catch(function(err) {
