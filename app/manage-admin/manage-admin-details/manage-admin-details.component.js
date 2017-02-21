@@ -141,6 +141,7 @@
 
                         switch(role){
                             case "0":
+                                rights.Pickup = true;
                                 AdminRightsService.addRights(rights);
                                 $state.go('index');
                                 break;
