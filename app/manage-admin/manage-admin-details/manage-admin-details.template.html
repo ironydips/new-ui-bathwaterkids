@@ -24,7 +24,6 @@
                                         <th style="font-size: 13px;" class="col-md-1">Email</th>
                                         <th style="font-size: 13px;" class="col-md-1">Is Super Admin</th>
                                         <th style="font-size: 13px;" class="col-md-1">Admin</th>
-                                        <th style="font-size: 13px;" class="col-md-1">Owner</th>
                                         <th style="font-size: 13px;" class="col-md-1">Pickup/Delivery</th>
                                         <th style="font-size: 13px;" class="col-md-1">Customers</th>
                                         <th style="font-size: 13px;" class="col-md-1">Inventory</th>
@@ -38,12 +37,11 @@
                                         <td>{{ad.email}}</td>
                                         <td>{{ad.role == 10 | YesNo}}</td>
                                         <td>{{ad.role == 4 | YesNo}}</td>
-                                        <td>{{ad.Owner | YesNo}}</td>
                                         <td>{{ad.role == 0 | YesNo}}</td>
                                         <td>{{ad.role == 1 | YesNo}}</td>
                                         <td>{{ad.role == 2 | YesNo}}</td>
                                         <td>{{ad.role == 3 | YesNo}}</td>
-                                        <td><button type="button" ng-click = "$ctrl.edit(ad, $index)" class="btn btn-sm btn-primary">Edit</button>&nbsp;&nbsp;&nbsp;<button type="button" ng-click = "$ctrl.delete($index)" class="btn btn-sm btn-danger">Delete</button> </td>                                   </tr>
+                                        <td><button type="button" ng-click = "$ctrl.edit(ad, $index)" class="btn btn-sm btn-primary">Edit</button>&nbsp;&nbsp;&nbsp;<button type="button" ng-click = "$ctrl.delete(ad.email)" class="btn btn-sm btn-danger">Delete</button> </td>                                   </tr>
                                 </table>
                             </div>
                            

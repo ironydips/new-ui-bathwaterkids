@@ -78,9 +78,28 @@
             angular.bind(ctrl, openPopUpAdmin, angular.copy(adminrights))();
         }
 
-        ctrl.delete = function(index) {
-            //TODO: Make API Hit for this
-            ctrl.adminList.splice(index, 1);
+        ctrl.delete = function(selectedEmail) {
+           // ctrl.adminList.splice(index, 1);
+           var params = JSON.stringify({
+                          email: selectedEmail
+                      });           
+            $http({
+                    url: '/rest/admin/deleteAdmin',
+                    method: "POST",
+                    data: params,
+                    headers: {
+                        "Authorization": ctrl.key
+                    }
+                })
+                .then(function(response) {
+                    // if(response.data.message == 'Success') {
+                    //     ctrl.getAdminList();
+                    // }
+                })
+                .catch(function(err) {
+                    console.log('Error in deleting Admin from admin list lists:');
+                    console.log(err);
+                })
         }
 
         ctrl.addadmin = function() {
@@ -122,15 +141,23 @@
 
                         switch(role){
                             case "0":
+                                AdminRightsService.addRights(rights);
+                                $state.go('index');
                                 break;
                             case "1":
                                 rights.Customers = true;
+                                AdminRightsService.addRights(rights);
+                                $state.go('index');
                                 break;
                             case "2":
                                 rights.Inventory = true;
+                                AdminRightsService.addRights(rights);
+                                $state.go('index');
                                 break;
                             case "3":
                                 rights.Warehouse = true;
+                                AdminRightsService.addRights(rights);
+                                $state.go('index');
                                 break;
                             case "4":
                                 rights.Admin = true;

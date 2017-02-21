@@ -30,23 +30,13 @@
             <div class="row">
                <div class="col-sm-6">
                   <div class="col-sm-3">
-                     <label>All</label>
+                     <label>Is Super Admin</label>
                   </div>
                   <div class="col-sm-4">
-                     <input type="checkbox" ng-model="$ctrl.admin.All" ng-checked="$ctrl.admin.Owner && $ctrl.admin.Admin && $ctrl.admin.Pickup && $ctrl.admin.Customers && $ctrl.admin.Inventory && $ctrl.admin.Warehouse &&$ctrl.admin.SuperAdmin" ng-click="$ctrl.checkAll()">
+                     <input type="checkbox" ng-model="$ctrl.admin.SuperAdmin" ng-checked="$ctrl.admin.SuperAdmin">
                   </div>
                </div>
-               <div class="col-sm-6">
-                  <div class="col-sm-3">
-                     <label>Owner</label>
-                  </div>
-                  <div class="col-sm-4">
-                     <input type="checkbox" ng-model="$ctrl.admin.Owner" ng-checked="$ctrl.admin.Owner" >
-                  </div>
-               </div>
-            </div>
-             <div class="row">
-               <div class="col-sm-6">
+                <div class="col-sm-6">
                   <div class="col-sm-3">
                      <label>Admin</label>
                   </div>
@@ -54,6 +44,9 @@
                      <input type="checkbox" ng-model="$ctrl.admin.Admin" ng-checked="$ctrl.admin.Admin">
                   </div>
                </div>
+            </div>
+             <div class="row">
+              
                <div class="col-sm-6">
                   <div class="col-sm-3">
                      <label>Pickup/Delivery</label>
@@ -62,8 +55,6 @@
                      <input type="checkbox" ng-model="$ctrl.admin.Pickup" ng-checked="$ctrl.admin.Pickup">
                   </div>
                </div>
-            </div>
-            <div class="row">
                <div class="col-sm-6">
                   <div class="col-sm-3">
                      <label>Customers</label>
@@ -72,6 +63,8 @@
                      <input type="checkbox" ng-model="$ctrl.admin.Customers" ng-checked="$ctrl.admin.Customers">
                   </div>
                </div>
+            </div>
+            <div class="row">
                <div class="col-sm-6">
                   <div class="col-sm-3">
                      <label>Inventory</label>
@@ -80,8 +73,6 @@
                      <input type="checkbox" ng-model="$ctrl.admin.Inventory" ng-checked="$ctrl.admin.Inventory">
                   </div>
                </div>
-            </div>
-            <div class="row">
                <div class="col-sm-6">
                   <div class="col-sm-3">
                      <label>Warehouse</label>
@@ -90,15 +81,6 @@
                      <input type="checkbox" ng-model="$ctrl.admin.Warehouse" ng-checked="$ctrl.admin.Warehouse">
                   </div>
                </div>
-               <div class="col-sm-6">
-                  <div class="col-sm-3">
-                     <label>Is Super Admin</label>
-                  </div>
-                  <div class="col-sm-4">
-                     <input type="checkbox" ng-model="$ctrl.admin.SuperAdmin" ng-checked="$ctrl.admin.SuperAdmin">
-                  </div>
-               </div>
-              
             </div>
             <div class="row">
                <div class="col-sm-2">
