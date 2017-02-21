@@ -3,7 +3,7 @@
 function GoogleSignInController($state,$interval,$http, GAuth){
 
 this.login = function(){
-	var CLIENT = '531188035829-e83na2d4nj50fu7baqc7q7mlqauboqvs.apps.googleusercontent.com';
+	var CLIENT = angular.config.clientID;
     GAuth.setClient(CLIENT);
 
     var intervalId = $interval(function(){

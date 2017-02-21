@@ -5,9 +5,9 @@ function IndexController($state , AdminRightsService) {
 	ctrl.open = function(name){
 		switch(name){
 			case 'admin': {
-				if(userRights.role == "10" || userRights.role == "4") $state.go('adminLayout.drivers');
-				else if(userRights.role == "0") $state.go('deliveryLayout.userRequests');
-				else if(userRights.role == "1") $state.go('customers.user');
+				if(userRights.Admin) $state.go('adminLayout.drivers');
+				else if(userRights.Pickup) $state.go('deliveryLayout.userRequests');
+				else if(userRights.Customers) $state.go('customers.user');
 				break;
 			}
 			case 'junit': break;

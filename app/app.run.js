@@ -7,7 +7,7 @@ angular.
       $rootScope.$state = toState.name;
     });
 
-    var CLIENT = '531188035829-e83na2d4nj50fu7baqc7q7mlqauboqvs.apps.googleusercontent.com';
+    var CLIENT = angular.config.clientID;
     GAuth.setClient(CLIENT);
     GAuth.load();
 

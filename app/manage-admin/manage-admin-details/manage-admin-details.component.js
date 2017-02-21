@@ -69,7 +69,7 @@
             var loggedinUserData = ctrl.adminList.filter(function(element){
                                     return element.email == ctrl.userProfile.email;
                                 });
-            AdminRightsService.addRights(loggedinUserData[0]);
+            AdminRightsService.addRights(ctrl.rights);
             $state.go('index');
         };
 
@@ -166,6 +166,11 @@
                                 break;
                             case "10":
                                 ctrl.isSuperAdmin = true;
+                                rights.Customers = true;
+                                rights.Inventory = true;
+                                rights.Warehouse = true;
+                                rights.Admin = true;
+                                ctrl.rights = rights;
                                 ctrl.getAdminList();
                                 break;
                         }
