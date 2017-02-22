@@ -11,31 +11,31 @@ angular.
     GAuth.setClient(CLIENT);
     GAuth.load();
 
-    GAuth.checkAuth()
-    .then(function (profile) {
-            var params = JSON.stringify({
-                          email: profile.email,
-                          name: profile.name  
-                      });
+    // GAuth.checkAuth()
+    // .then(function (profile) {
+    //         var params = JSON.stringify({
+    //                       email: profile.email,
+    //                       name: profile.name  
+    //                   });
 
-            var url = "/rest/admin/gloginsuccess?email="+profile.email+"&id="+profile.id;                                   
+    //         var url = "/rest/admin/gloginsuccess?email="+profile.email+"&id="+profile.id;                                   
                   
-            $http.get(url)
-            .then(function (data) {
-                  if (data.data.message == 'Success') {
-                      var key = data.data.key;
-                      $state.go('manageAdmin',{'profile': angular.toJson(profile), 'key': key });
-                  }
-              })
-              .catch(function(err){
-                console.log('Error on Oauth Login!!' + err);
-              })
-        },
-        function(error){
-          $state.go('gSignIn');
-        })
-    .catch(function(err){
-            $state.go('gSignIn');
-            console.log('Error on checkAuth Login!!' + err);
-          });
+    //         $http.get(url)
+    //         .then(function (data) {
+    //               if (data.data.message == 'Success') {
+    //                   var key = data.data.key;
+    //                   $state.go('manageAdmin',{'profile': angular.toJson(profile), 'key': key });
+    //               }
+    //           })
+    //           .catch(function(err){
+    //             console.log('Error on Oauth Login!!' + err);
+    //           })
+    //     },
+    //     function(error){
+    //       $state.go('gSignIn');
+    //     })
+    // .catch(function(err){
+    //         $state.go('gSignIn');
+    //         console.log('Error on checkAuth Login!!' + err);
+    //       });
   }]);

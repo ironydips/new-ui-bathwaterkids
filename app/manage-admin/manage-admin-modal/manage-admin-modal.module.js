@@ -2,7 +2,8 @@
 'use strict';
 
 angular.module('addAdminModal',[
-	'bathwaterApp.common'
+	'bathwaterApp.common',
+	'bathwaterApp.services'
 	]);
 
 })(window.angular);

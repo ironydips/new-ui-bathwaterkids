@@ -1,3 +1,6 @@
 'use strict';
 
-angular.module('googleSignIn',[]);
+angular.module('googleSignIn',[
+	'bathwaterApp.common',
+	'bathwaterApp.services'
+	]);

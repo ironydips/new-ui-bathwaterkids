@@ -72,7 +72,7 @@ function openPopUpinProgress(details){
 		)
 };
 
-function UserRequestController($rootScope, $state, $http, $uibModal) {
+function UserRequestController($rootScope, $state, $uibModal) {
 	var ctrl = this;
 	ctrl.$uibModal = $uibModal;
 	ctrl.$state = $state;
@@ -91,6 +91,6 @@ function UserRequestController($rootScope, $state, $http, $uibModal) {
 angular.module('userRequest')
 	.component('userRequest',{
 		templateUrl: 'pickup-delivery-management/user-request/user-request-details/user-request.template.html',
-		controller:['$rootScope','$state','$http', '$uibModal', UserRequestController]
+		controller:['$rootScope','$state', '$uibModal', UserRequestController]
 	});
 })(window.angular);

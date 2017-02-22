@@ -48,7 +48,7 @@
 
 	}
 
-	function trucksController($rootScope,$state,$http,$uibModal){
+	function trucksController($rootScope,$state,$uibModal){
 		var ctrl = this;
 		ctrl.$uibModal = $uibModal;
 		ctrl.$state = $state;
@@ -66,7 +66,7 @@
 	angular.module('deliveryTrucks')
 	.component('deliveryTrucks',{
 		templateUrl: 'pickup-delivery-management/delivery-trucks/delivery-trucks-details/delivery-trucks-details.template.html',
-		controller:['$rootScope','$state','$http','$uibModal', trucksController]
+		controller:['$rootScope','$state','$uibModal', trucksController]
 	});
 
 })(window.angular);

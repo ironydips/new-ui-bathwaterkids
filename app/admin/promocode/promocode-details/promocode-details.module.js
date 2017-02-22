@@ -2,5 +2,6 @@
 
 angular.module("promocodeDetails",[
 	'ui.bootstrap',
+	'bathwaterApp.services',
 	'promoModal'
 	]);

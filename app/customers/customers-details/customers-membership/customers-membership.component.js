@@ -2,18 +2,12 @@
 
 'use strict';
 
-function customersMembershipController($state,$http) {
+function customersMembershipController($state,customerUserService) {
 	var ctrl = this;
 
 		ctrl.init = function(){
 		//get membership details.
-		$http({
-	            url: '/rest/getUsers',
-	            method: "GET",
-	            headers:{
-	            	"Authorization": 'Basic YWRtaW46YWRtaW4='
-	            }
-	        })
+		customerUserService.getUsers()
 			.then(function(userlist){
 				ctrl.listofUsers = userlist.data;
 			})
@@ -29,6 +23,6 @@ function customersMembershipController($state,$http) {
 angular.module('customersMembership')
 .component('customersMembership',{
 	templateUrl: 'customers/customers-details/customers-membership/customers-membership.template.html',
-	controller:['$state','$http', customersMembershipController]
+	controller:['$state','customerUserService', customersMembershipController]
 });
 })(window.angular);

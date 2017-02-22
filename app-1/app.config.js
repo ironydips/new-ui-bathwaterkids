@@ -18,10 +18,7 @@ angular.
           template: '<g-sign></g-sign>'
         })
         .state('manageAdmin',{
-          url:'/manageAdmin/:profile/:key',
-          // params: {
-          // profile: null,
-          // },
+          url:'/manageAdmin',
           template: '<manage-admin></manage-admin>'
         })
         .state('index',{
@@ -52,7 +49,7 @@ angular.
           }
         })
         .state('adminLayout.trucks',{
-          url:'/truks',
+          url:'/trucks',
           views:{
             'contentSection@adminLayout':{
               template:'<truck-details></truck-details>'

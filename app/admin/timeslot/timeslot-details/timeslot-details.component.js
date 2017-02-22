@@ -1,60 +1,71 @@
+(function(angular) {
+
 'use strict';
+function addTimeslotPopUp(details){
 
-
-
-function TimeslotController($rootScope,$state,$http,$uibModal) {
-	var ctrl = this;
-
-	ctrl.init = function(){
-		$http({
-		    url: '/rest/getTimeslotsForTheWeek',
-		    method: "GET",
-		    headers:{
-		    	"Authorization": 'Basic YWRtaW46YWRtaW4='
-		    }
-		})
-		.then(function(timeslotDetails){
-			ctrl.timeslots = timeslotDetails.data;
-		})
-		.catch(function(err){
-			console.log('Error getting timeslot details:');
-			console.log(err);
-		})
-	};
-
-	ctrl.addTimeslot = function(){
-		var modalInstance = $uibModal.open({
+	var modalInstance = this.$uibModal.open({
 			component: 'timeslotModal',
 			windowClass: 'app-modal-window-large',
+			resolve: function(){
+				return (details||{});
+			},
 			keyboard: false,
 			backdrop: 'static'
 		});
 
-		modalInstance.result.then(function(data){
+		modalInstance.result.then(angular.bind(this, function(data){
 			//data passed when pop up closed.
-			if(data == "update") $state.reload();
+			if(data == "update") this.$state.reload();
 			
-		}, function(err){
-			console.log('Error in add-timeslot Modal');
+		}), angular.bind(this, function(err){
+			console.log('Error in add-promo Modal');
 			console.log(err);
 		})
-	};
-	ctrl.showallTimeslot = function(){
-		var modalInstance = $uibModal.open({
+		)
+}
+function showTimeslotPopup(details){
+
+	var modalInstance = this.$uibModal.open({
 			component: 'timeslotShowAllModal',
 			windowClass: 'app-modal-window-large',
 			keyboard: false,
 			backdrop: 'static'
 		});
 
-		modalInstance.result.then(function(data){
+		modalInstance.result.then(angular.bind(this, function(data){
 			//data passed when pop up closed.
-			//if(data == "update") $state.reload();
+			//if(data == "update") this.$state.reload();
 			
-		}, function(err){
-			console.log('Error in Show-all Modal');
+		}), angular.bind(this, function(err){
+			console.log('Error in show-promo Modal');
 			console.log(err);
 		})
+		)
+}
+
+
+function TimeslotController($rootScope,$state,$uibModal, TimeslotService) {
+	var ctrl = this;
+	ctrl.$uibModal = $uibModal;
+	ctrl.$state = $state;
+
+	ctrl.init = function(){
+
+		TimeslotService.getTimeslotsForTheWeek()
+			.then(function(timeslotDetails){
+				ctrl.timeslots = timeslotDetails.data;
+			})
+			.catch(function(err){
+				console.log('Error getting timeslot details:');
+				console.log(err);
+			})
+	};
+
+	ctrl.addTimeslot = function(){
+		angular.bind(ctrl,addTimeslotPopUp,null)();
+	};
+	ctrl.showallTimeslot = function(){
+		angular.bind(ctrl, showTimeslotPopup, null)();
 	};
 
 	ctrl.init(); 
@@ -66,5 +77,6 @@ function TimeslotController($rootScope,$state,$http,$uibModal) {
 angular.module('timeslotDetails')
 	.component('timeslotDetails',{
 		templateUrl: 'admin/timeslot/timeslot-details/timeslot-details.template.html',
-		controller:['$rootScope','$state','$http','$uibModal',TimeslotController]
+		controller:['$rootScope','$state','$uibModal','TimeslotService', TimeslotController]
 	});
+})(window.angular);

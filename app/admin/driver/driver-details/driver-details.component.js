@@ -38,20 +38,13 @@ function openPopUp(details){
 		)
 }
 
-function DriverDetailsController($rootScope, $state, $http, $uibModal) {
+function DriverDetailsController($rootScope, $state, $uibModal, DriverService) {
 	var ctrl = this;
 	ctrl.$uibModal = $uibModal;
 	ctrl.$state = $state;
-
 	ctrl.init = function(){
 		//get driver details.
-		$http({
-		    url: '/rest/getAllDrivers',
-		    method: "GET",
-		    headers:{
-		    	"Authorization": 'Basic YWRtaW46YWRtaW4='
-		    }
-		})
+		DriverService.getAllDrivers()
 		.then(function(driverDetails){
 			ctrl.drivers = driverDetails.data;
 		})
@@ -75,6 +68,6 @@ function DriverDetailsController($rootScope, $state, $http, $uibModal) {
 angular.module('driverDetails')
 	.component('driverDetails',{
 		templateUrl: 'admin/driver/driver-details/driver-details.template.html',
-		controller:['$rootScope','$state','$http', '$uibModal', DriverDetailsController]
+		controller:['$rootScope','$state', '$uibModal','DriverService', DriverDetailsController]
 	});
 })(window.angular);

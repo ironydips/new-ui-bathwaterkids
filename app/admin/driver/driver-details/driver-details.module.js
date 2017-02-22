@@ -3,6 +3,7 @@
 
 angular.module('driverDetails',[
 	'ui.bootstrap',
+	'bathwaterApp.services',
 	'driverModal'
 		]);
 

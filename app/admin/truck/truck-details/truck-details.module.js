@@ -4,7 +4,8 @@
 angular.module('truckDetails',[
 	'truckModal',
 	'images-resizer',
-	'ui.bootstrap'
+	'ui.bootstrap',
+	'bathwaterApp.services',
 	]);
 
 })(window.angular);

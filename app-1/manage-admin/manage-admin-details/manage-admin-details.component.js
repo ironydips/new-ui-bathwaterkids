@@ -97,7 +97,7 @@
                                     return element.email == ctrl.userProfile.email;
                                 });
             AdminRightsService.addRights(loggedinUserData[0]);
-            $state.go('index');
+            $state.go('index', {'key': $stateParams.key});
         };
 
 
@@ -145,7 +145,7 @@
                            // AdminRightsService.saveRights(angular.copy(rights));
                             ctrl.userProfile['role'] = role;
                             AdminRightsService.addRights(ctrl.userProfile);
-                            $state.go('index');
+                            $state.go('index', {'key': $stateParams.key});
                         }
                         else {
                             ctrl.isSuperAdmin = true;

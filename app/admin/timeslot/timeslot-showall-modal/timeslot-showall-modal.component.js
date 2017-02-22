@@ -1,14 +1,10 @@
 'use strict';
 
-function TimeslotShowAllModal($rootScope, $state, $http) {
+function TimeslotShowAllModal($rootScope, $state, TimeslotService) {
     var ctrl = this;
-    $http({
-        url: '/rest/getTimeslots',
-        method: "GET",
-        headers: {
-            'Authorization': "Basic YWRtaW46YWRtaW4="
-        }
-    }).then(function(timeslotShowAllModal) {
+
+    TimeslotService.getTimeslots()
+    .then(function(timeslotShowAllModal) {
         ctrl.alltimeslot = timeslotShowAllModal.data;
     });
     ctrl.cancelshowall= function(){
@@ -19,7 +15,7 @@ function TimeslotShowAllModal($rootScope, $state, $http) {
 angular.module('timeslotShowAllModal')
     .component('timeslotShowAllModal', {
         templateUrl: 'admin/timeslot/timeslot-showall-modal/timeslot-showall-modal.template.html',
-        controller: ['$rootScope', '$state', '$http', TimeslotShowAllModal],
+        controller: ['$rootScope', '$state','TimeslotService', TimeslotShowAllModal],
         bindings: {
             modalInstance: '<'
         }

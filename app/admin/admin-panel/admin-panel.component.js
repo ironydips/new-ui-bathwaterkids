@@ -3,7 +3,7 @@
 function AdminPanelController($scope, $state, AdminRightsService) {
 	var ctrl = this;
 
-	ctrl.userRights = AdminRightsService.getRights();
+	//ctrl.userRights = AdminRightsService.getRights();
 }
 
 angular.module('adminPanel')

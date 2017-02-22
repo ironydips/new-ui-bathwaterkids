@@ -1,4 +1,6 @@
 'use strict';
 
 
-angular.module('timeslotShowAllModal',[]);
+angular.module('timeslotShowAllModal',[
+		'bathwaterApp.services',
+	]);

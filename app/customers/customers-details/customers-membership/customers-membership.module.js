@@ -2,6 +2,8 @@
 
 'use strict';
 
-	angular.module('customersMembership',[]);
+	angular.module('customersMembership',[
+			'bathwaterApp.services'
+		]);
 
 })(window.angular);

@@ -36,20 +36,14 @@ function openPopUp(details){
 		)
 }
 
-function TruckDetailsController($rootScope, $state, $http, $uibModal, resizeService) {
+function TruckDetailsController($rootScope, $state, $uibModal, resizeService, TruckService) {
 	var ctrl = this;
 	ctrl.$uibModal = $uibModal;
 	ctrl.$state = $state;
 
 	ctrl.init = function(){
 		//get truck details.
-		$http({
-	            url: '/rest/getAllTrucks',
-	            method: "GET",
-	            headers:{
-	            	"Authorization": 'Basic YWRtaW46YWRtaW4='
-	            }
-	        })
+			TruckService.getAllTrucks()
 			.then(function(truckDetails){
 				ctrl.trucks = truckDetails.data;
 			})
@@ -73,6 +67,6 @@ function TruckDetailsController($rootScope, $state, $http, $uibModal, resizeServ
 angular.module('truckDetails')
 	.component('truckDetails',{
 		templateUrl: 'admin/truck/truck-details/truck-details.template.html',
-		controller:['$rootScope','$state','$http', '$uibModal', 'resizeService', TruckDetailsController]
+		controller:['$rootScope','$state', '$uibModal', 'resizeService','TruckService', TruckDetailsController]
 	});
 })(window.angular);

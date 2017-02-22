@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    function addAdminModalModalController($rootScope, $state, $http, AdminRightsService) {
+    function addAdminModalModalController($rootScope, $state, AdminRightsService, AdminManagerService) {
         var ctrl = this;
         ctrl.admin = (ctrl.resolve && ctrl.resolve.details) || {};
 
@@ -11,37 +11,8 @@
         ctrl.role = "";
         
        
-        ctrl.saveAdmin = function() {
-
-            if(ctrl.admin.SuperAdmin)
-                ctrl.role = "10";
-            else if(ctrl.admin.Admin)
-                ctrl.role = "4";
-            else if(ctrl.admin.Warehouse)
-                ctrl.role = "3";
-            else if(ctrl.admin.Inventory)
-                ctrl.role = "2";
-            else if(ctrl.admin.Customers)
-                ctrl.role = "1";
-            else if(ctrl.admin.Pickup)
-                ctrl.role = "0";
-            else if(ctrl.admin.Owner)
-                ctrl.role = "0";
-
-
-            var params = JSON.stringify({
-                          email: ctrl.admin.email,
-                          name:  ctrl.admin.username,
-                          role:  ctrl.role
-                      });
-            $http({
-                    url: '/rest/admin/addAdmin',
-                    method: "POST",
-                    data: params,
-                    headers: {
-                        "Authorization": ctrl.key
-                    }
-                })
+        ctrl.saveAdmin = function() {  
+            AdminManagerService.addAdmin()
                 .then(function(response) {
                     if (response && response.data) {
                         ctrl.modalInstance.close({action: 'update'});
@@ -108,14 +79,7 @@
                           name: ctrl.admin.username,
                           role: ctrl.role
                       });
-            $http({
-                    url: '/rest/admin/editAdmin',
-                    method: "POST",
-                    data: params,
-                    headers: {
-                        "Authorization": ctrl.key
-                    }
-                })
+            AdminManagerService.editAdmin(params, ctrl.key)
                 .then(function(response) {
                     if (response && response.data) {
                         ctrl.modalInstance.close({action: 'update'});
@@ -134,7 +98,7 @@
     angular.module('addAdminModal')
         .component('addAdminModal', {
             templateUrl: 'manage-admin/manage-admin-modal/manage-admin-modal.template.html',
-            controller: ['$rootScope', '$state', '$http', 'AdminRightsService', addAdminModalModalController],
+            controller: ['$rootScope', '$state', 'AdminRightsService','AdminManagerService', addAdminModalModalController],
             bindings: {
                 modalInstance: '<',
                 resolve: '<'

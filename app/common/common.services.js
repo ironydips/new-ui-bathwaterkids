@@ -13,11 +13,11 @@ function AdminRightsService() {
 
   function saveProfile(profileInfo){
     profile = angular.copy(profileInfo);
-  }
+  };
 
   function getProfile(){
     return profile;
-  }
+  };
 
   return {
   	addRights: addRights,
