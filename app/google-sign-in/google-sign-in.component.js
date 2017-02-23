@@ -1,12 +1,22 @@
 'use strict';
 
-function GoogleSignInController($state,$interval,$http, GAuth, AdminManagerService, AdminRightsService){
+function GoogleSignInController($state,$interval, GAuth, AdminManagerService, AdminRightsService){
 
 	var ctrl = this;
+    ctrl.isSuperAdmin = false;
+    ctrl.profile ={};
+    var rights = {
+         Admin: false,
+         Pickup: false,
+         Customers: false,
+         Inventory: false,
+         Warehouse: false
+    };
+
 
 	ctrl.init = function(){
 		ctrl.login();
-	}
+	};
 
 	ctrl.login = function(){
 		var CLIENT = angular.config.clientID;
@@ -17,61 +27,37 @@ function GoogleSignInController($state,$interval,$http, GAuth, AdminManagerServi
 		            function (profile) {
 		            	$interval.cancel(intervalId);
 
-		            	    ctrl.isSuperAdmin = false;
-				            var rights = {
-				                Admin: false,
-				                Pickup: false,
-				                Customers: false,
-				                Inventory: false,
-				                Warehouse: false
-				            };
+		            	     ctrl.profile = profile;
 
-            AdminManagerService.loginAdmin(profile.email, profile.id)
+            AdminManagerService.loginAdmin(ctrl.profile.email , ctrl.profile.id)
                 .then(function(response) {
                     if (response && response.data) {
-                        profile.role = response.data.role;
-                        profile.key = response.data.key;
+                        ctrl.profile.role = response.data.role;
+                        ctrl.profile.key = response.data.key;
 
                         switch(profile.role){
                             case "0":
                                 rights.Pickup = true;
-                                AdminRightsService.saveProfile(profile);
-                                AdminRightsService.addRights(rights);
-                                $state.go('index');
+                                ctrl.AssignAdmin();
                                 break;
                             case "1":
                                 rights.Customers = true;
-                                AdminRightsService.saveProfile(profile);
-                                AdminRightsService.addRights(rights);
-                                $state.go('index');
+                                ctrl.AssignAdmin();
                                 break;
                             case "2":
                                 rights.Inventory = true;
-                                AdminRightsService.saveProfile(profile);
-                                AdminRightsService.addRights(rights);
-                                $state.go('index');
+                                ctrl.AssignAdmin();
                                 break;
                             case "3":
                                 rights.Warehouse = true;
-                                AdminRightsService.saveProfile(profile);
-                                AdminRightsService.addRights(rights);
-                                $state.go('index');
+                                ctrl.AssignAdmin();
                                 break;
                             case "4":
                                 rights.Admin = true;
-                                AdminRightsService.saveProfile(profile);
-                                AdminRightsService.addRights(rights);
-                                $state.go('index');
+                                ctrl.AssignAdmin();
                                 break;
                             case "10":
-                                ctrl.isSuperAdmin = true;
-                                rights.Customers = true;
-                                rights.Inventory = true;
-                                rights.Warehouse = true;
-                                rights.Admin = true;
-                                AdminRightsService.saveProfile(profile);
-                                AdminRightsService.addRights(rights);
-                                $state.go('manageAdmin');
+                                ctrl.AssignSuperadmin();
                                 break;
                         }
                     }
@@ -83,13 +69,30 @@ function GoogleSignInController($state,$interval,$http, GAuth, AdminManagerServi
 	         });
 		    	console && console.clear ? console.clear() : null;
 			},1000);
-		}
+		};
 
 	ctrl.init();
-}
+
+    ctrl.AssignSuperadmin = function(){
+                            ctrl.isSuperAdmin = true;
+                            rights.Customers = true;
+                            rights.Inventory = true;
+                            rights.Warehouse = true;
+                            rights.Admin = true;
+                            AdminRightsService.saveProfile(ctrl.profile);
+                            AdminRightsService.addRights(rights);
+                            $state.go('manageAdmin');
+                    };
+
+     ctrl.AssignAdmin = function(){
+                            AdminRightsService.saveProfile(ctrl.profile);
+                            AdminRightsService.addRights(rights);
+                            $state.go('index');
+                    };
+        }
 
 angular.module('googleSignIn')
 .component('gSign',{
 	templateUrl: 'google-sign-in/google-sign-in.template.html',
-	controller: ['$state','$interval','$http','GAuth','AdminManagerService','AdminRightsService', GoogleSignInController]
+	controller: ['$state','$interval','GAuth','AdminManagerService','AdminRightsService', GoogleSignInController]
 });

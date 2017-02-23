@@ -29,7 +29,7 @@ function openPopUp(details){
 
 		modalInstance.result.then(angular.bind(this, function(data){
 			//data passed when pop up closed.
-			if(data == "update") this.$state.reload();
+			if(data && data.action == "update") this.init();
 			
 		}), angular.bind(this, function(err){
 			console.log('Error in add-driver Modal');
@@ -38,7 +38,7 @@ function openPopUp(details){
 		)
 }
 
-function DriverDetailsController($rootScope, $state, $uibModal, DriverService) {
+function DriverDetailsController($state, $uibModal, DriverService) {
 	var ctrl = this;
 	ctrl.$uibModal = $uibModal;
 	ctrl.$state = $state;
@@ -54,10 +54,12 @@ function DriverDetailsController($rootScope, $state, $uibModal, DriverService) {
 		})
 	};
 
+	// Add Driver Modal
 	ctrl.addDriver = function(){
 		angular.bind(ctrl, openPopUp, null)();
 	};
 
+	//Show Driver's Modal
 	ctrl.showDetails = function(driverDetails){
 		angular.bind(ctrl, openPopUp, transformData(driverDetails))();
 	}
@@ -68,6 +70,6 @@ function DriverDetailsController($rootScope, $state, $uibModal, DriverService) {
 angular.module('driverDetails')
 	.component('driverDetails',{
 		templateUrl: 'admin/driver/driver-details/driver-details.template.html',
-		controller:['$rootScope','$state', '$uibModal','DriverService', DriverDetailsController]
+		controller:['$state', '$uibModal','DriverService', DriverDetailsController]
 	});
 })(window.angular);

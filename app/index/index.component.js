@@ -1,3 +1,6 @@
+(function(angular) {
+'use strict';
+
 function IndexController($state , AdminRightsService) {
 	var ctrl = this;
 
@@ -22,4 +25,6 @@ angular.module('index')
 .component('index',{
 	templateUrl: 'index/index.template.html',
 	controller: ['$state','AdminRightsService', IndexController]
-});
+	});
+
+})(window.angular);

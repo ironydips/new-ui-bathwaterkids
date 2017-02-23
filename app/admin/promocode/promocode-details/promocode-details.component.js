@@ -1,3 +1,5 @@
+(function(angular) {
+
 'use strict';
 
 function openPopUpPromo(detailsofPromo){
@@ -15,7 +17,7 @@ function openPopUpPromo(detailsofPromo){
 
 		modalInstance.result.then(angular.bind(this, function(data){
 			//data passed when pop up closed.
-			if(data == "update") this.$state.reload();
+			if(data && data.action == 'update') this.init();
 			
 		}), angular.bind(this, function(err){
 			console.log('Error in add-promo Modal');
@@ -24,7 +26,7 @@ function openPopUpPromo(detailsofPromo){
 		)
 }
 
-function PromoCodeDetailsController($rootScope,$state,$uibModal, PromocodeService){
+function PromoCodeDetailsController($state,$uibModal, PromocodeService){
 	var ctrl = this;
 	ctrl.$uibModal = $uibModal;
 	ctrl.$state = $state;
@@ -40,6 +42,8 @@ function PromoCodeDetailsController($rootScope,$state,$uibModal, PromocodeServic
 			console.log(err);
 		})
 	};
+
+	//Add Promo Modal
 	ctrl.addPromoCode = function(){
 		angular.bind(ctrl, openPopUpPromo, null)();
 	};
@@ -48,13 +52,13 @@ function PromoCodeDetailsController($rootScope,$state,$uibModal, PromocodeServic
 
 		PromocodeService.deletePromoCode(promocode)
 		.then(function(promoCodes){
-			$state.reload();
+			ctrl.init();
 		})
 		.catch(function(err){
 			console.log('Error getting promocode details:');
 			console.log(err);
-		})
-	}
+		});
+	};
 
 	ctrl.init();
 
@@ -65,5 +69,7 @@ function PromoCodeDetailsController($rootScope,$state,$uibModal, PromocodeServic
 angular.module('promocodeDetails')
 	.component('promocodeDetails',{
 		templateUrl: 'admin/promocode/promocode-details/promocode-details.template.html',
-		controller:['$rootScope','$state','$uibModal','PromocodeService', PromoCodeDetailsController]
+		controller:['$state','$uibModal','PromocodeService', PromoCodeDetailsController]
 	});
+
+})(window.angular);

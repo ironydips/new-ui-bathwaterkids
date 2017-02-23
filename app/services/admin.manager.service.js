@@ -6,8 +6,6 @@
         var key ="";
         var params ={};
 
-
-
 		var loginAdmin = function(email, id){
 			return $http({
                     url: '/rest/admin/gloginsuccess?email='+ email +'&id=' + id,
@@ -35,7 +33,9 @@
                 })
 		}
 
-		var deleteAdmin = function(params, key){
+		var deleteAdmin = function(params){
+
+            key = AdminRightsService.getProfile().key;
 
 			return $http({
                     url: '/rest/admin/deleteAdmin',
@@ -47,15 +47,10 @@
                 })
 		}
 
-		var addAdmin = function(){
+		var addAdmin = function(params){
 
             key = AdminRightsService.getProfile().key;
-            params = JSON.stringify({
-                          email: AdminRightsService.getProfile().email,
-                          name:  AdminRightsService.getProfile().username,
-                          role:  AdminRightsService.getProfile().role
-                      });
-
+        
 			return $http({
                     url: '/rest/admin/addAdmin',
                     method: "POST",
@@ -66,7 +61,9 @@
                 })
 		}
 
-        var editAdmin = function(params, key){
+        var editAdmin = function(params){
+
+            key = AdminRightsService.getProfile().key;
 
             return $http({
                     url: '/rest/admin/editAdmin',
@@ -78,7 +75,9 @@
                 })
         }
 
-			return {
+        //EXPORTED Object
+        
+		return {
 			loginAdmin,
 			listofAdmin,
 			deleteAdmin,
@@ -86,7 +85,7 @@
             editAdmin
 		}
 	
-		}
+	}
 
 	angular.module('bathwaterApp.services')
 		.factory('AdminManagerService',['$http','AdminRightsService', AdminManagerServiceHandler]);	

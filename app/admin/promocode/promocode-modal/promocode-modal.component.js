@@ -1,14 +1,18 @@
+(function(angular) {
+
+
 'use strict';
-function PromoModalModalController($rootScope,$state, PromocodeService){
+function PromoModalModalController($state, PromocodeService){
 	var ctrl = this;
 	ctrl.promo = (ctrl.resolve && ctrl.resolve.detailsofPromo) || {};
 	ctrl.isDisabled = Object.keys(ctrl.promo).length > 0;
 
+	//Add PromoCode 
 	ctrl.save = function(promocode){     
 
 		PromocodeService.uploadPromoFile(promocode,ctrl.promo)
 		.then(function(result){
-			ctrl.modalInstance.close('update');
+			ctrl.modalInstance.close({action: 'update'});
 		})
 		.catch(function(err){
 			console.log('Error Adding promocode');
@@ -21,15 +25,14 @@ function PromoModalModalController($rootScope,$state, PromocodeService){
 	}
 }
 
-
-
-
 angular.module('promoModal')
 	.component('promoModal',{
 		templateUrl: 'admin/promocode/promocode-modal/promocode-modal.template.html',
-		controller:['$rootScope','$state','PromocodeService', PromoModalModalController],
+		controller:['$state','PromocodeService', PromoModalModalController],
 		bindings:{
 			modalInstance: '<',
 			resolve: '<'
 		}
 	});
+
+})(window.angular);

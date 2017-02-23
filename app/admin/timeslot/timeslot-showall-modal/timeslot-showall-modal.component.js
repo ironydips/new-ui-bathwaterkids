@@ -1,22 +1,36 @@
+(function(angular){
+
 'use strict';
 
-function TimeslotShowAllModal($rootScope, $state, TimeslotService) {
+function TimeslotShowAllModal($state, TimeslotService) {
     var ctrl = this;
 
-    TimeslotService.getTimeslots()
-    .then(function(timeslotShowAllModal) {
-        ctrl.alltimeslot = timeslotShowAllModal.data;
-    });
+    ctrl.init = function(){
+
+         TimeslotService.getTimeslots()
+                .then(function(timeslotShowAllModal) {
+                    ctrl.alltimeslot = timeslotShowAllModal.data;
+                })
+                .catch(function(err){
+                    console.log('Error Timeslot detail');
+                    console.log(err);
+                });
+    };
+
     ctrl.cancelshowall= function(){
 		ctrl.modalInstance.close();
     };
+
+    ctrl.init();
 }
 
 angular.module('timeslotShowAllModal')
     .component('timeslotShowAllModal', {
         templateUrl: 'admin/timeslot/timeslot-showall-modal/timeslot-showall-modal.template.html',
-        controller: ['$rootScope', '$state','TimeslotService', TimeslotShowAllModal],
+        controller: ['$state','TimeslotService', TimeslotShowAllModal],
         bindings: {
             modalInstance: '<'
         }
     });
+    
+})(window.angular);

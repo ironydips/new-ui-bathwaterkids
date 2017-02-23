@@ -9,8 +9,8 @@ function ZipModalModalController($rootScope,$state, ZipcodeService) {
 	ctrl.save = function(){                  
 		
 		ZipcodeService.addZipCode(ctrl.zip)
-		.then(function(result){
-			ctrl.modalInstance.close('update');
+			.then(function(result){
+				ctrl.modalInstance.close({action: 'update'});
 		})
 		.catch(function(err){
 			console.log('Error Adding Driver');

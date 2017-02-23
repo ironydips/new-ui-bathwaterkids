@@ -22,8 +22,8 @@ function TruckModalController($scope, $rootScope,$state, resizeService, TruckSer
 	ctrl.save = function(){
 
 		TruckService.addTruckwithImage(ctrl.truck)
-		.then(function(result){
-			ctrl.modalInstance.close('update');
+			.then(function(result){
+				ctrl.modalInstance.close({action: 'update'});
 		})
 		.catch(function(err){
 			console.log('Error Adding Truck');

@@ -15,12 +15,12 @@ function addTimeslotPopUp(details){
 
 		modalInstance.result.then(angular.bind(this, function(data){
 			//data passed when pop up closed.
-			if(data == "update") this.$state.reload();
-			
-		}), angular.bind(this, function(err){
-			console.log('Error in add-promo Modal');
-			console.log(err);
-		})
+					if(data && data.action == "update") this.init();
+				
+				}), angular.bind(this, function(err){
+					console.log('Error in add-timeslot Modal');
+					console.log(err);
+			})
 		)
 }
 function showTimeslotPopup(details){
@@ -36,15 +36,15 @@ function showTimeslotPopup(details){
 			//data passed when pop up closed.
 			//if(data == "update") this.$state.reload();
 			
-		}), angular.bind(this, function(err){
-			console.log('Error in show-promo Modal');
-			console.log(err);
-		})
+				}), angular.bind(this, function(err){
+					console.log('Error in show-timeslot Modal');
+					console.log(err);
+			})
 		)
 }
 
 
-function TimeslotController($rootScope,$state,$uibModal, TimeslotService) {
+function TimeslotController($state, $uibModal, TimeslotService) {
 	var ctrl = this;
 	ctrl.$uibModal = $uibModal;
 	ctrl.$state = $state;
@@ -61,9 +61,11 @@ function TimeslotController($rootScope,$state,$uibModal, TimeslotService) {
 			})
 	};
 
+	//Add Timeslot
 	ctrl.addTimeslot = function(){
 		angular.bind(ctrl,addTimeslotPopUp,null)();
 	};
+	//Show Timeslot
 	ctrl.showallTimeslot = function(){
 		angular.bind(ctrl, showTimeslotPopup, null)();
 	};
@@ -71,12 +73,9 @@ function TimeslotController($rootScope,$state,$uibModal, TimeslotService) {
 	ctrl.init(); 
 }
 
-
-
-
 angular.module('timeslotDetails')
 	.component('timeslotDetails',{
 		templateUrl: 'admin/timeslot/timeslot-details/timeslot-details.template.html',
-		controller:['$rootScope','$state','$uibModal','TimeslotService', TimeslotController]
+		controller:['$state','$uibModal','TimeslotService', TimeslotController]
 	});
 })(window.angular);

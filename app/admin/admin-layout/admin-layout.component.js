@@ -1,3 +1,4 @@
+(function(angular) {
 'use strict';
 
 function AdminLayoutController($state) {
@@ -9,3 +10,5 @@ angular.module('adminLayout')
 	templateUrl: 'admin/admin-layout/admin-layout.template.html',
 	controller:['$state', AdminLayoutController]
 });
+
+})(window.angular);

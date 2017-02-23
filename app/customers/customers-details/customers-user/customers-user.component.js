@@ -7,14 +7,14 @@ function customersUserController($state, customerUserService) {
 
 		ctrl.init = function(){
 		//get users details.
-		customerUserService.getUsers()
-			.then(function(userlist){
-				ctrl.listofUsers = userlist.data;
-			})
-			.catch(function(err){
-				console.log('Error getting user details:');
-				console.log(err);
-			})
+				customerUserService.getUsers()
+					.then(function(userlist){
+						ctrl.listofUsers = userlist.data;
+					})
+					.catch(function(err){
+						console.log('Error getting user details:');
+						console.log(err);
+					});
 	};
 
 	ctrl.init();

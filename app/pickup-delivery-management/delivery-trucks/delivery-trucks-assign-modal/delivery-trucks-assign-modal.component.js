@@ -1,12 +1,12 @@
 (function(angular) {
 'use strict';
 
-function deliverytruckModalController($scope, $rootScope,$state,TruckService,DriverService,PickupTruckService) {
+function deliverytruckModalController($state,TruckService,DriverService,PickupTruckService) {
 	var ctrl = this;
 	ctrl.assign = (ctrl.resolve && ctrl.resolve.details) || {};
-	ctrl.isDisabled = Object.keys(ctrl.assign).length > 0;
-	ctrl.listoftruck = function(){
-		//get truck details.
+	
+	ctrl.init = function(){
+
 		TruckService.getAllTrucks()
 			.then(function(truckDetails){
 				ctrl.trucks = truckDetails.data;
@@ -14,14 +14,17 @@ function deliverytruckModalController($scope, $rootScope,$state,TruckService,Dri
 				.catch(function(err){
 					console.log('Error getting truck details:');
 					console.log(err);
-			})
-		};
+			});
 
-	ctrl.listofdriver = function(){
 		DriverService.getAllDrivers()
             .then(function (response) {
                ctrl.drivers = response.data;
-            });
+            })
+            .catch(function(err){
+					console.log('Error getting driver list details:');
+					console.log(err);
+			})
+
 	};
 
 	ctrl.assign = function(driverid,truckid){
@@ -39,14 +42,14 @@ function deliverytruckModalController($scope, $rootScope,$state,TruckService,Dri
 	ctrl.cancel = function(){
 		ctrl.modalInstance.close();
 	}
-	 ctrl.listoftruck();
-	 ctrl.listofdriver();
+
+	 ctrl.init();
 }
 
 angular.module('deliverytruckModal')
 	.component('deliverytruckModal',{
 		templateUrl: 'pickup-delivery-management/delivery-trucks/delivery-trucks-assign-modal/delivery-trucks-assign-modal.template.html',
-		controller:['$scope','$rootScope','$state','TruckService','DriverService','PickupTruckService', deliverytruckModalController],
+		controller:['$state','TruckService','DriverService','PickupTruckService', deliverytruckModalController],
 		bindings:{
 			modalInstance: '<',
 			resolve: '<'

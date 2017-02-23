@@ -3,7 +3,7 @@
 
 angular.module('manageAdmin',[
 	'ui.bootstrap',
-	'bathwaterApp.common',
+	'bathwaterApp.services',
 	'addAdminModal'
 	]);
 

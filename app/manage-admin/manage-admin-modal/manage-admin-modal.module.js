@@ -2,7 +2,6 @@
 'use strict';
 
 angular.module('addAdminModal',[
-	'bathwaterApp.common',
 	'bathwaterApp.services'
 	]);
 

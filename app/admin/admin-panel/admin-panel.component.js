@@ -1,13 +1,15 @@
+(function(angular) {
+
 'use strict';
 
-function AdminPanelController($scope, $state, AdminRightsService) {
+function AdminPanelController($state) {
 	var ctrl = this;
-
-	//ctrl.userRights = AdminRightsService.getRights();
 }
 
 angular.module('adminPanel')
 .component('adminPanel',{
 	templateUrl: 'admin/admin-panel/admin-panel.template.html',
-	controller:['$scope','$state','AdminRightsService', AdminPanelController]
+	controller:['$state', AdminPanelController]
 });
+
+})(window.angular);

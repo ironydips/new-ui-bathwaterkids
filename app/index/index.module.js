@@ -1,1 +1,6 @@
-angular.module('index',[]);
+(function(angular) {
+'use strict';
+
+	angular.module('index',[]);
+
+})(window.angular);

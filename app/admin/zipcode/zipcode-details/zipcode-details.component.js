@@ -16,7 +16,7 @@ function openPopUp(details){
 
 		modalInstance.result.then(angular.bind(this, function(data){
 			//data passed when pop up closed.
-			if(data == "update") this.$state.reload();
+			if(data && data.action == "update") this.init();
 			
 		}), angular.bind(this, function(err){
 			console.log('Error in add-driver Modal');
@@ -25,7 +25,7 @@ function openPopUp(details){
 		)
 }
 
-function ZipCodeDetailsController($rootScope, $state, $uibModal, ZipcodeService) {
+function ZipCodeDetailsController($state, $uibModal, ZipcodeService) {
 	var ctrl = this;
 	ctrl.$uibModal = $uibModal;
 	ctrl.$state = $state;
@@ -42,6 +42,7 @@ function ZipCodeDetailsController($rootScope, $state, $uibModal, ZipcodeService)
 		})
 	};
 
+	//Add ZipCode Modal
 	ctrl.addZipCode = function(){
 		angular.bind(ctrl, openPopUp, null)();
 	};
@@ -51,7 +52,7 @@ function ZipCodeDetailsController($rootScope, $state, $uibModal, ZipcodeService)
 
 		ZipcodeService.deleteZipCode(zipcode)
 		.then(function(zipCodes){
-			$state.reload();
+			ctrl.init();
 		})
 		.catch(function(err){
 			console.log('Error getting zipcode details:');
@@ -65,6 +66,6 @@ function ZipCodeDetailsController($rootScope, $state, $uibModal, ZipcodeService)
 angular.module('zipcodeDetails')
 	.component('zipcodeDetails',{
 		templateUrl: 'admin/zipcode/zipcode-details/zipcode-details.template.html',
-		controller:['$rootScope','$state', '$uibModal','ZipcodeService', ZipCodeDetailsController]
+		controller:['$state', '$uibModal','ZipcodeService', ZipCodeDetailsController]
 	});
 })(window.angular);

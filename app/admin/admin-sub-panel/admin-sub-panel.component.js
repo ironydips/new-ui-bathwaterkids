@@ -1,3 +1,5 @@
+(function(angular) {
+
 'use strict';
 
 function AdminSubPanelController($state) {
@@ -9,3 +11,5 @@ angular.module('adminSubPanel')
 	templateUrl: 'admin/admin-sub-panel/admin-sub-panel.template.html',
 	controller:['$state', AdminSubPanelController]
 });
+
+})(window.angular);

@@ -7,14 +7,14 @@ function customersMembershipController($state,customerUserService) {
 
 		ctrl.init = function(){
 		//get membership details.
-		customerUserService.getUsers()
-			.then(function(userlist){
-				ctrl.listofUsers = userlist.data;
-			})
-			.catch(function(err){
-				console.log('Error getting memberships details:');
-				console.log(err);
-			})
+				customerUserService.getUsers()
+					.then(function(userlist){
+						ctrl.listofUsers = userlist.data;
+					})
+					.catch(function(err){
+						console.log('Error getting memberships details:');
+						console.log(err);
+					})
 	};
 
 	ctrl.init();

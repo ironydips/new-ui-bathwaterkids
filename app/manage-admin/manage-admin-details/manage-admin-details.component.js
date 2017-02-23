@@ -18,7 +18,7 @@
 
         modalInstance.result.then(angular.bind(this, function(data) {
             //data passed when pop up closed.
-            if (data.action == "update") this.init();
+            if (data && data.action == "update") this.init();
             
         }), angular.bind(this, function(err) {
             console.log('Error in manage-admin Modal');
@@ -26,34 +26,33 @@
         }))
     }
 
-    function manageAdminController($state, $scope, $uibModal, AdminRightsService,AdminManagerService) {
+    function manageAdminController($state, $uibModal, AdminManagerService) {
 
         var ctrl = this;
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
-        ctrl.userProfile = {};
-        ctrl.key = "";
         ctrl.adminList = [];
 
         //API /admin/login
         ctrl.init = function() {
+            ctrl.isSuperAdmin = true;
             getAdminList();
           };
-         ctrl.continue = function(){
+
+        ctrl.continue = function(){
             $state.go('index');
         };
 
-
         ctrl.edit = function(adminrights) {
             angular.bind(ctrl, openPopUpAdmin, angular.copy(adminrights))();
-        }
+        };
 
         ctrl.delete = function(selectedEmail) {
            var params = JSON.stringify({
                           email: selectedEmail
                       });   
 
-                AdminManagerService.deleteAdmin(params, ctrl.key)
+                AdminManagerService.deleteAdmin(params)
                         .then(function(response) {
                             //TODO
                         })
@@ -65,12 +64,11 @@
 
         ctrl.addadmin = function() {
             angular.bind(ctrl, openPopUpAdmin, null)();
-        }
+        };
 
         ctrl.init();
 
         function getAdminList(){
-            ctrl.isSuperAdmin = true;
 
            AdminManagerService.listofAdmin()
                 .then(function(response) {
@@ -82,12 +80,12 @@
                     console.log('Error getting Admin lists:');
                     console.log(err);
                 })
-        }
+        };
     }
 
     angular.module('manageAdmin')
         .component('manageAdmin', {
             templateUrl: 'manage-admin/manage-admin-details/manage-admin-details.template.html',
-            controller: ['$state','$scope', '$uibModal', 'AdminRightsService','AdminManagerService', manageAdminController]
+            controller: ['$state', '$uibModal','AdminManagerService', manageAdminController]
         });
 })(window.angular);

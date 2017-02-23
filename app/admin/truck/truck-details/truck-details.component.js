@@ -27,7 +27,7 @@ function openPopUp(details){
 
 		modalInstance.result.then(angular.bind(this, function(data){
 			//data passed when pop up closed.
-			if(data == "update") this.$state.reload();
+			if(data && data.action == "update") this.init();
 			
 		}), angular.bind(this, function(err){
 			console.log('Error in add-truck Modal');
@@ -36,7 +36,7 @@ function openPopUp(details){
 		)
 }
 
-function TruckDetailsController($rootScope, $state, $uibModal, resizeService, TruckService) {
+function TruckDetailsController($state, $uibModal, resizeService, TruckService) {
 	var ctrl = this;
 	ctrl.$uibModal = $uibModal;
 	ctrl.$state = $state;
@@ -44,15 +44,16 @@ function TruckDetailsController($rootScope, $state, $uibModal, resizeService, Tr
 	ctrl.init = function(){
 		//get truck details.
 			TruckService.getAllTrucks()
-			.then(function(truckDetails){
-				ctrl.trucks = truckDetails.data;
-			})
-			.catch(function(err){
-				console.log('Error getting truck details:');
-				console.log(err);
-			})
-	}
+				.then(function(truckDetails){
+					ctrl.trucks = truckDetails.data;
+				})
+				.catch(function(err){
+					console.log('Error getting truck details:');
+					console.log(err);
+				});
+	};
 
+	//Add Truck Modal
 	ctrl.addTruck = function(){
 		angular.bind(ctrl, openPopUp, null)();
 	};
@@ -67,6 +68,6 @@ function TruckDetailsController($rootScope, $state, $uibModal, resizeService, Tr
 angular.module('truckDetails')
 	.component('truckDetails',{
 		templateUrl: 'admin/truck/truck-details/truck-details.template.html',
-		controller:['$rootScope','$state', '$uibModal', 'resizeService','TruckService', TruckDetailsController]
+		controller:['$state', '$uibModal', 'resizeService','TruckService', TruckDetailsController]
 	});
 })(window.angular);

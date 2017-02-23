@@ -17,7 +17,7 @@
         });
 
         modalInstance.result.then(angular.bind(this, function(data) {
-            if(data.action == "delete") {
+            if(data && data.action == "delete") {
                 var index = data.details;
                 this.adminList.splice(index, 1);
             }
