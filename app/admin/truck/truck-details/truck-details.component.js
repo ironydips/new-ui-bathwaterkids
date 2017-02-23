@@ -13,7 +13,9 @@ function transformData(truck){
 }
 
 function openPopUp(details){
-	var modalInstance = this.$uibModal.open({
+
+	var popUpCtrl = this;
+	var modalInstance = popUpCtrl.$uibModal.open({
 			component: 'truckModal',
 			windowClass: 'app-modal-window-large',
 			keyboard: false,
@@ -25,15 +27,15 @@ function openPopUp(details){
 			backdrop: 'static'
 		});
 
-		modalInstance.result.then(angular.bind(this, function(data){
+		modalInstance.result.then(function(data){
 			//data passed when pop up closed.
-			if(data && data.action == "update") this.init();
+			if(data && data.action == "update") popUpCtrl.init();
 			
-		}), angular.bind(this, function(err){
+		}),function(err){
 			console.log('Error in add-truck Modal');
 			console.log(err);
-		})
-		)
+		}
+		
 }
 
 function TruckDetailsController($state, $uibModal, resizeService, TruckService) {

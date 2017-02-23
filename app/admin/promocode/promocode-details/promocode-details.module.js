@@ -1,3 +1,5 @@
+(function(angular) {
+
 'use strict';
 
 angular.module("promocodeDetails",[
@@ -5,3 +7,5 @@ angular.module("promocodeDetails",[
 	'bathwaterApp.services',
 	'promoModal'
 	]);
+
+})(window.angular);

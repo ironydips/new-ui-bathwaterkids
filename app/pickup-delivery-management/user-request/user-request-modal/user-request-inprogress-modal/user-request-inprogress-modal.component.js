@@ -1,7 +1,7 @@
 (function(angular) {
 'use strict';
 
-function UserRequestInProgressModalController($scope, $rootScope,$state,UserRequestService,DriverService) {
+function UserRequestInProgressModalController($state,UserRequestService,DriverService) {
     var ctrl = this;
     ctrl.inprogress = (ctrl.resolve && ctrl.resolve.details) || {};
     
@@ -10,14 +10,13 @@ function UserRequestInProgressModalController($scope, $rootScope,$state,UserRequ
                 .then(function (uqinprogress) {
                 ctrl.timeslotIP = uqinprogress.data;
             });
-       };
 
-    ctrl.listofdriver = function(){
-         DriverService.getAllDrivers()
+        DriverService.getAllDrivers()
             .then(function (response) {
                ctrl.drivers = response.data;
             });
        };
+
 
      ctrl.assignDriver = function (reqId, drIP) {
         var updatedDriverInP = angular.fromJson(drIP.selecteddriverP);
@@ -39,13 +38,12 @@ function UserRequestInProgressModalController($scope, $rootScope,$state,UserRequ
         ctrl.modalInstance.close();
     }
     ctrl.init();
-    ctrl.listofdriver();
 }
 
 angular.module('userRequestInProgressModal')
     .component('userRequestInProgressModal',{
         templateUrl: 'pickup-delivery-management/user-request/user-request-modal/user-request-inprogress-modal/user-request-inprogress-modal.template.html',
-        controller:['$scope','$rootScope','$state','UserRequestService','DriverService', UserRequestInProgressModalController],
+        controller:['$state','UserRequestService','DriverService', UserRequestInProgressModalController],
         bindings:{
             modalInstance: '<',
             resolve: '<'

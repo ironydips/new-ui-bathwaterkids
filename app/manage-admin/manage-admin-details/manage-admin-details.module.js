@@ -4,7 +4,8 @@
 angular.module('manageAdmin',[
 	'ui.bootstrap',
 	'bathwaterApp.services',
-	'addAdminModal'
+	'addAdminModal',
+	'deleteAdminModal'
 	]);
 
 })(window.angular);

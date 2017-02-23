@@ -7,6 +7,31 @@
         ctrl.isEdited = Object.keys(ctrl.admin).length > 0;
         ctrl.role = "";
         ctrl.params = {};
+
+        ctrl.init = function(){
+            
+            switch(ctrl.admin.role){
+            case "0":
+                ctrl.admin.Pickup = true;
+                break;
+            case "1":
+                ctrl.admin.Customers = true;
+                break;
+            case "2":
+                ctrl.admin.Inventory = true;
+                break;
+            case "3":
+                ctrl.admin.Warehouse = true;
+                break;
+            case "4":
+                ctrl.admin.Admin = true;
+                break;
+            case "10":
+                ctrl.admin.SuperAdmin = true;
+                break;
+        };
+
+        };
         
        // Add Admin
         ctrl.saveAdmin = function() {  
@@ -29,27 +54,7 @@
             ctrl.modalInstance.close();
         };
 
-        switch(ctrl.admin.role){
-            case "0":
-                ctrl.admin.Pickup = true;
-                break;
-            case "1":
-                ctrl.admin.Customers = true;
-                break;
-            case "2":
-                ctrl.admin.Inventory = true;
-                break;
-            case "3":
-                ctrl.admin.Warehouse = true;
-                break;
-            case "4":
-                ctrl.admin.Admin = true;
-                break;
-            case "10":
-                ctrl.admin.SuperAdmin = true;
-                break;
-        };
-        
+                
         ctrl.updateAdmin = function() {
             //Edit Admin
             ctrl.params = ctrl.roleAndrights(); 
@@ -90,7 +95,8 @@
                               });
 
                     return ctrl.params;
-            };    
+            }; 
+        ctrl.init();   
     }
 
     angular.module('addAdminModal')

@@ -1,7 +1,7 @@
 (function(angular) {
 'use strict';
 
-function UserRequestNotStartedModalController($scope, $rootScope,$state,UserRequestService,DriverService) {
+function UserRequestNotStartedModalController($state,UserRequestService,DriverService) {
     var ctrl = this;
     ctrl.notstarted = (ctrl.resolve && ctrl.resolve.details) || {};
     ctrl.init = function(){
@@ -9,14 +9,12 @@ function UserRequestNotStartedModalController($scope, $rootScope,$state,UserRequ
           .then(function (ureqnotstarted) {
                 ctrl.timeslotNS = ureqnotstarted.data;
             });
-       };
 
-    ctrl.listofdriver = function(){
-         DriverService.getAllDrivers()
+        DriverService.getAllDrivers()
             .then(function (response) {
                ctrl.drivers = response.data;
             });
-           };
+       };
 
     ctrl.assignDriver = function (reqId, dr) {
         var updatedDriverDetails = angular.fromJson(dr.selectedDriver);
@@ -36,13 +34,12 @@ function UserRequestNotStartedModalController($scope, $rootScope,$state,UserRequ
         ctrl.modalInstance.close();
     };
     ctrl.init();
-    ctrl.listofdriver();
 }
 
 angular.module('userRequestNotStartedModal')
     .component('userRequestNotStartedModal',{
         templateUrl: 'pickup-delivery-management/user-request/user-request-modal/user-request-notstarted-modal/user-request-notstarted-modal.template.html',
-        controller:['$scope','$rootScope','$state','UserRequestService','DriverService', UserRequestNotStartedModalController],
+        controller:['$state','UserRequestService','DriverService', UserRequestNotStartedModalController],
         bindings:{
             modalInstance: '<',
             resolve: '<'

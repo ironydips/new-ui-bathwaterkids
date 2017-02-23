@@ -1,7 +1,7 @@
 (function(angular) {
 'use strict';
 
-function UserRequestCompletedModalController($scope, $rootScope,$state,UserRequestService,DriverService) {
+function UserRequestCompletedModalController($state,UserRequestService,DriverService) {
     var ctrl = this;
     ctrl.complete = (ctrl.resolve && ctrl.resolve.details) || {};
 
@@ -10,9 +10,6 @@ function UserRequestCompletedModalController($scope, $rootScope,$state,UserReque
             .then(function (uqcompleted) {
             ctrl.timeslots = uqcompleted.data;
         });
-    };
-
-    ctrl.listofdriver = function(){
 
         DriverService.getAllDrivers()
            .then(function (response) {
@@ -41,13 +38,12 @@ function UserRequestCompletedModalController($scope, $rootScope,$state,UserReque
         ctrl.modalInstance.close();
     }
     ctrl.init();
-    ctrl.listofdriver();
 }
 
 angular.module('userRequestCompleteModal')
     .component('userRequestCompleteModal',{
         templateUrl: 'pickup-delivery-management/user-request/user-request-modal/user-request-completed-modal/user-request-completed-modal.template.html',
-        controller:['$scope','$rootScope','$state','UserRequestService','DriverService', UserRequestCompletedModalController],
+        controller:['$state','UserRequestService','DriverService', UserRequestCompletedModalController],
         bindings:{
             modalInstance: '<',
             resolve: '<'

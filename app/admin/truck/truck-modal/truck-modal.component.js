@@ -11,8 +11,8 @@ function TruckModalController($scope, $rootScope,$state, resizeService, TruckSer
 
 	// Watch the image change and show from base 64 value
 	// $scope is only used here for watch.
-	$scope.$watch(angular.bind(this, function(){
-		return this.selectedImage;
+	$scope.$watch(angular.bind(ctrl, function(){
+		return ctrl.selectedImage;
 	}), function(value){
 		value ? 
 			(ctrl.imageUrl = 'data:image/jpeg;base64, ' + value.base64, ctrl.truck.truckImage = value.base64)

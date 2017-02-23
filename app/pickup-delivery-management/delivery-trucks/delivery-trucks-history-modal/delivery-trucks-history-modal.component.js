@@ -1,10 +1,10 @@
 (function(angular) {
 'use strict';
 
-function historyModalController($scope, $rootScope,$state,PickupTruckService) {
+function historyModalController($state,PickupTruckService) {
 	var ctrl = this;
 	
-	ctrl.histories = function(){
+	ctrl.init = function(){
 		//get truck details.
 		 PickupTruckService.getAllDriverTruckHistory()
 			.then(function(truckDetails){
@@ -20,13 +20,13 @@ function historyModalController($scope, $rootScope,$state,PickupTruckService) {
 	ctrl.cancel = function(){
 		ctrl.modalInstance.close();
 	}
-	 ctrl.histories();
+	 ctrl.init();
 }
 
 angular.module('historyModal')
 	.component('historyModal',{
 		templateUrl: 'pickup-delivery-management/delivery-trucks/delivery-trucks-history-modal/delivery-trucks-history-modal.template.html',
-		controller:['$scope','$rootScope','$state','PickupTruckService', historyModalController],
+		controller:['$state','PickupTruckService', historyModalController],
 		bindings:{
 			modalInstance: '<',
 			resolve: '<'

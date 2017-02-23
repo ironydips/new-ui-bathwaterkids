@@ -2,7 +2,9 @@
 	'use strict';
 
 	function openPopUpAssign(details){
-		var modalInstance = this.$uibModal.open({
+
+		var popUpCtrl = this;
+		var modalInstance = popUpCtrl.$uibModal.open({
 			component: 'deliverytruckModal',
 			windowClass: 'app-modal-window-large',
 			keyboard: false,
@@ -14,18 +16,19 @@
 			backdrop: 'static'
 		});
 
-		modalInstance.result.then(angular.bind(this, function(data){
+		modalInstance.result.then(function(data){
 			//data passed when pop up closed.
-			if(data == "update") this.$state.reload();
+			//if(data == "update") popUpCtrl.$state.reload();
 			
-		}), angular.bind(this, function(err){
+		}), function(err){
 			console.log('Error in assign trucks & driver Modal');
 			console.log(err);
-		})
-		)
+		}
 	}
 	function openPopUpHistory(details){
-		var modalInstance = this.$uibModal.open({
+
+		var popUpCtrl = this;
+		var modalInstance = popUpCtrl.$uibModal.open({
 			component: 'historyModal',
 			windowClass: 'app-modal-window-large',
 			keyboard: false,
@@ -36,19 +39,18 @@
 			},
 			backdrop: 'static'
 		});
-		modalInstance.result.then(angular.bind(this, function(data){
+		modalInstance.result.then(function(data){
 			//data passed when pop up closed.
-			if(data == "update") this.$state.reload();
+			//if(data == "update") popUpCtrl.$state.reload();
 			
-		}), angular.bind(this, function(err){
+		}),function(err){
 			console.log('Error in history of trucks details Modal');
 			console.log(err);
-		})
-		)
+		}
 
 	}
 
-	function trucksController($rootScope,$state,$uibModal){
+	function trucksController($state,$uibModal){
 		var ctrl = this;
 		ctrl.$uibModal = $uibModal;
 		ctrl.$state = $state;
@@ -66,7 +68,7 @@
 	angular.module('deliveryTrucks')
 	.component('deliveryTrucks',{
 		templateUrl: 'pickup-delivery-management/delivery-trucks/delivery-trucks-details/delivery-trucks-details.template.html',
-		controller:['$rootScope','$state','$uibModal', trucksController]
+		controller:['$state','$uibModal', trucksController]
 	});
 
 })(window.angular);

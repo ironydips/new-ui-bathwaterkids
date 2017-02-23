@@ -26,8 +26,15 @@ function GoogleSignInController($state,$interval, GAuth, AdminManagerService, Ad
 		    GAuth.checkAuth().then(
 		            function (profile) {
 		            	$interval.cancel(intervalId);
+                        ctrl.loginAdmin(profile);
+	         });
+		    	console && console.clear ? console.clear() : null;
+			},1000);
+		};
 
-		            	     ctrl.profile = profile;
+    ctrl.loginAdmin = function(profile){
+
+            ctrl.profile = profile;
 
             AdminManagerService.loginAdmin(ctrl.profile.email , ctrl.profile.id)
                 .then(function(response) {
@@ -65,13 +72,9 @@ function GoogleSignInController($state,$interval, GAuth, AdminManagerService, Ad
                 .catch(function(err) {
                     console.log('Error logging as Admin');
                     console.log(err);
-                })
-	         });
-		    	console && console.clear ? console.clear() : null;
-			},1000);
-		};
+                });
+    };
 
-	ctrl.init();
 
     ctrl.AssignSuperadmin = function(){
                             ctrl.isSuperAdmin = true;
@@ -89,6 +92,8 @@ function GoogleSignInController($state,$interval, GAuth, AdminManagerService, Ad
                             AdminRightsService.addRights(rights);
                             $state.go('index');
                     };
+     ctrl.init();
+
         }
 
 angular.module('googleSignIn')

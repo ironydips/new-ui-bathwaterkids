@@ -2,9 +2,38 @@
 
     'use strict'
 
+    function openPopUpDelete(details){
+
+        var popUpCtrl = this;
+        var modalInstance = popUpCtrl.$uibModal.open({
+            component:'deleteAdminModal',
+            windowClass: 'app-modal-window-small',
+            keyboard: false,
+            resolve: {
+                details: function(){
+                    return (details || {});
+            }
+                
+            },
+            backdrop: 'static'
+
+        });
+
+        modalInstance.result.then(function(data) {
+            // if(data && data.action == "delete") {
+            //     var index = data.details;
+            //     this.adminList.splice(index, 1);
+            // }
+
+        }), function(err){
+                    console.log('Error in manage-admin Modal');
+                    console.log(err);        }
+    };
+
     function openPopUpAdmin(details) {
 
-        var modalInstance = this.$uibModal.open({
+        var popUpCtrl = this;
+        var modalInstance = popUpCtrl.$uibModal.open({
             component: 'addAdminModal',
             windowClass: 'app-modal-window-large',
             keyboard: false,
@@ -16,14 +45,14 @@
             backdrop: 'static'
         });
 
-        modalInstance.result.then(angular.bind(this, function(data) {
+        modalInstance.result.then(function(data) {
             //data passed when pop up closed.
-            if (data && data.action == "update") this.init();
+            if (data && data.action == "update") popUpCtrl.init();
             
-        }), angular.bind(this, function(err) {
+        }), function(err) {
             console.log('Error in manage-admin Modal');
             console.log(err);
-        }))
+        }
     }
 
     function manageAdminController($state, $uibModal, AdminManagerService) {
@@ -48,25 +77,14 @@
         };
 
         ctrl.delete = function(selectedEmail) {
-           var params = JSON.stringify({
-                          email: selectedEmail
-                      });   
 
-                AdminManagerService.deleteAdmin(params)
-                        .then(function(response) {
-                            //TODO
-                        })
-                        .catch(function(err) {
-                            console.log('Error in deleting Admin from admin list lists:');
-                            console.log(err);
-                        })
+             angular.bind(ctrl,openPopUpDelete,selectedEmail)();
+           
         };
 
         ctrl.addadmin = function() {
             angular.bind(ctrl, openPopUpAdmin, null)();
         };
-
-        ctrl.init();
 
         function getAdminList(){
 
@@ -81,6 +99,8 @@
                     console.log(err);
                 })
         };
+        
+        ctrl.init();
     }
 
     angular.module('manageAdmin')

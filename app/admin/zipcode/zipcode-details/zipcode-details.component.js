@@ -2,7 +2,9 @@
 'use strict';
 
 function openPopUp(details){
-	var modalInstance = this.$uibModal.open({
+
+	var popUpCtrl = this;
+	var modalInstance = popUpCtrl.$uibModal.open({
 			component: 'zipModal',
 			windowClass: 'app-modal-window-small',
 			keyboard: false,
@@ -14,15 +16,15 @@ function openPopUp(details){
 			backdrop: 'static'
 		});
 
-		modalInstance.result.then(angular.bind(this, function(data){
+		modalInstance.result.then(function(data){
 			//data passed when pop up closed.
-			if(data && data.action == "update") this.init();
+			if(data && data.action == "update") popUpCtrl.init();
 			
-		}), angular.bind(this, function(err){
+		}),function(err){
 			console.log('Error in add-driver Modal');
 			console.log(err);
-		})
-		)
+		}
+		
 }
 
 function ZipCodeDetailsController($state, $uibModal, ZipcodeService) {

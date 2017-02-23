@@ -3,7 +3,9 @@
 
 
 function openPopUpCompleted(details){
-	var modalInstance = this.$uibModal.open({
+
+	var popUpCtrl = this;
+	var modalInstance = popUpCtrl.$uibModal.open({
 			component: 'userRequestCompleteModal',
 			windowClass: 'app-modal-window-large',
 			keyboard: false,
@@ -15,18 +17,19 @@ function openPopUpCompleted(details){
 			backdrop: 'static'
 		});
 
-		modalInstance.result.then(angular.bind(this, function(data){
+		modalInstance.result.then(function(data){
 			//data passed when pop up closed.
-			if(data == "update") this.$state.reload();
+			//if(data == "update") this.$state.reload();
 			
-		}), angular.bind(this, function(err){
+		}), function(err){
 			console.log('Error in user-request-completed Modal');
 			console.log(err);
-		})
-		)
+		}
 };
 function openPopUpnotstarted(details){
-	var modalInstance = this.$uibModal.open({
+
+	var popUpCtrl = this;
+	var modalInstance = popUpCtrl.$uibModal.open({
 			component: 'userRequestNotStartedModal',
 			windowClass: 'app-modal-window-large',
 			keyboard: false,
@@ -38,18 +41,19 @@ function openPopUpnotstarted(details){
 			backdrop: 'static'
 		});
 
-		modalInstance.result.then(angular.bind(this, function(data){
+		modalInstance.result.then(function(data){
 			//data passed when pop up closed.
-			if(data == "update") this.$state.reload();
+			//if(data == "update") this.$state.reload();
 			
-		}), angular.bind(this, function(err){
+		}), function(err){
 			console.log('Error in user-request-notStarted Modal');
 			console.log(err);
-		})
-		)
+		}
 };
 function openPopUpinProgress(details){
-		var modalInstance = this.$uibModal.open({
+
+		var popUpCtrl = this;
+		var modalInstance = popUpCtrl.$uibModal.open({
 			component: 'userRequestInProgressModal',
 			windowClass: 'app-modal-window-large',
 			keyboard: false,
@@ -61,18 +65,17 @@ function openPopUpinProgress(details){
 			backdrop: 'static'
 		});
 
-		modalInstance.result.then(angular.bind(this, function(data){
+		modalInstance.result.then(function(data){
 			//data passed when pop up closed.
-			if(data == "update") this.$state.reload();
+			//if(data == "update") this.$state.reload();
 			
-		}), angular.bind(this, function(err){
+		}), function(err){
 			console.log('Error in user-request-inProgress Modal');
 			console.log(err);
-		})
-		)
+		}
 };
 
-function UserRequestController($rootScope, $state, $uibModal) {
+function UserRequestController($state, $uibModal) {
 	var ctrl = this;
 	ctrl.$uibModal = $uibModal;
 	ctrl.$state = $state;
@@ -91,6 +94,6 @@ function UserRequestController($rootScope, $state, $uibModal) {
 angular.module('userRequest')
 	.component('userRequest',{
 		templateUrl: 'pickup-delivery-management/user-request/user-request-details/user-request.template.html',
-		controller:['$rootScope','$state', '$uibModal', UserRequestController]
+		controller:['$state', '$uibModal', UserRequestController]
 	});
 })(window.angular);

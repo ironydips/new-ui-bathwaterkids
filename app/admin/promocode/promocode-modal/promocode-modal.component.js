@@ -5,7 +5,6 @@
 function PromoModalModalController($state, PromocodeService){
 	var ctrl = this;
 	ctrl.promo = (ctrl.resolve && ctrl.resolve.detailsofPromo) || {};
-	ctrl.isDisabled = Object.keys(ctrl.promo).length > 0;
 
 	//Add PromoCode 
 	ctrl.save = function(promocode){     
