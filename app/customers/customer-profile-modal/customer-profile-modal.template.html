@@ -1,0 +1,67 @@
+<!-- / profileComponent \ -->
+<div class="profileComponent">
+   <div class="container">
+      <div class="profileBg">
+         <h2>Customer Profile</h2>
+         <div class="inner-adjust">
+            <h3>Image</h3>
+            <div class="image">
+               <a href="" class="drive">Add Customer Image</a>                
+            </div>
+            <div class="row">
+               <div class="col-sm-6">
+                  <h3>General Info</h3>
+                  <form>
+                     <table class="table-responsive">
+                        <tbody>
+                           <tr>
+                              <td class="gap" for="firstName">Customer ID</td>
+                              <td class="gap2 gap3" ><input ng-disabled="$ctrl.isDisabled" type="text" name="firstName" class="form-controls" ></td>
+                           </tr>
+                           <tr>
+                              <td class="gap" for="licenceId">Customer Name</td>
+                              <td class="gap2 gap3"><input ng-disabled="$ctrl.isDisabled" type="text" class="form-controls" ng-model="$ctrl.customer.firstName"></td>
+                           </tr>
+                           <tr>
+                              <td class="gap">Email ID</td>
+                              <td class="gap2 gap3"><input ng-disabled="$ctrl.isDisabled" type="text" class="form-controls" ng-model="$ctrl.customer.emailAddress"></td>
+                           </tr>
+                           <tr>
+                              <td class="gap">Phone Number</td>
+                              <td class="gap2 gap3"><input ng-disabled="$ctrl.isDisabled" type="text" class="form-controls" ng-model="$ctrl.customer.phoneNumber"></td>
+                           </tr>
+                           <tr>
+                              <td class="gap">Address</td>
+                              <td class="gap2 gap3"><input ng-disabled="$ctrl.isDisabled" type="text" class="form-controls" ng-model="$ctrl.customer.address[0].apartment"></td>
+                           </tr>
+                           <tr>
+                              <td class="gap">Customer Since</td>
+                              <td class="gap2 gap3"><input ng-disabled="$ctrl.isDisabled" type="text" class="form-controls" ></td>
+                           </tr>
+                           <tr>
+                              <td class="gap">Credit</td>
+                              <td class="gap2 gap3"><input ng-disabled="$ctrl.isDisabled" type="text" class="form-controls" ng-model="$ctrl.customer.credits"></td>
+                           </tr>
+                        </tbody>
+                     </table>
+               </div>
+               <div class="col-sm-6">
+               <h3>Items Details</h3>  
+               </div>
+            </div>
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-2">
+            </div>
+            <div class="btn-main">
+            <button type="button" ng-click = "$ctrl.cancel()" class="btn btn-sm btn-default">Cancel</button>
+            <button type="button" ng-click = "$ctrl.editCustomer()" class="btn btn-sm btn-success">Edit</button>
+            <button ng-hide ="$ctrl.update" type="button" ng-click = "$ctrl.updateCustomer()" class="btn btn-sm btn-primary">Update</button>
+            </div>
+         </div>
+         </form>
+      </div>
+   </div>
+</div>
+</div>
+<!-- \ profileComponent end / -->

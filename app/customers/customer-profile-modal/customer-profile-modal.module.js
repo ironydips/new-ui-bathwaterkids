@@ -1,11 +1,8 @@
 (function(angular) {
-
 'use strict';
 
-angular.module('customersUser',[
-	'ui.bootstrap',
+angular.module('customerProfileModal',[
 	'bathwaterApp.services',
-	'customerProfileModal'
 	]);
 
 })(window.angular);

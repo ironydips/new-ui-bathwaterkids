@@ -1,5 +1,8 @@
 (function(angular){
 	'use strict';
-	angular.module("allinventoriesDetails",[]);
+	angular.module("allinventoriesDetails",[
+			'ui.bootstrap',
+			'viewCustomerModal'
+		]);
 
 })(window.angular);

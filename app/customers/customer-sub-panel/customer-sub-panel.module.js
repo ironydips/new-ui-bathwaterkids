@@ -2,8 +2,7 @@
 'use strict';
 
 angular.module('customersSubPanel',[
-	'customersUser',
-	'customersMembership'
-	]);
+	'customersUser'
+		]);
 
 })(window.angular);
