@@ -8,16 +8,22 @@ function ProfileModalController($state,customerUserService) {
 	ctrl.isDisabled = Object.keys(ctrl.customer).length > 0;
 	ctrl.update = true;
 
+	ctrl.init = function(){
+				customerUserService.getUserInventory(ctrl.customer.userID)
+					.then(function(response){
+						ctrl.userInventory = response.data;
+					})
+					.catch(function(err){
+						console.log('Error getting user-profile details:');
+						console.log(err);
+					});	
+				};
+
 	ctrl.cancel = function(){
 		ctrl.modalInstance.close();
 	};
-	ctrl.editCustomer= function(){
-		ctrl.isDisabled = false;
-		ctrl.update = false;
-	};
-	ctrl.updateCustomer = function(){
-		ctrl.modalInstance.close();
-	};
+	
+	ctrl.init();
 }
 
 angular.module('customerProfileModal')

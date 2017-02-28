@@ -1,0 +1,65 @@
+<!-- / profileComponent \ -->
+<div class="profileComponent">
+   <div class="container">
+      <div class="profileBg">
+         <h2>UseR Request</h2>
+         <div class="inner-adjust">
+            <div style="height:250px;overflow:auto;">
+               <table class="table table-hover text-center">
+                  <tr>
+                     <th style="font-size: 13px;" class="col-md-3">UserRequestID</th>
+                     <th style="font-size: 13px;" class="col-md-3">UserID</th>
+                     <th style="font-size: 13px;" class="col-md-1">Date</th>
+                     <th style="font-size: 13px;" class="col-md-2">Time</th>
+                     <th style="font-size: 13px;" class="col-md-1">Type</th>
+                     <th style="font-size: 13px;" class="col-md-1">Status</th>
+                     <th style="font-size: 13px;" >Number of Items to be Picked</th>
+                  </tr>
+                  <tr ng-repeat="req in $ctrl.userReq track by $index">
+                     <td>{{req.userRequestID}}</td>
+                     <td>{{req.user.userID}}</td>
+                     <td>{{req.date}}</td>
+                     <td>{{req.time}}</td>
+                     <td>{{req.type}}</td>
+                     <td>{{req.status}}</td>
+                     <td>{{req.numberOfItemsToBePicked}}</td>
+                  </tr>
+               </table>
+            </div>
+            <div class="row">
+               <div class="col-sm-6">
+                  <h3>Driver Info</h3>
+                  <div style="height:250px;overflow:auto;">
+                     <table class="table table-hover text-center">
+                        <tr>
+                           <th style="font-size: 13px;" class="col-md-3">UserRequestID</th>
+                           <th style="font-size: 13px;" class="col-md-1">Driver ID</th>
+                           <th style="font-size: 13px;" class="col-md-2">Driver Name</th>
+                        </tr>
+                        <tr ng-repeat="req in $ctrl.status track by $index">
+                           <td>{{req.userRequestID}}</td>
+                           <td>{{req.driver.driverID}}</td>
+                           <td>{{req.driver.firstName}}&nbsp;{{req.driver.lastName}}</td>
+                        </tr>
+                     </table>
+                  </div>
+               </div>
+               <div class="col-sm-6">
+                  <h3>Items Details</h3>
+                  <div>
+                     <table class="table table-hover">
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <br><br>
+            <div style="text-align:center">
+               <button type="button" ng-click = "$ctrl.cancel()" class="btn btn-lg btn-default">Cancel</button>
+            </div>
+         </div>
+         </form>
+      </div>
+   </div>
+</div>
+</div>
+<!-- \ profileComponent end / -->

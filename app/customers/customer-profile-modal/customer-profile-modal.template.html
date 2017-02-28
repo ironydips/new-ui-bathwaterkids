@@ -9,30 +9,36 @@
                <a href="" class="drive">Add Customer Image</a>                
             </div>
             <div class="row">
-               <div class="col-sm-6">
-                  <h3>General Info</h3>
-                  <form>
+               <h3>General Info</h3>
+               <div class="row">
+                  <div class="col-sm-6">
                      <table class="table-responsive">
                         <tbody>
                            <tr>
                               <td class="gap" for="firstName">Customer ID</td>
-                              <td class="gap2 gap3" ><input ng-disabled="$ctrl.isDisabled" type="text" name="firstName" class="form-controls" ></td>
+                              <td class="gap2 gap3" ><input ng-disabled="$ctrl.isDisabled" type="text" name="firstName" class="form-controls" ng-model="$ctrl.userInventory.stripeID"></td>
                            </tr>
                            <tr>
                               <td class="gap" for="licenceId">Customer Name</td>
-                              <td class="gap2 gap3"><input ng-disabled="$ctrl.isDisabled" type="text" class="form-controls" ng-model="$ctrl.customer.firstName"></td>
+                              <td class="gap2 gap3"><input ng-disabled="$ctrl.isDisabled" type="text" class="form-controls" ng-model="$ctrl.userInventory.firstName"></td>
                            </tr>
                            <tr>
                               <td class="gap">Email ID</td>
-                              <td class="gap2 gap3"><input ng-disabled="$ctrl.isDisabled" type="text" class="form-controls" ng-model="$ctrl.customer.emailAddress"></td>
+                              <td class="gap2 gap3"><input ng-disabled="$ctrl.isDisabled" type="text" class="form-controls" ng-model="$ctrl.userInventory.emailAddress"></td>
                            </tr>
                            <tr>
                               <td class="gap">Phone Number</td>
-                              <td class="gap2 gap3"><input ng-disabled="$ctrl.isDisabled" type="text" class="form-controls" ng-model="$ctrl.customer.phoneNumber"></td>
+                              <td class="gap2 gap3"><input ng-disabled="$ctrl.isDisabled" type="text" class="form-controls" ng-model="$ctrl.userInventory.phoneNumber"></td>
                            </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div class="col-sm-6">
+                     <table class="table-responsive">
+                        <tbody>
                            <tr>
-                              <td class="gap">Address</td>
-                              <td class="gap2 gap3"><input ng-disabled="$ctrl.isDisabled" type="text" class="form-controls" ng-model="$ctrl.customer.address[0].apartment"></td>
+                              <td class="gap">User Type</td>
+                              <td class="gap2 gap3"><input ng-disabled="$ctrl.isDisabled" type="text" class="form-controls" ng-model="$ctrl.userInventory.userType"></td>
                            </tr>
                            <tr>
                               <td class="gap">Customer Since</td>
@@ -40,23 +46,68 @@
                            </tr>
                            <tr>
                               <td class="gap">Credit</td>
-                              <td class="gap2 gap3"><input ng-disabled="$ctrl.isDisabled" type="text" class="form-controls" ng-model="$ctrl.customer.credits"></td>
+                              <td class="gap2 gap3"><input ng-disabled="$ctrl.isDisabled" type="text" class="form-controls" ng-model="$ctrl.userInventory.credits"></td>
+                           </tr>
+                           <tr>
+                              <td class="gap">Referal Code</td>
+                              <td class="gap2 gap3"><input ng-disabled="$ctrl.isDisabled" type="text" class="form-controls" ng-model="$ctrl.userInventory.referralCode"></td>
                            </tr>
                         </tbody>
                      </table>
-               </div>
-               <div class="col-sm-6">
-               <h3>Items Details</h3>  
+                  </div>
                </div>
             </div>
-            <div class="col-sm-2">
+            <br>
+            <div class="row">
+               <h3>Address Details</h3>
+               <div>
+                  <table style="text-align:center;" class="table table-hover">
+                     <tr>
+                        <th style="font-size: 13px;" class="col-md-2">AddressID</th>
+                        <th style="font-size: 13px;" class="col-md-2">Apartment</th>
+                        <th style="font-size: 13px;" class="col-md-2">Street</th>
+                        <th style="font-size: 13px;" class="col-md-1">City</th>
+                        <th style="font-size: 13px;" class="col-md-1">State</th>
+                        <th style="font-size: 13px;" class="col-md-2">Zip Code</th>
+                        <th style="font-size: 13px;" class="col-md-4">Special Instructions</th>
+                     </tr>
+                     <tr ng-repeat="address in $ctrl.customer.address track by $index">
+                        <td>{{address.addressID}}</td>
+                        <td>{{address.apartment}}</td>
+                        <td>{{address.streetAddress}}</td>
+                        <td>{{address.city}}</td>
+                        <td>{{address.state}}</td>
+                        <td>{{address.zipCode}}</td>
+                        <td>{{address.specialInstructions}}</td>
+                     </tr>
+                  </table>
+               </div>
             </div>
-            <div class="col-sm-2">
+            <br>
+            <div class="row">
+               <h3>Item Details</h3>
+               <div>
+                  <table class="table table-hover text-center">
+                     <tr>
+                        <th style="font-size: 13px;" class="col-md-1">CategoryID</th>
+                        <th style="font-size: 13px;" class="col-md-1">Name</th>
+                        <th style="font-size: 13px;" class="col-md-1">ItemID</th>
+                        <th style="font-size: 13px;" class="col-md-1">Credit</th>
+                        <th style="font-size: 13px;" class="col-md-2">Description</th>
+                     </tr>
+                     <tr ng-repeat="item in $ctrl.customer.storedItems track by $index">
+                        <td>{{item.categoryID}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.itemID}}</td>
+                        <td>{{item.credits}}</td>
+                        <td>{{item.description}}</td>
+                     </tr>
+                  </table>
+               </div>
             </div>
-            <div class="btn-main">
-            <button type="button" ng-click = "$ctrl.cancel()" class="btn btn-sm btn-default">Cancel</button>
-            <button type="button" ng-click = "$ctrl.editCustomer()" class="btn btn-sm btn-success">Edit</button>
-            <button ng-hide ="$ctrl.update" type="button" ng-click = "$ctrl.updateCustomer()" class="btn btn-sm btn-primary">Update</button>
+            <br><br>
+            <div style="text-align:center">
+               <button type="button" ng-click = "$ctrl.cancel()" class="btn btn-lg btn-default">Cancel</button>
             </div>
          </div>
          </form>

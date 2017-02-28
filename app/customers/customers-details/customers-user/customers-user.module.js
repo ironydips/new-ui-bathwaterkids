@@ -5,7 +5,9 @@
 angular.module('customersUser',[
 	'ui.bootstrap',
 	'bathwaterApp.services',
-	'customerProfileModal'
+	'customerProfileModal',
+	'customerSubscribeModal',
+	'customerUserReqModal'
 	]);
 
 })(window.angular);

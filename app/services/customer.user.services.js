@@ -13,11 +13,33 @@
 	        });
 		};
 
+		var getUserInventory = function(userID){
+			return $http({
+		            url: '/rest/getUserInventory?userid='+ userID,
+		            method: "GET",
+		            headers:{
+	            		"Authorization": 'Basic YWRtaW46YWRtaW4='
+	            }
+	        });
+		};
+
+		var getUserRequest = function(userID){
+			return $http({
+		            url: '/rest//getUserRequests?userid='+ userID,
+		            method: "GET",
+		            headers:{
+	            		"Authorization": 'Basic YWRtaW46YWRtaW4='
+	            }
+	        });
+		};
+
 		
 
 		//EXPORTED Object
 		return {
-			getUsers
+			getUsers,
+			getUserInventory,
+			getUserRequest
 		}
 	}
 
