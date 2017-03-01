@@ -6,13 +6,14 @@ function userReqModalController($state,customerUserService) {
 
 	ctrl.customer = (ctrl.resolve && ctrl.resolve.details) || {};
 	ctrl.isDisabled = Object.keys(ctrl.customer).length > 0;
-	ctrl.update = true;
+	ctrl.value = [];
 
 	ctrl.init = function(){
-				
 				customerUserService.getUserRequest(ctrl.customer.userID)
 					.then(function(response){
-						ctrl.userReq = response.data;
+
+						if(response.data.length > 0){
+							ctrl.userReq = response.data;
 						ctrl.userStatus = angular.copy(ctrl.userReq);
 
 
@@ -20,6 +21,13 @@ function userReqModalController($state,customerUserService) {
 						ctrl.status = ctrl.userStatus.filter(function(element){
                                     return element.status == 'completed' || element.status == 'not started';
                                 });
+						ctrl.value =ctrl.status.filter(function(element){
+							return element.items;
+						});
+					}else {
+						ctrl.message = "Data Not Found";
+					}
+						
 					
 						// ctrl.completeStatus = ctrl.userStatus.filter(function(element){
       //                               return element.status == 'completed';

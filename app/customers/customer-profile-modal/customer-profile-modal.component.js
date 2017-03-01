@@ -6,9 +6,19 @@ function ProfileModalController($state,customerUserService) {
 
 	ctrl.customer = (ctrl.resolve && ctrl.resolve.details) || {};
 	ctrl.isDisabled = Object.keys(ctrl.customer).length > 0;
-	ctrl.update = true;
 
 	ctrl.init = function(){
+
+					console.log(ctrl.customer)
+
+					if(!ctrl.customer.hasOwnProperty("address")){
+						ctrl.message = "Data Not Found";
+					}
+					if (!ctrl.customer.hasOwnProperty("storedItems")) {
+						ctrl.itemMessage = "Data Not Found";
+					}
+							
+
 				customerUserService.getUserInventory(ctrl.customer.userID)
 					.then(function(response){
 						ctrl.userInventory = response.data;

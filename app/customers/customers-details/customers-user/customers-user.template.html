@@ -1,23 +1,30 @@
+<style>
+    .highlight {
+  background-color: #dcc2ff;
+}
+</style>
+
 <div class="userComponent">
     <div class="container">
         <br>
-        <input type="text" class="form-control pull-right" style="width: 200px;" ng-model="searchUser" placeholder="Search">
+        <input type="text" class="form-control pull-right" style="width: 200px;" ng-model="$ctrl.searchUser.emailAddress" placeholder="Search">
         <br>
         <br><br>
-        <table class="table table-striped">
+        <div style="height:470px;overflow:auto;">
+        <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th class="col-md-2">Customer ID</th>
+                    <th class="col-md-2">Stripe ID</th>
                     <th class="col-md-1">Email ID</th>
                     <th class="col-md-1">Credit</th>
                     <th class="col-md-1">Status</th>
                     <th class="col-md-2">Membership Type</th>
-                    <th class="col-md-2">Current Subscription</th>
-                    <th class="col-md-2">User Request</th>
-                    <th class="col-md-4">Actions</th>
+                    <th class="col-md-2"></th>
+                    <th class="col-md-2">Action</th>
+                    <th class="col-md-4"></th>
                 </tr>
             </thead>
-                <tr class="text-center" ng-repeat="user in $ctrl.listofUsers">
+                <tr class="text-center" ng-click="$ctrl.selectRow($index)" ng-class="{'highlight': $index == $ctrl.selectedRow}" ng-repeat="user in $ctrl.listofUsers | filter: $ctrl.searchUser">
                     <td>{{user.stripeID}}</td>
                     <td>{{user.emailAddress}}</td>
                     <td>{{user.credits}}</td>
@@ -53,5 +60,6 @@
            
             </tbody>
         </table>
+        </div>
     </div>
 </div>

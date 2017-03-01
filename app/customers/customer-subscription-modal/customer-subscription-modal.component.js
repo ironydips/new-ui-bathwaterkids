@@ -6,11 +6,16 @@ function SubscribeModalController($state) {
 
 	ctrl.customer = (ctrl.resolve && ctrl.resolve.details) || {};
 	ctrl.isDisabled = Object.keys(ctrl.customer).length > 0;
-	ctrl.update = true;
 
+	ctrl.init = function(){
+		if(!ctrl.customer.hasOwnProperty("membership")){
+			ctrl.message = "Data Not Found";
+		}
+	}
 	ctrl.cancel = function(){
 		ctrl.modalInstance.close();
 	};
+	ctrl.init();
 	
 }
 

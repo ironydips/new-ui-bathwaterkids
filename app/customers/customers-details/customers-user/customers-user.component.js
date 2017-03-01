@@ -80,7 +80,8 @@ function customersUserController($state,$uibModal, customerUserService) {
 	var ctrl = this;
 	ctrl.$uibModal = $uibModal;
 	ctrl.$state = $state;
-	ctrl.listofUsers = {};
+	ctrl.listofUsers = [];
+    ctrl.searchUser = { emailAddress: '' };
 
 	ctrl.init = function(){
 		//get users details.
@@ -93,6 +94,9 @@ function customersUserController($state,$uibModal, customerUserService) {
 						console.log(err);
 					});
 	};
+    ctrl.selectRow = function(rowIndex){
+         ctrl.selectedRow = rowIndex;
+    };
 
 	ctrl.viewUser = function(profile){
 		angular.bind(ctrl, openPopUpProfile, profile)();

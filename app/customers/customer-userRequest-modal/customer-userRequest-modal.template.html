@@ -2,50 +2,61 @@
 <div class="profileComponent">
    <div class="container">
       <div class="profileBg">
-         <h2>UseR Request</h2>
+         <h2>User Request</h2>
          <div class="inner-adjust">
             <div style="height:250px;overflow:auto;">
                <table class="table table-hover text-center">
                   <tr>
                      <th style="font-size: 13px;" class="col-md-3">UserRequestID</th>
-                     <th style="font-size: 13px;" class="col-md-3">UserID</th>
                      <th style="font-size: 13px;" class="col-md-1">Date</th>
-                     <th style="font-size: 13px;" class="col-md-2">Time</th>
-                     <th style="font-size: 13px;" class="col-md-1">Type</th>
+                     <th style="font-size: 13px;" class="col-md-1">Time</th>
+                     <th style="font-size: 13px;" class="col-md-2">Type</th>
                      <th style="font-size: 13px;" class="col-md-1">Status</th>
-                     <th style="font-size: 13px;" >Number of Items to be Picked</th>
+                     <th style="font-size: 13px;" class="col-md-2">Driver ID</th>
+                     <th style="font-size: 13px;" class="col-md-1">Driver Name</th>
+                     <th style="font-size: 13px;" class="col-md-3">Number of Items to be Picked</th>
                   </tr>
-                  <tr ng-repeat="req in $ctrl.userReq track by $index">
+                  <tr ng-if="$ctrl.userReq"  ng-repeat="req in $ctrl.userReq track by $index">
                      <td>{{req.userRequestID}}</td>
-                     <td>{{req.user.userID}}</td>
                      <td>{{req.date}}</td>
                      <td>{{req.time}}</td>
                      <td>{{req.type}}</td>
                      <td>{{req.status}}</td>
+                     <td>{{req.driver.driverID}}</td>
+                     <td>{{req.driver.firstName}}&nbsp;{{req.driver.lastName}}</td>
                      <td>{{req.numberOfItemsToBePicked}}</td>
+                  </tr>
+                  <tr ng-if="$ctrl.message">
+                  <td class="col-md-3"></td>
+                  <td class="col-md-1"></td>
+                  <td class="col-md-1"></td>
+                  <td style="font-size: 15px;" class="col-md-2"><b>{{$ctrl.message}}</b></td>
                   </tr>
                </table>
             </div>
             <div class="row">
-               <div class="col-sm-6">
-                  <h3>Driver Info</h3>
+                  <h3>Items Details</h3>
                   <div style="height:250px;overflow:auto;">
                      <table class="table table-hover text-center">
                         <tr>
-                           <th style="font-size: 13px;" class="col-md-3">UserRequestID</th>
-                           <th style="font-size: 13px;" class="col-md-1">Driver ID</th>
-                           <th style="font-size: 13px;" class="col-md-2">Driver Name</th>
+                           <th style="font-size: 13px;" class="col-md-2">Stored ItemID</th>
+                           <th style="font-size: 13px;" class="col-md-1">Item Name</th>
+                           <th style="font-size: 13px;" class="col-md-1">Brand Name</th>
+                           <th style="font-size: 13px;" class="col-md-2">Eventual Damage</th>
+                           <th style="font-size: 13px;" class="col-md-1">Condition</th>
                         </tr>
-                        <tr ng-repeat="req in $ctrl.status track by $index">
-                           <td>{{req.userRequestID}}</td>
-                           <td>{{req.driver.driverID}}</td>
-                           <td>{{req.driver.firstName}}&nbsp;{{req.driver.lastName}}</td>
+                        <tr ng-repeat="item in $ctrl.value">
+                           <td class="col-md-2" ng-repeat="i in item.items">{{i.storedItemID}}</td>
+                           <td class="col-md-1" ng-repeat="i in item.items">{{i.itemName}}</td>
+                           <td class="col-md-1" ng-repeat="i in item.items">{{i.brandName}}</td>
+                           <td class="col-md-2" ng-repeat="i in item.items">{{i.eventualDamages}}</td>
+                           <td class="col-md-1" ng-repeat="i in item.items">{{i.condition}}</td>
+                           
                         </tr>
                      </table>
                   </div>
-               </div>
                <div class="col-sm-6">
-                  <h3>Items Details</h3>
+                  <h3></h3>
                   <div>
                      <table class="table table-hover">
                      </table>

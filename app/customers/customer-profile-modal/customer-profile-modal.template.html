@@ -6,7 +6,7 @@
          <div class="inner-adjust">
             <h3>Image</h3>
             <div class="image">
-               <a href="" class="drive">Add Customer Image</a>                
+              <img ng-src="{{$ctrl.userInventory.imageURL}}" alt="No Image to Display" style="width: 208px;height: 200px" />               
             </div>
             <div class="row">
                <h3>General Info</h3>
@@ -15,7 +15,7 @@
                      <table class="table-responsive">
                         <tbody>
                            <tr>
-                              <td class="gap" for="firstName">Customer ID</td>
+                              <td class="gap" for="firstName">Stripe ID</td>
                               <td class="gap2 gap3" ><input ng-disabled="$ctrl.isDisabled" type="text" name="firstName" class="form-controls" ng-model="$ctrl.userInventory.stripeID"></td>
                            </tr>
                            <tr>
@@ -80,6 +80,11 @@
                         <td>{{address.zipCode}}</td>
                         <td>{{address.specialInstructions}}</td>
                      </tr>
+                     <tr ng-if="$ctrl.message">
+                        <td class="col-md-2"></td>
+                        <td class="col-md-3"></td>
+                        <td style="font-size: 15px;" class="col-md-2"><b>{{$ctrl.message}}</b></td>
+                     </tr>
                   </table>
                </div>
             </div>
@@ -101,6 +106,11 @@
                         <td>{{item.itemID}}</td>
                         <td>{{item.credits}}</td>
                         <td>{{item.description}}</td>
+                     </tr>
+                     <tr ng-if="$ctrl.itemMessage">
+                        <td class="col-md-2"></td>
+                        <td class="col-md-1"></td>
+                        <td style="font-size: 15px;" class="col-md-2"><b>{{$ctrl.itemMessage}}</b></td>
                      </tr>
                   </table>
                </div>
