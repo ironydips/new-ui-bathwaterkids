@@ -1,0 +1,38 @@
+<!-- / profileComponent \ -->
+<div class="profileComponent">
+   <div class="container">
+      <div class="profileBg">
+         <h2>Sub Items Details</h2>
+         <table class="table table-hover text-center">
+                        <tr>
+                           <th style="font-size: 13px;" class="col-md-2">Item Code</th>
+                           <th style="font-size: 13px;" class="col-md-1">Item Name</th>
+                           <th style="font-size: 13px;" class="col-md-1">Status</th>
+                           <th style="font-size: 13px;" class="col-md-1">Description</th>
+                        </tr>
+                        <tr ng-repeat="item in $ctrl.subItems">
+                           <td class="col-md-2">{{item.itemCode}}</td>
+                           <td class="col-md-1" >{{item.itemName}}</td>
+                           <td class="col-md-1" >{{item.status}}</td>
+                           <td class="col-md-1" >{{item.description}}</td>
+                        </tr>
+                       
+          </table><br>
+          
+          <ul>
+      <li class="full" ng-repeat="image in $ctrl.imageURLs">
+
+         <a href=""><img style="width: 209px; height: 207px" ng-src="{{image}}"></a>
+      </li>
+   </ul>
+         
+      </div>
+      <br><br>
+            <div style="text-align:center">
+               <button type="button" ng-click = "$ctrl.cancel()" class="btn btn-lg btn-default">Cancel</button>
+            </div>
+       
+   </div>
+</div>
+</div>
+<!-- \ profileComponent end / -->

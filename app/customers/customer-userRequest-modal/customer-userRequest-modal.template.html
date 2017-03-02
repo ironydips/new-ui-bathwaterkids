@@ -7,6 +7,7 @@
             <div style="height:250px;overflow:auto;">
                <table class="table table-hover text-center">
                   <tr>
+                     <th></th>
                      <th style="font-size: 13px;" class="col-md-3">UserRequestID</th>
                      <th style="font-size: 13px;" class="col-md-1">Date</th>
                      <th style="font-size: 13px;" class="col-md-1">Time</th>
@@ -17,6 +18,7 @@
                      <th style="font-size: 13px;" class="col-md-3">Number of Items to be Picked</th>
                   </tr>
                   <tr ng-if="$ctrl.userReq"  ng-repeat="req in $ctrl.userReq track by $index">
+                     <td><input type="checkbox" ng-model ="req.isChecked" ng-click="$ctrl.getItems(req)"></td>
                      <td>{{req.userRequestID}}</td>
                      <td>{{req.date}}</td>
                      <td>{{req.time}}</td>
@@ -44,14 +46,24 @@
                            <th style="font-size: 13px;" class="col-md-1">Brand Name</th>
                            <th style="font-size: 13px;" class="col-md-2">Eventual Damage</th>
                            <th style="font-size: 13px;" class="col-md-1">Condition</th>
+                           <th style="font-size: 13px;" class="col-md-1">Sub Items</th>
                         </tr>
-                        <tr ng-repeat="item in $ctrl.value">
-                           <td class="col-md-2" ng-repeat="i in item.items">{{i.storedItemID}}</td>
-                           <td class="col-md-1" ng-repeat="i in item.items">{{i.itemName}}</td>
-                           <td class="col-md-1" ng-repeat="i in item.items">{{i.brandName}}</td>
-                           <td class="col-md-2" ng-repeat="i in item.items">{{i.eventualDamages}}</td>
-                           <td class="col-md-1" ng-repeat="i in item.items">{{i.condition}}</td>
+                        <tr ng-repeat="item in $ctrl.itemsArray">
                            
+                           <td class="col-md-2">{{item.storedItemID}}</td>
+                           <td class="col-md-1" >{{item.itemName}}</td>
+                           <td class="col-md-1" >{{item.brandName}}</td>
+                           <td class="col-md-2" >{{item.eventualDamages}}</td>
+                           <td class="col-md-1" >{{item.condition}}</td>
+                           <td ng-if="item.subItems"><button type="button" ng-click="$ctrl.subItems(item)" class="btn btn-sm btn-primary">View</button></td>
+                        </tr>
+                        <tr ng-if="$ctrl.itemsMessage">
+                           <td class="col-md-2"></td>
+                           <td class="col-md-1"></td>
+                           <td style="font-size: 15px;" class="col-md-2"><b>{{$ctrl.itemsMessage}}</b></td>
+                           <td class="col-md-1"></td>
+                           <td class="col-md-2"></td>
+
                         </tr>
                      </table>
                   </div>

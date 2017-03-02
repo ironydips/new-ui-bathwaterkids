@@ -3,6 +3,7 @@
 
 angular.module('customerUserReqModal',[
 	'bathwaterApp.services',
+	'customerSubItemModal'
 	]);
 
 })(window.angular);
