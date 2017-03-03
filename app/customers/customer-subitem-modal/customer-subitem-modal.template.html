@@ -1,16 +1,43 @@
-<!-- / profileComponent \ -->
+<!-- <style>
+   #slides_control > div{
+  height: 1100px;
+}
+img{
+  margin:auto;
+  width: 200px;
+}
+#slides_control {
+  position:absolute;
+  width: 200px;
+  left:50%;
+  top:20px;
+ margin-left:-100px;
+}
+</style>
+
+
 <div class="profileComponent">
    <div class="container">
       <div class="profileBg">
          <h2>Sub Items Details</h2>
          <table class="table table-hover text-center">
                         <tr>
-                           <th style="font-size: 13px;" class="col-md-2">Item Code</th>
+                           <th  class="col-md-5">Images</th>
+                           <th style="font-size: 13px;" class="col-md-1">Item Code</th>
                            <th style="font-size: 13px;" class="col-md-1">Item Name</th>
                            <th style="font-size: 13px;" class="col-md-1">Status</th>
                            <th style="font-size: 13px;" class="col-md-1">Description</th>
                         </tr>
                         <tr ng-repeat="item in $ctrl.subItems">
+                           <td id="slides_control">
+                              <div>
+                              <carousel interval="myInterval">
+                                <slide ng-repeat="slide in $ctrl.imageURLs" active="slide.active">
+                                  <img ng-src="{{slide}}">
+                                </slide>
+                              </carousel>
+                            </div>
+                           </td>
                            <td class="col-md-2">{{item.itemCode}}</td>
                            <td class="col-md-1" >{{item.itemName}}</td>
                            <td class="col-md-1" >{{item.status}}</td>
@@ -18,21 +45,41 @@
                         </tr>
                        
           </table><br>
-          
-          <ul>
-      <li class="full" ng-repeat="image in $ctrl.imageURLs">
-
-         <a href=""><img style="width: 209px; height: 207px" ng-src="{{image}}"></a>
-      </li>
-   </ul>
-         
-      </div>
-      <br><br>
-            <div style="text-align:center">
-               <button type="button" ng-click = "$ctrl.cancel()" class="btn btn-lg btn-default">Cancel</button>
             </div>
-       
+            <br><br>
+                  <div style="text-align:center">
+                     <button type="button" ng-click = "$ctrl.cancel()" class="btn btn-lg btn-default">Cancel</button>
+                  </div>
    </div>
 </div>
-</div>
+</div> -->
 <!-- \ profileComponent end / -->
+
+<div class="component4">
+   <div class="container">
+
+   <div class="component-bg">
+      
+   <ul>
+      <li class="full" ng-repeat="item in $ctrl.subItems">
+      <table>
+         <tr>
+            <td ><img style="width: 210px; height: 170px" ng-src={{$ctrl.imageURLs[0]}}></td>
+         </tr>
+      </table>
+         <!-- <a href="" ng-repeat="slide in $ctrl.imageURLs"><img style="width: 70px; height: 60px" ng-src={{slide}}></a> -->
+         
+         <h2><a href="">Item Code:&nbsp;{{item.itemCode}}</a></h2>
+         <h2><a href="">Item Name:&nbsp;{{item.itemName}}</a></h2>
+         <h2><a href="">Item Status:&nbsp;{{item.status}}</a></h2>
+      </li>
+   </ul>
+
+  <br>
+  <div style="text-align:center">
+                     <button type="button" ng-click = "$ctrl.cancel()" class="btn btn-lg btn-default">Cancel</button>
+                  </div>
+         
+   </div>   
+   </div>
+</div>

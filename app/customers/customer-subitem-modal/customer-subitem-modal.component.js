@@ -4,8 +4,10 @@
 function customerSubItemModalController($state) {
 	var ctrl = this;
 	ctrl.imageURLs = [];
+	ctrl.myInterval = 3000;
 
 	ctrl.item = (ctrl.resolve && ctrl.resolve.details) || {};
+	console.log(ctrl.item)
 
 	ctrl.init = function(){
 		if(ctrl.item.subItems){
@@ -13,6 +15,7 @@ function customerSubItemModalController($state) {
 			for(var i=0;i< ctrl.subItems.length;i++){
 				for(var j= 0; j<=i;j++){
 					ctrl.imageURLs.push(ctrl.item.subItems[i].imageURLs[j]);
+					console.log(ctrl.imageURLs)
 				}
 				
 			}

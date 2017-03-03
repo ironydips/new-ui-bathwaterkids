@@ -36,6 +36,7 @@ function userReqModalController($state,$uibModal,customerUserService) {
 	ctrl.userReq = [];
 	ctrl.itemsArray = [];
 
+
 	ctrl.init = function(){
 				customerUserService.getUserRequest(ctrl.customer.userID)
 					.then(function(response){
@@ -60,16 +61,20 @@ function userReqModalController($state,$uibModal,customerUserService) {
 					});	
 				};
 
+
 	ctrl.getItems = function(item){
 
+			console.log(item)
 		if(item.items){
 			if(item.isChecked){
 				item.items.forEach(function(data){ data.userRequestID = item.userRequestID});
 				ctrl.itemsArray = ctrl.itemsArray.concat(item.items);
+				ctrl.selectedRow = item.userRequestID;
 			}
 			else
 				ctrl.itemsArray = ctrl.itemsArray.filter(function(data){return data.userRequestID != item.userRequestID});
 		}
+
 	};
 
 	ctrl.subItems = function(subitem){

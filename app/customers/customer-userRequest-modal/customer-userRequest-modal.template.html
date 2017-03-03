@@ -1,3 +1,10 @@
+<style>
+    .highlightRow {
+  background-color: #dcc2ff;
+}
+
+</style>
+
 <!-- / profileComponent \ -->
 <div class="profileComponent">
    <div class="container">
@@ -5,19 +12,19 @@
          <h2>User Request</h2>
          <div class="inner-adjust">
             <div style="height:250px;overflow:auto;">
-               <table class="table table-hover text-center">
+               <table class="table table-bordered text-center">
                   <tr>
                      <th></th>
                      <th style="font-size: 13px;" class="col-md-3">UserRequestID</th>
                      <th style="font-size: 13px;" class="col-md-1">Date</th>
                      <th style="font-size: 13px;" class="col-md-1">Time</th>
-                     <th style="font-size: 13px;" class="col-md-2">Type</th>
-                     <th style="font-size: 13px;" class="col-md-1">Status</th>
+                     <th style="font-size: 13px;" class="col-md-2" ng-click="orderByField='type'; reverseSort = !reverseSort">Type<span ng-show="!reverseSort">&#8657;</span><span ng-show="reverseSort">&#8659;</span></span></th>
+                     <th style="font-size: 13px;" class="col-md-1" ng-click="orderByField='status'; reverseSort = !reverseSort">Status<span ng-show="!reverseSort">&#8657;</span><span ng-show="reverseSort">&#8659;</span></span></th>
                      <th style="font-size: 13px;" class="col-md-2">Driver ID</th>
                      <th style="font-size: 13px;" class="col-md-1">Driver Name</th>
                      <th style="font-size: 13px;" class="col-md-3">Number of Items to be Picked</th>
                   </tr>
-                  <tr ng-if="$ctrl.userReq"  ng-repeat="req in $ctrl.userReq track by $index">
+                  <tr ng-if="$ctrl.userReq"  ng-repeat="req in $ctrl.userReq | orderBy:orderByField:reverseSort">
                      <td><input type="checkbox" ng-model ="req.isChecked" ng-click="$ctrl.getItems(req)"></td>
                      <td>{{req.userRequestID}}</td>
                      <td>{{req.date}}</td>
@@ -39,19 +46,24 @@
             <div class="row">
                   <h3>Items Details</h3>
                   <div style="height:250px;overflow:auto;">
-                     <table class="table table-hover text-center">
+                     <table class="table table-bordered text-center">
                         <tr>
+                           <th class="col-md-1">Image</th>
+                           <th style="font-size: 13px;" class="col-md-3">UserRequestID</th>
                            <th style="font-size: 13px;" class="col-md-2">Stored ItemID</th>
                            <th style="font-size: 13px;" class="col-md-1">Item Name</th>
+                           <th style="font-size: 13px;" class="col-md-1">Item Code</th>
                            <th style="font-size: 13px;" class="col-md-1">Brand Name</th>
                            <th style="font-size: 13px;" class="col-md-2">Eventual Damage</th>
                            <th style="font-size: 13px;" class="col-md-1">Condition</th>
                            <th style="font-size: 13px;" class="col-md-1">Sub Items</th>
                         </tr>
-                        <tr ng-repeat="item in $ctrl.itemsArray">
-                           
+                        <tr ng-repeat="item in $ctrl.itemsArray" ng-class="{'highlightRow': item.userRequestID == $ctrl.selectedRow}">
+                           <td class="text-center"><img class="col-md-2" style="width: 70px; height: 50px" ng-src={{item.imagesBase64[0]}}></td>
+                           <td class="col-md-3">{{item.userRequestID}}</td>   
                            <td class="col-md-2">{{item.storedItemID}}</td>
                            <td class="col-md-1" >{{item.itemName}}</td>
+                           <td class="col-md-1">{{item.itemCodes[0]}}</td>
                            <td class="col-md-1" >{{item.brandName}}</td>
                            <td class="col-md-2" >{{item.eventualDamages}}</td>
                            <td class="col-md-1" >{{item.condition}}</td>
@@ -67,13 +79,6 @@
                         </tr>
                      </table>
                   </div>
-               <div class="col-sm-6">
-                  <h3></h3>
-                  <div>
-                     <table class="table table-hover">
-                     </table>
-                  </div>
-               </div>
             </div>
             <br><br>
             <div style="text-align:center">

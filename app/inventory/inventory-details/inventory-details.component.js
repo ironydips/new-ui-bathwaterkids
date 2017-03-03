@@ -26,21 +26,35 @@
         }
 	}
 
-	function inventoryDetailsController($state, $uibModal){
+	function inventoryDetailsController($state, $uibModal, inventoryService){
 		var ctrl = this;
 		ctrl.$state = $state;
 		ctrl.$uibModal = $uibModal;
 
+		ctrl.init = function(){
+			inventoryService.getInventory()
+					.then(function(response){
+						ctrl.Inventory = response.data;
+						console.log(ctrl.Inventory)
+					})
+					.catch(function(err){
+						console.log('Error getting user-items details:');
+						console.log(err);
+					});	
+		};
+
 		ctrl.viewCustomer = function(){
 			angular.bind(ctrl, openPopupCustomer, null)();
 		};
+
+		ctrl.init();
 
 	}
 	
 	angular.module('allinventoriesDetails')
 	.component('allinventoriesDetails',{
 		templateUrl: 'inventory/inventory-details/inventory-details.template.html',
-		controller:['$state','$uibModal', inventoryDetailsController]
+		controller:['$state','$uibModal','inventoryService', inventoryDetailsController]
 	});
 
 })(window.angular);

@@ -20,22 +20,12 @@ function ProfileModalController($state,customerUserService) {
 				customerUserService.getUserInventory(ctrl.customer.userID)
 					.then(function(response){
 						ctrl.userInventory = response.data;
-						console.log(ctrl.userInventory)
 					})
 					.catch(function(err){
 						console.log('Error getting user-profile details:');
 						console.log(err);
 					});
-				//getting items of inventory	
-				customerUserService.getInventory(ctrl.customer.userID)
-					.then(function(response){
-						ctrl.Inventory = response.data;
-						console.log(ctrl.Inventory)
-					})
-					.catch(function(err){
-						console.log('Error getting user-items details:');
-						console.log(err);
-					});	
+				
 				};
 
 	ctrl.cancel = function(){
