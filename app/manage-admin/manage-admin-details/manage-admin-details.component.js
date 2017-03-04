@@ -81,6 +81,9 @@
              angular.bind(ctrl,openPopUpDelete,selectedEmail)();
            
         };
+        ctrl.selectRow = function(rowIndex){
+         ctrl.selectedRow = rowIndex;
+        };
 
         ctrl.addadmin = function() {
             angular.bind(ctrl, openPopUpAdmin, null)();

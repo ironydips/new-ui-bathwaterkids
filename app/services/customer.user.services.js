@@ -32,15 +32,15 @@
 	            }
 	        });
 		};
-		var getInventory = function(userID){
-			return $http({
-		            url: '/rest/getItems?userid='+ userID,
-		            method: "GET",
-		            headers:{
-	            		"Authorization": 'Basic YWRtaW46YWRtaW4='
-	            }
-	        });
-		};
+		// var getInventory = function(userID){
+		// 	return $http({
+		//             url: '/rest/getItems?userid='+ userID,
+		//             method: "GET",
+		//             headers:{
+	 //            		"Authorization": 'Basic YWRtaW46YWRtaW4='
+	 //            }
+	 //        });
+		// };
 		
 
 		//EXPORTED Object
@@ -48,7 +48,7 @@
 			getUsers,
 			getUserInventory,
 			getUserRequest,
-			getInventory
+			//getInventory
 		}
 	}
 

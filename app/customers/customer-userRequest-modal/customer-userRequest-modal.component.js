@@ -21,12 +21,12 @@ function openSubItem(details){
             //if (data && data.action == "update");
             
         }), function(err) {
-            console.log('Error in manage-admin Modal');
+            console.log('Error in SubItem Modal');
             console.log(err);
         }
 }
 
-function userReqModalController($state,$uibModal,customerUserService) {
+function userReqModalController($state,$uibModal,customerUserService,Lightbox) {
 	var ctrl = this;
 	ctrl.$uibModal = $uibModal;
 	ctrl.$state = $state;
@@ -35,6 +35,7 @@ function userReqModalController($state,$uibModal,customerUserService) {
 	ctrl.isDisabled = Object.keys(ctrl.customer).length > 0;
 	ctrl.userReq = [];
 	ctrl.itemsArray = [];
+	ctrl.imageURLs = [];
 
 
 	ctrl.init = function(){
@@ -64,11 +65,18 @@ function userReqModalController($state,$uibModal,customerUserService) {
 
 	ctrl.getItems = function(item){
 
-			console.log(item)
 		if(item.items){
 			if(item.isChecked){
 				item.items.forEach(function(data){ data.userRequestID = item.userRequestID});
 				ctrl.itemsArray = ctrl.itemsArray.concat(item.items);
+				// for (var i = 0; i < ctrl.itemsArray.length; i++) {
+				// 	for (var j = 0; j<=i; j++) {
+				// 		ctrl.imageURLs.push({'url': ctrl.itemsArray[i].imagesBase64[j]});
+				// 		console.log(ctrl.imageURLs)
+				// 	}
+
+				// }
+				
 				ctrl.selectedRow = item.userRequestID;
 			}
 			else
@@ -76,6 +84,10 @@ function userReqModalController($state,$uibModal,customerUserService) {
 		}
 
 	};
+	ctrl.openLightboxModal = function (images) {
+		//LightBox Library used as Image Viewer.
+			Lightbox.openModal(images, 0);
+  	};
 
 	ctrl.subItems = function(subitem){
 
@@ -92,7 +104,7 @@ function userReqModalController($state,$uibModal,customerUserService) {
 angular.module('customerUserReqModal')
 	.component('customerUserReqModal',{
 		templateUrl: 'customers/customer-userRequest-modal/customer-userRequest-modal.template.html',
-		controller:['$state','$uibModal','customerUserService', userReqModalController],
+		controller:['$state','$uibModal','customerUserService','Lightbox', userReqModalController],
 		bindings:{
 			modalInstance: '<',
 			resolve: '<'

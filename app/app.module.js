@@ -10,6 +10,9 @@ angular.module('bathwaterApp', [
 	'ui.bootstrap',
 	'images-resizer',
 	'720kb.datepicker',
+	'ngAnimate',
+	//LightBox Library used as Image Viewer.
+	'bootstrapLightbox',
 	'manageAdmin',
 	'index',
 	'adminLayout',

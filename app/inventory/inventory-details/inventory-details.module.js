@@ -3,7 +3,8 @@
 	angular.module("allinventoriesDetails",[
 			'ui.bootstrap',
 			'bathwaterApp.services',
-			'viewCustomerModal'
+			'bootstrapLightbox',
+			'updateCreditModal'
 		]);
 
 })(window.angular);

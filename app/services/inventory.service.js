@@ -13,11 +13,22 @@
 	            }
 	        });
 		};
+
+		var updateInventory = function(storedItemID, credit){
+			return $http({
+		            url: '/rest/admin/updateCredits?storedID='+storedItemID+'&credits='+credit,
+		            method: "GET",
+		            headers:{
+	            		"Authorization": 'Basic YWRtaW46YWRtaW4='
+	            }
+	        });
+		};
 		
 
 		//EXPORTED Object
 		return {
-			getInventory
+			getInventory,
+			updateInventory
 		}
 	}
 

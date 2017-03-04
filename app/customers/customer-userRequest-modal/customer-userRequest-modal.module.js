@@ -3,6 +3,7 @@
 
 angular.module('customerUserReqModal',[
 	'bathwaterApp.services',
+	'bootstrapLightbox',
 	'customerSubItemModal'
 	]);
 

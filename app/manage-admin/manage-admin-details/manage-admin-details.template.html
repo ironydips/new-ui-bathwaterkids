@@ -9,9 +9,9 @@
       </div>
    </div>
    <br>
-   <div class="table-responsive text-center">
+   <div class="table table-border text-center">
        <div style="height:500px;overflow:auto;">
-              <table class="table table-hover">
+              <table class="table table-border">
                  <tr>
                     <th style="font-size: 13px;" class="col-md-1">Email</th>
                     <th style="font-size: 13px;" class="col-md-1">Is Super Admin</th>
@@ -22,7 +22,7 @@
                     <th style="font-size: 13px;" class="col-md-1">Warehouse</th>
                     <th style="font-size: 13px;" class="col-md-3">Action</th>
                  </tr>
-                 <tr ng-repeat="ad in $ctrl.adminList track by $index">
+                 <tr ng-repeat="ad in $ctrl.adminList track by $index" ng-click="$ctrl.selectRow($index)" ng-class="{'highlight': $index == $ctrl.selectedRow}">
                     <!-- <td>{{$index}}</td>     -->
                     <td>{{ad.email}}</td>
                     <td>{{ad.role == 10 | YesNo}}</td>

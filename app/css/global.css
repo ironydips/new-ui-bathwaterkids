@@ -79,7 +79,7 @@ header, section, footer, aside, nav, main, article, figure { display: block; }
 .profileComponent .drive { margin: 82px auto 0 auto; display: block; line-height: 36px; text-align: center; color: #fff; font-size: 13px; width: 150px; height: 36px; background: #b0b0b0; border-radius: 4px; }
 .profileComponent .drive:hover { text-decoration: none; }
 .profileComponent .table-responsive,.profileComponent .table-responsive tbody,.profileComponent .table-responsive tr { display: block; }
-.profileComponent tr:nth-child(odd) { background-color:#eceff6; }
+/*.profileComponent tr:nth-child(odd) { background-color:#eceff6; }*/
 .profileComponent tr { padding-left: 10px; line-height: 28px; font-size: 14px; color: #748ca4; }
 .profileComponent .form-controls { margin: 2px; padding:2px 5px; border: 1px dotted #ccc; width: 250px; color: #666; background: rgba(255,255,255,.5); }
 .profileComponent .form-controls:focus, .profileComponent .form-controls:active, .profileComponent .active {color: #222;border: 1px solid #aaa;background: rgba(255,255,255,1); }
@@ -114,4 +114,5 @@ header, section, footer, aside, nav, main, article, figure { display: block; }
 .slotComponent .bottom-btn .btn.cancel:hover { background: #00d87f; border: 1px solid #00d87f; }
 .slotComponent .bottom-btn .btn.save { background: #00d87f; border: 1px solid #00d87f; }
 .slotComponent .bottom-btn .btn.save:hover { background: #bfcbd7; border: 1px solid #bfcbd7; }
+.highlight { background-color: #dcc2ff;}
 

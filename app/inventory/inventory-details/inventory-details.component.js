@@ -5,8 +5,8 @@
 
 		var popUpCtrl = this;
         var modalInstance = popUpCtrl.$uibModal.open({
-            component: 'viewCustomerModal',
-            windowClass: 'app-modal-window-large',
+            component: 'updateCreditModal',
+            windowClass: 'app-modal-window-small',
             keyboard: false,
             resolve: {
                 details: function() {
@@ -19,6 +19,7 @@
         modalInstance.result.then(function(data) {
             //data passed when pop up closed.
             //if (data && data.action == "update");
+            if(data && data.action == "update") popUpCtrl.init();
             
         }), function(err) {
             console.log('Error in manage-admin Modal');
@@ -26,12 +27,13 @@
         }
 	}
 
-	function inventoryDetailsController($state, $uibModal, inventoryService){
+	function inventoryDetailsController($state, $uibModal,Lightbox, inventoryService){
 		var ctrl = this;
 		ctrl.$state = $state;
 		ctrl.$uibModal = $uibModal;
 
 		ctrl.init = function(){
+
 			inventoryService.getInventory()
 					.then(function(response){
 						ctrl.Inventory = response.data;
@@ -41,10 +43,18 @@
 						console.log('Error getting user-items details:');
 						console.log(err);
 					});	
+
 		};
 
-		ctrl.viewCustomer = function(){
-			angular.bind(ctrl, openPopupCustomer, null)();
+		ctrl.openInventoryImages = function (images) {
+				Lightbox.openModal(images, 0);
+  		};
+  		ctrl.selectRow = function(rowIndex){
+         ctrl.selectedRow = rowIndex;
+    	};
+
+		ctrl.addUpdateCredit = function(item){
+			angular.bind(ctrl, openPopupCustomer, angular.copy(item))();
 		};
 
 		ctrl.init();
@@ -54,7 +64,7 @@
 	angular.module('allinventoriesDetails')
 	.component('allinventoriesDetails',{
 		templateUrl: 'inventory/inventory-details/inventory-details.template.html',
-		controller:['$state','$uibModal','inventoryService', inventoryDetailsController]
+		controller:['$state','$uibModal','Lightbox','inventoryService', inventoryDetailsController]
 	});
 
 })(window.angular);

@@ -1,9 +1,4 @@
-<style>
-    .highlightRow {
-  background-color: #dcc2ff;
-}
 
-</style>
 
 <!-- / profileComponent \ -->
 <div class="profileComponent">
@@ -48,7 +43,7 @@
                   <div style="height:250px;overflow:auto;">
                      <table class="table table-bordered text-center">
                         <tr>
-                           <th class="col-md-1">Image</th>
+                           <th class="col-md-1">Images</th>
                            <th style="font-size: 13px;" class="col-md-3">UserRequestID</th>
                            <th style="font-size: 13px;" class="col-md-2">Stored ItemID</th>
                            <th style="font-size: 13px;" class="col-md-1">Item Name</th>
@@ -58,8 +53,12 @@
                            <th style="font-size: 13px;" class="col-md-1">Condition</th>
                            <th style="font-size: 13px;" class="col-md-1">Sub Items</th>
                         </tr>
-                        <tr ng-repeat="item in $ctrl.itemsArray" ng-class="{'highlightRow': item.userRequestID == $ctrl.selectedRow}">
-                           <td class="text-center"><img class="col-md-2" style="width: 70px; height: 50px" ng-src={{item.imagesBase64[0]}}></td>
+                        <tr ng-repeat="item in $ctrl.itemsArray" ng-class="{'highlight': item.userRequestID == $ctrl.selectedRow}">
+                           <td class="text-center">
+                              <a ng-click="$ctrl.openLightboxModal(item.imagesBase64)" class="btn btn-sm btn-success">
+                                  View Images
+                                </a>
+                           </td>
                            <td class="col-md-3">{{item.userRequestID}}</td>   
                            <td class="col-md-2">{{item.storedItemID}}</td>
                            <td class="col-md-1" >{{item.itemName}}</td>
