@@ -13,7 +13,7 @@ function ProfileModalController($state,customerUserService) {
 						ctrl.message = "Data does not exist";
 					}
 					if (!ctrl.customer.hasOwnProperty("storedItems")) {
-						ctrl.itemMessage = "Data does not exist";
+						ctrl.itemMessage = "No items to display";
 					}
 							
 

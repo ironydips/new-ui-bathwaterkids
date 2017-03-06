@@ -9,7 +9,7 @@ function SubscribeModalController($state) {
 
 	ctrl.init = function(){
 		if(!ctrl.customer.hasOwnProperty("membership")){
-			ctrl.message = "Data Not Found";
+			ctrl.message = "Data Does Not Exist";
 		}
 	}
 	ctrl.cancel = function(){

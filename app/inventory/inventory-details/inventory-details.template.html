@@ -21,26 +21,6 @@
                     <th class="col-md-4">Product Details</th>
                     <th>Actions</th>
                 </tr>
-                    <tr class="text-center" ng-repeat="inventory in $ctrl.Inventory | filter:searchInventory" ng-click="$ctrl.selectRow($index)" ng-class="{'highlight': $index == $ctrl.selectedRow}">
-                            <td>
-                              <a ng-click="$ctrl.openInventoryImages(inventory.imageURLs)" class="btn btn-sm btn-success">
-                                  View Images
-                                </a>
-                           </td>
-                           <td>{{inventory.categoryID}}</td>   
-                           <td>{{inventory.categoryName}}</td>
-                           <td>{{inventory.storedItemId}}</td>
-                           <td class="col-md-1">{{inventory.itemName}}</td>
-                           <td class="col-md-1" >{{inventory.status}}</td>
-                           <td>{{inventory.credits}}</td>
-                           <td class="col-md-1" >{{inventory.storagePoints}}</td>
-                           <td class="col-md-1" >{{inventory.storageTimestamp | date: 'dd/MM/yyyy'}}</td>
-                           <td class="col-md-4" >{{inventory.description}}</td>
-                           <td><a ng-click="$ctrl.addUpdateCredit(inventory)" class="btn btn-sm btn-success">
-                                  Add/Update Credit
-                                </a></td>
-                    </tr>
-                </tbody>
         </table>
         </div>
     </div>

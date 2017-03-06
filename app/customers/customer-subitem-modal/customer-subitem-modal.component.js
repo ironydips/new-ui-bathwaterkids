@@ -12,7 +12,14 @@ function customerSubItemModalController($state) {
 			ctrl.subItems = ctrl.item.subItems;
 			for(var i=0;i< ctrl.subItems.length;i++){
 				for(var j= 0; j<=i;j++){
-					ctrl.imageURLs.push(ctrl.item.subItems[i].imageURLs[j]);
+					if(typeof ctrl.item.subItems[i].imageURLs[j] == "undefined"){
+							//ctrl.value = item.items[i].imagesBase64[j];
+							ctrl.item.subItems[i].imageURLs[j] = "https://www.moh.gov.bh/Content/Upload/Image/636009821114059242-not-available.jpg";
+							ctrl.imageURLs.push(ctrl.item.subItems[i].imageURLs[j]);
+
+						}else{
+							ctrl.imageURLs.push(ctrl.item.subItems[i].imageURLs[j]);
+						}
 				}
 				
 			}

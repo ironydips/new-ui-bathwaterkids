@@ -36,9 +36,16 @@ function userReqModalController($state,$uibModal,customerUserService,Lightbox) {
 	ctrl.userReq = [];
 	ctrl.itemsArray = [];
 	ctrl.imageURLs = [];
+	//ctrl.itemSelected = false;
+	
+	ctrl.UserReqmessage = true;
+	ctrl.noItemMessage = true;
+
 
 
 	ctrl.init = function(){
+		ctrl.noUserReqMessage = true;
+
 				customerUserService.getUserRequest(ctrl.customer.userID)
 					.then(function(response){
 
@@ -50,9 +57,10 @@ function userReqModalController($state,$uibModal,customerUserService,Lightbox) {
 							});
 							
 							ctrl.userReq = response.data;
+							ctrl.UserReqmessage = false;
 				
 						}else {
-							ctrl.message = "Data does not exist";
+							ctrl.message = true;
 							ctrl.itemsMessage = "Data does not exist";
 						}
 					})
@@ -67,26 +75,64 @@ function userReqModalController($state,$uibModal,customerUserService,Lightbox) {
 
 		if(item.items){
 			if(item.isChecked){
-				item.items.forEach(function(data){ data.userRequestID = item.userRequestID});
-				ctrl.itemsArray = ctrl.itemsArray.concat(item.items);
-				// for (var i = 0; i < ctrl.itemsArray.length; i++) {
-				// 	for (var j = 0; j<=i; j++) {
-				// 		ctrl.imageURLs.push({'url': ctrl.itemsArray[i].imagesBase64[j]});
-				// 		console.log(ctrl.imageURLs)
-				// 	}
 
-				// }
-				
-				ctrl.selectedRow = item.userRequestID;
+				ctrl.noItemMessage = false;
+				ctrl.noUserReqMessage = false;
+				for (var i = 0; i < item.items.length; i++) {
+					for (var j = 0; j<=i; j++) {
+						if(typeof item.items[i].imagesBase64[j] == "undefined"){
+							//ctrl.value = item.items[i].imagesBase64[j];
+							item.items[i].imagesBase64[j] = "https://www.moh.gov.bh/Content/Upload/Image/636009821114059242-not-available.jpg";
+							
+
+						}
+					  }
+					}
+						item.items.forEach(function(data){ data.userRequestID = item.userRequestID});
+					    ctrl.itemsArray = ctrl.itemsArray.concat(item.items);
+						ctrl.selectedRow = item.userRequestID;
 			}
-			else
+			else{
 				ctrl.itemsArray = ctrl.itemsArray.filter(function(data){return data.userRequestID != item.userRequestID});
-		}
+				if(ctrl.itemsArray.length == 0){
+						ctrl.noItemMessage = true;
+					}
+			}
+				
+		}else{
+			//No subitems in the array
+			if(ctrl.itemsArray.length == 0){
+
+						ctrl.noItemMessage = true;
+					}
+			//ctrl.noItemMessage = true;
+		// 	if(item.isChecked){
+		// 	ctrl.noItemMessage = true;
+		// 	ctrl.noUserReqMessage = false;
+		// }else{
+		// 	for(var i = 0; i<=ctrl.userReq.length; i++){
+		// 		if(ctrl.userReq[i].isChecked){
+		// 			ctrl.noItemMessage = true;
+		// 			ctrl.noUserReqMessage = false;
+				
+		// 		}else{
+		// 			ctrl.noItemMessage = false;
+		// 			ctrl.noUserReqMessage = true;
+		// 		}
+		// 	}
+		//  }
+		
+	  }
 
 	};
 	ctrl.openLightboxModal = function (images) {
 		//LightBox Library used as Image Viewer.
 			Lightbox.openModal(images, 0);
+  	};
+  	ctrl.displayRow = function(index){
+
+  		ctrl.displayRowValue = index;
+  		ctrl.selectedRow = "";
   	};
 
 	ctrl.subItems = function(subitem){

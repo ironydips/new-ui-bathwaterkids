@@ -4,12 +4,6 @@
 function updateCreditModalController($state,inventoryService) {
 	var ctrl = this;
 	ctrl.item = (ctrl.resolve && ctrl.resolve.details) || {};
-	console.log(ctrl.credit)
-
-	ctrl.init = function(){
-			//Update Credit details
-			
-	};
 
 	ctrl.save = function(credit){
 		inventoryService.updateInventory(ctrl.item.storedItemId, credit)
@@ -26,7 +20,6 @@ function updateCreditModalController($state,inventoryService) {
 		ctrl.modalInstance.close();
 		};
 
-	ctrl.init();
 	}
 
 angular.module('updateCreditModal')
