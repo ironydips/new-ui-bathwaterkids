@@ -1,53 +1,29 @@
 <div class="timeslotComponent">
     <div class="container">
         <br>
-        <a ng-click="$ctrl.showallIncoming()" class="btn btn-sm btn-success">Show All Incoming Items</a>
+        <!-- <a ng-click="$ctrl.showallIncoming()" class="btn btn-sm btn-success">Show All Incoming Items</a> -->
         <a ng-click="$ctrl.addInventory()" class="btn btn-sm btn-success">View Saved Items</a>
         <br>
         <br>
-        <table class="table table-striped text-center">
-            <thead>
-                <tr>
-                    <th>Barcode</th>
-                    <th>Item Name</th>
-                    <th>Status</th>
-                    <th>Add Category</th>
-                    <th>Add Credit</th>
-                    <th>Add Location</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>BWSDE1234</td>
-                    <td>Stroller</td>
-                    <td>Swapping</td>
-                    <td>
-                        <select class="form-control">
-                            <option>x</option>
-                            <option>y</option>
-                            <option>z</option>
-                        </select>
-                    </td>
-                    <td>
-                        <select class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                        </select>
-                    </td>
-                    <td>
-                        <select class="form-control">
-                            <option>a</option>
-                            <option>b</option>
-                            <option>c</option>
-                            <option>d</option>
-                        </select>
-                    </td>
-                    <td><a class="btn btn-primary btn-sm" >Save</a></td>
-                </tr>
-            </tbody>
-        </table>
+
+                                    <table class="table table-condensed text-center">
+                                        <thead>
+                                            <tr>
+                                                <th style="font-size: 15px;">Truck ID</th>
+                                                <th style="font-size: 15px;">Number of Items</th>
+                                                <th style="font-size: 15px;">Action</th> 
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat ="pdt in $ctrl.products" ng-click="$ctrl.selectRow($index)" ng-class="{'highlight': $index == $ctrl.selectedRow}">
+                                                
+                                                <td>{{pdt.truckID}}</td>
+                                                <td>{{pdt.noOfItems}}</td>
+                                                <td><a ng-click="$ctrl.showallIncoming()" class="btn btn-primary btn-sm" >View Items</a></td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+    
     </div>
 </div>

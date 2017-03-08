@@ -168,19 +168,19 @@ config(['$urlRouterProvider', '$stateProvider', '$httpProvider',
                     }
                 }
             })
-            .state('inventory.incoming', {
-                url: '/incoming',
+            .state('inventory.inventoryIncoming', {
+                url: '/inventoryIncoming',
                 views: {
                     'contentSection@inventory': {
-                        template: '<incoming-details></incoming-details>'
+                        template: '<inventory-incoming-details></inventory-incoming-details>'
                     }
                 }
             })
-            .state('inventory.outcoming', {
-                url: '/outcoming',
+            .state('inventory.inventoryOutcoming', {
+                url: '/inventoryOutcoming',
                 views: {
                     'contentSection@inventory': {
-                        template: '<outcoming-details></outcoming-details>'
+                        template: '<outcoming-inventory-details></outcoming-inventory-details>'
                     }
                 }
             })
@@ -207,16 +207,16 @@ config(['$urlRouterProvider', '$stateProvider', '$httpProvider',
                     }
                 }
             })
-            .state('warehouse.incoming', {
-                url: '/incoming',
+            .state('warehouse.incomingWarehouse', {
+                url: '/incomingWarehouse',
                 views: {
                     'contentSection@warehouse': {
-                        template: '<incoming-details></incoming-details>'
+                        template: '<incoming-warehouse-details></incoming-warehouse-details>'
                     }
                 }
             })
-            .state('warehouse.outgoing', {
-                url: '/outgoing',
+            .state('warehouse.outgoingWarehouse', {
+                url: '/outgoingWarehouse',
                 views: {
                     'contentSection@warehouse': {
                         template: ''

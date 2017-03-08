@@ -1,34 +1,55 @@
-        <style>
-            input[type="checkbox"]{
-  margin-top: 0;
-  line-height: normal;
-}
-        </style>
-
-        <div class="">
-            <div class="">
-              <div class="table-condensed">
-                                    <table class="table table-condensed text-center">
-                                        <thead>
-                                            <tr>
-                                                <th style="font-size: 20px;"> Select</th>
-                                                <th style="font-size: 20px;">Truck ID</th>
-                                                <th style="font-size: 20px;">Number of Items</th> 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                               <div class="" style="text-align:center;margin-bottom: 1cm;">
-                                	<input class="btn btn-lg btn-primary cancel" ng-click="$ctrl.cancelshowall()" value="Cancel" type="button">
-                                    <input class="btn btn-lg btn-primary cancel" ng-click="$ctrl.cancelshowall()" value="Proceed" type="button">
-                                </div>
-
-	
-        </div>
-	
+<div class="table-condensed">
+    <table class="table table-condensed text-center">
+        <thead>
+            <tr>
+                <th>Select</th>
+                <th>Barcode</th>
+                <th>Item Name</th>
+                <th>Status</th>
+                <th>Add Category</th>
+                <th>Add Credit</th>
+                <th>Add Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in $ctrl.selectedItems" ng-click="$ctrl.selectRow($index)" ng-class="{'highlight': $index == $ctrl.selectedRow}">
+                <td >
+                    <input style="margin-left: 67px;" type="checkbox" ng-model="item.isChecked" ng-click="$ctrl.enableButton(item)">
+                </td>
+                <td>{{item.barcode}}</td>
+                <td>{{item.itemName}}</td>
+                <td>{{item.status}}</td>
+                <td>
+                    <select class="form-control" ng-disabled="$ctrl.disableItem">
+                        <option>x</option>
+                        <option>y</option>
+                        <option>z</option>
+                    </select>
+                </td>
+                <td>
+                    <input ng-disabled="$ctrl.disableItem" type="text" class="form-control">
+                    <!-- <input type="text" class="form-control" ng-model="item.credit" ng-disabled={{$ctrl.disableItem}}> -->
+                </td>
+                <td>
+                    <select class="form-control" ng-disabled="$ctrl.disableItem">
+                        <option>a</option>
+                        <option>b</option>
+                        <option>c</option>
+                        <option>d</option>
+                    </select>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="row" style="margin-bottom: 1cm;">
+    <div class="col-sm-4">
     </div>
+    <div class="col-sm-8">
+        <input class="btn btn-lg btn-primary" ng-click="$ctrl.cancelshowall()" value="Cancel" type="button">
+        <input ng-hide="$ctrl.showSaveButton" class="btn btn-lg btn-primary" ng-click="$ctrl.editItems()" value="Edit Items" type="button">
+        <input ng-show="$ctrl.showSaveButton" class="btn btn-lg btn-primary" ng-click="$ctrl.saveChanges()" value="Save Changes" type="button">
+        <input ng-disabled="$ctrl.disableActionBtn" ng-hide="$ctrl.showSaveButton" class="btn btn-lg btn-primary" ng-click="$ctrl.moveToInventory()" value="Move to Inventory" type="button">
+        <input ng-disabled="$ctrl.disableActionBtn" ng-hide="$ctrl.showSaveButton" class="btn btn-lg btn-primary" ng-click="$ctrl.saveItem()" value="Save Item" type="button">
+    </div>
+</div>

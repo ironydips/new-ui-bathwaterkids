@@ -36,9 +36,10 @@ angular.module('bathwaterApp', [
 	//Inventory Panel Module
 	'inventorySubPanel',
 	'allinventoriesDetails',
-	'incomingDetails',
-	'outcomingDetails',
+	'inventoryIncomingDetails',
+	'inventoryOutcoming',
 	'swappedDetails',
 	//Warehouse Module
-	'warehouseSubPanel'
+	'warehouseSubPanel',
+	'incomingWarehouseDetails'
 ]);

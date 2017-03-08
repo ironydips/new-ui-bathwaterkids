@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('incomingDetails',[
+angular.module('incomingWarehouseDetails',[
 		'ui.bootstrap',
 	    'addInventoryModal',
 	    'incomingShowAllModal'

@@ -1,6 +1,6 @@
 (function(angular){
 	'use strict';
-	angular.module("incomingDetails",[
+	angular.module("inventoryIncomingDetails",[
 			'ui.bootstrap',
 			'bathwaterApp.services',
 			'bootstrapLightbox',

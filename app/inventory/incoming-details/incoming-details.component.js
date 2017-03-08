@@ -25,7 +25,7 @@
             console.log(err);
         }
 	}
-	function incomingDetailsController($state, $uibModal,Lightbox, inventoryService){
+	function inventoryIncomingDetailsController($state, $uibModal,Lightbox, inventoryService){
 		var ctrl = this;
 		ctrl.$state = $state;
 		ctrl.$uibModal = $uibModal;
@@ -58,10 +58,10 @@
 		ctrl.init();
 	}
 	
-	angular.module('incomingDetails')
-	.component('incomingDetails',{
+	angular.module('inventoryIncomingDetails')
+	.component('inventoryIncomingDetails',{
 		templateUrl: 'inventory/incoming-details/incoming-details.template.html',
-		controller:['$state','$uibModal','Lightbox','inventoryService', incomingDetailsController]
+		controller:['$state','$uibModal','Lightbox','inventoryService', inventoryIncomingDetailsController]
 	});
 
 })(window.angular);

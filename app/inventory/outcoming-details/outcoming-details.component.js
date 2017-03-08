@@ -6,8 +6,8 @@
 
 	}
 	
-	angular.module('outcomingDetails')
-	.component('outcomingDetails',{
+	angular.module('inventoryOutcoming')
+	.component('outcomingInventoryDetails',{
 		templateUrl: 'inventory/outcoming-details/outcoming-details.template.html',
 		controller:['$state', outcomingDetailsController]
 	});
