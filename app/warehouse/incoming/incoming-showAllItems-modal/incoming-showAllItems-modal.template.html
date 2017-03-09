@@ -20,18 +20,17 @@
                 <td>{{item.itemName}}</td>
                 <td>{{item.status}}</td>
                 <td>
-                    <select class="form-control" ng-disabled="$ctrl.disableItem">
+                    <select class="form-control" ng-disabled="$ctrl.disableItem" ng-model="item.category">
                         <option>x</option>
                         <option>y</option>
                         <option>z</option>
                     </select>
                 </td>
                 <td>
-                    <input ng-disabled="$ctrl.disableItem" type="text" class="form-control">
-                    <!-- <input type="text" class="form-control" ng-model="item.credit" ng-disabled={{$ctrl.disableItem}}> -->
+                    <input ng-disabled="$ctrl.disableItem" type="text" class="form-control" ng-model="item.credit">
                 </td>
                 <td>
-                    <select class="form-control" ng-disabled="$ctrl.disableItem">
+                    <select class="form-control" ng-disabled="$ctrl.disableItem" ng-model="item.location">
                         <option>a</option>
                         <option>b</option>
                         <option>c</option>

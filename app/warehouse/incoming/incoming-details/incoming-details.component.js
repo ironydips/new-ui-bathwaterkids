@@ -8,8 +8,10 @@
         var modalInstance = popUpCtrl.$uibModal.open({
             component: 'addInventoryModal',
             windowClass: 'app-modal-window-large',
-            resolve: function() {
-                return (details || {});
+            resolve: {
+                details: function() {
+                    return (details || {});
+                }
             },
             keyboard: false,
             backdrop: 'static'
@@ -17,11 +19,11 @@
 
         modalInstance.result.then(function(data) {
                 //data passed when pop up closed.
-                if (data && data.action == "update") popUpCtrl.init();
+                
 
             }),
             function(err) {
-                console.log('Error in add-timeslot Modal');
+                console.log('Error in save products Modal');
                 console.log(err);
             }
 
@@ -33,19 +35,22 @@
         var modalInstance = popUpCtrl.$uibModal.open({
             component: 'incomingShowAllModal',
             windowClass: 'app-modal-window-large',
+            resolve: {
+                details: function() {
+                    return (details || {});
+                }
+            },
             keyboard: false,
             backdrop: 'static'
         });
 
         modalInstance.result.then(function(data) {
                 //data passed when pop up closed.
-                if (data && data.action) {
-
-                }
+               
 
             }),
             function(err) {
-                console.log('Error in show-timeslot Modal');
+                console.log('Error in view product Modal');
                 console.log(err);
             }
 
@@ -83,13 +88,12 @@
 
         };
 
-        //Add Timeslot
-        ctrl.addInventory = function() {
+        ctrl.viewSavedItems = function() {
             angular.bind(ctrl, savedProductPopUp, null)();
         };
-        //Show Timeslot
-        ctrl.showallIncoming = function() {
-            angular.bind(ctrl, incomingProductPopup, null)();
+
+        ctrl.showallSavedItems = function(truckID) {
+            angular.bind(ctrl, incomingProductPopup, truckID)();
         };
 
         ctrl.selectRow = function(rowIndex) {

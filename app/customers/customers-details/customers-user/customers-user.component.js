@@ -22,7 +22,7 @@ function openPopUpProfile(details) {
             //if (data && data.action == "update");
             
         }), function(err) {
-            console.log('Error in manage-admin Modal');
+            console.log('Error in customer profile Modal');
             console.log(err);
         }
     }
@@ -47,7 +47,7 @@ function openPopUpProfile(details) {
             //if (data && data.action == "update");
             
         }), function(err) {
-            console.log('Error in manage-admin Modal');
+            console.log('Error in customer subscribe Modal');
             console.log(err);
         }
     }
@@ -71,7 +71,7 @@ function openPopUpProfile(details) {
             //if (data && data.action == "update");
             
         }), function(err) {
-            console.log('Error in manage-admin Modal');
+            console.log('Error in customer user request Modal');
             console.log(err);
         }
     }

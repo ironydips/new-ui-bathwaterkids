@@ -1,0 +1,39 @@
+<div class="table-condensed">
+    <table class="table table-condensed text-center">
+        <thead>
+            <tr>
+                <th>Select</th>
+                <th>Scan Code</th>
+                <th>Location</th>
+                <th>Item Name</th>
+                <th>Select Truck</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in $ctrl.processItems">
+                <td>
+                    <input style="margin-left: 104px;" type="checkbox" ng-model="item.isChecked" ng-click="$ctrl.enableSaveBtn(item)">
+                </td>
+                <td>{{item.scanCode}}</td>
+                <td>{{item.location}}</td>
+                <td>{{item.itemName}}</td>
+                <td>
+                    <select class="form-control" ng-disabled="!item.isChecked">
+                        <option></option>
+                        <option>ab1</option>
+                        <option>ab2</option>
+                        <option>ab3</option>
+                    </select>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="row" style="margin-bottom: 1cm;">
+    <div class="col-sm-4">
+    </div>
+    <div class="col-sm-8">
+        <input class="btn btn-lg btn-primary" ng-click="$ctrl.cancel()" value="Cancel" type="button">
+        <input ng-disabled="$ctrl.disableActionBtn" class="btn btn-lg btn-primary" ng-click="$ctrl.saveItem()" value="Proceed" type="button">
+    </div>
+</div>

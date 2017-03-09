@@ -74,6 +74,8 @@
     <script src="services/admin.manager.service.js"></script>
     <script src="services/customer.user.services.js"></script>
     <script src="services/inventory.service.js"></script>
+    <script src="services/warehouse.moveItems.service.js"></script>
+
     
     <script src="common/common.module.js"></script>
     <script src="common/common.services.js"></script>
@@ -227,8 +229,14 @@
     <script src="warehouse/incoming/incoming-showAllItems-modal/incoming-showAllItems-modal.module.js"></script>
     <script src="warehouse/incoming/incoming-showAllItems-modal/incoming-showAllItems-modal.component.js"></script>
 
-    <script src="warehouse/incoming/inventoryItems-modal/inventoryItems-modal.module.js"></script>
-    <script src="warehouse/incoming/inventoryItems-modal/inventoryItems-modal.component.js"></script>
+    <script src="warehouse/incoming/savedItems-modal/savedItems-modal.module.js"></script>
+    <script src="warehouse/incoming/savedItems-modal/savedItems-modal.component.js"></script>
+
+    <script src="warehouse/warehouse-outgoing/warehouse-outgoing-details/warehouse-outgoing-details.module.js"></script>
+    <script src="warehouse/warehouse-outgoing/warehouse-outgoing-details/warehouse-outgoing-details.component.js"></script>
+
+    <script src="warehouse/warehouse-outgoing/warehouse-processItem-modal/warehouse-processItem-modal.module.js"></script>
+    <script src="warehouse/warehouse-outgoing/warehouse-processItem-modal/warehouse-processItem-modal.component.js"></script>
 
      <!-- Warehouse Ending Script-->
 
@@ -237,6 +245,6 @@
 
   </head>
   <body>
-    <div ui-view></div>
+    <div ui-view ng-cloak></div>
   </body>
 </html>

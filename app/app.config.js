@@ -219,7 +219,7 @@ config(['$urlRouterProvider', '$stateProvider', '$httpProvider',
                 url: '/outgoingWarehouse',
                 views: {
                     'contentSection@warehouse': {
-                        template: ''
+                        template: '<outgoing-warehouse-details></outgoing-warehouse-details>'
                     }
                 }
             })

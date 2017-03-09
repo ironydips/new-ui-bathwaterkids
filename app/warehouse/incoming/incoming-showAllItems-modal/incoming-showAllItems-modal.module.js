@@ -1,4 +1,4 @@
 'use strict';
 
 
-angular.module('incomingShowAllModal',[]);
+angular.module('incomingShowAllModal',['bathwaterApp.services']);

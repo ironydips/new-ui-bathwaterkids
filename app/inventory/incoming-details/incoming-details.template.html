@@ -48,7 +48,7 @@
                 </tr>
                     <tr class="text-center" ng-repeat="inventory in $ctrl.Inventory | filter:searchInventory" ng-click="$ctrl.selectRow($index)" ng-class="{'highlight': $index == $ctrl.selectedRow}">
                             <td  class="text-center">
-                                <a ng-click="$ctrl.openLightboxModal(inventory.imageURLs)">
+                                <a href="" ng-click="$ctrl.openLightboxModal(inventory.imageURLs)">
                                     <img ng-src="{{inventory.imageURLs[0]}}" class="img-thumbnail">
                                  </a>
                            </td>

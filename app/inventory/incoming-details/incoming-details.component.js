@@ -1,6 +1,6 @@
 (function(angular){
 	'use strict';
-	function openPopupCustomer(details){
+	function openPopupCreditUpdate(details){
 
 		var popUpCtrl = this;
         var modalInstance = popUpCtrl.$uibModal.open({
@@ -21,7 +21,7 @@
             if(data && data.action == "update") popUpCtrl.init();
             
         }), function(err) {
-            console.log('Error in manage-admin Modal');
+            console.log('Error in inventory-incoming-credit-update Modal');
             console.log(err);
         }
 	}
@@ -52,7 +52,7 @@
     	};
 
 		ctrl.addUpdateCredit = function(item){
-			angular.bind(ctrl, openPopupCustomer, angular.copy(item))();
+			angular.bind(ctrl, openPopupCreditUpdate, angular.copy(item))();
 		};
 
 		ctrl.init();

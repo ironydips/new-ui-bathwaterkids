@@ -4,6 +4,7 @@
             <table class="table table-condensed text-center">
                 <thead>
                     <tr>
+                        <th>TruckID</th>
                         <th>Barcode</th>
                         <th>Item Name</th>
                         <th>Status</th>
@@ -13,14 +14,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr ng-repeat="item in $ctrl.items">
+                        <td>{{item.truckID}}</td>
+                        <td>{{item.barcode}}</td>
+                        <td>{{item.itemName}}</td>
+                        <td>{{item.status}}</td>
+                        <td>{{item.category}}</td>
+                        <td>{{item.credit}}</td>
+                        <td>{{item.location}}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <div class="" style="text-align:center;margin-bottom: 1cm;">
             <input class="btn btn-lg btn-primary cancel" ng-click="$ctrl.cancel()" value="Cancel" type="button">
-            <!-- <input class="btn btn-lg btn-primary cancel" ng-click="$ctrl.cancelshowall()" value="Move to Inventory" type="button"> -->
         </div>
     </div>
 </div>

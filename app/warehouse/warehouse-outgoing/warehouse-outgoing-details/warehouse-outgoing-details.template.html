@@ -1,22 +1,21 @@
 <div class="timeslotComponent">
     <div class="container">
         <br>
-        <a href="" ng-click="$ctrl.viewSavedItems()" class="btn btn-sm btn-success">View Saved Items</a>
         <br>
         <br>
         <table class="table table-condensed text-center">
             <thead>
                 <tr>
-                    <th style="font-size: 15px;">Truck ID</th>
+                    <th style="font-size: 15px;">Orders</th>
                     <th style="font-size: 15px;">Number of Items</th>
                     <th style="font-size: 15px;">Action</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="pdt in $ctrl.products" ng-click="$ctrl.selectRow($index)" ng-class="{'highlight': $index == $ctrl.selectedRow}">
-                    <td>{{pdt.truckID}}</td>
+                    <td>{{pdt.order}}</td>
                     <td>{{pdt.noOfItems}}</td>
-                    <td><a ng-click="$ctrl.showallSavedItems(pdt.truckID)" class="btn btn-primary btn-sm">View Items</a></td>
+                    <td><a ng-click="$ctrl.processItem()" class="btn btn-primary btn-sm">Process Items</a></td>
                 </tr>
             </tbody>
         </table>
