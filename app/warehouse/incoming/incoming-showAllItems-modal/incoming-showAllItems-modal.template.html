@@ -30,12 +30,7 @@
                     <input ng-disabled="$ctrl.disableItem" type="text" class="form-control" ng-model="item.credit">
                 </td>
                 <td>
-                    <select class="form-control" ng-disabled="$ctrl.disableItem" ng-model="item.location">
-                        <option>a</option>
-                        <option>b</option>
-                        <option>c</option>
-                        <option>d</option>
-                    </select>
+                    <input ng-disabled="$ctrl.disableItem" type="text" class="form-control" ng-model="item.location">
                 </td>
             </tr>
         </tbody>
@@ -49,6 +44,6 @@
         <input ng-hide="$ctrl.showSaveButton" class="btn btn-lg btn-primary" ng-click="$ctrl.editItems()" value="Edit Items" type="button">
         <input ng-show="$ctrl.showSaveButton" class="btn btn-lg btn-primary" ng-click="$ctrl.saveChanges()" value="Save Changes" type="button">
         <input ng-disabled="$ctrl.disableActionBtn" ng-hide="$ctrl.showSaveButton" class="btn btn-lg btn-primary" ng-click="$ctrl.moveToInventory()" value="Move to Inventory" type="button">
-        <input ng-disabled="$ctrl.disableActionBtn" ng-hide="$ctrl.showSaveButton" class="btn btn-lg btn-primary" ng-click="$ctrl.saveItem()" value="Save Item" type="button">
+        <input ng-disabled="$ctrl.disableActionBtn" ng-hide="$ctrl.showSaveButton" class="btn btn-lg btn-primary" ng-click="$ctrl.saveItem()" value="Move to Saved Items" type="button">
     </div>
 </div>
