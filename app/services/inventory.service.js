@@ -23,12 +23,15 @@
 	            }
 	        });
 		};
+
+		
 		
 
 		//EXPORTED Object
 		return {
 			getInventory,
-			updateInventory
+			updateInventory,
+			
 		}
 	}
 

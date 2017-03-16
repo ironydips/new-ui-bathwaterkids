@@ -215,6 +215,14 @@ config(['$urlRouterProvider', '$stateProvider', '$httpProvider',
                     }
                 }
             })
+            .state('warehouse.newIncomingWarehouse', {
+                url: '/newIncomingWarehouse',
+                views: {
+                    'contentSection@warehouse': {
+                        template: '<new-incoming-warehouse-details></new-incoming-warehouse-details>'
+                    }
+                }
+            })
             .state('warehouse.outgoingWarehouse', {
                 url: '/outgoingWarehouse',
                 views: {

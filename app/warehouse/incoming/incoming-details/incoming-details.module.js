@@ -3,5 +3,6 @@
 angular.module('incomingWarehouseDetails',[
 		'ui.bootstrap',
 	    'addInventoryModal',
-	    'incomingShowAllModal'
+	    'incomingShowAllModal',
+	    'bathwaterApp.services'
 	]);
