@@ -85,10 +85,11 @@
     }
 
 
-    function newIncomingController($state, $uibModal, warehouseMoveItems, Lightbox) {
+    function MergeIncomingShowAllModal($state, $uibModal, warehouseMoveItems, Lightbox) {
         var ctrl = this;
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
+        ctrl.enableRecBtn = true;
         ctrl.item = {
             "status": "INBOUND",
             "allStatus": ["INBOUND", "OUTBOUND", "STORED", "RECEIVED","REQUESTED_DROPFF"]
@@ -133,15 +134,34 @@
                     console.log('Error getting item status details:');
                     console.log(err);
                 });
+        };
+
+        ctrl.receiveItem = function(index){
+            ctrl.enableRecBtn = false;
+            
+        };
+
+        ctrl.save = function(){
+            ctrl.modalInstance.close();
         }
+
+
+        ctrl.cancel = function() {
+            ctrl.modalInstance.close();
+        };
 
 
         ctrl.init();
     }
 
-    angular.module('newIncomingWarehouseDetails')
-        .component('newIncomingWarehouseDetails', {
-            templateUrl: 'warehouse/incoming/new-incoming-details/new-incoming-details.template.html',
-            controller: ['$state', '$uibModal', 'warehouseMoveItems','Lightbox', newIncomingController]
+    angular.module('mergeincomingShowAllModal')
+        .component('mergeincomingShowAllModal', {
+            templateUrl: 'warehouse/incoming/merged-incoming-showAllItems-modal/merged-incoming-showAllItems-modal.template.html',
+            controller: ['$state','$uibModal', 'warehouseMoveItems','Lightbox', MergeIncomingShowAllModal],
+            bindings: {
+                modalInstance: '<',
+                resolve: '<'
+            }
         });
+
 })(window.angular);

@@ -34,13 +34,24 @@
             });
         };
 
+        var updateDropItemStatus = function(storedItemID, location, status, subitemCode){
+            return $http({
+                    url: '/rest/admin/updateDropItemStatus?storedItemID='+ storedItemID + '&status='+ status + '&subitemCode=' +subitemCode+ '&location=' + location,
+                    method: "GET",
+                    headers:{
+                        "Authorization": 'Basic YWRtaW46YWRtaW4='
+                }
+            });
+        };
+
 
         return {
 
             moveItems,
             getMovedSavedItems,
             getItemsByStatus,
-            updateItemInWarehouse
+            updateItemInWarehouse,
+            updateDropItemStatus
 
         }
 

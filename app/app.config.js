@@ -230,6 +230,14 @@ config(['$urlRouterProvider', '$stateProvider', '$httpProvider',
                         template: '<outgoing-warehouse-details></outgoing-warehouse-details>'
                     }
                 }
+            })    
+            .state('warehouse.mergedIncomingWarehouse', {
+                url: '/mergedIncomingWarehouse',
+                views: {
+                    'contentSection@warehouse': {
+                        template: '<merged-incoming-warehouse-details></merged-incoming-warehouse-details>'
+                    }
+                }
             })
     }
 

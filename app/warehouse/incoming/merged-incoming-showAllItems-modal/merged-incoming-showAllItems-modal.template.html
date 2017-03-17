@@ -1,0 +1,64 @@
+<div class="timeslotComponent">
+    <div class="container">
+        <br>
+        <!-- <select style="width:200px;" ng-model="$ctrl.item.status" class="form-control" ng-options="s for s in $ctrl.item.allStatus" ng-click="$ctrl.getItemByStatus($ctrl.item.status)"></select> -->
+        <br>
+        <br>
+        <table class="table text-center">
+            <tr>
+                <th class="col-md-1">Images</th>
+                <th style="font-size: 13px;">Stored ItemID</th>
+                <th style="font-size: 13px;">Storage ID</th>
+                <th style="font-size: 13px;">Item Name</th>
+                <th style="font-size: 13px;">Item Code</th>
+                <th style="font-size: 13px;">CategoryID</th>
+                <th style="font-size: 13px;">Location</th>
+                <th style="font-size: 13px;">More Details</th>
+                <th style="font-size: 13px;">Action</th>
+                <th></th>
+            </tr>
+            <tr ng-repeat="item in $ctrl.items" >
+                <td class="text-center">
+                    <a href="" ng-click="$ctrl.openLightboxModal(item.imageURLs)">
+                        <img ng-src="{{item.imageURLs[0]}}" class="img-thumbnail">
+                    </a>
+                </td>
+                <td class="col-md-3">{{item.storedItemId}}</td>
+                <td class="col-md-2">{{item.storageID}}</td>
+                <td class="col-md-1">{{item.itemName}}</td>
+                <td class="col-md-1">{{item.itemCode[0]}}</td>
+                <td class="col-md-1">{{item.categoryID}}</td>
+                <td class="col-md-2">{{item.location}}</td>
+                <td>
+                    <button type="button" ng-if="item.subItems" ng-click="$ctrl.moreDetails(item)" class="btn btn-sm btn-primary">View</button>
+                </td>
+                <td>
+                    <button type="button" ng-if="item.subItems" ng-click="$ctrl.updateLocStatus(item)" class="btn btn-sm btn-primary">Update Location/Status</button>
+                </td>
+                <td>
+                    <button type="button" ng-if="item.subItems" ng-click="$ctrl.receiveItem($index)" class="btn btn-sm btn-primary">Receive Item</button>
+                </td>
+            </tr>
+            <!-- <tr ng-if="$ctrl.message">
+                           <td class="col-md-3"></td>
+                           <td class="col-md-2"></td>
+                           <td style="font-size: 15px;" class="col-md-4"><b>No Items to Display</b></td>
+                           <td class="col-md-1"></td>
+                           <td class="col-md-2"></td>
+                           <td class="col-md-1"></td>
+                           <td class="col-md-1"></td>
+                           <td class="col-md-1"></td>
+                           <td class="col-md-1"></td>
+
+                        </tr> -->
+        </table>
+        <div class="row" style="margin-bottom: 1cm;">
+            <div class="col-sm-5">
+            </div>
+            <div class="col-sm-4">
+                <button type="button" ng-click="$ctrl.cancel()" class="btn btn-lg btn-default">Cancel</button>
+                <button type="button" ng-disabled="$ctrl.enableRecBtn" ng-click="$ctrl.save()" class="btn btn-lg btn-primary">Move to Received Items</button>
+            </div>
+        </div>
+    </div>
+</div>
