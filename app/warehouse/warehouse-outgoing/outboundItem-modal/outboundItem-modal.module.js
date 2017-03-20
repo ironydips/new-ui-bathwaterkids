@@ -1,8 +1,7 @@
 (function(){
 'use strict';
 
-angular.module('receiveincomingProductModal',[
-		'updateLocStoredModal',
+angular.module('outboundProductModal',[
 		'moreDetailsModal',
 		'bathwaterApp.services'
 	]);

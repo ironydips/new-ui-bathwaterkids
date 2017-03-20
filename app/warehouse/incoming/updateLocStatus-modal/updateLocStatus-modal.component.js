@@ -20,15 +20,7 @@ function UpdateLocStatusModalController($state, warehouseMoveItems){
 			console.log(err);
 		});
 
-		// warehouseMoveItems.updateDropItemStatus(ctrl.itemDetail.storedItemId, location, status, ctrl.itemDetail.itemCode[0])
-		// 		.then(function(result){
-		// 	//ctrl.modalInstance.close({action: 'update'});
-		// 	console.log(result)
-		// })
-		// .catch(function(err){
-		// 	console.log('Error updating status & location of item in warehouse');
-		// 	console.log(err);
-		// });
+		
 	}
 
 	ctrl.cancel = function(){

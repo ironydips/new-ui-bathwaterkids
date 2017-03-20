@@ -29,12 +29,30 @@
 
     }
 
-
-    function updateLocStatusPopup(details) {
+    function viewOutboundPopup(details) {
 
         var popUpCtrl = this;
         var modalInstance = popUpCtrl.$uibModal.open({
-            component: 'updateLocStatusModal',
+            component: 'outboundProductModal',
+            windowClass: 'app-modal-window-large',
+            resolve: {
+                details: function() {
+                    return (details || {});
+                }
+            },
+            keyboard: false,
+            backdrop: 'static'
+        });
+
+    }
+
+
+
+    function proceedToOutboundPopup(details) {
+
+        var popUpCtrl = this;
+        var modalInstance = popUpCtrl.$uibModal.open({
+            component: 'outgoingAssignTruckModal',
             windowClass: 'app-modal-window-small',
             resolve: {
                 details: function() {
@@ -47,7 +65,7 @@
 
         modalInstance.result.then(function(data) {
                 //data passed when pop up closed.
-                if(data && data.action == 'update') popUpCtrl.init();
+                if (data && data.action == 'update') popUpCtrl.init();
 
 
             }),
@@ -59,64 +77,70 @@
     }
 
 
-    function newIncomingController($state, $uibModal, warehouseMoveItems, Lightbox) {
+    function newOutgoingController($state, $uibModal, warehouseMoveItems, Lightbox) {
         var ctrl = this;
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
         ctrl.message = false;
-        ctrl.item = {
-            "status": "INBOUND",
-            "allStatus": ["INBOUND", "OUTBOUND", "STORED", "RECEIVED","REQUESTED_DROPFF"]
-        };
 
         ctrl.init = function() {
-            ctrl.getItemByStatus("INBOUND");
+            ctrl.getItemByStatus("REQUESTED_DROPFF");
         };
 
         ctrl.moreDetails = function(item) {
             angular.bind(ctrl, moreDetailsPopUp, angular.copy(item))();
         };
 
-        ctrl.updateLocStatus = function(item) {
-            angular.bind(ctrl, updateLocStatusPopup, angular.copy(item))();
+        ctrl.proceed = function(item) {
+            angular.bind(ctrl, proceedToOutboundPopup, angular.copy(item))();
         };
 
-        
-        ctrl.openLightboxModal = function (images) {
-        //LightBox Library used as Image Viewer.
+        ctrl.viewOutboundItems = function() {
+            angular.bind(ctrl, viewOutboundPopup, null)();
+        }
+
+
+        ctrl.openLightboxModal = function(images) {
+            //LightBox Library used as Image Viewer.
             Lightbox.openModal(images, 0);
         };
         ctrl.getItemByStatus = function(status) {
             warehouseMoveItems.getItemsByStatus(status)
                 .then(function(response) {
-                    if(response.data){
+                    if (response.data) {
                         ctrl.items = response.data;
+                        ctrl.message = response.data.message;
                         if (ctrl.items.message) {
                             ctrl.message = true;
-                        }else{
-                            ctrl.message = false;
                         }
+
+                        ctrl.items.status = "REQUESTED_DROPFF";
+
                         for (var i = 0; i < ctrl.items.length; i++) {
-                            if(ctrl.items[i].imageURLs.length == 0){
+                            if (ctrl.items[i].imageURLs.length == 0) {
                                 ctrl.items[i].imageURLs[0] = "https://www.moh.gov.bh/Content/Upload/Image/636009821114059242-not-available.jpg";
                             }
                         }
                     }
-                    
+
                 })
                 .catch(function(err) {
                     console.log('Error getting item status details:');
                     console.log(err);
                 });
-        }
+        };
+
+        ctrl.selectRow = function(rowIndex) {
+            ctrl.selectedRow = rowIndex;
+        };
 
 
         ctrl.init();
     }
 
-    angular.module('newIncomingWarehouseDetails')
-        .component('newIncomingWarehouseDetails', {
-            templateUrl: 'warehouse/incoming/new-incoming-details/new-incoming-details.template.html',
-            controller: ['$state', '$uibModal', 'warehouseMoveItems','Lightbox', newIncomingController]
+    angular.module('newOutgoingWarehouseDetails')
+        .component('newOutgoingWarehouseDetails', {
+            templateUrl: 'warehouse/warehouse-outgoing/new-outgoing-details/new-outgoing-details.template.html',
+            controller: ['$state', '$uibModal', 'warehouseMoveItems', 'Lightbox', newOutgoingController]
         });
 })(window.angular);

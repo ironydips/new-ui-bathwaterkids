@@ -56,6 +56,33 @@
 
     }
 
+    function storedProductPopup(details) {
+
+        var popUpCtrl = this;
+        var modalInstance = popUpCtrl.$uibModal.open({
+            component: 'storedProductModal',
+            windowClass: 'app-modal-window-large',
+            resolve: {
+                details: function() {
+                    return (details || {});
+                }
+            },
+            keyboard: false,
+            backdrop: 'static'
+        });
+
+        modalInstance.result.then(function(data) {
+                //data passed when pop up closed.
+               
+
+            }),
+            function(err) {
+                console.log('Error in view product Modal');
+                console.log(err);
+            }
+
+    }
+
 
     function MergedIncomingController($state, $uibModal) {
         var ctrl = this;
@@ -93,8 +120,12 @@
 
         };
 
-        ctrl.viewSavedItems = function() {
+        ctrl.viewReceivedItems = function() {
             angular.bind(ctrl, receiveincomingProductPopup, null)();
+        };
+
+        ctrl.viewStoredItems = function() {
+            angular.bind(ctrl, storedProductPopup, null)();
         };
 
         ctrl.showallSavedItems = function() {

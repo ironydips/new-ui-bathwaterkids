@@ -7,6 +7,7 @@ angular.
       $rootScope.$state = toState.name;
     });
     
+    //when page reload then by default state
     $state.go('gSignIn');
     
   }]);

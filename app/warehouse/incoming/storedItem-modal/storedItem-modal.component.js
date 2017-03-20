@@ -1,5 +1,4 @@
 (function(angular) {
-
     'use strict';
 
     function moreDetailsPopUp(details) {
@@ -23,33 +22,20 @@
 
             }),
             function(err) {
-                console.log('Error in more details Modal');
+                console.log('Error in more details of item Modal');
                 console.log(err);
             }
 
     }
 
-  
-    function MergeIncomingShowAllModal($state, $uibModal, warehouseMoveItems, Lightbox) {
+    function StoredItemModalController($state, $uibModal, warehouseMoveItems) {
         var ctrl = this;
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
         ctrl.message = false;
 
         ctrl.init = function() {
-            ctrl.getItemByStatus("INBOUND");
-        };
-
-        ctrl.moreDetails = function(item) {
-            angular.bind(ctrl, moreDetailsPopUp, angular.copy(item))();
-        };
-
-        ctrl.openLightboxModal = function(images) {
-            //LightBox Library used as Image Viewer.
-            Lightbox.openModal(images, 0);
-        };
-        ctrl.getItemByStatus = function(status) {
-            warehouseMoveItems.getItemsByStatus(status)
+            warehouseMoveItems.getItemsByStatus("STORED")
                 .then(function(response) {
                     if (response.data) {
                         ctrl.items = response.data;
@@ -62,21 +48,26 @@
                             }
                         }
                     }
+
                 })
                 .catch(function(err) {
-                    console.log('Error getting item status details:');
+                    console.log('Error getting stored item  details:');
                     console.log(err);
                 });
         };
 
-        ctrl.receiveItem = function(storedItemId, location) {
+        ctrl.moreDetails = function(item) {
+            angular.bind(ctrl, moreDetailsPopUp, angular.copy(item))();
+        };
 
-            warehouseMoveItems.updateItemInWarehouse(storedItemId, location, "RECEIVED")
+        ctrl.requestDropOff = function(storedItemId, location) {
+
+            warehouseMoveItems.updateItemInWarehouse(storedItemId, location, "REQUESTED_DROPFF")
                 .then(function(result) {
-                    ctrl.getItemByStatus("INBOUND");
+                    ctrl.init();
                 })
                 .catch(function(err) {
-                    console.log('Error updating status & location of item in warehouse');
+                    console.log('Error while requestDropOff of item in warehouse');
                     console.log(err);
                 });
 
@@ -86,18 +77,16 @@
             ctrl.modalInstance.close();
         };
 
-
         ctrl.init();
     }
 
-    angular.module('mergeincomingShowAllModal')
-        .component('mergeincomingShowAllModal', {
-            templateUrl: 'warehouse/incoming/merged-incoming-showAllItems-modal/merged-incoming-showAllItems-modal.template.html',
-            controller: ['$state', '$uibModal', 'warehouseMoveItems', 'Lightbox', MergeIncomingShowAllModal],
+    angular.module('storedProductModal')
+        .component('storedProductModal', {
+            templateUrl: 'warehouse/incoming/storedItem-modal/storedItem-modal.template.html',
+            controller: ['$state', '$uibModal', 'warehouseMoveItems', StoredItemModalController],
             bindings: {
-                modalInstance: '<',
-                resolve: '<'
+                modalInstance: '<'
             }
         });
 
-})(window.angular);
+})(window.angular)

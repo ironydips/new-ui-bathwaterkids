@@ -2,7 +2,7 @@
 <div class="profileComponent">
    <div class="container">
       <div class="profileSm">
-         <h2>Update Location/Status</h2>
+         <h2>Update Location of request</h2>
          <div class="inner-adjust">
             <div class="input-main">
                <div class="row">
@@ -18,7 +18,8 @@
                      <label>Status :</label>
                   </div>
                   <div class="col-sm-3">
-                     <select  style="width:251px;" ng-model="$ctrl.itemDetail.status" class="form-control" ng-options="s for s in $ctrl.item.allStatus"></select>
+                     <input type="text" style="width:251px;" class="form-control" value="REQUESTED_DROPFF" disabled>
+                     <!-- <select  style="width:251px;" ng-model="$ctrl.itemDetail.status" class="form-control" ng-options="s for s in $ctrl.item.allStatus"></select> -->
                   </div>
                </div>
             </div>
@@ -26,7 +27,7 @@
             </div>
             <div class="btn-main">
                <button type="button" ng-click = "$ctrl.cancel()" class="btn btn-sm btn-default">Cancel</button>
-               <button type="button" ng-click = "$ctrl.save($ctrl.itemDetail.location,$ctrl.itemDetail.status)" class="btn btn-sm btn-success">Save</button>
+               <button type="button" ng-click = "$ctrl.save($ctrl.itemDetail.location)" class="btn btn-sm btn-success">Save</button>
             </div>
          </div>
       </div>

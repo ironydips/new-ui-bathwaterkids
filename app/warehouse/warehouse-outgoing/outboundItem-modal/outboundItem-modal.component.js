@@ -1,5 +1,4 @@
 (function(angular) {
-
     'use strict';
 
     function moreDetailsPopUp(details) {
@@ -23,33 +22,20 @@
 
             }),
             function(err) {
-                console.log('Error in more details Modal');
+                console.log('Error in more details of item Modal');
                 console.log(err);
             }
 
     }
 
-  
-    function MergeIncomingShowAllModal($state, $uibModal, warehouseMoveItems, Lightbox) {
+    function OutboundItemModalController($state, $uibModal, warehouseMoveItems) {
         var ctrl = this;
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
         ctrl.message = false;
 
         ctrl.init = function() {
-            ctrl.getItemByStatus("INBOUND");
-        };
-
-        ctrl.moreDetails = function(item) {
-            angular.bind(ctrl, moreDetailsPopUp, angular.copy(item))();
-        };
-
-        ctrl.openLightboxModal = function(images) {
-            //LightBox Library used as Image Viewer.
-            Lightbox.openModal(images, 0);
-        };
-        ctrl.getItemByStatus = function(status) {
-            warehouseMoveItems.getItemsByStatus(status)
+            warehouseMoveItems.getItemsByStatus("OUTBOUND")
                 .then(function(response) {
                     if (response.data) {
                         ctrl.items = response.data;
@@ -62,42 +48,54 @@
                             }
                         }
                     }
+
                 })
                 .catch(function(err) {
-                    console.log('Error getting item status details:');
+                    console.log('Error getting outbound item  details:');
                     console.log(err);
                 });
         };
 
-        ctrl.receiveItem = function(storedItemId, location) {
 
-            warehouseMoveItems.updateItemInWarehouse(storedItemId, location, "RECEIVED")
-                .then(function(result) {
-                    ctrl.getItemByStatus("INBOUND");
-                })
-                .catch(function(err) {
-                    console.log('Error updating status & location of item in warehouse');
-                    console.log(err);
-                });
-
-        };
 
         ctrl.cancel = function() {
             ctrl.modalInstance.close();
         };
 
+        ctrl.moreDetails = function(item) {
+            angular.bind(ctrl, moreDetailsPopUp, angular.copy(item))();
+        };
+
+        ctrl.update = function(item) {
+
+            if(item.itemCode != null){
+                 warehouseMoveItems.updateDropItemStatus(item.storedItemId, item.location, "OUTBOUND", item.itemCode[0])
+                .then(function(result) {
+                    //ctrl.modalInstance.close({action: 'update'});
+                })
+                .catch(function(err) {
+                    console.log('Error updating DROP ITEM STATUS in warehouse');
+                    console.log(err);
+                });
+            }
+
+           
+        }
+
+        ctrl.selectRow = function(rowIndex) {
+            ctrl.selectedRow = rowIndex;
+        };
 
         ctrl.init();
     }
 
-    angular.module('mergeincomingShowAllModal')
-        .component('mergeincomingShowAllModal', {
-            templateUrl: 'warehouse/incoming/merged-incoming-showAllItems-modal/merged-incoming-showAllItems-modal.template.html',
-            controller: ['$state', '$uibModal', 'warehouseMoveItems', 'Lightbox', MergeIncomingShowAllModal],
+    angular.module('outboundProductModal')
+        .component('outboundProductModal', {
+            templateUrl: 'warehouse/warehouse-outgoing/outboundItem-modal/outboundItem-modal.template.html',
+            controller: ['$state', '$uibModal', 'warehouseMoveItems', OutboundItemModalController],
             bindings: {
-                modalInstance: '<',
-                resolve: '<'
+                modalInstance: '<'
             }
         });
 
-})(window.angular);
+})(window.angular)
