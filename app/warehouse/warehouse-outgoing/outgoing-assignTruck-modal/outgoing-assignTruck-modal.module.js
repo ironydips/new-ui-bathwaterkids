@@ -1,4 +1,4 @@
 'use strict';
 
 
-angular.module('outgoingAssignTruckModal',['bathwaterApp.services']);
+angular.module('outgoingAssignTruckModal',['ngToast','bathwaterApp.services']);

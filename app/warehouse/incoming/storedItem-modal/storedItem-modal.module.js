@@ -3,6 +3,7 @@
 
 angular.module('storedProductModal',[
 		'moreDetailsModal',
+		'ngToast',
 		'bathwaterApp.services'
 	]);
 

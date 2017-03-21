@@ -11,6 +11,9 @@ angular.module('bathwaterApp', [
 	'images-resizer',
 	'720kb.datepicker',
 	'ngAnimate',
+	'ngSanitize',
+	// For Notification
+	'ngToast',
 	//LightBox Library used as Image Viewer.
 	'bootstrapLightbox',
 	'manageAdmin',

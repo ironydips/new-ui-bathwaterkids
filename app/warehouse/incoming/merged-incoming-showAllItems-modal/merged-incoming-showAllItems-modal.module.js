@@ -1,4 +1,4 @@
 'use strict';
 
 
-angular.module('mergeincomingShowAllModal',['bathwaterApp.services', 'bootstrapLightbox']);
+angular.module('mergeincomingShowAllModal',['ngToast','bathwaterApp.services', 'bootstrapLightbox']);

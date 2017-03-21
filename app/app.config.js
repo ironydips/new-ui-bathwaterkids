@@ -2,12 +2,24 @@
 
 angular.
 module('bathwaterApp').
-config(['$urlRouterProvider', '$stateProvider', '$httpProvider',
-    function config($urlRouterProvider, $stateProvider, $httpProvider) {
+config(['$urlRouterProvider', '$stateProvider', '$httpProvider', 'ngToastProvider',
+    function config($urlRouterProvider, $stateProvider, $httpProvider, ngToast) {
 
         //HTTP Provider Config
         $httpProvider.defaults.useXDomain = true;
         $httpProvider.interceptors.push('InterceptorService');
+
+        //ngToast Provider Config
+        ngToast.configure({
+
+            className: 'success',
+            verticalPosition: 'top',
+            horizontalPosition: 'center',
+            dismissButton: true,
+            timeout: 900,
+
+
+        });
 
         // UI-Routing Config
         $urlRouterProvider.otherwise('/');
@@ -230,7 +242,7 @@ config(['$urlRouterProvider', '$stateProvider', '$httpProvider',
                         template: '<outgoing-warehouse-details></outgoing-warehouse-details>'
                     }
                 }
-            })    
+            })
             .state('warehouse.mergedIncomingWarehouse', {
                 url: '/mergedIncomingWarehouse',
                 views: {
@@ -246,7 +258,7 @@ config(['$urlRouterProvider', '$stateProvider', '$httpProvider',
                         template: '<new-outgoing-warehouse-details></new-outgoing-warehouse-details>'
                     }
                 }
-            }) 
+            })
     }
 
 ]);

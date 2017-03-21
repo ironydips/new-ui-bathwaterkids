@@ -28,7 +28,7 @@
 
     }
 
-    function StoredItemModalController($state, $uibModal, warehouseMoveItems) {
+    function StoredItemModalController($state, $uibModal, ngToast, warehouseMoveItems) {
         var ctrl = this;
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
@@ -37,17 +37,18 @@
         ctrl.init = function() {
             warehouseMoveItems.getItemsByStatus("STORED")
                 .then(function(response) {
-                    if (response.data) {
+                    if (angular.isArray(response.data)) {
                         ctrl.items = response.data;
-                        if (ctrl.items.message) {
-                            ctrl.message = true;
-                        }
+                        
                         for (var i = 0; i < ctrl.items.length; i++) {
                             if (ctrl.items[i].imageURLs.length == 0) {
                                 ctrl.items[i].imageURLs[0] = "https://www.moh.gov.bh/Content/Upload/Image/636009821114059242-not-available.jpg";
                             }
                         }
-                    }
+                    }else{
+                            ctrl.items = [];
+                            ctrl.message = true;
+                        }
 
                 })
                 .catch(function(err) {
@@ -65,6 +66,11 @@
             warehouseMoveItems.updateItemInWarehouse(storedItemId, location, "REQUESTED_DROPFF")
                 .then(function(result) {
                     ctrl.init();
+                    ngToast.create({
+                       // className: 'success',
+                        content: 'Item Moved to REQUESTED_DROPFF',
+                        //dismissButton: true
+                    });
                 })
                 .catch(function(err) {
                     console.log('Error while requestDropOff of item in warehouse');
@@ -83,7 +89,7 @@
     angular.module('storedProductModal')
         .component('storedProductModal', {
             templateUrl: 'warehouse/incoming/storedItem-modal/storedItem-modal.template.html',
-            controller: ['$state', '$uibModal', 'warehouseMoveItems', StoredItemModalController],
+            controller: ['$state', '$uibModal','ngToast', 'warehouseMoveItems', StoredItemModalController],
             bindings: {
                 modalInstance: '<'
             }

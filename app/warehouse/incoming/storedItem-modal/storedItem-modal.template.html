@@ -3,6 +3,7 @@
         <h3>STORED ITEMS</h3>
     </div>
     <div class="panel-body">
+        <toast></toast>
         <input type="text" class="form-control pull-right"  ng-model="$ctrl.searchItem" placeholder="Search">
         <br>
         <br><br>
@@ -18,7 +19,7 @@
                 <th style="font-size: 13px;">More Details</th>
                 <th style="font-size: 13px;">Action</th>
             </tr>
-            <tr ng-show="!$ctrl.message" ng-repeat="item in $ctrl.items">
+            <tr ng-show="!$ctrl.message" ng-repeat="item in $ctrl.items | filter: $ctrl.searchItem">
                 <td class="text-center">
                     <a href="" ng-click="$ctrl.openLightboxModal(item.imageURLs)">
                         <img ng-src="{{item.imageURLs[0]}}" class="img-thumbnail">

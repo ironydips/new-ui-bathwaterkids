@@ -7,6 +7,7 @@
         <input type="text" class="form-control pull-right"  ng-model="$ctrl.searchItem" placeholder="Search">
         <br>
         <br><br>
+        <toast></toast>
         <table class="table text-center">
             <tr>
                 <th class="col-md-1">Images</th>
@@ -20,7 +21,7 @@
                 <th style="font-size: 13px;">More Details</th>
                 <th style="font-size: 13px;">Action</th>
             </tr>
-            <tr ng-show="!$ctrl.message" ng-repeat="item in $ctrl.items" ng-click="$ctrl.selectRow($index)" ng-class="{'highlight': $index == $ctrl.selectedRow}">
+            <tr ng-show="!$ctrl.message" ng-repeat="item in $ctrl.items | filter: $ctrl.searchItem" ng-click="$ctrl.selectRow($index)" ng-class="{'highlight': $index == $ctrl.selectedRow}">
                 <td class="text-center">
                     <a href="" ng-click="$ctrl.openLightboxModal(item.imageURLs)">
                         <img ng-src="{{item.imageURLs[0]}}" class="img-thumbnail">

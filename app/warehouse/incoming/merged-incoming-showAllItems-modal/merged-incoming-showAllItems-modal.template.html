@@ -1,11 +1,13 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
         <h3>INBOUND ITEMS</h3>
-    </div>
+    </div><toast></toast>
     <div class="panel-body">
-        <input type="text" class="form-control pull-right"  ng-model="$ctrl.searchItem" placeholder="Search">
+        
+        <input type="text" class="form-control pull-right" ng-model="$ctrl.searchItem" placeholder="Search">
         <br>
-        <br><br>
+        <br>
+        <br>
         <table class="table text-center">
             <tr>
                 <th class="col-md-1">Images</th>
@@ -18,7 +20,7 @@
                 <th style="font-size: 13px;">More Details</th>
                 <th style="font-size: 13px;">Action</th>
             </tr>
-            <tr ng-show="!$ctrl.message" ng-repeat="item in $ctrl.items">
+            <tr ng-show="!$ctrl.message" ng-repeat="item in $ctrl.items | filter: $ctrl.searchItem">
                 <td class="text-center">
                     <a href="" ng-click="$ctrl.openLightboxModal(item.imageURLs)">
                         <img ng-src="{{item.imageURLs[0]}}" class="img-thumbnail">

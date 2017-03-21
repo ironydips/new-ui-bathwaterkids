@@ -37,16 +37,16 @@
         ctrl.init = function() {
             warehouseMoveItems.getItemsByStatus("OUTBOUND")
                 .then(function(response) {
-                    if (response.data) {
+                    if (angular.isArray(response.data)) {
                         ctrl.items = response.data;
-                        if (ctrl.items.message) {
-                            ctrl.message = true;
-                        }
                         for (var i = 0; i < ctrl.items.length; i++) {
                             if (ctrl.items[i].imageURLs.length == 0) {
                                 ctrl.items[i].imageURLs[0] = "https://www.moh.gov.bh/Content/Upload/Image/636009821114059242-not-available.jpg";
                             }
                         }
+                    }else{
+                        ctrl.items = [];
+                        ctrl.message = true;
                     }
 
                 })
@@ -68,7 +68,6 @@
 
         ctrl.update = function(item) {
 
-            if(item.itemCode != null){
                  warehouseMoveItems.updateDropItemStatus(item.storedItemId, item.location, "OUTBOUND", item.itemCode[0])
                 .then(function(result) {
                     //ctrl.modalInstance.close({action: 'update'});
@@ -77,7 +76,7 @@
                     console.log('Error updating DROP ITEM STATUS in warehouse');
                     console.log(err);
                 });
-            }
+            
 
            
         }

@@ -65,7 +65,12 @@
 
         modalInstance.result.then(function(data) {
                 //data passed when pop up closed.
-                if (data && data.action == 'update') popUpCtrl.init();
+                if (data && data.action == 'update') {
+                    popUpCtrl.ngToast.create({
+                        content: 'Item Moved to Outbound Items',
+                    });
+                    popUpCtrl.init();
+                }
 
 
             }),
@@ -77,10 +82,11 @@
     }
 
 
-    function newOutgoingController($state, $uibModal, warehouseMoveItems, Lightbox) {
+    function newOutgoingController($state, $uibModal,ngToast, warehouseMoveItems, Lightbox) {
         var ctrl = this;
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
+        ctrl.ngToast = ngToast;
         ctrl.message = false;
 
         ctrl.init = function() {
@@ -107,13 +113,8 @@
         ctrl.getItemByStatus = function(status) {
             warehouseMoveItems.getItemsByStatus(status)
                 .then(function(response) {
-                    if (response.data) {
+                    if (angular.isArray(response.data)) {
                         ctrl.items = response.data;
-                        ctrl.message = response.data.message;
-                        if (ctrl.items.message) {
-                            ctrl.message = true;
-                        }
-
                         ctrl.items.status = "REQUESTED_DROPFF";
 
                         for (var i = 0; i < ctrl.items.length; i++) {
@@ -121,6 +122,9 @@
                                 ctrl.items[i].imageURLs[0] = "https://www.moh.gov.bh/Content/Upload/Image/636009821114059242-not-available.jpg";
                             }
                         }
+                    }else{
+                        ctrl.items = [];
+                        ctrl.message = true;
                     }
 
                 })
@@ -141,6 +145,6 @@
     angular.module('newOutgoingWarehouseDetails')
         .component('newOutgoingWarehouseDetails', {
             templateUrl: 'warehouse/warehouse-outgoing/new-outgoing-details/new-outgoing-details.template.html',
-            controller: ['$state', '$uibModal', 'warehouseMoveItems', 'Lightbox', newOutgoingController]
+            controller: ['$state', '$uibModal','ngToast', 'warehouseMoveItems', 'Lightbox', newOutgoingController]
         });
 })(window.angular);

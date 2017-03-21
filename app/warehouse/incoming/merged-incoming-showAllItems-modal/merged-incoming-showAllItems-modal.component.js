@@ -29,8 +29,8 @@
 
     }
 
-  
-    function MergeIncomingShowAllModal($state, $uibModal, warehouseMoveItems, Lightbox) {
+
+    function MergeIncomingShowAllModal($state, $uibModal, warehouseMoveItems, ngToast, Lightbox) {
         var ctrl = this;
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
@@ -51,16 +51,17 @@
         ctrl.getItemByStatus = function(status) {
             warehouseMoveItems.getItemsByStatus(status)
                 .then(function(response) {
-                    if (response.data) {
+                    if (angular.isArray(response.data)) {
                         ctrl.items = response.data;
-                        if (ctrl.items.message) {
-                            ctrl.message = true;
-                        }
+
                         for (var i = 0; i < ctrl.items.length; i++) {
                             if (ctrl.items[i].imageURLs.length == 0) {
                                 ctrl.items[i].imageURLs[0] = "https://www.moh.gov.bh/Content/Upload/Image/636009821114059242-not-available.jpg";
                             }
                         }
+                    } else {
+                        ctrl.items = [];
+                        ctrl.message = true;
                     }
                 })
                 .catch(function(err) {
@@ -73,7 +74,15 @@
 
             warehouseMoveItems.updateItemInWarehouse(storedItemId, location, "RECEIVED")
                 .then(function(result) {
+
                     ctrl.getItemByStatus("INBOUND");
+                    ngToast.create({
+                        //className: 'success',
+                        content: 'Item Moved to Received Items',
+                        // dismissButton : true,
+                        // horizontalPosition : 'center'
+                    });
+
                 })
                 .catch(function(err) {
                     console.log('Error updating status & location of item in warehouse');
@@ -93,7 +102,7 @@
     angular.module('mergeincomingShowAllModal')
         .component('mergeincomingShowAllModal', {
             templateUrl: 'warehouse/incoming/merged-incoming-showAllItems-modal/merged-incoming-showAllItems-modal.template.html',
-            controller: ['$state', '$uibModal', 'warehouseMoveItems', 'Lightbox', MergeIncomingShowAllModal],
+            controller: ['$state', '$uibModal', 'warehouseMoveItems', 'ngToast', 'Lightbox', MergeIncomingShowAllModal],
             bindings: {
                 modalInstance: '<',
                 resolve: '<'

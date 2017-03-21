@@ -1,4 +1,4 @@
 'use strict';
 
-angular.module('updateLocStoredModal',['bathwaterApp.services',]);
+angular.module('updateLocStoredModal',['ngToast','bathwaterApp.services',]);
 
