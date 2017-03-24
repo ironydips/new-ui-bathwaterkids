@@ -2,7 +2,7 @@
 
     "use strict";
 
-    function WarehouseMoveItems($http) {
+    function WarehouseMoveItemService($http) {
 
         var itemArray = [];
 
@@ -44,6 +44,26 @@
             });
         };
 
+        var outgoingItems = function(date){
+            return $http({
+                    url: '/rest/admin/outgoingItems?date='+ date,
+                    method: "GET",
+                    headers:{
+                        "Authorization": 'Basic YWRtaW46YWRtaW4='
+                }
+            });
+        };
+
+        var incomingItems = function(date){
+            return $http({
+                    url: '/rest/admin/incomingItems?date='+ date,
+                    method: "GET",
+                    headers:{
+                        "Authorization": 'Basic YWRtaW46YWRtaW4='
+                }
+            });
+        };
+
 
         return {
 
@@ -51,13 +71,15 @@
             getMovedSavedItems,
             getItemsByStatus,
             updateItemInWarehouse,
-            updateDropItemStatus
+            updateDropItemStatus,
+            outgoingItems,
+            incomingItems
 
         }
 
     }
 
     angular.module('bathwaterApp.services')
-        .factory("warehouseMoveItems", ['$http',WarehouseMoveItems]);
+        .factory("warehouseMoveItemService", ['$http',WarehouseMoveItemService]);
 
 })(window.angular);

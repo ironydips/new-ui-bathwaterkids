@@ -2,7 +2,7 @@
 
     'use strict';
 
-    function IncomingShowAllModal($state, warehouseMoveItems) {
+    function IncomingShowAllModal($state, warehouseMoveItemService) {
         var ctrl = this;
         ctrl.truckID = (ctrl.resolve && ctrl.resolve.details || {});
         ctrl.disableItem = true;
@@ -89,7 +89,7 @@
 
             for (var i = 0; i < ctrl.itemArray.length; i++) {
                 ctrl.itemArray[i]["truckID"] = ctrl.truckID;
-                warehouseMoveItems.moveItems(ctrl.itemArray[i]);
+                warehouseMoveItemService.moveItems(ctrl.itemArray[i]);
                 ctrl.modalInstance.close();
             }
 
@@ -101,7 +101,7 @@
     angular.module('incomingShowAllModal')
         .component('incomingShowAllModal', {
             templateUrl: 'warehouse/incoming/incoming-showAllItems-modal/incoming-showAllItems-modal.template.html',
-            controller: ['$state', 'warehouseMoveItems', IncomingShowAllModal],
+            controller: ['$state', 'warehouseMoveItemService', IncomingShowAllModal],
             bindings: {
                 modalInstance: '<',
                 resolve: '<'

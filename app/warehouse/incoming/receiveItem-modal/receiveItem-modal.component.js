@@ -56,14 +56,14 @@
 
     }
 
-    function ReceiveItemModalController($state, $uibModal, warehouseMoveItems) {
+    function ReceiveItemModalController($state, $uibModal, warehouseMoveItemService) {
         var ctrl = this;
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
         ctrl.message = false;
 
         ctrl.init = function() {
-            warehouseMoveItems.getItemsByStatus("RECEIVED")
+            warehouseMoveItemService.getItemsByStatus("RECEIVED")
                 .then(function(response) {
                     if (angular.isArray(response.data)) {
                         ctrl.items = response.data;
@@ -104,7 +104,7 @@
     angular.module('receiveincomingProductModal')
         .component('receiveincomingProductModal', {
             templateUrl: 'warehouse/incoming/receiveItem-modal/receiveItem-modal.template.html',
-            controller: ['$state', '$uibModal', 'warehouseMoveItems', ReceiveItemModalController],
+            controller: ['$state', '$uibModal', 'warehouseMoveItemService', ReceiveItemModalController],
             bindings: {
                 modalInstance: '<'
             }

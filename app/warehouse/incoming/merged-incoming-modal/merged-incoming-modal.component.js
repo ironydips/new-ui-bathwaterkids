@@ -84,7 +84,7 @@
     }
 
 
-    function MergedIncomingController($state, $uibModal) {
+    function MergedIncomingController($state, $uibModal, warehouseMoveItemService) {
         var ctrl = this;
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
@@ -136,12 +136,33 @@
             ctrl.selectedRow = rowIndex;
         };
 
+        ctrl.selectedDate = function(date){
+
+            warehouseMoveItemService.outgoingItems(date)
+                .then(function(response) {
+                    console.log(response)
+                })
+                .catch(function(err) {
+                    console.log('Error getting outgoing item status details:');
+                    console.log(err);
+                });
+
+                 warehouseMoveItemService.incomingItems(date)
+                .then(function(response) {
+                    console.log(response)
+                })
+                .catch(function(err) {
+                    console.log('Error getting incoming item status details:');
+                    console.log(err);
+                });
+        }
+
         ctrl.init();
     }
 
     angular.module('mergedIncomingWarehouseDetails')
         .component('mergedIncomingWarehouseDetails', {
             templateUrl: 'warehouse/incoming/merged-incoming-modal/merged-incoming-modal.template.html',
-            controller: ['$state', '$uibModal', MergedIncomingController]
+            controller: ['$state', '$uibModal','warehouseMoveItemService', MergedIncomingController]
         });
 })(window.angular);

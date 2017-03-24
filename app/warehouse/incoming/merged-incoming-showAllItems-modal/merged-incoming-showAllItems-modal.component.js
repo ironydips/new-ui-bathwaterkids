@@ -30,7 +30,7 @@
     }
 
 
-    function MergeIncomingShowAllModal($state, $uibModal, warehouseMoveItems, ngToast, Lightbox) {
+    function MergeIncomingShowAllModal($state, $uibModal, warehouseMoveItemService, ngToast, Lightbox) {
         var ctrl = this;
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
@@ -49,7 +49,7 @@
             Lightbox.openModal(images, 0);
         };
         ctrl.getItemByStatus = function(status) {
-            warehouseMoveItems.getItemsByStatus(status)
+            warehouseMoveItemService.getItemsByStatus(status)
                 .then(function(response) {
                     if (angular.isArray(response.data)) {
                         ctrl.items = response.data;
@@ -68,11 +68,31 @@
                     console.log('Error getting item status details:');
                     console.log(err);
                 });
+
+                warehouseMoveItemService.outgoingItems()
+                .then(function(response) {
+                    console.log(response)
+                })
+                .catch(function(err) {
+                    console.log('Error getting outgoing item status details:');
+                    console.log(err);
+                });
+
+                 warehouseMoveItemService.incomingItems()
+                .then(function(response) {
+                    console.log(response)
+                })
+                .catch(function(err) {
+                    console.log('Error getting incoming item status details:');
+                    console.log(err);
+                });
+
+
         };
 
         ctrl.receiveItem = function(storedItemId, location) {
 
-            warehouseMoveItems.updateItemInWarehouse(storedItemId, location, "RECEIVED")
+            warehouseMoveItemService.updateItemInWarehouse(storedItemId, location, "RECEIVED")
                 .then(function(result) {
 
                     ctrl.getItemByStatus("INBOUND");
@@ -102,7 +122,7 @@
     angular.module('mergeincomingShowAllModal')
         .component('mergeincomingShowAllModal', {
             templateUrl: 'warehouse/incoming/merged-incoming-showAllItems-modal/merged-incoming-showAllItems-modal.template.html',
-            controller: ['$state', '$uibModal', 'warehouseMoveItems', 'ngToast', 'Lightbox', MergeIncomingShowAllModal],
+            controller: ['$state', '$uibModal', 'warehouseMoveItemService', 'ngToast', 'Lightbox', MergeIncomingShowAllModal],
             bindings: {
                 modalInstance: '<',
                 resolve: '<'

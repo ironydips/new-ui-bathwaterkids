@@ -2,7 +2,7 @@
 
     'use strict';
 
-    function OutgoingAssignTruckModal($state, ngToast, warehouseMoveItems) {
+    function OutgoingAssignTruckModal($state, ngToast, warehouseMoveItemService) {
         var ctrl = this;
         ctrl.item = (ctrl.resolve && ctrl.resolve.details || {});
 
@@ -11,7 +11,7 @@
 
         };
         ctrl.outbound = function() {
-            warehouseMoveItems.updateItemInWarehouse(ctrl.item.storedItemId, ctrl.item.location, "OUTBOUND")
+            warehouseMoveItemService.updateItemInWarehouse(ctrl.item.storedItemId, ctrl.item.location, "OUTBOUND")
                 .then(function(result) {
                     ctrl.modalInstance.close({ action: 'update' });
                     
@@ -33,7 +33,7 @@
     angular.module('outgoingAssignTruckModal')
         .component('outgoingAssignTruckModal', {
             templateUrl: 'warehouse/warehouse-outgoing/outgoing-assignTruck-modal/outgoing-assignTruck-modal.template.html',
-            controller: ['$state','ngToast', 'warehouseMoveItems', OutgoingAssignTruckModal],
+            controller: ['$state','ngToast', 'warehouseMoveItemService', OutgoingAssignTruckModal],
             bindings: {
                 modalInstance: '<',
                 resolve: '<'

@@ -28,14 +28,14 @@
 
     }
 
-    function OutboundItemModalController($state, $uibModal, warehouseMoveItems) {
+    function OutboundItemModalController($state, $uibModal, warehouseMoveItemService) {
         var ctrl = this;
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
         ctrl.message = false;
 
         ctrl.init = function() {
-            warehouseMoveItems.getItemsByStatus("OUTBOUND")
+            warehouseMoveItemService.getItemsByStatus("OUTBOUND")
                 .then(function(response) {
                     if (angular.isArray(response.data)) {
                         ctrl.items = response.data;
@@ -68,7 +68,7 @@
 
         ctrl.update = function(item) {
 
-                 warehouseMoveItems.updateDropItemStatus(item.storedItemId, item.location, "OUTBOUND", item.itemCode[0])
+                 warehouseMoveItemService.updateDropItemStatus(item.storedItemId, item.location, "OUTBOUND", item.itemCode[0])
                 .then(function(result) {
                     //ctrl.modalInstance.close({action: 'update'});
                 })
@@ -91,7 +91,7 @@
     angular.module('outboundProductModal')
         .component('outboundProductModal', {
             templateUrl: 'warehouse/warehouse-outgoing/outboundItem-modal/outboundItem-modal.template.html',
-            controller: ['$state', '$uibModal', 'warehouseMoveItems', OutboundItemModalController],
+            controller: ['$state', '$uibModal', 'warehouseMoveItemService', OutboundItemModalController],
             bindings: {
                 modalInstance: '<'
             }

@@ -2,7 +2,7 @@
 
 
 'use strict';
-function UpdateLocStatusModalController($state, warehouseMoveItems){
+function UpdateLocStatusModalController($state, warehouseMoveItemService){
 	var ctrl = this;
 	ctrl.itemDetail = (ctrl.resolve && ctrl.resolve.details) || {};
 	ctrl.item = {
@@ -11,7 +11,7 @@ function UpdateLocStatusModalController($state, warehouseMoveItems){
         };
 
 	ctrl.save = function(location , status){     
-		warehouseMoveItems.updateItemInWarehouse(ctrl.itemDetail.storedItemId, location, status)
+		warehouseMoveItemService.updateItemInWarehouse(ctrl.itemDetail.storedItemId, location, status)
 				.then(function(result){
 			ctrl.modalInstance.close({action: 'update'});
 		})
@@ -31,7 +31,7 @@ function UpdateLocStatusModalController($state, warehouseMoveItems){
 angular.module('updateLocStatusModal')
 	.component('updateLocStatusModal',{
 		templateUrl: 'warehouse/incoming/updateLocStatus-modal/updateLocStatus-modal.template.html',
-		controller:['$state','warehouseMoveItems', UpdateLocStatusModalController],
+		controller:['$state','warehouseMoveItemService', UpdateLocStatusModalController],
 		bindings:{
 			modalInstance: '<',
 			resolve: '<'

@@ -82,7 +82,7 @@
     }
 
 
-    function newOutgoingController($state, $uibModal,ngToast, warehouseMoveItems, Lightbox) {
+    function newOutgoingController($state, $uibModal,ngToast, warehouseMoveItemService, Lightbox) {
         var ctrl = this;
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
@@ -111,7 +111,7 @@
             Lightbox.openModal(images, 0);
         };
         ctrl.getItemByStatus = function(status) {
-            warehouseMoveItems.getItemsByStatus(status)
+            warehouseMoveItemService.getItemsByStatus(status)
                 .then(function(response) {
                     if (angular.isArray(response.data)) {
                         ctrl.items = response.data;
@@ -145,6 +145,6 @@
     angular.module('newOutgoingWarehouseDetails')
         .component('newOutgoingWarehouseDetails', {
             templateUrl: 'warehouse/warehouse-outgoing/new-outgoing-details/new-outgoing-details.template.html',
-            controller: ['$state', '$uibModal','ngToast', 'warehouseMoveItems', 'Lightbox', newOutgoingController]
+            controller: ['$state', '$uibModal','ngToast', 'warehouseMoveItemService', 'Lightbox', newOutgoingController]
         });
 })(window.angular);

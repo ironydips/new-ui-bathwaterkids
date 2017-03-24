@@ -2,7 +2,7 @@
 
 
 'use strict';
-function UpdateLocRequestDropModalController($state, warehouseMoveItems){
+function UpdateLocRequestDropModalController($state, warehouseMoveItemService){
 	var ctrl = this;
 	ctrl.itemDetail = (ctrl.resolve && ctrl.resolve.details) || {};
 	ctrl.item = {
@@ -11,7 +11,7 @@ function UpdateLocRequestDropModalController($state, warehouseMoveItems){
         };
 
 	ctrl.save = function(location){     
-		warehouseMoveItems.updateItemInWarehouse(ctrl.itemDetail.storedItemId, location, "REQUESTED_DROPFF")
+		warehouseMoveItemService.updateItemInWarehouse(ctrl.itemDetail.storedItemId, location, "REQUESTED_DROPFF")
 				.then(function(result){
 			ctrl.modalInstance.close({action: 'update'});
 		})
@@ -20,7 +20,7 @@ function UpdateLocRequestDropModalController($state, warehouseMoveItems){
 			console.log(err);
 		});
 
-		// warehouseMoveItems.updateDropItemStatus(ctrl.itemDetail.storedItemId, location, status, ctrl.itemDetail.itemCode[0])
+		// warehouseMoveItemService.updateDropItemStatus(ctrl.itemDetail.storedItemId, location, status, ctrl.itemDetail.itemCode[0])
 		// 		.then(function(result){
 		// 	//ctrl.modalInstance.close({action: 'update'});
 		// 	console.log(result)
@@ -39,7 +39,7 @@ function UpdateLocRequestDropModalController($state, warehouseMoveItems){
 angular.module('updateLocRequestDropModal')
 	.component('updateLocRequestDropModal',{
 		templateUrl: 'warehouse/incoming/updateLocStatus-requestDrop-modal/updateLocStatus-requestDrop-modal.template.html',
-		controller:['$state','warehouseMoveItems', UpdateLocRequestDropModalController],
+		controller:['$state','warehouseMoveItemService', UpdateLocRequestDropModalController],
 		bindings:{
 			modalInstance: '<',
 			resolve: '<'

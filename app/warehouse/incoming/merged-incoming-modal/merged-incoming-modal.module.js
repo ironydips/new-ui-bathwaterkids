@@ -3,6 +3,7 @@
 
 angular.module('mergedIncomingWarehouseDetails',[
 		'ui.bootstrap',
+		'720kb.datepicker',
 		'mergeincomingShowAllModal',
 	    'receiveincomingProductModal',
 	    'storedProductModal',

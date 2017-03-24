@@ -1,9 +1,9 @@
 (function(angular) {
     'use strict';
 
-    function addInventoryModalController($state, warehouseMoveItems) {
+    function addInventoryModalController($state, warehouseMoveItemService) {
         var ctrl = this;
-        ctrl.items = warehouseMoveItems.getMovedSavedItems();
+        ctrl.items = warehouseMoveItemService.getMovedSavedItems();
 
         ctrl.save = function() {
 
@@ -17,7 +17,7 @@
     angular.module('addInventoryModal')
         .component('addInventoryModal', {
             templateUrl: 'warehouse/incoming/savedItems-modal/savedItems-modal.template.html',
-            controller: ['$state', 'warehouseMoveItems', addInventoryModalController],
+            controller: ['$state', 'warehouseMoveItemService', addInventoryModalController],
             bindings: {
                 modalInstance: '<'
             }

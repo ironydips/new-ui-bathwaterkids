@@ -59,7 +59,7 @@
     }
 
 
-    function newIncomingController($state, $uibModal, warehouseMoveItems, Lightbox) {
+    function newIncomingController($state, $uibModal, warehouseMoveItemService, Lightbox) {
         var ctrl = this;
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
@@ -87,7 +87,7 @@
         };
         ctrl.getItemByStatus = function(status) {
             
-            warehouseMoveItems.getItemsByStatus(status)
+            warehouseMoveItemService.getItemsByStatus(status)
                 .then(function(response) {
                     if(angular.isArray(response.data)){
                         ctrl.items = response.data;
@@ -117,6 +117,6 @@
     angular.module('newIncomingWarehouseDetails')
         .component('newIncomingWarehouseDetails', {
             templateUrl: 'warehouse/incoming/new-incoming-details/new-incoming-details.template.html',
-            controller: ['$state', '$uibModal', 'warehouseMoveItems','Lightbox', newIncomingController]
+            controller: ['$state', '$uibModal', 'warehouseMoveItemService','Lightbox', newIncomingController]
         });
 })(window.angular);

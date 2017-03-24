@@ -28,14 +28,14 @@
 
     }
 
-    function StoredItemModalController($state, $uibModal, ngToast, warehouseMoveItems) {
+    function StoredItemModalController($state, $uibModal, ngToast, warehouseMoveItemService) {
         var ctrl = this;
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
         ctrl.message = false;
 
         ctrl.init = function() {
-            warehouseMoveItems.getItemsByStatus("STORED")
+            warehouseMoveItemService.getItemsByStatus("STORED")
                 .then(function(response) {
                     if (angular.isArray(response.data)) {
                         ctrl.items = response.data;
@@ -63,7 +63,7 @@
 
         ctrl.requestDropOff = function(storedItemId, location) {
 
-            warehouseMoveItems.updateItemInWarehouse(storedItemId, location, "REQUESTED_DROPFF")
+            warehouseMoveItemService.updateItemInWarehouse(storedItemId, location, "REQUESTED_DROPFF")
                 .then(function(result) {
                     ctrl.init();
                     ngToast.create({
@@ -89,7 +89,7 @@
     angular.module('storedProductModal')
         .component('storedProductModal', {
             templateUrl: 'warehouse/incoming/storedItem-modal/storedItem-modal.template.html',
-            controller: ['$state', '$uibModal','ngToast', 'warehouseMoveItems', StoredItemModalController],
+            controller: ['$state', '$uibModal','ngToast', 'warehouseMoveItemService', StoredItemModalController],
             bindings: {
                 modalInstance: '<'
             }

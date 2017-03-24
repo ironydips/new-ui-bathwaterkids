@@ -2,7 +2,7 @@
 
 
 'use strict';
-function UpdateLocStoredModalController($state, ngToast, warehouseMoveItems){
+function UpdateLocStoredModalController($state, ngToast, warehouseMoveItemService){
 	var ctrl = this;
 	ctrl.itemDetail = (ctrl.resolve && ctrl.resolve.details) || {};
 
@@ -10,7 +10,7 @@ function UpdateLocStoredModalController($state, ngToast, warehouseMoveItems){
 		if(location == ""){
 			location = "nolocation";
 		}     
-		warehouseMoveItems.updateItemInWarehouse(ctrl.itemDetail.storedItemId, location, "STORED")
+		warehouseMoveItemService.updateItemInWarehouse(ctrl.itemDetail.storedItemId, location, "STORED")
 				.then(function(result){
 			ctrl.modalInstance.close({action: 'update'});
 			ngToast.create({
@@ -23,7 +23,7 @@ function UpdateLocStoredModalController($state, ngToast, warehouseMoveItems){
 			console.log(err);
 		});
 
-		// warehouseMoveItems.updateDropItemStatus(ctrl.itemDetail.storedItemId, location, status, ctrl.itemDetail.itemCode[0])
+		// warehouseMoveItemService.updateDropItemStatus(ctrl.itemDetail.storedItemId, location, status, ctrl.itemDetail.itemCode[0])
 		// 		.then(function(result){
 		// 	//ctrl.modalInstance.close({action: 'update'});
 		// 	console.log(result)
@@ -42,7 +42,7 @@ function UpdateLocStoredModalController($state, ngToast, warehouseMoveItems){
 angular.module('updateLocStoredModal')
 	.component('updateLocStoredModal',{
 		templateUrl: 'warehouse/incoming/updateLocStatus-stored-modal/updateLocStatus-stored-modal.template.html',
-		controller:['$state','ngToast','warehouseMoveItems', UpdateLocStoredModalController],
+		controller:['$state','ngToast','warehouseMoveItemService', UpdateLocStoredModalController],
 		bindings:{
 			modalInstance: '<',
 			resolve: '<'

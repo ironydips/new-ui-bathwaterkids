@@ -25,22 +25,22 @@
 
 		var getUserRequest = function(userID){
 			return $http({
-		            url: '/rest//getUserRequests?userid='+ userID,
+		            url: '/rest/getUserRequests?userid='+ userID,
 		            method: "GET",
 		            headers:{
 	            		"Authorization": 'Basic YWRtaW46YWRtaW4='
 	            }
 	        });
 		};
-		// var getInventory = function(userID){
-		// 	return $http({
-		//             url: '/rest/getItems?userid='+ userID,
-		//             method: "GET",
-		//             headers:{
-	 //            		"Authorization": 'Basic YWRtaW46YWRtaW4='
-	 //            }
-	 //        });
-		// };
+		var getTrucksByUserrequests = function(){
+			return $http({
+		            url: '/admin/getTrucksByUserrequests?date='+ "21/03/2017",
+		            method: "GET",
+		            headers:{
+	            		"Authorization": 'Basic YWRtaW46YWRtaW4='
+	            }
+	        });
+		};
 		
 
 		//EXPORTED Object
@@ -48,7 +48,7 @@
 			getUsers,
 			getUserInventory,
 			getUserRequest,
-			//getInventory
+			getTrucksByUserrequests
 		}
 	}
 
