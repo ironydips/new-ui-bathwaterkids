@@ -27,13 +27,38 @@
             }
     }
 
-    function userReqModalController($state, $uibModal, customerUserService, Lightbox) {
+    function userDetailPopUp(details) {
+
+        var popUpCtrl = this;
+        var modalInstance = popUpCtrl.$uibModal.open({
+            component: 'viewUserDetailModal',
+            windowClass: 'app-modal-window-large',
+            keyboard: false,
+            resolve: {
+                details: function() {
+                    return (details || {});
+                }
+            },
+            backdrop: 'static'
+        });
+
+        modalInstance.result.then(function(data) {
+            //data passed when pop up closed.
+            //if (data && data.action == "update");
+            
+        }), function(err) {
+            console.log('Error in customer subscribe Modal');
+            console.log(err);
+        }
+    }
+
+    function ViewTruckItemModalController($state, $uibModal, ngToast, warehouseMoveItemService, Lightbox) {
         var ctrl = this;
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
 
-        ctrl.customer = (ctrl.resolve && ctrl.resolve.details) || {};
-        ctrl.isDisabled = Object.keys(ctrl.customer).length > 0;
+        ctrl.requestedItems = (ctrl.resolve && ctrl.resolve.details) || {};
+        
         ctrl.userReq = [];
         ctrl.itemsArray = [];
         ctrl.imageURLs = [];
@@ -46,29 +71,11 @@
 
         ctrl.init = function() {
             ctrl.noUserReqMessage = true;
-
-            customerUserService.getUserRequest(ctrl.customer.userID)
-                .then(function(response) {
-
-
-                    if (response.data.length > 0) {
-
-                        response.data.forEach(function(data) {
+            ctrl.requestedItems.items.forEach(function(data) {
                             data.isChecked = false;
+                            
                         });
 
-                        ctrl.userReq = response.data;
-                        ctrl.UserReqmessage = false;
-
-                    } else {
-                        ctrl.message = true;
-                        ctrl.itemsMessage = "Data does not exist";
-                    }
-                })
-                .catch(function(err) {
-                    console.log('Error getting user-request details:');
-                    console.log(err);
-                });
         };
 
 
@@ -89,7 +96,10 @@
                             }
                         }
                     }
-                    item.items.forEach(function(data) { data.userRequestID = item.userRequestID });
+                    item.items.forEach(function(data) { 
+                        data.userRequestID = item.userRequestID;
+                        data.location = "noLocation";
+                     });
                     ctrl.itemsArray = ctrl.itemsArray.concat(item.items);
                     ctrl.selectedRow = item.userRequestID;
                 } else {
@@ -119,9 +129,34 @@
             ctrl.selectedRow = "";
         };
 
+        ctrl.receiveItem = function(storedItemId, location) {
+
+            warehouseMoveItemService.updateItemInWarehouse(storedItemId, location, "RECEIVED")
+                .then(function(result) {
+
+
+                    // ngToast.create({
+                    //     //className: 'success',
+                    //     content: 'Item Moved to Received Items',
+                    //     // dismissButton : true,
+                    //     // horizontalPosition : 'center'
+                    // });
+
+                })
+                .catch(function(err) {
+                    console.log('Error updating status & location of item in warehouse');
+                    console.log(err);
+                });
+
+        };
+
         ctrl.subItems = function(subitem) {
 
             angular.bind(ctrl, openSubItem, subitem)();
+        };
+        
+        ctrl.viewUserDetail = function(userDetail) {
+            angular.bind(ctrl, userDetailPopUp, userDetail)();
         };
 
         ctrl.cancel = function() {
@@ -131,10 +166,10 @@
         ctrl.init();
     }
 
-    angular.module('customerUserReqModal')
-        .component('customerUserReqModal', {
-            templateUrl: 'customers/customer-userRequest-modal/customer-userRequest-modal.template.html',
-            controller: ['$state', '$uibModal', 'customerUserService', 'Lightbox', userReqModalController],
+    angular.module('viewTruckItemModal')
+        .component('viewTruckItemModal', {
+            templateUrl: 'warehouse/incoming/truckItem-itemDetail-modal/truckItem-itemDetail-modal.template.html',
+            controller: ['$state', '$uibModal','ngToast','warehouseMoveItemService', 'Lightbox', ViewTruckItemModalController],
             bindings: {
                 modalInstance: '<',
                 resolve: '<'

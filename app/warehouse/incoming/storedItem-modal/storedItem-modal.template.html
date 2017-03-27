@@ -17,8 +17,8 @@
                 <th style="font-size: 13px;">CategoryID</th>
                 <th style="font-size: 13px;">Location</th>
                 <th style="font-size: 13px;">More Details</th>
-                <th style="font-size: 13px;">Action</th>
-            </tr>
+<!--                 <th style="font-size: 13px;">Action</th>
+ -->            </tr>
             <tr ng-show="!$ctrl.message" ng-repeat="item in $ctrl.items | filter: $ctrl.searchItem">
                 <td class="text-center">
                     <a href="" ng-click="$ctrl.openLightboxModal(item.imageURLs)">
@@ -34,9 +34,9 @@
                 <td>
                     <button type="button" ng-click="$ctrl.moreDetails(item)" class="btn btn-sm btn-primary">View</button>
                 </td>
-                <td>
+                <!-- <td>
                     <button type="button" ng-click="$ctrl.requestDropOff(item.storedItemId , item.location)" class="btn btn-sm btn-primary">Request DropOFF</button>
-                </td>
+                </td> -->
             </tr>
             <tr ng-show="$ctrl.message">
                 <td class="col-md-1"></td>

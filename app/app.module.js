@@ -45,5 +45,6 @@ angular.module('bathwaterApp', [
 	'newIncomingWarehouseDetails',
 	'mergedIncomingWarehouseDetails',
 	'outgoingWarehouseDetails',
-	'newOutgoingWarehouseDetails'
+	'newOutgoingWarehouseDetails',
+	'truckItemIncomingWarehouseDetails'
 ]);
