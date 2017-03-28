@@ -10,17 +10,17 @@
                                         <th style="font-size: 13px;" class="col-md-3 col-lg-2">User Name</th>
                                         <th style="font-size: 13px;" class="col-md-1">Zip Code</th>
                                         <th style="font-size: 13px;" class="col-md-3 col-lg-2">Assigned Driver</th>
-                                        <th style="font-size: 13px;" class="col-md-3">Action</th>
+                                        <!-- <th style="font-size: 13px;" class="col-md-3">Action</th> -->
                                     </tr>
-                                    <tr ng-repeat="ts in $ctrl.timeslots | filter:{status: 'completed'}">
+                                    <tr ng-repeat="ts in $ctrl.timeslots">
                                         
-                                        <td>{{ts.date}}</td>
-                                        <td>{{ts.time}}</td>
-                                        <td>{{ts.type}}</td>
-                                        <td>{{ts.user.firstName}} {{ts.user.lastName}}</td>
-                                        <td>{{ts.user.address.zipCode}}</td>
-                                        <td>{{ts.driver.firstName}} {{ts.driver.lastName}}</td>
-                                        <td>
+                                        <td>{{::ts.date}}</td>
+                                        <td>{{::ts.time}}</td>
+                                        <td>{{::ts.type}}</td>
+                                        <td>{{::ts.user.firstName}} {{::ts.user.lastName}}</td>
+                                        <td>{{::ts.user.address.zipCode}}</td>
+                                        <td>{{::ts.driver.firstName}} {{::ts.driver.lastName}}</td>
+                                        <!-- <td>
                                             <form method="post"  class="form-inline" role="form">
                                                 <div class="form-group">
                                                     <select class="form-control" ng-model="ts.selecteddriverC">
@@ -31,7 +31,7 @@
                                                 </div>
 
                                             </form>
-                                        </td>
+                                        </td> -->
                                     </tr>
                                 </table>
                             </div>

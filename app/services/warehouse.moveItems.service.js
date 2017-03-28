@@ -63,6 +63,23 @@
                 }
             });
         };
+        var checkoutItem = function(){
+            var data = {
+                itemCode: "BWG41107295",
+                userRequestID: "246915e5-a7c4-49e9-a099-5704f3274670"
+            }
+
+            return $http({
+                    url: '/rest/driver/checkoutItem',
+                    method: "POST",
+                    data: JSON.stringify(data),
+                    headers:{
+                        "Authorization": 'Basic YWRtaW46YWRtaW4='
+                }
+            });
+        };
+
+        
 
 
         return {
@@ -73,7 +90,8 @@
             updateItemInWarehouse,
             updateDropItemStatus,
             outgoingItems,
-            incomingItems
+            incomingItems,
+            checkoutItem
 
         }
 

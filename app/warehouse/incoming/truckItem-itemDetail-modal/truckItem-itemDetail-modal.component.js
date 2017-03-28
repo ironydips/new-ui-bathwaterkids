@@ -43,13 +43,14 @@
         });
 
         modalInstance.result.then(function(data) {
-            //data passed when pop up closed.
-            //if (data && data.action == "update");
-            
-        }), function(err) {
-            console.log('Error in customer subscribe Modal');
-            console.log(err);
-        }
+                //data passed when pop up closed.
+                //if (data && data.action == "update");
+
+            }),
+            function(err) {
+                console.log('Error in customer subscribe Modal');
+                console.log(err);
+            }
     }
 
     function ViewTruckItemModalController($state, $uibModal, ngToast, warehouseMoveItemService, Lightbox) {
@@ -58,7 +59,7 @@
         ctrl.$state = $state;
 
         ctrl.requestedItems = (ctrl.resolve && ctrl.resolve.details) || {};
-        
+
         ctrl.userReq = [];
         ctrl.itemsArray = [];
         ctrl.imageURLs = [];
@@ -66,16 +67,19 @@
 
         ctrl.UserReqmessage = true;
         ctrl.noItemMessage = true;
-
+        ctrl.signatureURLArray = [];
 
 
         ctrl.init = function() {
             ctrl.noUserReqMessage = true;
             ctrl.requestedItems.items.forEach(function(data) {
-                            data.isChecked = false;
-                            
-                        });
+                data.isChecked = false;
+                ctrl.signatureURLArray.push({"url": data.signatureURL})
+                console.log(ctrl.signatureURLArray)
+                data.signatureURLArray =ctrl.signatureURLArray ;
 
+            });
+            console.log(ctrl.requestedItems.items)
         };
 
 
@@ -96,15 +100,16 @@
                             }
                         }
                     }
-                    item.items.forEach(function(data) { 
+                    item.items.forEach(function(data) {
                         data.userRequestID = item.userRequestID;
                         data.location = "noLocation";
-                     });
+                    });
                     ctrl.itemsArray = ctrl.itemsArray.concat(item.items);
                     ctrl.selectedRow = item.userRequestID;
                 } else {
                     ctrl.itemsArray = ctrl.itemsArray.filter(function(data) {
-                        return data.userRequestID != item.userRequestID });
+                        return data.userRequestID != item.userRequestID
+                    });
                     if (ctrl.itemsArray.length == 0) {
                         ctrl.noItemMessage = true;
                     }
@@ -154,7 +159,7 @@
 
             angular.bind(ctrl, openSubItem, subitem)();
         };
-        
+
         ctrl.viewUserDetail = function(userDetail) {
             angular.bind(ctrl, userDetailPopUp, userDetail)();
         };
@@ -169,7 +174,7 @@
     angular.module('viewTruckItemModal')
         .component('viewTruckItemModal', {
             templateUrl: 'warehouse/incoming/truckItem-itemDetail-modal/truckItem-itemDetail-modal.template.html',
-            controller: ['$state', '$uibModal','ngToast','warehouseMoveItemService', 'Lightbox', ViewTruckItemModalController],
+            controller: ['$state', '$uibModal', 'ngToast', 'warehouseMoveItemService', 'Lightbox', ViewTruckItemModalController],
             bindings: {
                 modalInstance: '<',
                 resolve: '<'

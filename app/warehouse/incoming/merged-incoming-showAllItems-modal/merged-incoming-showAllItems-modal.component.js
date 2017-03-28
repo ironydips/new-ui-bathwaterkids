@@ -37,6 +37,14 @@
         ctrl.message = false;
 
         ctrl.init = function() {
+             warehouseMoveItemService.checkoutItem()
+                .then(function(response) {
+                    console.log(response)
+                })
+                .catch(function(err) {
+                    console.log('Error getting incoming item status details:');
+                    console.log(err);
+                });
             ctrl.getItemByStatus("INBOUND");
         };
 
@@ -78,14 +86,7 @@
                     console.log(err);
                 });
 
-                 warehouseMoveItemService.incomingItems()
-                .then(function(response) {
-                    console.log(response)
-                })
-                .catch(function(err) {
-                    console.log('Error getting incoming item status details:');
-                    console.log(err);
-                });
+                
 
 
         };

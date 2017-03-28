@@ -3,14 +3,10 @@
 
 function UserRequestCompletedModalController($state,UserRequestService,DriverService) {
     var ctrl = this;
-    ctrl.complete = (ctrl.resolve && ctrl.resolve.details) || {};
+    ctrl.timeslots = (ctrl.resolve && ctrl.resolve.details) || {};
 
     ctrl.init = function(){
-        UserRequestService.getUserList()
-            .then(function (uqcompleted) {
-            ctrl.timeslots = uqcompleted.data;
-        });
-
+        
         DriverService.getAllDrivers()
            .then(function (response) {
                ctrl.drivers = response.data;

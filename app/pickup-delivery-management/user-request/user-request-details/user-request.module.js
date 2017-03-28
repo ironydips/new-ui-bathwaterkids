@@ -3,6 +3,7 @@
 
 angular.module('userRequest',[
 	'ui.bootstrap',
+	'bathwaterApp.services',
 	'userRequestCompleteModal',
 	'userRequestNotStartedModal',
 	'userRequestInProgressModal'

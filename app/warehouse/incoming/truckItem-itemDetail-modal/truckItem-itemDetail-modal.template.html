@@ -2,7 +2,7 @@
 <div class="profileComponent">
     <div class="container">
         <div class="profileBg">
-            <h2>Incoming Items Request</h2>
+            <h2>Incoming Item Request</h2>
             <div class="inner-adjust">
                 <div style="height:250px;overflow:auto;">
                     <table class="table table-condensed text-center">
@@ -20,8 +20,8 @@
                                 <input type="checkbox" ng-model="req.isChecked" ng-click="$ctrl.getItems(req)">
                             </td>
                             <td>
-                                <a href="" ng-click="$ctrl.openLightboxModal(req.signatureURL)">
-                                    <img ng-src="{{req.signatureURL}}" class="img-thumbnail">
+                                <a href="" ng-click="$ctrl.openLightboxModal(req.signatureURLArray)">
+                                    <img ng-src="{{req.signatureURLArray[0].url}}" class="img-thumbnail">
                                 </a>
                             </td>
                             <td>{{req.userRequestID}}</td>
@@ -29,8 +29,8 @@
                             <td>{{req.time}}</td>
                             <td>{{req.numberOfItemsToBePicked}}</td>
                             <td>
-                                    <button type="button" ng-click="$ctrl.viewUserDetail(req)" class="btn btn-sm btn-primary">View</button>
-                                </td>
+                                <button type="button" ng-click="$ctrl.viewUserDetail(req)" class="btn btn-sm btn-primary">View</button>
+                            </td>
                         </tr>
                         <!--  <tr ng-show="$ctrl.UserReqmessage">
                             <td></td>
@@ -83,7 +83,7 @@
                                     <button type="button" ng-if="item.subItems" ng-click="$ctrl.subItems(item)" class="btn btn-sm btn-primary">View</button>
                                 </td>
                                 <td>
-                                    <button type="button" ng-if="item.subItems" ng-click="$ctrl.receiveItem(item.storedItemID, item.location)" class="btn btn-sm btn-primary">Receive Item</button>
+                                    <button type="button" ng-click="$ctrl.receiveItem(item.storedItemID, item.location)" class="btn btn-sm btn-primary">Receive Item</button>
                                 </td>
                             </tr>
                             <!-- <tr ng-show="$ctrl.noUserReqMessage">
