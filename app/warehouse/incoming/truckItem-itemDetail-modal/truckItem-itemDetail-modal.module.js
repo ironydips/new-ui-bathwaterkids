@@ -4,7 +4,6 @@
 angular.module('viewTruckItemModal',[
 	'bathwaterApp.services',
 	'bootstrapLightbox',
-	'driverInfoModal',
 	'viewUserDetailModal'
 	]);
 

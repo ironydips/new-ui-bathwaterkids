@@ -267,14 +267,14 @@ config(['$urlRouterProvider', '$stateProvider', '$httpProvider', 'ngToastProvide
                     }
                 }
             })
-            // .state('warehouse.newOutgoingWarehouse', {
-            //     url: '/newOutgoingWarehouse',
-            //     views: {
-            //         'contentSection@warehouse': {
-            //             template: '<new-outgoing-warehouse-details></new-outgoing-warehouse-details>'
-            //         }
-            //     }
-            // })
+            .state('warehouse.truckItemOutgoingWarehouse', {
+                url: '/truckItemOutgoingWarehouse',
+                views: {
+                    'contentSection@warehouse': {
+                        template: '<truck-item-outgoing-warehouse-details></truck-item-outgoing-warehouse-details>'
+                    }
+                }
+            })
     }
 
 ]);

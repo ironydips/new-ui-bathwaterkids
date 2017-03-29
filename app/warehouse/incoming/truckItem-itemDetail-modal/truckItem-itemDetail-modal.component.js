@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    function openSubItem(details) {
+    function openSubItemPopUp(details) {
 
         var popUpCtrl = this;
         var modalInstance = popUpCtrl.$uibModal.open({
@@ -22,7 +22,7 @@
 
             }),
             function(err) {
-                console.log('Error in SubItem Modal');
+                console.log('Error in SubItem Modal in warehouseMoveItemService');
                 console.log(err);
             }
     }
@@ -48,7 +48,7 @@
 
             }),
             function(err) {
-                console.log('Error in customer subscribe Modal');
+                console.log('Error in user detail Modal of Incoming Warehouse');
                 console.log(err);
             }
     }
@@ -57,46 +57,37 @@
         var ctrl = this;
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
-
         ctrl.requestedItems = (ctrl.resolve && ctrl.resolve.details) || {};
-
+        console.log(ctrl.requestedItems)
         ctrl.userReq = [];
         ctrl.itemsArray = [];
         ctrl.imageURLs = [];
-        //ctrl.itemSelected = false;
-
-        ctrl.UserReqmessage = true;
         ctrl.noItemMessage = true;
-        ctrl.signatureURLArray = [];
 
 
         ctrl.init = function() {
+
+
             ctrl.noUserReqMessage = true;
             ctrl.requestedItems.items.forEach(function(data) {
                 data.isChecked = false;
-                ctrl.signatureURLArray.push({"url": data.signatureURL})
-                console.log(ctrl.signatureURLArray)
-                data.signatureURLArray =ctrl.signatureURLArray ;
-
+                //Setting Signature URL data according to Lightbox Service for Image Display
+                data.signatureURLArray = [];
+                data.signatureURLArray.push({ "url": data.signatureURL });
             });
-            console.log(ctrl.requestedItems.items)
         };
 
 
-        ctrl.getItems = function(item) {
+        ctrl.getRequestedItems = function(item) {
 
             if (item.items) {
                 if (item.isChecked) {
 
                     ctrl.noItemMessage = false;
-                    ctrl.noUserReqMessage = false;
                     for (var i = 0; i < item.items.length; i++) {
                         for (var j = 0; j <= i; j++) {
                             if (typeof item.items[i].imagesBase64[j] == "undefined") {
-                                //ctrl.value = item.items[i].imagesBase64[j];
                                 item.items[i].imagesBase64[j] = "https://www.moh.gov.bh/Content/Upload/Image/636009821114059242-not-available.jpg";
-
-
                             }
                         }
                     }
@@ -124,7 +115,7 @@
             }
 
         };
-        ctrl.openLightboxModal = function(images) {
+        ctrl.openLightboxModal = function(images, index) {
             //LightBox Library used as Image Viewer.
             Lightbox.openModal(images, 0);
         };
@@ -140,13 +131,6 @@
                 .then(function(result) {
 
 
-                    // ngToast.create({
-                    //     //className: 'success',
-                    //     content: 'Item Moved to Received Items',
-                    //     // dismissButton : true,
-                    //     // horizontalPosition : 'center'
-                    // });
-
                 })
                 .catch(function(err) {
                     console.log('Error updating status & location of item in warehouse');
@@ -157,7 +141,7 @@
 
         ctrl.subItems = function(subitem) {
 
-            angular.bind(ctrl, openSubItem, subitem)();
+            angular.bind(ctrl, openSubItemPopUp, subitem)();
         };
 
         ctrl.viewUserDetail = function(userDetail) {
