@@ -4,9 +4,8 @@
 angular.module('truckItemOutgoingWarehouseDetails',[
 		'ui.bootstrap',
 		'720kb.datepicker',
-		'viewTruckItemModal',
-	    'receiveincomingProductModal',
-	    'storedProductModal',
+		'viewOutgoingTruckItemModal',
+	    'driverInfoModal',
 	    'bathwaterApp.services'
 	]);
 

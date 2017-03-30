@@ -33,7 +33,7 @@
 
         var popUpCtrl = this;
         var modalInstance = popUpCtrl.$uibModal.open({
-            component: 'viewTruckItemModal',
+            component: 'viewOutgoingTruckItemModal',
             windowClass: 'app-modal-window-large',
             resolve: {
                 details: function() {
@@ -116,6 +116,7 @@
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
         ctrl.dropItemArray = [];
+        ctrl.dropItem = [];
 
         ctrl.init = function() {
 
@@ -130,11 +131,11 @@
         };
 
         ctrl.viewItems = function(item) {
-            angular.bind(ctrl, viewItemPopup, item)();
+            angular.bind(ctrl, viewItemPopup, null)();
         };
 
-        ctrl.viewDriverDetail = function(driverInfo) {
-            angular.bind(ctrl, driverInfoPopup, driverInfo)();
+        ctrl.viewDriverDetail = function() {
+            angular.bind(ctrl, driverInfoPopup, null)();
         }
 
         ctrl.selectRow = function(rowIndex) {
@@ -151,41 +152,40 @@
             //         console.log('Error getting outgoing item status details:');
             //         console.log(err);
             //     });
-            warehouseMoveItemService.incomingItems(date)
-                .then(function(response) {
-                    // console.log(response)
-                    ctrl.dropOffItems = response.data;
-                    ctrl.filteredDropItems = ctrl.dropOffItems.filter(function(data){
+            // warehouseMoveItemService.incomingItems(date)
+            //     .then(function(response) {
+            //         if (angular.isArray(response.data)) {
+            //             ctrl.message = false;
+            //             ctrl.incomingItems = response.data;
 
-                         data.items.filter(function(subData){
-                            return subData.type == "drop off";
-                         });
+            //             console.log(ctrl.incomingItems)
+            //             for (var i = 0; i < ctrl.incomingItems.length; i++) {
+            //                 if (ctrl.incomingItems[i].type == undefined) {
+            //                     ctrl.dropItem.push(ctrl.incomingItems[i]);
+            //                     for (var j = 0; j <= ctrl.incomingItems[i].items.length - 1; j++) {
+                                    
+            //                         if (ctrl.incomingItems[i].items[j].type == "drop off") {
+            //                             //if (ctrl.dropItem.length == 0) {
 
-                         return data;
-                    });
-                     console.log(ctrl.filteredDropItems)
-                    // if (ctrl.filteredDropItems) {
-                    //     for (var i = 0; i < ctrl.filteredDropItems.length; i++) {
-                    //         for (var j = 0; j <= i; j++) {
-                    //             for (var z = 0; z < j; z++) {
-                    //                 ctrl.dropRequestedItems = ctrl.filteredDropItems[i].items[j];
+            //                             ctrl.dropItemArray.push(ctrl.incomingItems[i].items[j]);
+            //                             console.log(ctrl.dropItemArray)
+            //                         } else {
+            //                             console.log("no dropoff");
+            //                         }
 
-                    //                 ctrl.dropItemArray.push(ctrl.dropRequestedItems);
-                    //                 console.log(ctrl.dropRequestedItems)
-                    //             }
+            //                     }
+            //                 }
 
+            //             }
+            //         } else {
 
-                    //         }
-                    //     }
-                    // }else{
+            //         }
 
-                    // }
-
-                })
-                .catch(function(err) {
-                    console.log('Error getting outgoing item status details:');
-                    console.log(err);
-                });
+            //     })
+            //     .catch(function(err) {
+            //         console.log('Error getting outgoing item status details:');
+            //         console.log(err);
+            //     });
 
         }
 

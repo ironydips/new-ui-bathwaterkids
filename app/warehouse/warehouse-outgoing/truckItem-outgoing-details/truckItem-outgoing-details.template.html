@@ -5,72 +5,63 @@
             <div class="col-sm-3">
                 <datepicker date-format="MM.dd.yyyy" selector="form-control">
                      <div class="input-group">
-                        <input ng-model="$ctrl.date"  class="form-control" placeholder="Choose a date"/>
+                        <input value="03.21.2017"  class="form-control" placeholder="Choose a date"/>
                         <span class="input-group-addon" ng-click="$ctrl.selectedDate($ctrl.date)" style="cursor: pointer">Go
                         </span>
                      </div>
                   </datepicker>
             </div>
-            <!-- <div class="col-sm-2">
-                <a href="" ng-click="$ctrl.viewReceivedItems()" class="btn btn-sm btn-success">View Received Items</a>
-            </div>
-            <div class="col-sm-2">
-                <a href="" ng-click="$ctrl.viewStoredItems()" class="btn btn-sm btn-success">View Stored Items</a>
-            </div> -->
             
-
-            
-        </div><br>
-        <div class="row">
-                    <div style="height:250px;overflow:auto;">
-                        <table class="table table-condensed text-center">
-                            <tr>
-                                <th class="col-md-1">Images</th>
-                                <th style="font-size: 13px;" class="col-md-3">UserRequestID</th>
-                                <th style="font-size: 13px;" class="col-md-2">Stored ItemID</th>
-                                <th style="font-size: 13px;" class="col-md-1">Item Name</th>
-                                <th style="font-size: 13px;" class="col-md-1">Item Code</th>
-                                <th style="font-size: 13px;" class="col-md-1">Location</th>
-                                <th style="font-size: 13px;" class="col-md-1">Brand Name</th>
-                                <th style="font-size: 13px;" class="col-md-2">Eventual Damage</th>
-                                <th style="font-size: 13px;" class="col-md-1">Condition</th>
-                                <th style="font-size: 13px;" class="col-md-1">Sub Items</th>
-                                <th style="font-size: 13px;" class="col-md-1">Action</th>
-                            </tr>
-                            <tr ng-repeat="item in $ctrl.dropItemArray" ng-click="$ctrl.displayRow($index)" ng-class="{'highlight': item.userRequestID == $ctrl.selectedRow || $index == $ctrl.displayRowValue}">
-                                <td class="text-center">
-                                    <a href="" ng-click="$ctrl.openLightboxModal(item.imagesBase64)">
-                                        <img ng-src="{{item.imagesBase64[0]}}" class="img-thumbnail">
-                                    </a>
-                                </td>
-                                <td class="col-md-3">{{item.userRequestID}}</td>
-                                <td class="col-md-2">{{item.storedItemID}}</td>
-                                <td class="col-md-1">{{item.itemName}}</td>
-                                <td class="col-md-1">{{item.itemCodes[0]}}</td>
-                                <td class="col-md-1">{{item.location}}</td>
-                                <td class="col-md-1">{{item.brandName}}</td>
-                                <td class="col-md-2">{{item.eventualDamages}}</td>
-                                <td class="col-md-1">{{item.condition}}</td>
-                                <td>
-                                    <button type="button" ng-if="item.subItems" ng-click="$ctrl.subItems(item)" class="btn btn-sm btn-primary">View</button>
-                                </td>
-                                <td>
-                                    <button type="button" ng-click="$ctrl.receiveItem(item.storedItemID, item.location)" class="btn btn-sm btn-primary">Receive Item</button>
-                                </td>
-                            </tr>
-                            <tr ng-show="$ctrl.noItemMessage">
-                                <td class="col-md-3"></td>
-                                <td class="col-md-2"></td>
-                                <td style="font-size: 15px;" class="col-md-4"><b>No Items to Display</b></td>
-                                <td class="col-md-1"></td>
-                                <td class="col-md-2"></td>
-                                <td class="col-md-1"></td>
-                                <td class="col-md-1"></td>
-                                <td class="col-md-1"></td>
-                                <td class="col-md-1"></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
+        </div>
+        
+        
+        
+        <br>
+        <br>
+        <table class="table table-condensed text-center">
+            <thead>
+                <tr>
+<!--                     <th style="font-size: 15px;">Time Slot</th>
+ -->                    <th style="font-size: 15px;">Truck ID</th>
+                    <th style="font-size: 15px;">Truck License Plate</th>
+                    <th style="font-size: 15px;">Number of Items</th>
+<!--                     <th style="font-size: 15px;">Status</th>
+ -->                    <!-- <th style="font-size: 15px;">User RequestID</th>
+                    <th style="font-size: 15px;">User Detail</th>-->
+                    <th style="font-size: 15px;">Driver Detail</th>
+                    <th style="font-size: 15px;">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr ng-hide="$ctrl.message" ng-repeat="item in $ctrl.dropItem" ng-click="$ctrl.selectRow($index)" ng-class="{'highlight': $index == $ctrl.selectedRow}">
+                   <td>{{item.time}}</td>
+ -->                <!-- <td>{{item.truckId}}</td>
+                    <td>{{item.licensePlate}}</td>
+                    <td>{{item.totalItemsCount}}</td> -->
+<!--                     <td>{{item.status}}</td>
+ -->                    <!-- <td>{{item.userRequestID}}</td>
+                    <td><a ng-click="$ctrl.showallSavedItems(pdt.truckID)" class="btn btn-primary btn-sm">View</a></td>-->
+                    <!-- <td><a ng-click="$ctrl.viewDriverDetail(item.driver)" class="btn btn-primary btn-sm">View</a></td>
+                    <td><a ng-click="$ctrl.viewItems(item)" class="btn btn-primary btn-sm">View Items</a></td>
+                </tr> --> 
+                <!-- <tr ng-show="$ctrl.message">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><b style="font-size: 15px;">No Truck and Item Detail Found</b></td>
+                    <td></td>
+                </tr> -->
+                <tr>
+                    <td>448c1fea-320a-406d-9031-9c3ef15905b5</td>
+                    <td>test</td>
+                    <td>2</td>
+<!--                     <td>{{item.status}}</td>
+ -->                    <!-- <td>{{item.userRequestID}}</td>
+                    <td><a ng-click="$ctrl.showallSavedItems(pdt.truckID)" class="btn btn-primary btn-sm">View</a></td>-->
+                    <td><a ng-click="$ctrl.viewDriverDetail()" class="btn btn-primary btn-sm">View</a></td>
+                    <td><a ng-click="$ctrl.viewItems(item)" class="btn btn-primary btn-sm">View Items</a></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
