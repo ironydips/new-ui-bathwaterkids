@@ -4,6 +4,7 @@
 angular.module('storedProductModal',[
 		'moreDetailsModal',
 		'ngToast',
+		'updateCreditStoredModal',
 		'bathwaterApp.services'
 	]);
 
