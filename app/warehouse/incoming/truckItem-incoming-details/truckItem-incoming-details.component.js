@@ -144,7 +144,7 @@
 
             warehouseMoveItemService.outgoingItems(date)
                 .then(function(response) {
-                  //  console.log(response)
+                    console.log(response)
                 })
                 .catch(function(err) {
                     console.log('Error getting outgoing item status details:');
