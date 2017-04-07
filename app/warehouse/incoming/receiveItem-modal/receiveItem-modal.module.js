@@ -4,6 +4,7 @@
 angular.module('receiveincomingProductModal',[
 		'updateLocStoredModal',
 		'moreDetailsModal',
+		'bootstrapLightbox',
 		'bathwaterApp.services'
 	]);
 

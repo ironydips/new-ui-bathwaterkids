@@ -3,8 +3,7 @@
 
 angular.module('storedProductModal',[
 		'moreDetailsModal',
-		'ngToast',
-		'updateCreditStoredModal',
+		'bootstrapLightbox',
 		'bathwaterApp.services'
 	]);
 

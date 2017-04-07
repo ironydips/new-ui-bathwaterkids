@@ -80,10 +80,10 @@
             });
         };
 
-        var checkInStoredItem = function(storedID, status,categoryID, location, credit){
+        var checkInStoredItem = function(storedID, status, location, credit){
            // status = "RECEIVED";
             return $http({
-                    url: '/rest/admin/checkInStoredItem?storedID='+ storedID + '&credits=' + credit + '&status='+ status + '&categoryID=' + categoryID+ '&location=' + location,
+                    url: '/rest/admin/checkInStoredItem?storedID='+ storedID + '&credits=' + credit + '&status='+ status + '&location=' + location,
                     method: "GET",
                     headers:{
                         "Authorization": 'Basic YWRtaW46YWRtaW4='

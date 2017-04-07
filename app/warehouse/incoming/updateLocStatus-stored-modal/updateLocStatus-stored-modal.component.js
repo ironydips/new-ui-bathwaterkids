@@ -12,7 +12,7 @@ function UpdateLocStoredModalController($state, ngToast, warehouseMoveItemServic
 		// }     
 		var credits = parseInt(credit);
 
-		warehouseMoveItemService.checkInStoredItem(ctrl.itemDetail.storedItemId, "STORED", '2', location, credits)
+		warehouseMoveItemService.checkInStoredItem(ctrl.itemDetail.storedItemId, "STORED", location, credits)
 				.then(function(result){
 			ctrl.modalInstance.close({action: 'update'});
 		})

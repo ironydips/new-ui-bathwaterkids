@@ -63,10 +63,10 @@
         ctrl.itemsArray = [];
         ctrl.imageURLs = [];
         ctrl.noItemMessage = true;
+        ctrl.storedItemArr = [];
 
 
         ctrl.init = function() {
-
 
             ctrl.noUserReqMessage = true;
             ctrl.requestedItems.items.forEach(function(data) {
@@ -86,8 +86,8 @@
                     ctrl.noItemMessage = false;
                     for (var i = 0; i < item.items.length; i++) {
                         for (var j = 0; j <= i; j++) {
-                            if (typeof item.items[i].imagesBase64[j] == "undefined") {
-                                item.items[i].imagesBase64[j] = "https://www.moh.gov.bh/Content/Upload/Image/636009821114059242-not-available.jpg";
+                            if (item.items[i].imagesBase64 == null || item.items[i].imagesBase64.length == 0 || typeof item.items[i].imagesBase64[j] == "undefined") {
+                                item.items[i].imagesBase64 = ["https://www.moh.gov.bh/Content/Upload/Image/636009821114059242-not-available.jpg"];
                             }
                         }
                     }
@@ -96,7 +96,24 @@
                         data.location = "noLocation";
                     });
                     ctrl.itemsArray = ctrl.itemsArray.concat(item.items);
+                    for (var i = 0; i < ctrl.itemsArray.length; i++) {
+                        for (var j = 0; j < ctrl.storedItemArr.length; j++) {
+                            if (ctrl.itemsArray[i].storedItemID == ctrl.storedItemArr[j]) {
+                                var filterId = ctrl.itemsArray.filter(function(data) {
+                                    return data.storedItemID == ctrl.storedItemArr[j];
+                                });
+                                if (filterId) {
+                                    ctrl.itemsArray.splice(ctrl.itemsArray.indexOf(filterId[0]), 1);
+                                }
+
+                            }
+                        }
+                    }
+
                     ctrl.selectedRow = item.userRequestID;
+                    if (ctrl.itemsArray.length == 0) {
+                        ctrl.noItemMessage = true;
+                    }
                 } else {
                     ctrl.itemsArray = ctrl.itemsArray.filter(function(data) {
                         return data.userRequestID != item.userRequestID
@@ -125,12 +142,16 @@
             ctrl.selectedRow = "";
         };
 
-        ctrl.receiveItem = function(storedItemId, location) {
+        ctrl.receiveItem = function(storedItemId, location, item) {
 
-            warehouseMoveItemService.checkInStoredItem(storedItemId,"RECEIVED","2","as",12)
+
+
+            warehouseMoveItemService.checkInStoredItem(storedItemId, "RECEIVED", "", 0)
                 .then(function(result) {
-
-                    debugger;
+                    if (result && result.data && result.data.message == "Success") {
+                        ctrl.itemsArray.splice(ctrl.itemsArray.indexOf(item), 1);
+                        ctrl.storedItemArr.push(storedItemId);
+                    }
                 })
                 .catch(function(err) {
                     console.log('Error updating status & location of item in warehouse');
@@ -149,7 +170,7 @@
         };
 
         ctrl.cancel = function() {
-            ctrl.modalInstance.close();
+            ctrl.modalInstance.close({ action: 'update', date: ctrl.requestedItems.items[0].date });
         };
 
         ctrl.init();

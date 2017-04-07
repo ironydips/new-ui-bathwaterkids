@@ -15,6 +15,10 @@
                         if (ctrl.item.subItems[i].imageURLs[j]) {
                         	
                             ctrl.imageURLs.push(ctrl.item.subItems[i].imageURLs[j]);
+                        }else {
+                            if(ctrl.item.subItems[i].imageURLs[j] == "undefined"){
+                                console.log("iten undefined")
+                            }
                         }
                     }
 

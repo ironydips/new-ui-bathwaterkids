@@ -41,11 +41,6 @@ angular.module('bathwaterApp', [
 	'inventoryIncomingDetails',
 	//Warehouse Module
 	'warehouseSubPanel',
-	'incomingWarehouseDetails',
-	'newIncomingWarehouseDetails',
-	'mergedIncomingWarehouseDetails',
-	'outgoingWarehouseDetails',
-	'newOutgoingWarehouseDetails',
 	'truckItemIncomingWarehouseDetails',
 	'truckItemOutgoingWarehouseDetails'
 ]);
