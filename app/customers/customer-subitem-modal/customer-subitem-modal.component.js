@@ -16,8 +16,8 @@
                         	
                             ctrl.imageURLs.push(ctrl.item.subItems[i].imageURLs[j]);
                         }else {
-                            if(ctrl.item.subItems[i].imageURLs[j] == "undefined"){
-                                console.log("iten undefined")
+                            if(ctrl.item.subItems[i].imageURLs[j] == undefined){
+                               // ctrl.item.subItems[i].imageURLs = ["https://www.moh.gov.bh/Content/Upload/Image/636009821114059242-not-available.jpg"];
                             }
                         }
                     }
