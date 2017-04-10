@@ -15,7 +15,7 @@
                             <th style="font-size: 13px;" class="col-md-3">Number of Items to be Picked</th>
                             <th style="font-size: 13px;" class="col-md-1">User Detail</th>
                         </tr>
-                        <!-- <tr ng-if="$ctrl.dropItemArray" ng-repeat="req in $ctrl.dropItemArray">
+                        <tr ng-if="$ctrl.dropItemArray" ng-repeat="req in $ctrl.dropItemArray">
                             <td>
                                 <input type="checkbox" ng-model="req.isChecked" ng-click="$ctrl.getRequestedItems(req)">
                             </td>
@@ -32,7 +32,7 @@
                             <td>
                                 <button type="button" ng-click="$ctrl.viewUserDetail(req)" class="btn btn-sm btn-primary">View</button>
                             </td>
-                        </tr> -->
+                        </tr>
                         <!-- <tr ng-show="$ctrl.outgoingMessage">
                             <td></td>
                             <td class="col-md-3"></td>
@@ -44,19 +44,7 @@
                             <td class="col-md-1"></td>
                             <td class="col-md-1"></td>
                         </tr> -->
-                        <tr>
-                            <td>
-                                <input type="checkbox">
-                            </td>
-                            <td></td>
-                            <td>eab76b59-e4f1-4af1-b30f-8d914b3e9142</td>
-                            <td>03.21.2017</td>
-                            <td>10am-12pm</td>
-                            <td>2</td>
-                            <td>
-                                <button type="button" ng-click="$ctrl.viewUserDetail()" class="btn btn-sm btn-primary">View</button>
-                            </td>
-                        </tr>
+                        
                     </table>
                 </div>
                 <div class="row">
@@ -76,7 +64,7 @@
                                 <th style="font-size: 13px;" class="col-md-1">Sub Items</th>
                                 <th style="font-size: 13px;" class="col-md-1">Action</th>
                             </tr>
-                            <!-- <tr ng-repeat="item in $ctrl.itemsArray" ng-click="$ctrl.displayRow($index)" ng-class="{'highlight': item.userRequestID == $ctrl.selectedRow || $index == $ctrl.displayRowValue}">
+                            <tr ng-repeat="item in $ctrl.itemsArray" ng-click="$ctrl.displayRow($index)" ng-class="{'highlight': item.userRequestID == $ctrl.selectedRow || $index == $ctrl.displayRowValue}">
                                 <td class="text-center">
                                     <a href="" ng-click="$ctrl.openLightboxModal(item.imagesBase64)">
                                         <img ng-src="{{item.imagesBase64[0]}}" class="img-thumbnail">
@@ -96,8 +84,8 @@
                                 <td>
                                     <button type="button" ng-click="$ctrl.receiveItem(item.storedItemID, item.location)" class="btn btn-sm btn-primary">Receive Item</button>
                                 </td>
-                            </tr> -->
-                            <!-- <tr ng-show="$ctrl.noItemMessage">
+                            </tr>
+                            <tr ng-show="$ctrl.noItemMessage">
                                 <td class="col-md-3"></td>
                                 <td class="col-md-2"></td>
                                 <td style="font-size: 15px;" class="col-md-4"><b>No Items to Display</b></td>
@@ -107,26 +95,8 @@
                                 <td class="col-md-1"></td>
                                 <td class="col-md-1"></td>
                                 <td class="col-md-1"></td>
-                            </tr> -->
-                            <tr>
-                                <td class="text-center">
-                                    
-                                </td>
-                                <td class="col-md-3">abc</td>
-                                <td class="col-md-2">xyz</td>
-                                <td class="col-md-1">a</td>
-                                <td class="col-md-1">BW1234</td>
-                                <td class="col-md-1">123</td>
-                                <td class="col-md-1">UVW</td>
-                                <td class="col-md-2"></td>
-                                <td class="col-md-1"></td>
-                                <td>
-                                    <button type="button" ng-click="$ctrl.subItems()" class="btn btn-sm btn-primary">View</button>
-                                </td>
-                                <td>
-                                    <button type="button" ng-click="$ctrl.receiveItem()" class="btn btn-sm btn-primary">Outbound</button>
-                                </td>
                             </tr>
+                           
                         </table>
                     </div>
                 </div>

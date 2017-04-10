@@ -141,6 +141,16 @@
 
         ctrl.selectedDate = function(date) {
 
+             warehouseMoveItemService.outgoingItems(date)
+                .then(function(response) {
+                    console.log(response)
+
+                })
+                .catch(function(err) {
+                    console.log('Error getting outgoingItems details:');
+                    console.log(err);
+                });
+
             warehouseMoveItemService.incomingItems(date)
                 .then(function(response) {
                     if (angular.isArray(response.data)) {

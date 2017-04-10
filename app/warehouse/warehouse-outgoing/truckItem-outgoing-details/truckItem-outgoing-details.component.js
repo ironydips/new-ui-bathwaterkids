@@ -131,11 +131,11 @@
         };
 
         ctrl.viewItems = function(item) {
-            angular.bind(ctrl, viewItemPopup, null)();
+            angular.bind(ctrl, viewItemPopup, item)();
         };
 
-        ctrl.viewDriverDetail = function() {
-            angular.bind(ctrl, driverInfoPopup, null)();
+        ctrl.viewDriverDetail = function(driverDetail) {
+            angular.bind(ctrl, driverInfoPopup, driverDetail)();
         }
 
         ctrl.selectRow = function(rowIndex) {
@@ -144,14 +144,20 @@
 
         ctrl.selectedDate = function(date) {
 
-            // warehouseMoveItemService.outgoingItems(date)
-            //     .then(function(response) {
-            //         console.log(response)
-            //     })
-            //     .catch(function(err) {
-            //         console.log('Error getting outgoing item status details:');
-            //         console.log(err);
-            //     });
+            warehouseMoveItemService.outgoingItems("04.10.2017")
+                .then(function(response) {
+                    if (angular.isArray(response.data)) {
+                        ctrl.message = false;
+                        ctrl.outgoingItems = response.data;
+                        console.log(ctrl.outgoingItems)
+                    } else {
+                        ctrl.message = true;
+                    }
+                })
+                .catch(function(err) {
+                    console.log('Error getting outgoing item status details:');
+                    console.log(err);
+                });
             // warehouseMoveItemService.incomingItems(date)
             //     .then(function(response) {
             //         if (angular.isArray(response.data)) {
@@ -163,7 +169,7 @@
             //                 if (ctrl.incomingItems[i].type == undefined) {
             //                     ctrl.dropItem.push(ctrl.incomingItems[i]);
             //                     for (var j = 0; j <= ctrl.incomingItems[i].items.length - 1; j++) {
-                                    
+
             //                         if (ctrl.incomingItems[i].items[j].type == "drop off") {
             //                             //if (ctrl.dropItem.length == 0) {
 
