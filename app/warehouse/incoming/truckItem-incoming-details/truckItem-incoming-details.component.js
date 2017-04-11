@@ -50,7 +50,7 @@
                 if (data && data.action == 'update') popUpCtrl.selectedDate(data.date);
             }),
             function(err) {
-                console.log('Error in view item modal');
+                console.log('Error while viewing incoming item modal');
                 console.log(err);
             }
 
@@ -76,7 +76,7 @@
 
             }),
             function(err) {
-                console.log('Error in receive incoming item modal');
+                console.log('Error while receiving incoming item modal');
                 console.log(err);
             }
 
@@ -103,7 +103,7 @@
 
             }),
             function(err) {
-                console.log('Error in stored incoming item modal');
+                console.log('Error while storing incoming item modal');
                 console.log(err);
             }
 
@@ -140,16 +140,6 @@
         };
 
         ctrl.selectedDate = function(date) {
-
-             warehouseMoveItemService.outgoingItems(date)
-                .then(function(response) {
-                    console.log(response)
-
-                })
-                .catch(function(err) {
-                    console.log('Error getting outgoingItems details:');
-                    console.log(err);
-                });
 
             warehouseMoveItemService.incomingItems(date)
                 .then(function(response) {

@@ -10,6 +10,7 @@
                             <th class="col-md-1"></th>
                             <th style="font-size: 13px;" class="col-md-1">Signature</th>
                             <th style="font-size: 13px;" class="col-md-2">UserRequestID</th>
+                            <th style="font-size: 13px;" class="col-md-1">Status</th>
                             <th style="font-size: 13px;" class="col-md-1">Date</th>
                             <th style="font-size: 13px;" class="col-md-1">Time</th>
                             <th style="font-size: 13px;" class="col-md-3">Number of Items to be Picked</th>
@@ -25,7 +26,7 @@
                                 </a>
                             </td>
                             <td>{{req.userRequestID}}</td>
-                            <td>{{req.type}}</td>
+                            <td>{{req.status}}</td>
                             <td>{{req.date}}</td>
                             <td>{{req.time}}</td>
                             <td>{{req.numberOfItemsToBePicked}}</td>
@@ -82,7 +83,7 @@
                                     <button type="button" ng-if="item.subItems" ng-click="$ctrl.subItems(item)" class="btn btn-sm btn-primary">View</button>
                                 </td>
                                 <td>
-                                    <button type="button" ng-click="$ctrl.receiveItem(item.storedItemID, item.location)" class="btn btn-sm btn-primary">Receive Item</button>
+                                    <!-- <button type="button" ng-click="$ctrl.receiveItem(item.storedItemID, item.location)" class="btn btn-sm btn-primary">Receive Item</button> -->
                                 </td>
                             </tr>
                             <tr ng-show="$ctrl.noItemMessage">

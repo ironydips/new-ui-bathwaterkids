@@ -96,13 +96,12 @@
                     for (var i = 0; i < item.items.length; i++) {
                         for (var j = 0; j <= i; j++) {
                             if (typeof item.items[i].imagesBase64[j] == "undefined") {
-                                item.items[i].imagesBase64[j] = "https://www.moh.gov.bh/Content/Upload/Image/636009821114059242-not-available.jpg";
+                                item.items[i].imagesBase64[j] = "img/notAvailable.jpg";
                             }
                         }
                     }
                     item.items.forEach(function(data) {
                         data.userRequestID = item.userRequestID;
-                        data.location = "noLocation";
                     });
                     ctrl.itemsArray = ctrl.itemsArray.concat(item.items);
                     ctrl.selectedRow = item.userRequestID;
@@ -134,22 +133,8 @@
             ctrl.selectedRow = "";
         };
 
-        ctrl.receiveItem = function(storedItemId, location) {
-
-            warehouseMoveItemService.updateItemInWarehouse(storedItemId, location, "RECEIVED")
-                .then(function(result) {
-
-
-                })
-                .catch(function(err) {
-                    console.log('Error updating status & location of item in warehouse');
-                    console.log(err);
-                });
-
-        };
-
         ctrl.subItems = function(subitem) {
-
+            console.log(subitem)
             angular.bind(ctrl, openSubItemPopUp, null)();
         };
 

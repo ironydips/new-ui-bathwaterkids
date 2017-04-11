@@ -50,66 +50,11 @@
 
             }),
             function(err) {
-                console.log('Error in view item Modal');
+                console.log('Error while viewing outgoing item Modal');
                 console.log(err);
             }
 
     }
-
-    function receiveincomingProductPopup(details) {
-
-        var popUpCtrl = this;
-        var modalInstance = popUpCtrl.$uibModal.open({
-            component: 'receiveincomingProductModal',
-            windowClass: 'app-modal-window-large',
-            resolve: {
-                details: function() {
-                    return (details || {});
-                }
-            },
-            keyboard: false,
-            backdrop: 'static'
-        });
-
-        modalInstance.result.then(function(data) {
-                //data passed when pop up closed.
-
-
-            }),
-            function(err) {
-                console.log('Error in view product Modal');
-                console.log(err);
-            }
-
-    }
-
-    function storedProductPopup(details) {
-
-        var popUpCtrl = this;
-        var modalInstance = popUpCtrl.$uibModal.open({
-            component: 'storedProductModal',
-            windowClass: 'app-modal-window-large',
-            resolve: {
-                details: function() {
-                    return (details || {});
-                }
-            },
-            keyboard: false,
-            backdrop: 'static'
-        });
-
-        modalInstance.result.then(function(data) {
-                //data passed when pop up closed.
-
-
-            }),
-            function(err) {
-                console.log('Error in view product Modal');
-                console.log(err);
-            }
-
-    }
-
 
     function TruckItemOutgoingController($state, $uibModal, warehouseMoveItemService) {
         var ctrl = this;
@@ -120,14 +65,6 @@
 
         ctrl.init = function() {
 
-        };
-
-        ctrl.viewReceivedItems = function() {
-            angular.bind(ctrl, receiveincomingProductPopup, null)();
-        };
-
-        ctrl.viewStoredItems = function() {
-            angular.bind(ctrl, storedProductPopup, null)();
         };
 
         ctrl.viewItems = function(item) {
@@ -149,50 +86,14 @@
                     if (angular.isArray(response.data)) {
                         ctrl.message = false;
                         ctrl.outgoingItems = response.data;
-                        console.log(ctrl.outgoingItems)
                     } else {
                         ctrl.message = true;
                     }
                 })
                 .catch(function(err) {
-                    console.log('Error getting outgoing item status details:');
+                    console.log('Error getting outgoing item details:');
                     console.log(err);
                 });
-            // warehouseMoveItemService.incomingItems(date)
-            //     .then(function(response) {
-            //         if (angular.isArray(response.data)) {
-            //             ctrl.message = false;
-            //             ctrl.incomingItems = response.data;
-
-            //             console.log(ctrl.incomingItems)
-            //             for (var i = 0; i < ctrl.incomingItems.length; i++) {
-            //                 if (ctrl.incomingItems[i].type == undefined) {
-            //                     ctrl.dropItem.push(ctrl.incomingItems[i]);
-            //                     for (var j = 0; j <= ctrl.incomingItems[i].items.length - 1; j++) {
-
-            //                         if (ctrl.incomingItems[i].items[j].type == "drop off") {
-            //                             //if (ctrl.dropItem.length == 0) {
-
-            //                             ctrl.dropItemArray.push(ctrl.incomingItems[i].items[j]);
-            //                             console.log(ctrl.dropItemArray)
-            //                         } else {
-            //                             console.log("no dropoff");
-            //                         }
-
-            //                     }
-            //                 }
-
-            //             }
-            //         } else {
-
-            //         }
-
-            //     })
-            //     .catch(function(err) {
-            //         console.log('Error getting outgoing item status details:');
-            //         console.log(err);
-            //     });
-
         }
 
         ctrl.init();

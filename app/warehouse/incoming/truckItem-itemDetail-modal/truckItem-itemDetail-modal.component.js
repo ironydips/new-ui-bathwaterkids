@@ -87,13 +87,12 @@
                     for (var i = 0; i < item.items.length; i++) {
                         for (var j = 0; j <= i; j++) {
                             if (item.items[i].imagesBase64 == null || item.items[i].imagesBase64.length == 0 || typeof item.items[i].imagesBase64[j] == "undefined") {
-                                item.items[i].imagesBase64 = ["https://www.moh.gov.bh/Content/Upload/Image/636009821114059242-not-available.jpg"];
+                                item.items[i].imagesBase64 = ["img/notAvailable.jpg"];
                             }
                         }
                     }
                     item.items.forEach(function(data) {
                         data.userRequestID = item.userRequestID;
-                        data.location = "noLocation";
                     });
                     ctrl.itemsArray = ctrl.itemsArray.concat(item.items);
                     for (var i = 0; i < ctrl.itemsArray.length; i++) {
