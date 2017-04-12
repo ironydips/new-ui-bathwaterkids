@@ -58,7 +58,6 @@
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
         ctrl.requestedItems = (ctrl.resolve && ctrl.resolve.details) || {};
-        console.log(ctrl.requestedItems)
         ctrl.userReq = [];
         ctrl.itemsArray = [];
         ctrl.imageURLs = [];

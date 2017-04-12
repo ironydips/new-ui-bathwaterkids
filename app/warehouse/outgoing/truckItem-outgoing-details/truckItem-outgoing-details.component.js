@@ -101,7 +101,7 @@
 
     angular.module('truckItemOutgoingWarehouseDetails')
         .component('truckItemOutgoingWarehouseDetails', {
-            templateUrl: 'warehouse/warehouse-outgoing/truckItem-outgoing-details/truckItem-outgoing-details.template.html',
+            templateUrl: 'warehouse/outgoing/truckItem-outgoing-details/truckItem-outgoing-details.template.html',
             controller: ['$state', '$uibModal', 'warehouseMoveItemService', TruckItemOutgoingController]
         });
 })(window.angular);

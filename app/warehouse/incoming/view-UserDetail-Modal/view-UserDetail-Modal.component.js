@@ -3,12 +3,14 @@
 
 function ViewUserDetailModalController($state) {
 	var ctrl = this;
-
+	ctrl.noUserDetail = false;
 	ctrl.userDetail = (ctrl.resolve && ctrl.resolve.details) || {};
-	 ctrl.isDisabled = Object.keys(ctrl.userDetail).length > 0;
+	ctrl.isDisabled = Object.keys(ctrl.userDetail).length > 0;
 
 	ctrl.init = function(){
-		
+		if(ctrl.userDetail.user == null){
+			ctrl.noUserDetail = true;
+		}
 	}
 	ctrl.cancel = function(){
 		ctrl.modalInstance.close();

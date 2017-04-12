@@ -132,31 +132,38 @@
             ctrl.displayRowValue = index;
             ctrl.selectedRow = "";
         };
+        ctrl.updateItem = function(item) {
+
+            warehouseMoveItemService.updateDropItemStatus()
+                .then(function(response) {
+                    console.log(response)
+                })
+                .catch(function(err) {
+                    console.log('Error getting update status of outgoing item details:');
+                    console.log(err);
+                });
+        }
 
         ctrl.subItems = function(subitem) {
-            console.log(subitem)
-            angular.bind(ctrl, openSubItemPopUp, null)();
+
+            angular.bind(ctrl, openSubItemPopUp, subitem)();
         };
 
-        ctrl.viewUserDetail = function() {
-            angular.bind(ctrl, userDetailPopUp, null)();
+        ctrl.viewUserDetail = function(userDetail) {
+
+            angular.bind(ctrl, userDetailPopUp, userDetail)();
         };
 
         ctrl.cancel = function() {
             ctrl.modalInstance.close();
         };
 
-        ctrl.showItems = function(){
-            ctrl.displayItem = true;
-            console.log(ctrl.displayItem)
-        }
-
         ctrl.init();
     }
 
     angular.module('viewOutgoingTruckItemModal')
         .component('viewOutgoingTruckItemModal', {
-            templateUrl: 'warehouse/warehouse-outgoing/outgoingTruckItem-itemDetail-modal/outgoingTruckItem-itemDetail-modal.template.html',
+            templateUrl: 'warehouse/outgoing/outgoingTruckItem-itemDetail-modal/outgoingTruckItem-itemDetail-modal.template.html',
             controller: ['$state', '$uibModal', 'ngToast', 'warehouseMoveItemService', 'Lightbox', ViewOutgoingTruckItemModalController],
             bindings: {
                 modalInstance: '<',

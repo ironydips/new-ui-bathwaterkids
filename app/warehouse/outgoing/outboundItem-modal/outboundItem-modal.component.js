@@ -90,7 +90,7 @@
 
     angular.module('outboundProductModal')
         .component('outboundProductModal', {
-            templateUrl: 'warehouse/warehouse-outgoing/outboundItem-modal/outboundItem-modal.template.html',
+            templateUrl: 'warehouse/outgoing/outboundItem-modal/outboundItem-modal.template.html',
             controller: ['$state', '$uibModal', 'warehouseMoveItemService', OutboundItemModalController],
             bindings: {
                 modalInstance: '<'

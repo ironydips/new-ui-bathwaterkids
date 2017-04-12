@@ -32,15 +32,15 @@
 	            }
 	        });
 		};
-		var getTrucksByUserrequests = function(){
-			return $http({
-		            url: '/admin/getTrucksByUserrequests?date='+ "21/03/2017",
-		            method: "GET",
-		            headers:{
-	            		"Authorization": 'Basic YWRtaW46YWRtaW4='
-	            }
-	        });
-		};
+		// var getTrucksByUserrequests = function(){
+		// 	return $http({
+		//             url: '/admin/getTrucksByUserrequests?date='+ "21/03/2017",
+		//             method: "GET",
+		//             headers:{
+	 //            		"Authorization": 'Basic YWRtaW46YWRtaW4='
+	 //            }
+	 //        });
+		// };
 		
 
 		//EXPORTED Object
@@ -48,7 +48,6 @@
 			getUsers,
 			getUserInventory,
 			getUserRequest,
-			getTrucksByUserrequests
 		}
 	}
 
