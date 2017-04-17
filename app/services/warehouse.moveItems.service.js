@@ -91,10 +91,10 @@
             });
         };
 
-        var updateDropItemStatus = function(storedID, status, subitemCode, location ){
+        var updateDropItemStatus = function(storedID){
            // status = "RECEIVED";
             return $http({
-                    url: '/rest/admin/updateDropItemStatus?storedID='+ "99b99096-4371-4f88-9e56-57c08d3b4853a" + '&status='+ "REQUESTED_DROPFF" +'&subitemCode='+ "BWG44877123" + '&location='  + "",
+                    url: '/rest/admin/updateDropItemStatus?storedItemID='+ storedID + '&status='+ "OUTBOUND",
                     method: "GET",
                     headers:{
                         "Authorization": 'Basic YWRtaW46YWRtaW4='

@@ -56,6 +56,32 @@
 
     }
 
+    function outboundItemPopUp(details){
+        
+        var popUpCtrl = this;
+        var modalInstance = popUpCtrl.$uibModal.open({
+            component: 'outboundProductModal',
+            windowClass: 'app-modal-window-large',
+            resolve: {
+                details: function() {
+                    return (details || {});
+                }
+            },
+            keyboard: false,
+            backdrop: 'static'
+        });
+
+        modalInstance.result.then(function(data) {
+                //data passed when pop up closed.
+
+
+            }),
+            function(err) {
+                console.log('Error while viewing outgoing item Modal');
+                console.log(err);
+            }        
+    }
+
     function TruckItemOutgoingController($state, $uibModal, warehouseMoveItemService) {
         var ctrl = this;
         ctrl.$uibModal = $uibModal;
@@ -81,7 +107,7 @@
 
         ctrl.selectedDate = function(date) {
 
-            warehouseMoveItemService.outgoingItems("04.10.2017")
+            warehouseMoveItemService.outgoingItems(date)
                 .then(function(response) {
                     if (angular.isArray(response.data)) {
                         ctrl.message = false;
@@ -94,7 +120,10 @@
                     console.log('Error getting outgoing item details:');
                     console.log(err);
                 });
-        }
+        };
+        ctrl.viwOutboundItems = function(){
+            angular.bind(ctrl, outboundItemPopUp, null)();
+        };
 
         ctrl.init();
     }

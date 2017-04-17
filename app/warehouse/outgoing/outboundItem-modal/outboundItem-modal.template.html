@@ -16,7 +16,6 @@
                 <th style="font-size: 13px;">CategoryID</th>
                 <th style="font-size: 13px;">Location</th>
                 <th style="font-size: 13px;">More Details</th>
-                <th style="font-size: 13px;">Action</th>
           </tr>
             <tr ng-show="!$ctrl.message" ng-repeat="item in $ctrl.items | filter : $ctrl.searchItem" ng-click="$ctrl.selectRow($index)" ng-class="{'highlight': $index == $ctrl.selectedRow}">
                 <td class="text-center">
@@ -32,9 +31,6 @@
                 <td class="col-md-2">{{item.location}}</td>
                 <td>
                     <button type="button" ng-if="item.subItems" ng-click="$ctrl.moreDetails(item)" class="btn btn-sm btn-primary">View</button>
-                </td>
-                <td>
-                    <button type="button" ng-if="item.subItems" ng-click="$ctrl.update(item)" class="btn btn-sm btn-primary">Update</button>
                 </td>
             </tr>
             <tr ng-show="$ctrl.message">

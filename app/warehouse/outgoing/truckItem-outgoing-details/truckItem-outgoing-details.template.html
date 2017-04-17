@@ -2,11 +2,14 @@
     <div class="container">
         <br>
         <div class="row">
+            <div class="col-sm-2">
+                <a href="" class="btn btn-primary btn-sm" ng-click="$ctrl.viwOutboundItems()"> OUTBOUND ITEMS</a>
+            </div>
             <div class="col-sm-3">
                 <datepicker date-format="MM.dd.yyyy" selector="form-control">
                     <div class="input-group">
-                        <input value="04.10.2017" class="form-control" placeholder="Choose a date" />
-                        <span class="input-group-addon" ng-click="$ctrl.selectedDate($ctrl.date)" style="cursor: pointer">Go
+                        <input value="04.13.2017" class="form-control" placeholder="Choose a date" />
+                        <span class="input-group-addon" ng-click="$ctrl.selectedDate('04.13.2017')" style="cursor: pointer">Go
                         </span>
                     </div>
                 </datepicker>

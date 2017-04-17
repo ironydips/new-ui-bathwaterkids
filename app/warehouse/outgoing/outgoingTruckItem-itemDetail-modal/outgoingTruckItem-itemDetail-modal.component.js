@@ -133,8 +133,9 @@
             ctrl.selectedRow = "";
         };
         ctrl.updateItem = function(item) {
+            console.log(item)
 
-            warehouseMoveItemService.updateDropItemStatus()
+            warehouseMoveItemService.updateDropItemStatus(item.storedItemID)
                 .then(function(response) {
                     console.log(response)
                 })

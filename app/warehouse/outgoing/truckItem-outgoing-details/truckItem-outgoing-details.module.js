@@ -6,6 +6,7 @@ angular.module('truckItemOutgoingWarehouseDetails',[
 		'720kb.datepicker',
 		'viewOutgoingTruckItemModal',
 	    'driverInfoModal',
+	    'outboundProductModal',
 	    'bathwaterApp.services'
 	]);
 
