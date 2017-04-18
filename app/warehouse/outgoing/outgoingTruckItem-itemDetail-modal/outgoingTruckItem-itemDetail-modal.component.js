@@ -27,6 +27,31 @@
             }
     }
 
+    function updateDropItemStatusPopUp(details) {
+        var popUpCtrl = this;
+        var modalInstance = popUpCtrl.$uibModal.open({
+            component: 'updateDropStatusModal',
+            windowClass: 'app-modal-window-small',
+            keyboard: false,
+            resolve: {
+                details: function() {
+                    return (details || {});
+                }
+            },
+            backdrop: 'static'
+        });
+
+        modalInstance.result.then(function(data) {
+                //data passed when pop up closed.
+                //if (data && data.action == "update");
+
+            }),
+            function(err) {
+                console.log('Error in update-Drop-Status-Modal in warehouse-outgoing');
+                console.log(err);
+            }
+    }
+
     function userDetailPopUp(details) {
 
         var popUpCtrl = this;
@@ -58,7 +83,6 @@
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
         ctrl.outgoingItems = (ctrl.resolve && ctrl.resolve.details) || {};
-
         ctrl.userReq = [];
         ctrl.itemsArray = [];
         ctrl.imageURLs = [];
@@ -78,9 +102,14 @@
                 }
                 ctrl.outgoingItems.items.forEach(function(data) {
                     data.isChecked = false;
-                    //Setting Signature URL data according to Lightbox Service for Image Display
-                    data.signatureURLArray = [];
-                    data.signatureURLArray.push({ "url": data.signatureURL });
+                    if (data.signatureURL != null) {
+                        //Setting Signature URL data according to Lightbox Service for Image Display
+                        data.signatureURLArray = [];
+                        data.signatureURLArray.push({ "url": data.signatureURL });
+                    }else{
+                        data.signatureURL = ["img/notAvailable.jpg"];
+                    }
+
                 });
             }
 
@@ -133,16 +162,8 @@
             ctrl.selectedRow = "";
         };
         ctrl.updateItem = function(item) {
-            console.log(item)
 
-            warehouseMoveItemService.updateDropItemStatus(item.storedItemID)
-                .then(function(response) {
-                    console.log(response)
-                })
-                .catch(function(err) {
-                    console.log('Error getting update status of outgoing item details:');
-                    console.log(err);
-                });
+            angular.bind(ctrl, updateDropItemStatusPopUp, item)();
         }
 
         ctrl.subItems = function(subitem) {

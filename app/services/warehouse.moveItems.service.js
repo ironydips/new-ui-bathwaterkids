@@ -91,10 +91,10 @@
             });
         };
 
-        var updateDropItemStatus = function(storedID){
+        var updateDropItemStatus = function(storedID, status){
            // status = "RECEIVED";
             return $http({
-                    url: '/rest/admin/updateDropItemStatus?storedItemID='+ storedID + '&status='+ "OUTBOUND",
+                    url: '/rest/admin/updateDropItemStatus?storedItemID='+ storedID + '&status='+ status,
                     method: "GET",
                     headers:{
                         "Authorization": 'Basic YWRtaW46YWRtaW4='

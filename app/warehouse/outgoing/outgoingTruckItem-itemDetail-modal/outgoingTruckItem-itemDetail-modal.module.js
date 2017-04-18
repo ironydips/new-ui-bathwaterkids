@@ -4,7 +4,8 @@
 angular.module('viewOutgoingTruckItemModal',[
 	'bathwaterApp.services',
 	'bootstrapLightbox',
-	'viewUserDetailModal'
+	'viewUserDetailModal',
+	'updateDropStatusModal'
 	]);
 
 })(window.angular);
