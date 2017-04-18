@@ -70,7 +70,7 @@
 
                  warehouseMoveItemService.updateDropItemStatus(item.storedItemId, item.location, "OUTBOUND", item.itemCode[0])
                 .then(function(result) {
-                    //ctrl.modalInstance.close({action: 'update'});
+                    //
                 })
                 .catch(function(err) {
                     console.log('Error updating DROP ITEM STATUS in warehouse');
