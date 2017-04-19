@@ -56,8 +56,8 @@
 
     }
 
-    function outboundItemPopUp(details){
-        
+    function outboundItemPopUp(details) {
+
         var popUpCtrl = this;
         var modalInstance = popUpCtrl.$uibModal.open({
             component: 'outboundProductModal',
@@ -79,7 +79,7 @@
             function(err) {
                 console.log('Error while viewing outgoing item Modal');
                 console.log(err);
-            }        
+            }
     }
 
     function TruckItemOutgoingController($state, $uibModal, warehouseMoveItemService) {
@@ -88,8 +88,22 @@
         ctrl.$state = $state;
         ctrl.dropItemArray = [];
         ctrl.dropItem = [];
+        var date;
 
         ctrl.init = function() {
+
+            var d = new Date();
+            var month = (d.getMonth() + 1);
+            var day = d.getDate();
+            var year = d.getFullYear();
+
+            if (month < 10) {
+                date = "0" + month + "." + day + "." + year;
+            } else {
+                date = month + "." + day + "." + year;
+            }
+            ctrl.todayDate = date;
+            ctrl.selectedDate(date);
 
         };
 
@@ -107,13 +121,18 @@
 
         ctrl.selectedDate = function(date) {
 
+            ctrl.loader = true;
+
             warehouseMoveItemService.outgoingItems(date)
                 .then(function(response) {
                     if (angular.isArray(response.data)) {
                         ctrl.message = false;
                         ctrl.outgoingItems = response.data;
+                        ctrl.loader = false;
+
                     } else {
                         ctrl.message = true;
+                        ctrl.loader = false;
                     }
                 })
                 .catch(function(err) {
@@ -121,7 +140,7 @@
                     console.log(err);
                 });
         };
-        ctrl.viwOutboundItems = function(){
+        ctrl.viewOutboundItems = function() {
             angular.bind(ctrl, outboundItemPopUp, null)();
         };
 

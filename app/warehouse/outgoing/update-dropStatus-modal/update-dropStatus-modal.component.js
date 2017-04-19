@@ -14,7 +14,7 @@ function updateDropStatusModalController($state, ngToast, warehouseMoveItemServi
                     ctrl.modalInstance.close();
                 })
                 .catch(function(err) {
-                    console.log('Error getting update-Drop-Item-Status of outgoing item details:);
+                    console.log('Error getting update-Drop-Item-Status of outgoing item details:');
                     console.log(err);
                 });
 	 }

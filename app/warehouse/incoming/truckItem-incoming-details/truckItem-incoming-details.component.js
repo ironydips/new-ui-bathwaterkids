@@ -114,9 +114,21 @@
         var ctrl = this;
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
+        var date;
 
         ctrl.init = function() {
+            var d = new Date();
+            var month = (d.getMonth() + 1);
+            var day = d.getDate();
+            var year = d.getFullYear();
 
+            if (month < 10) {
+                date = "0" + month + "." + day + "." + year;
+            } else {
+                date = month + "." + day + "." + year;
+            }
+            ctrl.todayDate = date;
+            ctrl.selectedDate(date);
         };
 
         ctrl.viewReceivedItems = function() {
@@ -141,13 +153,17 @@
 
         ctrl.selectedDate = function(date) {
 
+            ctrl.loader = true;
+
             warehouseMoveItemService.incomingItems(date)
                 .then(function(response) {
                     if (angular.isArray(response.data)) {
                         ctrl.message = false;
                         ctrl.incomingItems = response.data;
+                        ctrl.loader = false;
                     } else {
                         ctrl.message = true;
+                        ctrl.loader = false;
                     }
 
                 })

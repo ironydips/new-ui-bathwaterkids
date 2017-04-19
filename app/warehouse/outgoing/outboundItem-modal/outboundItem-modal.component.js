@@ -66,21 +66,6 @@
             angular.bind(ctrl, moreDetailsPopUp, angular.copy(item))();
         };
 
-        ctrl.update = function(item) {
-
-                 warehouseMoveItemService.updateDropItemStatus(item.storedItemId, item.location, "OUTBOUND", item.itemCode[0])
-                .then(function(result) {
-                    //
-                })
-                .catch(function(err) {
-                    console.log('Error updating DROP ITEM STATUS in warehouse');
-                    console.log(err);
-                });
-            
-
-           
-        }
-
         ctrl.selectRow = function(rowIndex) {
             ctrl.selectedRow = rowIndex;
         };
