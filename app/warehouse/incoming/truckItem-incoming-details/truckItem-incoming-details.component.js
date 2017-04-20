@@ -157,6 +157,10 @@
 
             warehouseMoveItemService.incomingItems(date)
                 .then(function(response) {
+                    if (response == undefined || response == null) {
+                        ctrl.message = true;
+                        ctrl.loader = false;
+                    }
                     if (angular.isArray(response.data)) {
                         ctrl.message = false;
                         ctrl.incomingItems = response.data;
@@ -168,6 +172,7 @@
 
                 })
                 .catch(function(err) {
+                    
                     console.log('Error getting incoming item details:');
                     console.log(err);
                 });

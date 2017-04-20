@@ -125,6 +125,11 @@
 
             warehouseMoveItemService.outgoingItems(date)
                 .then(function(response) {
+                    
+                    if (response == undefined || response == null) {
+                        ctrl.message = true;
+                        ctrl.loader = false;
+                    }
                     if (angular.isArray(response.data)) {
                         ctrl.message = false;
                         ctrl.outgoingItems = response.data;

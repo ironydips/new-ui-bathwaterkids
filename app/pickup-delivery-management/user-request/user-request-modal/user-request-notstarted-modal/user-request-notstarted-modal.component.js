@@ -52,18 +52,6 @@
         ctrl.assignDriver = function(reqId, dr) {
 
             angular.bind(ctrl, assignDriverPopUp, reqId, dr)();
-            // var updatedDriverDetails = angular.fromJson(dr.selectedDriver);
-
-            // UserRequestService.assignDriver(reqId, updatedDriverDetails)
-            //     .then(function(response) {
-            //         if (response.data.response == "success") {
-            //             dr.driver = dr.driver || {};
-            //             dr.driver.firstName = updatedDriverDetails.firstName;
-            //             dr.driver.lastName = updatedDriverDetails.lastName;
-            //         } else {
-            //             console.log("Invalid driver");
-            //         }
-            //     });
         };
 
         ctrl.cancel = function() {

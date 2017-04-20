@@ -168,6 +168,7 @@
         };
 
         ctrl.cancel = function() {
+           // ctrl.modalInstance.close();
             ctrl.modalInstance.close({ action: 'update', date: ctrl.requestedItems.items[0].date });
         };
 
