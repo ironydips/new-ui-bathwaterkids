@@ -192,7 +192,6 @@
             ctrl.showInProgress = false;
             ctrl.showComplete = true;
             ctrl.showCancel = false;
-            //angular.bind(ctrl, openPopUpCompleted, ctrl.completeRequest)();
         };
         ctrl.notStarted = function() {
 
@@ -201,8 +200,6 @@
             ctrl.showComplete = false;
             ctrl.showCancel = false;
 
-            //ctrl.loader = true;
-            // angular.bind(ctrl, openPopUpnotstarted, ctrl.notstartedRequest , ctrl.drivers)();
         };
         ctrl.inprogress = function() {
 
@@ -210,7 +207,6 @@
             ctrl.showInProgress = true;
             ctrl.showComplete = false;
             ctrl.showCancel = false;
-            // angular.bind(ctrl, openPopUpinProgress, ctrl.inProgressRequest)();
         };
         ctrl.cancel = function() {
 
@@ -218,7 +214,6 @@
             ctrl.showInProgress = false;
             ctrl.showComplete = false;
             ctrl.showCancel = true;
-            // angular.bind(ctrl, openPopUpinProgress, ctrl.inProgressRequest)();
         };
 
         ctrl.viewUserDetail = function(userDetail) {

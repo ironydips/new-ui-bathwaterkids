@@ -6,9 +6,9 @@ function DriverModalController($state, DriverService) {
 
 	ctrl.driver = (ctrl.resolve && ctrl.resolve.details) || {};
 	ctrl.isDisabled = Object.keys(ctrl.driver).length > 0;
-
 	//Add Driver
-	ctrl.save = function(){  
+	ctrl.save = function(valid){  
+		console.log(valid)
 
 		DriverService.addDriver(ctrl.driver)
 		.then(function(result){
