@@ -1,3 +1,4 @@
+
 <!-- / profileComponent \ -->
 <div class="profileComponent">
     <div class="container">
@@ -9,68 +10,70 @@
                     <a href="" class="drive">Add License Image</a>
                 </div>
                 <h3>General Info</h3>
-                <form name="driverDetailForm" novalidate>
+                <form name="$ctrl.driverDetailForm" novalidate>
+                <!-- <div class="control-group" ng-class="{true: 'red'}[submitted && driverDetailForm.firstName.$invalid]"> -->
                     <table class="table-responsive">
                         <tbody>
                             <tr>
-                                <td class="gap" for="firstName">First Name*</td>
+                                <td class="gap" for="firstName">First Name<span class="red">*</span></td>
                                 <td class="gap2 gap3">
                                     <input ng-disabled={{$ctrl.isDisabled}} type="text" name="firstName" class="form-controls" ng-model="$ctrl.driver.firstName" required>
-                                    <span style="color: red;" ng-show="driverDetailForm.firstName.$invalid && !driverDetailForm.firstName.$pristine">Driver First Name required.</span>
+                                    <span class="red" ng-show="$ctrl.showMessage($ctrl.driverDetailForm.firstName)">This field is mandatory.</span>
                                 </td>
-                                <td class="gap gap4" for="lastName">Last Name*</td>
+                                <td class="gap gap4" for="lastName">Last Name<span class="red">*</span></td>
                                 <td class="gap2">
                                     <input ng-disabled={{$ctrl.isDisabled}} type="text" class="form-controls" name="lastName" ng-model="$ctrl.driver.lastName" required>
-                                    <span style="color: red;" ng-show="driverDetailForm.lastName.$invalid && !driverDetailForm.lastName.$pristine">Driver Last Name required.</span>
+                                    <span class="red" ng-show="$ctrl.showMessage($ctrl.driverDetailForm.lastName)">This field is mandatory.</span>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="gap" for="licenceId">Driver License ID*</td>
+                                <td class="gap" for="licenceId">Driver License ID<span class="red">*</span></td>
                                 <td class="gap2 gap3">
                                     <input ng-disabled={{$ctrl.isDisabled}} type="text" class="form-controls" name="driverLicense" ng-model="$ctrl.driver.licenseId" required>
-                                    <span style="color: red;" ng-show="driverDetailForm.driverLicense.$invalid && !driverDetailForm.driverLicense.$pristine">Driver LicenseID required.</span></td>
-                                <td class="gap gap4">Street Address*</td>
+                                    <span class="red" ng-show="$ctrl.showMessage($ctrl.driverDetailForm.driverLicense)">This field is mandatory.</span></td>
+                                <td class="gap gap4">Street Address<span class="red">*</span></td>
                                 <td class="gap2">
                                     <input ng-disabled={{$ctrl.isDisabled}} type="text" class="form-controls" name="streetAddress" ng-model="$ctrl.driver.streetAddress" required>
-                                    <span style="color: red;" ng-show="driverDetailForm.streetAddress.$invalid && !driverDetailForm.streetAddress.$pristine">Driver Address required.</span></td>
+                                    <span class="red" ng-show="$ctrl.showMessage($ctrl.driverDetailForm.streetAddress)">This field is mandatory.</span></td>
                             </tr>
                             <tr>
-                                <td class="gap">Apt</td>
+                                <td class="gap">Apt<span class="red">*</span></td>
                                 <td class="gap2 gap3">
                                     <input ng-disabled={{$ctrl.isDisabled}} type="text" class="form-controls" name="apt" ng-model="$ctrl.driver.apartment" required>
-                                    <span style="color: red;" ng-show="driverDetailForm.apt.$invalid && !driverDetailForm.apt.$pristine">Driver APT required.</span></td>
-                                <td class="gap gap4">City</td>
+                                    <span class="red" ng-show="$ctrl.showMessage($ctrl.driverDetailForm.apt)">This field is mandatory.</span></td>
+                                <td class="gap gap4">City<span class="red">*</span></td>
                                 <td class="gap2">
                                     <input ng-disabled={{$ctrl.isDisabled}} type="text" class="form-controls" name="city" ng-model="$ctrl.driver.city" required>
-                                    <span style="color: red;" ng-show="driverDetailForm.city.$invalid && !driverDetailForm.city.$pristine">Driver City required.</span></td>
+                                    <span class="red"  ng-show="$ctrl.showMessage($ctrl.driverDetailForm.city)">This field is mandatory.</span></td>
                             </tr>
                             <tr>
-                                <td class="gap">State*</td>
+                                <td class="gap">State<span class="red">*</span></td>
                                 <td class="gap2 gap3">
                                     <input ng-disabled={{$ctrl.isDisabled}} type="text" class="form-controls" name="state" ng-model="$ctrl.driver.state" required>
-                                    <span style="color: red;" ng-show="driverDetailForm.state.$invalid && !driverDetailForm.state.$pristine">Driver State required.</span></td>
-                                <td class="gap gap4">Zip*</td>
+                                    <span class="red"  ng-show="$ctrl.showMessage($ctrl.driverDetailForm.state)">This field is mandatory.</span></td>
+                                <td class="gap gap4">Zip<span class="red">*</span></td>
                                 <td class="gap2">
                                     <input ng-disabled={{$ctrl.isDisabled}} type="text" class="form-controls" ng-model="$ctrl.driver.zipCode" name="zip" required>
-                                    <span style="color: red;" ng-show="driverDetailForm.zip.$invalid && !driverDetailForm.zip.$pristine">Driver ZIP required.</span></td>
+                                    <span class="red" ng-show="$ctrl.showMessage($ctrl.driverDetailForm.zip)">This field is mandatory.</span></td>
                             </tr>
                             <tr>
-                                <td class="gap">Phone Number*</td>
+                                <td class="gap">Phone Number<span class="red">*</span></td>
                                 <td class="gap2 gap3">
-                                    <input ng-pattern="/^(\d)+$/" ng-disabled={{$ctrl.isDisabled}} type="text" class="form-controls" name="phoneNumber" ng-model="$ctrl.driver.phoneNumber" ng-required="true">
-                                    <span style="color: red;" ng-show="driverDetailForm.phoneNumber.$dirty && driverDetailForm.phoneNumber.$error.required">Driver Phone Number required.</span>
-                                    <span style="color: red;" ng-show="driverDetailForm.phoneNumber.$error.pattern">only Numbers Required</span> </td>
-                                <td class="gap gap4">Emergency Phone Number*</td>
+                                    <input ng-pattern="/^(\d)+$/" ng-disabled={{$ctrl.isDisabled}} type="text" class="form-controls" name="phoneNumber" ng-model="$ctrl.driver.phoneNumber" required>
+                                    <span class="red" ng-show="$ctrl.showMessage($ctrl.driverDetailForm.phoneNumber)">This field is mandatory.</span>
+                                    <span class="red" ng-show="$ctrl.driverDetailForm.phoneNumber.$error.pattern">only Numbers Required</span> </td>
+                                <td class="gap gap4">Emergency Phone Number<span class="red">*</span></td>
                                 <td class="gap2">
-                                    <input ng-disabled={{$ctrl.isDisabled}} type="text" class="form-controls" name="emergencyPhoneNumber" ng-model="$ctrl.driver.emergencyPhoneNumber" required>
-                                    <span style="color: red;" ng-show="driverDetailForm.emergencyPhoneNumber.$invalid && !driverDetailForm.emergencyPhoneNumber.$pristine">Driver Emergency Phone Number required.</span></td>
+                                    <input ng-pattern="/^(\d)+$/" ng-disabled={{$ctrl.isDisabled}} type="text" class="form-controls" name="emergencyPhoneNumber" ng-model="$ctrl.driver.emergencyPhoneNumber" required>
+                                    <span class="red" ng-show="$ctrl.showMessage($ctrl.driverDetailForm.emergencyPhoneNumber)">This field is mandatory.</span>
+                                    <span class="red"  ng-show="$ctrl.driverDetailForm.emergencyPhoneNumber.$error.pattern">only Numbers Required</span></td>
                             </tr>
                             <tr>
-                                <td class="gap">Email*</td>
+                                <td class="gap">Email<span class="red">*</span></td>
                                 <td class="gap2 gap3">
                                     <input ng-disabled={{$ctrl.isDisabled}} type="email" class="form-controls" name="email" ng-model="$ctrl.driver.emailAddress" required>
-                                    <span style="color: red;" ng-show="driverDetailForm.email.$dirty && driverDetailForm.email.$error.required">Driver Email required.</span>
-                                    <span style="color: red;" class="error"  ng-show="driverDetailForm.email.$error.email">
+                                    <span class="red" ng-show="$ctrl.showMessage($ctrl.driverDetailForm.email)">This field is mandatory.</span>
+                                    <span class="red" class="error"  ng-show="$ctrl.driverDetailForm.email.$error.email">
         Not valid email!</span></td>
                             </tr>
                         </tbody>
@@ -82,9 +85,10 @@
                         </div>
                         <div class="btn-main">
                             <button type="button" ng-click="$ctrl.cancel()" class="btn btn-sm btn-default">Cancel</button>
-                            <button type="button" ng-disabled={{$ctrl.isDisabled}} ng-click="$ctrl.save(driverDetailForm.$valid)" class="btn btn-sm btn-success">Save</button>
+                            <button type="button" ng-disabled={{$ctrl.isDisabled}}  class="btn btn-sm btn-success" ng-click="$ctrl.save()">Save</button>
                         </div>
                     </div>
+                   <!--  </div> -->
                 </form>
             </div>
         </div>
