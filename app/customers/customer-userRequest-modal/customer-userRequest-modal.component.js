@@ -46,10 +46,11 @@
 
         ctrl.init = function() {
             ctrl.noUserReqMessage = true;
+            ctrl.loader = true;
 
             customerUserService.getUserRequest(ctrl.customer.userID)
                 .then(function(response) {
-
+                    ctrl.loader = false;
 
                     if (response.data.length > 0) {
 

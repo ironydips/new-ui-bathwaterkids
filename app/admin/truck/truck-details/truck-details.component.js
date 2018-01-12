@@ -44,9 +44,11 @@ function TruckDetailsController($state, $uibModal, resizeService, TruckService) 
 	ctrl.$state = $state;
 
 	ctrl.init = function(){
+		ctrl.loader = true;
 		//get truck details.
 			TruckService.getAllTrucks()
 				.then(function(truckDetails){
+					ctrl.loader = false;
 					ctrl.trucks = truckDetails.data;
 				})
 				.catch(function(err){

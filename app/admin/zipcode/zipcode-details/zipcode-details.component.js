@@ -33,9 +33,11 @@ function ZipCodeDetailsController($state, $uibModal, ZipcodeService) {
 	ctrl.$state = $state;
 
 	ctrl.init = function(){
+		ctrl.loader = true;
 		//get driver details.
 		ZipcodeService.getZipCodes()
 		.then(function(zipCodes){
+			ctrl.loader = false;
 			ctrl.zipCodes = zipCodes.data;
 		})
 		.catch(function(err){

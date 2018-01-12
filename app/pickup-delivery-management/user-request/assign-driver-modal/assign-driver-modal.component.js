@@ -9,8 +9,10 @@
         ctrl.setDriver = {};
 
         ctrl.init = function() {
+            ctrl.loader = true;
             DriverService.getAllDrivers()
                 .then(function(response) {
+                    ctrl.loader = false;
                     ctrl.drivers = response.data;
                 })
                 .catch(function(err) {

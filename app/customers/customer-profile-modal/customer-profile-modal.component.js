@@ -8,7 +8,7 @@ function ProfileModalController($state,customerUserService) {
 	ctrl.isDisabled = Object.keys(ctrl.customer).length > 0;
 
 	ctrl.init = function(){
-
+					ctrl.loader = true;
 					if(!ctrl.customer.hasOwnProperty("address")){
 						ctrl.message = "Data does not exist";
 					}
@@ -19,6 +19,7 @@ function ProfileModalController($state,customerUserService) {
 
 				customerUserService.getUserInventory(ctrl.customer.userID)
 					.then(function(response){
+						ctrl.loader = false;
 						ctrl.userInventory = response.data;
 					})
 					.catch(function(err){

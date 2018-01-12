@@ -7,9 +7,10 @@ function TimeslotModalController($state, TimeslotService) {
 	ctrl.timeslot = {days:{}, timeslots:{}, availables:{}};
 	
 	ctrl.save = function(){
-
+		ctrl.loader = true;
 		TimeslotService.createTimeSlotsRange(ctrl.timeslot)
 			.then(function(result){
+				ctrl.loader = false;
 				ctrl.modalInstance.close({action: "update"});
 			})
 			.catch(function(err){

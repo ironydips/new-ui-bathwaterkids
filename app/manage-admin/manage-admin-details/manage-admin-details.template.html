@@ -1,4 +1,9 @@
 <div ng-if="$ctrl.isSuperAdmin">
+<div class="loading" ng-show="$ctrl.loader">
+    Loading&#8230;
+</div>
+<br>
+
    <div class="row" style="margin-top:1cm;">
       <div class="pull-left" style="margin-left: 2cm;">
          <input class="btn btn-lg btn-primary" ng-click="$ctrl.addadmin()" value="Add Admin" type="button">

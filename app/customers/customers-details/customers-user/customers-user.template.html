@@ -2,6 +2,9 @@
 
 <div class="userComponent">
     <div class="container">
+        <div class="loading" ng-show="$ctrl.loader">
+            Loading&#8230;
+        </div>
         <br>
         <input type="text" class="form-control pull-right"  ng-model="$ctrl.searchUser.emailAddress" placeholder="Search">
         <br>

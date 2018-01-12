@@ -1,6 +1,10 @@
 <!-- / profileComponent \ -->
 <div class="profileComponent">
     <div class="container">
+        <div class="loading" ng-show="$ctrl.loader">
+            Loading&#8230;
+        </div>
+        <br>
         <div class="profileSm">
             <h2>Assign Driver to</h2>
             <h3>{{$ctrl.userRequestDetail.userRequestID}}</h3>

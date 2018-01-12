@@ -43,9 +43,11 @@ function DriverDetailsController($state, $uibModal, DriverService) {
 	ctrl.$uibModal = $uibModal;
 	ctrl.$state = $state;
 	ctrl.init = function(){
+		ctrl.loader = true;
 		//get driver details.
 		DriverService.getAllDrivers()
 		.then(function(driverDetails){
+			ctrl.loader = false;
 			ctrl.drivers = driverDetails.data;
 		})
 		.catch(function(err){

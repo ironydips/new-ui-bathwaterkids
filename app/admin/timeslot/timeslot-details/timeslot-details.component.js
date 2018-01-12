@@ -52,9 +52,10 @@ function TimeslotController($state, $uibModal, TimeslotService) {
 	ctrl.$state = $state;
 
 	ctrl.init = function(){
-
+		ctrl.loader = true;
 		TimeslotService.getTimeslotsForTheWeek()
 			.then(function(timeslotDetails){
+				ctrl.loader = false;
 				ctrl.timeslots = timeslotDetails.data;
 			})
 			.catch(function(err){

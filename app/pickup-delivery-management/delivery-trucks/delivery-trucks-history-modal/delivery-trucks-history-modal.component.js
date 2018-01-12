@@ -5,9 +5,11 @@ function historyModalController($state,PickupTruckService) {
 	var ctrl = this;
 	
 	ctrl.init = function(){
+		ctrl.loader = true;
 		//get truck details.
 		 PickupTruckService.getAllDriverTruckHistory()
 			.then(function(truckDetails){
+				ctrl.loader = false;
 				ctrl.trkhistories = truckDetails.data;
 			})
 			.catch(function(err){

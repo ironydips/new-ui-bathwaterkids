@@ -31,9 +31,10 @@
 		ctrl.$uibModal = $uibModal;
 
 		ctrl.init = function(){
-
+			ctrl.loader = true;
 			inventoryService.getInventory()
 					.then(function(response){
+						ctrl.loader = false;
 						ctrl.Inventory = response.data;
 					})
 					.catch(function(err){

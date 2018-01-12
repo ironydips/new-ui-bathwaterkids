@@ -6,9 +6,10 @@ function TimeslotShowAllModal($state, TimeslotService) {
     var ctrl = this;
 
     ctrl.init = function(){
-
+         ctrl.loader = true;
          TimeslotService.getTimeslots()
                 .then(function(timeslotShowAllModal) {
+                    ctrl.loader = false;
                     ctrl.alltimeslot = timeslotShowAllModal.data;
                 })
                 .catch(function(err){

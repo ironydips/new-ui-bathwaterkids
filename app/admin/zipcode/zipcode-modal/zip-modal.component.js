@@ -6,9 +6,10 @@ function ZipModalModalController($rootScope,$state, ZipcodeService) {
 	ctrl.zip = (ctrl.resolve && ctrl.resolve.details) || {};
 
 	ctrl.save = function(){                  
-		
+		ctrl.loader = true;
 		ZipcodeService.addZipCode(ctrl.zip)
 			.then(function(result){
+				ctrl.loader = false;
 				ctrl.modalInstance.close({action: 'update'});
 		})
 		.catch(function(err){

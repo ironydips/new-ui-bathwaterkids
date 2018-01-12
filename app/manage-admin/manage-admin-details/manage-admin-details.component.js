@@ -65,6 +65,7 @@
         //API /admin/login
         ctrl.init = function() {
             ctrl.isSuperAdmin = true;
+            ctrl.loader = true;
             getAdminList();
           };
 
@@ -95,6 +96,7 @@
                 .then(function(response) {
                     if (response && response.data) {
                         ctrl.adminList = response.data;
+                        ctrl.loader = false;
                    }
                 })
                 .catch(function(err) {
