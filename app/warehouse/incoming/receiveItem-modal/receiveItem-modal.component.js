@@ -63,14 +63,20 @@
         ctrl.message = false;
 
         ctrl.init = function() {
+            ctrl.loader = true;
             warehouseMoveItemService.getItemsByStatus("RECEIVED")
                 .then(function(response) {
+                    ctrl.loader = false;
                     if (angular.isArray(response.data)) {
                         ctrl.items = response.data;
                         for (var i = 0; i < ctrl.items.length; i++) {
-                            if (ctrl.items[i].imageURLs.length == 0) {
-                                ctrl.items[i].imageURLs[0] = "https://www.moh.gov.bh/Content/Upload/Image/636009821114059242-not-available.jpg";
-                            }
+                            if(ctrl.items[i].imageURLs == null ){
+                                var arr = [];
+                                arr[0] = 'img/not-available.jpg';
+                                ctrl.items[i].imageURLs = arr;
+                            }else if (ctrl.items[i].imageURLs.length == 0) {
+                                ctrl.items[i].imageURLs[0] = "img/not-available.jpg";
+                            } 
                         }
                     }else{
                         ctrl.items =[];

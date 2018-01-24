@@ -1,12 +1,18 @@
 <div class="panel panel-primary">
+    <div class="loading" ng-show="$ctrl.loader">
+        Loading&#8230;
+    </div>
+    <br>
     <div class="panel-heading">
         <h3>STORED ITEMS</h3>
     </div>
     <div class="panel-body">
         <toast></toast>
-        <input type="text" class="form-control pull-right"  ng-model="$ctrl.searchItem" placeholder="Search">
+        <input type="text" class="form-control pull-right" ng-model="$ctrl.searchItem" placeholder="Search">
         <br>
-        <br><br>
+        <br>
+        <br>
+        <div style="height:320px;overflow:auto;">
         <table class="table text-center">
             <tr>
                 <th class="col-md-1">Images</th>
@@ -18,8 +24,9 @@
                 <th style="font-size: 13px;">Location</th>
                 <th style="font-size: 13px;">Credit</th>
                 <th style="font-size: 13px;">More Details</th>
-<!--                 <th style="font-size: 13px;">Action</th>
- -->            </tr>
+                <!--                 <th style="font-size: 13px;">Action</th>
+ -->
+            </tr>
             <tr ng-show="!$ctrl.message" ng-repeat="item in $ctrl.items | filter: $ctrl.searchItem">
                 <td class="text-center">
                     <a href="" ng-click="$ctrl.openLightboxModal(item.imageURLs)">
@@ -55,16 +62,12 @@
                 <td class="col-md-1"></td>
             </tr>
         </table>
+        </div>
     </div>
 </div>
 <div style="text-align:center;margin-bottom: 1cm;">
     <button type="button" ng-click="$ctrl.cancel()" class="btn btn-lg btn-default">Cancel</button>
 </div>
-
-
-
-
-
 <!-- <div class="timeslotComponent">
     <div class="container">
         <br>
@@ -114,7 +117,7 @@
                            <td class="col-md-1"></td>
 
                         </tr> -->
-     <!--    </table>
+<!--    </table>
         <div class="row" style="margin-bottom: 1cm;">
             <div class="col-sm-5">
             </div>
@@ -124,4 +127,4 @@
         </div>
     </div>
 </div>
- --> 
+ -->

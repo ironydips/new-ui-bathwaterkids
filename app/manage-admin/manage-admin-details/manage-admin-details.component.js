@@ -20,6 +20,7 @@
         });
 
         modalInstance.result.then(function(data) {
+            if (data && data.action == "update") popUpCtrl.init();
             // if(data && data.action == "delete") {
             //     var index = data.details;
             //     this.adminList.splice(index, 1);

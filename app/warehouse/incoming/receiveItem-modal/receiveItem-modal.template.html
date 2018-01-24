@@ -1,12 +1,18 @@
 <div class="panel panel-primary">
+    <div class="loading" ng-show="$ctrl.loader">
+        Loading&#8230;
+    </div>
+    <br>
     <div class="panel-heading">
         <h3>RECEIVED ITEMS</h3>
     </div>
     <div class="panel-body">
         <toast></toast>
-        <input type="text" class="form-control pull-right"  ng-model="$ctrl.searchItem" placeholder="Search">
+        <input type="text" class="form-control pull-right" ng-model="$ctrl.searchItem" placeholder="Search">
         <br>
-        <br><br>
+        <br>
+        <br>
+        <div style="height:320px;overflow:auto;">
         <table class="table text-center">
             <tr>
                 <th class="col-md-1">Images</th>
@@ -34,7 +40,7 @@
                 <td class="col-md-2">{{item.location}}</td>
                 <td class="col-md-1">{{item.credits}}</td>
                 <td>
-                    <button type="button"  ng-click="$ctrl.moreDetails(item)" class="btn btn-sm btn-primary">View</button>
+                    <button type="button" ng-click="$ctrl.moreDetails(item)" class="btn btn-sm btn-primary">View</button>
                 </td>
                 <td>
                     <button type="button" ng-click="$ctrl.updateLocation(item)" class="btn btn-sm btn-primary">Update Location/Status</button>
@@ -52,9 +58,9 @@
                 <td class="col-md-1"></td>
             </tr>
         </table>
+        </div>
     </div>
 </div>
 <div style="text-align:center;margin-bottom: 1cm;">
     <button type="button" ng-click="$ctrl.cancel()" class="btn btn-lg btn-default">Cancel</button>
 </div>
-

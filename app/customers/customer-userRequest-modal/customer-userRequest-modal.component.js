@@ -84,7 +84,7 @@
                         for (var j = 0; j <= i; j++) {
                             if (typeof item.items[i].imagesBase64[j] == "undefined") {
                                 //ctrl.value = item.items[i].imagesBase64[j];
-                                item.items[i].imagesBase64[j] = "https://www.moh.gov.bh/Content/Upload/Image/636009821114059242-not-available.jpg";
+                                item.items[i].imagesBase64[j] = "img/not-available.jpg";
 
 
                             }

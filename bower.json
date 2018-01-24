@@ -12,6 +12,8 @@
     "angular-google-gapi": "^1.0.1",
     "angular-messages": "1.5.11",
     "angular-bootstrap": "^2.5.0",
-    "angularjs-datepicker": "^2.1.12"
+    "angularjs-datepicker": "^2.1.12",
+    "moment": "^2.20.1",
+    "angular-moment": "^1.2.0"
   }
 }

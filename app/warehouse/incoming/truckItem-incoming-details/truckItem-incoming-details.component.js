@@ -19,7 +19,7 @@
 
         modalInstance.result.then(function(data) {
                 //data passed when pop up closed.
-                
+
 
             }),
             function(err) {
@@ -46,7 +46,7 @@
 
         modalInstance.result.then(function(data) {
                 //data passed when pop up closed.
-                
+
 
             }),
             function(err) {
@@ -73,7 +73,7 @@
 
         modalInstance.result.then(function(data) {
                 //data passed when pop up closed.
-               
+
 
             }),
             function(err) {
@@ -100,7 +100,7 @@
 
         modalInstance.result.then(function(data) {
                 //data passed when pop up closed.
-               
+
 
             }),
             function(err) {
@@ -111,13 +111,15 @@
     }
 
 
-    function TruckItemIncomingController($state, $uibModal, warehouseMoveItemService) {
+    function TruckItemIncomingController($state, $uibModal, moment, warehouseMoveItemService) {
         var ctrl = this;
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
 
         ctrl.init = function() {
-
+            ctrl.loader = true;
+            ctrl.date = moment().format("MM.DD.YYYY");
+            ctrl.selectedDate(ctrl.date);
         };
 
         ctrl.viewReceivedItems = function() {
@@ -132,7 +134,7 @@
             angular.bind(ctrl, viewItemPopup, item)();
         };
 
-        ctrl.viewDriverDetail = function(driverInfo){
+        ctrl.viewDriverDetail = function(driverInfo) {
             angular.bind(ctrl, driverInfoPopup, driverInfo)();
         }
 
@@ -140,30 +142,22 @@
             ctrl.selectedRow = rowIndex;
         };
 
-        ctrl.selectedDate = function(date){
-
-            warehouseMoveItemService.outgoingItems(date)
+        ctrl.selectedDate = function(date) {
+            ctrl.loader = true;
+            warehouseMoveItemService.incomingItems(date)
                 .then(function(response) {
-                    console.log(response)
-                })
-                .catch(function(err) {
-                    console.log('Error getting outgoing item status details:');
-                    console.log(err);
-                });
-
-                 warehouseMoveItemService.incomingItems(date)
-                .then(function(response) {
-                    if(angular.isArray(response.data)){
+                    ctrl.loader = false;
+                    if (angular.isArray(response.data)) {
                         ctrl.message = false;
                         ctrl.incomingItems = response.data;
                         // for (var i = 0; i < ctrl.incomingItems.length; i++) {
                         //         ctrl.incomingDetail = ctrl.incomingItems[i];
                         //         console.log(ctrl.incomingDetail)
                         // }
-                    }else{
+                    } else {
                         ctrl.message = true;
                     }
-                    
+
                 })
                 .catch(function(err) {
                     console.log('Error getting incoming item status details:');
@@ -177,6 +171,6 @@
     angular.module('truckItemIncomingWarehouseDetails')
         .component('truckItemIncomingWarehouseDetails', {
             templateUrl: 'warehouse/incoming/truckItem-incoming-details/truckItem-incoming-details.template.html',
-            controller: ['$state', '$uibModal','warehouseMoveItemService', TruckItemIncomingController]
+            controller: ['$state', '$uibModal', 'moment', 'warehouseMoveItemService', TruckItemIncomingController]
         });
 })(window.angular);

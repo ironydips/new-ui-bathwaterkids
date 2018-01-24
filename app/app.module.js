@@ -15,6 +15,7 @@ angular.module('bathwaterApp', [
 	// For Notification
 	'ngToast',
 	//LightBox Library used as Image Viewer.
+	'angularMoment', //moment.js for date formatting
 	'bootstrapLightbox',
 	'manageAdmin',
 	'index',

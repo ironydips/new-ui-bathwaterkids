@@ -111,7 +111,7 @@
     }
 
 
-    function TruckItemOutgoingController($state, $uibModal, warehouseMoveItemService) {
+    function TruckItemOutgoingController($state, $uibModal,moment, warehouseMoveItemService) {
         var ctrl = this;
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
@@ -119,7 +119,9 @@
         ctrl.dropItem = [];
 
         ctrl.init = function() {
-
+            ctrl.loader = true;
+            ctrl.date = moment().format("MM.DD.YYYY");
+            ctrl.selectedDate(ctrl.date);
         };
 
         ctrl.viewReceivedItems = function() {
@@ -144,49 +146,15 @@
 
         ctrl.selectedDate = function(date) {
 
-            // warehouseMoveItemService.outgoingItems(date)
-            //     .then(function(response) {
-            //         console.log(response)
-            //     })
-            //     .catch(function(err) {
-            //         console.log('Error getting outgoing item status details:');
-            //         console.log(err);
-            //     });
-            // warehouseMoveItemService.incomingItems(date)
-            //     .then(function(response) {
-            //         if (angular.isArray(response.data)) {
-            //             ctrl.message = false;
-            //             ctrl.incomingItems = response.data;
-
-            //             console.log(ctrl.incomingItems)
-            //             for (var i = 0; i < ctrl.incomingItems.length; i++) {
-            //                 if (ctrl.incomingItems[i].type == undefined) {
-            //                     ctrl.dropItem.push(ctrl.incomingItems[i]);
-            //                     for (var j = 0; j <= ctrl.incomingItems[i].items.length - 1; j++) {
-                                    
-            //                         if (ctrl.incomingItems[i].items[j].type == "drop off") {
-            //                             //if (ctrl.dropItem.length == 0) {
-
-            //                             ctrl.dropItemArray.push(ctrl.incomingItems[i].items[j]);
-            //                             console.log(ctrl.dropItemArray)
-            //                         } else {
-            //                             console.log("no dropoff");
-            //                         }
-
-            //                     }
-            //                 }
-
-            //             }
-            //         } else {
-
-            //         }
-
-            //     })
-            //     .catch(function(err) {
-            //         console.log('Error getting outgoing item status details:');
-            //         console.log(err);
-            //     });
-
+            warehouseMoveItemService.outgoingItems(date)
+                .then(function(response) {
+                    ctrl.message = true;
+                    ctrl.loader = false;
+                })
+                .catch(function(err) {
+                    console.log('Error getting outgoing item status details:');
+                    console.log(err);
+                });
         }
 
         ctrl.init();
@@ -195,6 +163,6 @@
     angular.module('truckItemOutgoingWarehouseDetails')
         .component('truckItemOutgoingWarehouseDetails', {
             templateUrl: 'warehouse/warehouse-outgoing/truckItem-outgoing-details/truckItem-outgoing-details.template.html',
-            controller: ['$state', '$uibModal', 'warehouseMoveItemService', TruckItemOutgoingController]
+            controller: ['$state', '$uibModal','moment', 'warehouseMoveItemService', TruckItemOutgoingController]
         });
 })(window.angular);

@@ -27,6 +27,7 @@
             }
 
     }
+
     function updateCreditPopUp(details) {
 
         var popUpCtrl = this;
@@ -44,7 +45,7 @@
 
         modalInstance.result.then(function(data) {
                 //data passed when pop up closed.
-               if(data && data.action == "update") popUpCtrl.init();
+                if (data && data.action == "update") popUpCtrl.init();
 
             }),
             function(err) {
@@ -61,21 +62,26 @@
         ctrl.message = false;
 
         ctrl.init = function() {
+            ctrl.loader = true;
             warehouseMoveItemService.getItemsByStatus("STORED")
                 .then(function(response) {
+                    ctrl.loader = false;
                     if (angular.isArray(response.data)) {
                         ctrl.items = response.data;
-                        console.log(ctrl.items)
-                        
                         for (var i = 0; i < ctrl.items.length; i++) {
-                            if (ctrl.items[i].imageURLs.length == 0) {
-                                ctrl.items[i].imageURLs[0] = "https://www.moh.gov.bh/Content/Upload/Image/636009821114059242-not-available.jpg";
+                            if (ctrl.items[i].imageURLs == null) {
+                                var arr = [];
+                                arr[0] = "img/not-available.jpg";
+                                //arr[0] = "https://www.moh.gov.bh/Content/Upload/Image/636009821114059242-not-available.jpg";
+                                ctrl.items[i].imageURLs = arr;
+                            } else if (ctrl.items[i].imageURLs.length == 0) {
+                                ctrl.items[i].imageURLs[0] = "img/not-available.jpg";
                             }
                         }
-                    }else{
-                            ctrl.items = [];
-                            ctrl.message = true;
-                        }
+                    } else {
+                        ctrl.items = [];
+                        ctrl.message = true;
+                    }
 
                 })
                 .catch(function(err) {
@@ -94,7 +100,7 @@
                 .then(function(result) {
                     ctrl.init();
                     ngToast.create({
-                       // className: 'success',
+                        // className: 'success',
                         content: 'Item Moved to REQUESTED_DROPFF',
                         //dismissButton: true
                     });
@@ -106,7 +112,7 @@
 
         };
 
-        ctrl.updateCredit = function(item){
+        ctrl.updateCredit = function(item) {
             angular.bind(ctrl, updateCreditPopUp, angular.copy(item))();
         };
 
@@ -120,7 +126,7 @@
     angular.module('storedProductModal')
         .component('storedProductModal', {
             templateUrl: 'warehouse/incoming/storedItem-modal/storedItem-modal.template.html',
-            controller: ['$state', '$uibModal','ngToast', 'warehouseMoveItemService', StoredItemModalController],
+            controller: ['$state', '$uibModal', 'ngToast', 'warehouseMoveItemService', StoredItemModalController],
             bindings: {
                 modalInstance: '<'
             }

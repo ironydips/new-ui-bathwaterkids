@@ -1,15 +1,18 @@
 <div class="timeslotComponent">
     <div class="container">
+        <div class="loading" ng-show="$ctrl.loader">
+            Loading&#8230;
+        </div>
         <br>
         <div class="row">
             <div class="col-sm-3">
                 <datepicker date-format="MM.dd.yyyy" selector="form-control">
-                     <div class="input-group">
-                        <input ng-model="$ctrl.date"  class="form-control" placeholder="Choose a date"/>
+                    <div class="input-group">
+                        <input ng-model="$ctrl.date" class="form-control" placeholder="Choose a date" />
                         <span class="input-group-addon" ng-click="$ctrl.selectedDate($ctrl.date)" style="cursor: pointer">Go
                         </span>
-                     </div>
-                  </datepicker>
+                    </div>
+                </datepicker>
             </div>
             <div class="col-sm-2">
                 <a href="" ng-click="$ctrl.viewReceivedItems()" class="btn btn-sm btn-success">View Received Items</a>
@@ -17,24 +20,20 @@
             <div class="col-sm-2">
                 <a href="" ng-click="$ctrl.viewStoredItems()" class="btn btn-sm btn-success">View Stored Items</a>
             </div>
-            
-
-            
         </div>
-        
-        
-        
         <br>
         <br>
         <table class="table table-condensed text-center">
             <thead>
                 <tr>
-<!--                     <th style="font-size: 15px;">Time Slot</th>
- -->                    <th style="font-size: 15px;">Truck ID</th>
+                    <!--                     <th style="font-size: 15px;">Time Slot</th>
+ -->
+                    <th style="font-size: 15px;">Truck ID</th>
                     <th style="font-size: 15px;">Truck License Plate</th>
                     <th style="font-size: 15px;">Number of Items</th>
-<!--                     <th style="font-size: 15px;">Status</th>
- -->                    <!-- <th style="font-size: 15px;">User RequestID</th>
+                    <!--                     <th style="font-size: 15px;">Status</th>
+ -->
+                    <!-- <th style="font-size: 15px;">User RequestID</th>
                     <th style="font-size: 15px;">User Detail</th>-->
                     <th style="font-size: 15px;">Driver Detail</th>
                     <th style="font-size: 15px;">Action</th>
@@ -42,12 +41,14 @@
             </thead>
             <tbody>
                 <tr ng-hide="$ctrl.message" ng-repeat="item in $ctrl.incomingItems" ng-click="$ctrl.selectRow($index)" ng-class="{'highlight': $index == $ctrl.selectedRow}">
-<!--                     <td>{{item.time}}</td>
- -->                <td>{{item.truckId}}</td>
+                    <!--                     <td>{{item.time}}</td>
+ -->
+                    <td>{{item.truckId}}</td>
                     <td>{{item.licensePlate}}</td>
                     <td>{{item.totalItemsCount}}</td>
-<!--                     <td>{{item.status}}</td>
- -->                    <!-- <td>{{item.userRequestID}}</td>
+                    <!--                     <td>{{item.status}}</td>
+ -->
+                    <!-- <td>{{item.userRequestID}}</td>
                     <td><a ng-click="$ctrl.showallSavedItems(pdt.truckID)" class="btn btn-primary btn-sm">View</a></td>-->
                     <td><a ng-click="$ctrl.viewDriverDetail(item.driver)" class="btn btn-primary btn-sm">View</a></td>
                     <td><a ng-click="$ctrl.viewItems(item)" class="btn btn-primary btn-sm">View Items</a></td>
@@ -55,8 +56,8 @@
                 <tr ng-show="$ctrl.message">
                     <td></td>
                     <td></td>
-                    <td></td>
                     <td><b style="font-size: 15px;">No Truck and Item Detail Found</b></td>
+                    <td></td>
                     <td></td>
                 </tr>
             </tbody>
