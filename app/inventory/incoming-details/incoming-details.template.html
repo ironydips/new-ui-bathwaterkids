@@ -22,7 +22,7 @@
                     <th class="col-md-4">Product Details</th>
                     <th>Actions</th>
                 </tr>
-                <tr class="text-center" ng-repeat="inventory in $ctrl.Inventory | filter:searchInventory" ng-click="$ctrl.selectRow($index)" ng-class="{'highlight': $index == $ctrl.selectedRow}">
+                <tr ng-hide="$ctrl.message" class="text-center" ng-repeat="inventory in $ctrl.Inventory | filter:searchInventory" ng-click="$ctrl.selectRow($index)" ng-class="{'highlight': $index == $ctrl.selectedRow}">
                     <td class="text-center">
                         <a href="" ng-click="$ctrl.openLightboxModal(inventory.imageURLs)">
                             <img ng-src="{{inventory.imageURLs[0]}}" class="img-thumbnail">
@@ -40,6 +40,19 @@
                     <td><a ng-click="$ctrl.addUpdateCredit(inventory)" class="btn btn-sm btn-success">
                                   Add/Update Credit
                                 </a></td>
+                </tr>
+                <tr ng-show="$ctrl.message">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="col-md-4 text-center"><b style="font-size: 15px;">No Record Found</b></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 </tbody>
             </table>

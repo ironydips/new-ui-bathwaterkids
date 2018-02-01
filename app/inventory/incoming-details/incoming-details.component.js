@@ -32,10 +32,14 @@
 
 		ctrl.init = function(){
 			ctrl.loader = true;
+			ctrl.message = false;
 			inventoryService.getInventory()
 					.then(function(response){
 						ctrl.loader = false;
 						ctrl.Inventory = response.data;
+						if(ctrl.Inventory.length == 0){
+							ctrl.message = true;
+						}
 					})
 					.catch(function(err){
 						console.log('Error getting user-items details:');
