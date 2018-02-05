@@ -2,7 +2,8 @@
 'use strict';
 
 angular.module('userRequestInProgressModal',[
-		'bathwaterApp.services'
+		'bathwaterApp.services',
+		'userRequestPickUpModal'
 	]);
 
 })(window.angular);

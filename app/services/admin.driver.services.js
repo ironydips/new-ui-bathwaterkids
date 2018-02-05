@@ -31,10 +31,30 @@
 					});
 		}
 
+
+		var pickup = function(driver){
+			return $http({
+						url: '/rest/driver/completePickup',
+			            method: "POST",
+			            data: driver,
+			      //       transformRequest: function(obj) {
+					    //     var str = [];
+					    //     for(var p in obj)
+					    //     	str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+					    //     return str.join("&");
+					    // },
+			            headers: {
+			                'Authorization': "Basic YWRtaW46YWRtaW4=",
+			                "Content-Type": "application/json"
+			            }
+					});
+		}
+
 		//EXPORTED Object
 		return {
 			getAllDrivers,
-			addDriver
+			addDriver,
+			pickup
 		}
 	}
 
