@@ -60,12 +60,10 @@ function UserRequestPickUpModalController($state,UserRequestService,DriverServic
         ctrl.loader = true;
         DriverService.pickup(ctrl.data)
             .then(function(result) {
-                debugger
                 ctrl.loader = false;
                 ctrl.modalInstance.close({ action: 'update' });
             })
             .catch(function(err) {
-                debugger
                 console.log('Error Adding Driver');
                 console.log(err);
             });

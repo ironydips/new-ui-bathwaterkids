@@ -5,29 +5,22 @@
         var ctrl = this;
         ctrl.imageURLs = [];
         ctrl.item = (ctrl.resolve && ctrl.resolve.details) || {};
-
         ctrl.init = function() {
-
             if (ctrl.item.subItems) {
                 ctrl.subItems = ctrl.item.subItems;
                 for (var i = 0; i < ctrl.subItems.length; i++) {
                     for (var j = 0; j <= i; j++) {
-                        if (ctrl.item.subItems[i].imageURLs[j]) {
-                        	
+                        if (ctrl.item.subItems[i].imageURLs) {
                             ctrl.imageURLs.push(ctrl.item.subItems[i].imageURLs[j]);
                         }
                     }
-
                 }
-
             }
         };
-
         ctrl.cancel = function() {
             ctrl.modalInstance.close();
         };
         ctrl.init();
-
     }
 
     angular.module('customerSubItemModal')

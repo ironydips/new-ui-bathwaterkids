@@ -4,7 +4,6 @@
 function UserRequestCompletedModalController($state,UserRequestService,DriverService) {
     var ctrl = this;
     ctrl.timeslots = (ctrl.resolve && ctrl.resolve.details) || {};
-
     ctrl.init = function(){
         
         DriverService.getAllDrivers()
@@ -12,23 +11,6 @@ function UserRequestCompletedModalController($state,UserRequestService,DriverSer
                ctrl.drivers = response.data;
         });
     };
-
-     ctrl.assignDriver = function (reqId, drC) {
-        var updatedDriverC = angular.fromJson(drC.selecteddriverC);
-
-        UserRequestService.assignDriver(reqId,updatedDriverC)
-        .then(function (response) {
-                if(response.data.response == "success"){
-                drC.driver = drC.driver || {};
-                drC.driver.firstName = updatedDriverC.firstName;
-                drC.driver.lastName = updatedDriverC.lastName;
-            }else{
-                console.log("Invalid driver");
-
-            }
-        });
-    };
-
 
     ctrl.cancel = function(){
         ctrl.modalInstance.close();

@@ -41,13 +41,17 @@
 
         ctrl.UserReqmessage = true;
         ctrl.noItemMessage = true;
+        ctrl.showAddButton = false;
 
 
 
         ctrl.init = function() {
             ctrl.noUserReqMessage = true;
             ctrl.loader = true;
+            ctrl.getRequest();
+        };
 
+        ctrl.getRequest = function (argument) {
             customerUserService.getUserRequest(ctrl.customer.userID)
                 .then(function(response) {
                     ctrl.loader = false;
@@ -56,11 +60,20 @@
 
                         response.data.forEach(function(data) {
                             data.isChecked = false;
+                            //if(ctrl.selectedItem){
+
+                                // if(ctrl.selectedItem && ctrl.isChecked(data.userRequestID)){
+                                //     data.isChecked = true;
+                                // }
+                            //}
                         });
 
-                        ctrl.userReq = response.data;
+                        ctrl.userReq = response.data; //uncheck
                         ctrl.UserReqmessage = false;
-
+                        if(ctrl.selectedItem){
+                            ctrl.isChecked(ctrl.selectedItem.userRequestID);
+                            // ctrl.getItems(ctrl.selectedItem);
+                        }
                     } else {
                         ctrl.message = true;
                         ctrl.itemsMessage = "Data does not exist";
@@ -70,63 +83,110 @@
                     console.log('Error getting user-request details:');
                     console.log(err);
                 });
-        };
+        }
 
+        ctrl.isChecked = function(userRequestID){
+            ctrl.userReq.forEach(function(data) {
+                if(data.userRequestID == userRequestID){
+                    data.isChecked = true;
+                    ctrl.getItems(data);
+                }
+                            
+                        });
+            // var boolean = false;
+            // if(userRequestID == ctrl.selectedItem.userRequestID){
+            //     boolean = true;
+            // }
+            //   return boolean;
+        }
 
         ctrl.getItems = function(item) {
-
+            ctrl.selectedRow = item.userRequestID;
+            ctrl.selectedItem = item;
             if (item.items) {
-                if (item.isChecked) {
-
+                // if (item.isChecked) {
                     ctrl.noItemMessage = false;
                     ctrl.noUserReqMessage = false;
                     for (var i = 0; i < item.items.length; i++) {
                         for (var j = 0; j <= i; j++) {
-                            if (typeof item.items[i].imagesBase64[j] == "undefined") {
+                            // if (item.items[i].imagesBase64 && typeof item.items[i].imagesBase64[j] == "undefined") {
+                            if (!item.items[0].imagesBase64 || item.items[0].imagesBase64[0]==null) {
                                 //ctrl.value = item.items[i].imagesBase64[j];
                                 item.items[i].imagesBase64[j] = "img/not-available.jpg";
-
-
                             }
                         }
                     }
                     item.items.forEach(function(data) { data.userRequestID = item.userRequestID });
-                    ctrl.itemsArray = ctrl.itemsArray.concat(item.items);
-                    ctrl.selectedRow = item.userRequestID;
-                } else {
-                    ctrl.itemsArray = ctrl.itemsArray.filter(function(data) {
-                        return data.userRequestID != item.userRequestID });
-                    if (ctrl.itemsArray.length == 0) {
-                        ctrl.noItemMessage = true;
-                    }
-                }
-
+                    ctrl.itemsArray = [];
+                    // ctrl.itemsArray = ctrl.itemsArray.concat(item.items);
+                    ctrl.itemsArray = item.items;
+                    // ctrl.selectedRow = item.userRequestID;
+                // } else {
+                //     ctrl.itemsArray = ctrl.itemsArray.filter(function(data) {
+                //         return data.userRequestID != item.userRequestID });
+                //     if (ctrl.itemsArray.length == 0) {
+                //         ctrl.noItemMessage = true;
+                //     }
+                // }
             } else {
                 //No subitems in the array
-                if (ctrl.itemsArray.length == 0) {
-
+                ctrl.itemsArray = [];
+                // if (ctrl.itemsArray.length == 0) {
                     ctrl.noItemMessage = true;
-                }
+                // }
+                ctrl.showAddButton = true;
             }
+            debugger
 
         };
         ctrl.openLightboxModal = function(images) {
             //LightBox Library used as Image Viewer.
             Lightbox.openModal(images, 0);
         };
-        ctrl.displayRow = function(index) {
 
+        ctrl.displayRow = function(index) {
             ctrl.displayRowValue = index;
             ctrl.selectedRow = "";
         };
 
         ctrl.subItems = function(subitem) {
-
             angular.bind(ctrl, openSubItem, subitem)();
+        };
+
+        ctrl.addItems = function() {
+            // console.log(userRequestID)
+            angular.bind(ctrl, openPopUpAddItem, ctrl.selectedItem)();
         };
 
         ctrl.cancel = function() {
             ctrl.modalInstance.close();
+        };
+
+
+        function openPopUpAddItem(details) {
+            var popUpCtrl = this;
+            var modalInstance = popUpCtrl.$uibModal.open({
+                component: 'customerAddItemModal',
+                windowClass: 'app-modal-window-large',
+                keyboard: false,
+                resolve: {
+                    details: function() {
+                        return (details || {});
+                    }
+                },
+                backdrop: 'static'
+            });
+
+            modalInstance.result.then(function(data) {
+                    //data passed when pop up closed.
+                    // ctrl.init();
+                    //userRequestID 
+                    ctrl.getRequest();
+                }),
+                function(err) {
+                    console.log('Error in user-request-completed Modal');
+                    console.log(err);
+                }
         };
 
         ctrl.init();

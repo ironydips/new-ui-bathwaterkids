@@ -25,7 +25,8 @@
                         </tr>
                         <tr ng-if="$ctrl.userReq" ng-repeat="req in $ctrl.userReq | orderBy:orderByField:reverseSort">
                             <td>
-                                <input type="checkbox" ng-model="req.isChecked" ng-click="$ctrl.getItems(req)">
+                                <!-- <input type="checkbox" ng-model="req.isChecked" ng-click="$ctrl.getItems(req)"> -->
+                                <input type="radio" name="radio" ng-click="$ctrl.getItems(req)" ng-model="req.isChecked" ng-value="true">
                             </td>
                             <td>{{req.userRequestID}}</td>
                             <td>{{req.date}}</td>
@@ -99,7 +100,10 @@
                             <tr ng-show="$ctrl.noItemMessage">
                                 <td class="col-md-3"></td>
                                 <td class="col-md-2"></td>
-                                <td style="font-size: 15px;" class="col-md-4"><b>No Items to Display</b></td>
+                                <td style="font-size: 15px;" class="col-md-4">
+                                    <b>No Items to Display</b><br>
+                                    <button ng-if="$ctrl.showAddButton" class="btn btn-primary btn-sm" ng-click="$ctrl.addItems($ctrl.selectedRow)">Add Item</button>
+                                </td>
                                 <td class="col-md-1"></td>
                                 <td class="col-md-2"></td>
                                 <td class="col-md-1"></td>
