@@ -4,6 +4,7 @@
     function customerSubItemModalController($state) {
         var ctrl = this;
         ctrl.imageURLs = [];
+        ctrl.subItem = {};
         ctrl.item = (ctrl.resolve && ctrl.resolve.details) || {};
         ctrl.init = function() {
             if (ctrl.item.subItems) {
@@ -15,11 +16,16 @@
                         }
                     }
                 }
+            }else{
+
             }
         };
         ctrl.cancel = function() {
             ctrl.modalInstance.close();
         };
+        ctrl.save = function(){
+            ctrl.modalInstance.close({ action: 'update', subItem: ctrl.subItem });
+        }
         ctrl.init();
     }
 

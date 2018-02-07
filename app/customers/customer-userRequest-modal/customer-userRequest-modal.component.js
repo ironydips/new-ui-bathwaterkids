@@ -109,8 +109,13 @@
                     ctrl.noUserReqMessage = false;
                     for (var i = 0; i < item.items.length; i++) {
                         for (var j = 0; j <= i; j++) {
+                            if(!item.items[i].hasOwnProperty('imagesBase64')){
+                                let arr = ["img/not-available.jpg"];
+                                item.items[i].imagesBase64 = arr;
+                                //let arr = [];
+                            }
                             // if (item.items[i].imagesBase64 && typeof item.items[i].imagesBase64[j] == "undefined") {
-                            if (!item.items[0].imagesBase64 || item.items[0].imagesBase64[0]==null) {
+                            if (item.items[i].imagesBase64 || item.items[i].imagesBase64[i]==null) {
                                 //ctrl.value = item.items[i].imagesBase64[j];
                                 item.items[i].imagesBase64[j] = "img/not-available.jpg";
                             }
@@ -136,7 +141,6 @@
                 // }
                 ctrl.showAddButton = true;
             }
-            debugger
 
         };
         ctrl.openLightboxModal = function(images) {

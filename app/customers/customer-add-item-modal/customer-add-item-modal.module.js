@@ -2,7 +2,8 @@
 'use strict';
 
 angular.module('customerAddItemModal',[
-		'bathwaterApp.services'
+		'bathwaterApp.services',
+		'customerSubItemModal'
 	]);
 
 })(window.angular);

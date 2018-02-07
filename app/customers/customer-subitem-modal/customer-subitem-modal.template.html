@@ -3,7 +3,52 @@
         <h2>Sub Item Details</h2>
     </div>
     <div class="panel-body">
-        <div class="row" ng-repeat="item in $ctrl.subItems">
+        <div ng-show="!$ctrl.item.subItems">
+            <div class="userRequestinProgressModal">
+                <div class="table-responsive text-center">
+                    <div>
+                        <div class="profileComponent">
+                            <div class="container">
+                                <div class="profileBg">
+                                    <div>
+                                        <!-- <h3>Image</h3> -->
+                                        <!-- <h3 style="clear: both;">Item Info</h3> -->
+                                        <form>
+                                            <table class="table-responsive">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="gap" for="SubItemCode">Sub Item Code</td>
+                                                        <td class="gap2 gap3">
+                                                            <input type="text" name="SubItemCode" class="form-controls" ng-model="$ctrl.subItem.itemCode">
+                                                        </td>
+                                                        <td class="gap gap4" for="Sub Item Name">Sub Item Name</td>
+                                                        <td class="gap2">
+                                                            <input type="text" class="form-controls" ng-model="$ctrl.subItem.itemName">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="gap" for="description">Sub Item Description</td>
+                                                        <td class="gap2 gap3">
+                                                            <input type="text" class="form-controls" ng-model="$ctrl.subItem.description">
+                                                        </td>
+                                                    </tr>
+                                                    <!-- <tr ng-if="!$ctrl.isSubItem">
+                                            <td>
+                                                <button type="button" ng-click="$ctrl.addSubItem()" class="btn btn-sm btn-success">Add Sub Item</button>
+                                            </td>
+                                        </tr> -->
+                                                </tbody>
+                                            </table>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row" ng-repeat="item in $ctrl.subItems" >
             <div class="row">
                 <div class="col-sm-2">
                 </div>
@@ -37,9 +82,26 @@
                 </div>
             </div>
             <br>
+        </div> -->
+        <div ng-show="$ctrl.item.subItems">
+            <table class="table table-hover">
+                <tr>
+                    <th style="font-size: 13px;" class="col-md-1">Item Code</th>
+                    <th style="font-size: 13px;" class="col-md-1">Item Name</th>
+                    <th style="font-size: 13px;" class="col-md-1">Description</th>
+                </tr>
+                <tr ng-repeat="item in $ctrl.subItems">
+                    <td class="text-center">{{item.itemCode}}</td>
+                    <td class="text-center">{{item.itemName}}</td>
+                    <td class="text-center">{{item.description}}</td>
+                </tr>
+            </table>
+        </div>
+        <div>
         </div>
     </div>
 </div>
 <div style="text-align:center;margin-bottom: 1cm;">
     <button type="button" ng-click="$ctrl.cancel()" class="btn btn-lg btn-default">Cancel</button>
+    <button type="button" ng-show="!$ctrl.item.subItems" ng-click="$ctrl.save()" class="btn btn-lg btn-success">Save</button>
 </div>
