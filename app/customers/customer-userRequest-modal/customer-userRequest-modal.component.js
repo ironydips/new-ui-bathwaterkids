@@ -137,9 +137,11 @@
                 //No subitems in the array
                 ctrl.itemsArray = [];
                 // if (ctrl.itemsArray.length == 0) {
-                    ctrl.noItemMessage = true;
+                ctrl.noItemMessage = true;
+                if(ctrl.selectedItem.status!="cancelled"){
+                    ctrl.showAddButton = true;
+                }
                 // }
-                ctrl.showAddButton = true;
             }
 
         };

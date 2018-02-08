@@ -80,7 +80,7 @@
                 <br>
                 <div class="row">
                     <h3>Address Details</h3>
-                    <div>
+                    <div style="height:250px;overflow:auto;">
                         <table style="text-align:center;" class="table table-hover">
                             <tr>
                                 <th style="font-size: 13px;" class="col-md-2">AddressID</th>
@@ -111,19 +111,20 @@
                 <br>
                 <div class="row">
                     <h3>Item Details</h3>
-                    <div>
+                    <div style="height:250px;overflow:auto;">
                         <table class="table table-hover text-center">
                             <tr>
                                 <th style="font-size: 13px;" class="col-md-1">CategoryID</th>
                                 <th style="font-size: 13px;" class="col-md-1">Name</th>
-                                <th style="font-size: 13px;" class="col-md-1">ItemID</th>
+                                <th style="font-size: 13px;" class="col-md-1">ItemCode</th>
                                 <th style="font-size: 13px;" class="col-md-1">Credit</th>
                                 <th style="font-size: 13px;" class="col-md-2">Description</th>
                             </tr>
-                            <tr ng-repeat="item in $ctrl.userInventory.storedItems track by $index">
+                            <!-- <tr ng-repeat="item in $ctrl.userInventory.storedItems track by $index"> -->
+                            <tr ng-repeat="item in $ctrl.userItems track by $index">
                                 <td>{{item.categoryID}}</td>
-                                <td>{{item.name}}</td>
-                                <td>{{item.itemID}}</td>
+                                <td>{{item.itemName}}</td>
+                                <td>{{item.itemCode[0]}}</td>
                                 <td>{{item.credits}}</td>
                                 <td>{{item.description}}</td>
                             </tr>

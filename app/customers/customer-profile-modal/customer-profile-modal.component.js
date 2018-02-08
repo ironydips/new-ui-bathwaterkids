@@ -12,15 +12,29 @@ function ProfileModalController($state,customerUserService) {
 					if(!ctrl.customer.hasOwnProperty("address")){
 						ctrl.message = "Data does not exist";
 					}
-					if (!ctrl.customer.hasOwnProperty("storedItems")) {
-						ctrl.itemMessage = "No items to display";
-					}
+					// if (!ctrl.customer.hasOwnProperty("storedItems")) {
+					// 	ctrl.itemMessage = "No items to display";
+					// }
 							
 
 				customerUserService.getUserInventory(ctrl.customer.userID)
 					.then(function(response){
 						ctrl.loader = false;
 						ctrl.userInventory = response.data;
+					})
+					.catch(function(err){
+						console.log('Error getting user-profile details:');
+						console.log(err);
+					});
+				
+
+				customerUserService.getUserItems(ctrl.customer.userID)
+					.then(function(response){
+						ctrl.loader = false;
+						ctrl.userItems = response.data;
+						if (!ctrl.userItems.length>0) {
+							ctrl.itemMessage = "No items to display";
+						}
 					})
 					.catch(function(err){
 						console.log('Error getting user-profile details:');

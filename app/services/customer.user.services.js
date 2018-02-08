@@ -23,6 +23,16 @@
 	        });
 		};
 
+		var getUserItems  = function(userID){
+			return $http({
+		            url: '/rest/getUserItems?userid='+ userID,
+		            method: "GET",
+		            headers:{
+	            		"Authorization": 'Basic YWRtaW46YWRtaW4='
+	            }
+	        });
+		};
+
 		var getUserRequest = function(userID){
 			return $http({
 		            url: '/rest/getUserRequests?userid='+ userID,
@@ -47,6 +57,7 @@
 		return {
 			getUsers,
 			getUserInventory,
+			getUserItems,
 			getUserRequest,
 			getTrucksByUserrequests
 		}
