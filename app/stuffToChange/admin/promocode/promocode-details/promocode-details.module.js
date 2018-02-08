@@ -1,9 +1,11 @@
 (function(angular) {
+
 'use strict';
 
-angular.module('customerProfileModal',[
+angular.module("promocodeDetails",[
+	'ui.bootstrap',
 	'bathwaterApp.services',
-	'customerSubItemModal'
+	'promoModal'
 	]);
 
 })(window.angular);

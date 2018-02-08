@@ -1,9 +1,10 @@
 (function(angular) {
 'use strict';
 
-angular.module('customerProfileModal',[
+angular.module('zipcodeDetails',[
+	'ui.bootstrap',
 	'bathwaterApp.services',
-	'customerSubItemModal'
+	'zipModal'
 	]);
 
 })(window.angular);

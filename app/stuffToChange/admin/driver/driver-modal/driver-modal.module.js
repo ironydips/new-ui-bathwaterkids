@@ -1,9 +1,8 @@
 (function(angular) {
 'use strict';
 
-angular.module('customerProfileModal',[
+angular.module('driverModal',[
 	'bathwaterApp.services',
-	'customerSubItemModal'
 	]);
 
 })(window.angular);

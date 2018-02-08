@@ -1,9 +1,11 @@
 (function(angular) {
 'use strict';
 
-angular.module('customerProfileModal',[
+angular.module('truckDetails',[
+	'truckModal',
+	'images-resizer',
+	'ui.bootstrap',
 	'bathwaterApp.services',
-	'customerSubItemModal'
 	]);
 
 })(window.angular);
