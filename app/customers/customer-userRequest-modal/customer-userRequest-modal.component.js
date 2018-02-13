@@ -56,7 +56,7 @@
                 .then(function(response) {
                     ctrl.loader = false;
 
-                    if (response.data.length > 0) {
+                    if (response && response.data.length > 0) {
 
                         response.data.forEach(function(data) {
                             data.isChecked = false;
@@ -109,29 +109,30 @@
                     ctrl.noUserReqMessage = false;
                     for (var i = 0; i < item.items.length; i++) {
                         for (var j = 0; j <= i; j++) {
-                            if(!item.items[i].hasOwnProperty('imageUrl')){
+                            if(item.items[i].hasOwnProperty('imageUrl') && item.items[i].imageUrl.length ){
+                                 item.items[i].imageUrl = item.items[i].imageUrl;
+                            }else{
                                 let arr = ["img/not-available.jpg"];
-                                item.items[i].imagesBase64 = arr;
-                                //let arr = [];
+                                item.items[i].imageUrl = arr;
                             }
-                            if(item.items[i].hasOwnProperty('imageUrl')){
-                                item.items[i].imagesBase64 = item.items[i].imageUrl;
-                            }
-                            // if (item.items[i].imagesBase64 && typeof item.items[i].imagesBase64[j] == "undefined") {
-                            if (item.items[i].hasOwnProperty('imageUrl') && item.items[i].imageUrl[i]==null) {
-                                //ctrl.value = item.items[i].imagesBase64[j];
-                                item.items[i].imageUrl[j] = "img/not-available.jpg";
-                            }
-                            if(!item.items[i].hasOwnProperty('imagesBase64')){
-                                let arr = ["img/not-available.jpg"];
-                                item.items[i].imagesBase64 = arr;
-                                //let arr = [];
-                            }
-                            // if (item.items[i].imagesBase64 && typeof item.items[i].imagesBase64[j] == "undefined") {
-                            if (item.items[i].imagesBase64[i]==null) {
-                                //ctrl.value = item.items[i].imagesBase64[j];
-                                item.items[i].imagesBase64[j] = "img/not-available.jpg";
-                            }
+                             // if(item.items[i].hasOwnProperty('imageUrl')){
+                             //     item.items[i].imageUrl = item.items[i].imageUrl;
+                             // }
+                            // // if (item.items[i].imagesBase64 && typeof item.items[i].imagesBase64[j] == "undefined") {
+                            // if (item.items[i].hasOwnProperty('imageUrl') && item.items[i].imageUrl[i]==null) {
+                            //     //ctrl.value = item.items[i].imagesBase64[j];
+                            //     item.items[i].imageUrl[j] = "img/not-available.jpg";
+                            // }
+                            // if(!item.items[i].hasOwnProperty('imagesBase64')){
+                            //     let arr = ["img/not-available.jpg"];
+                            //     item.items[i].imagesBase64 = arr;
+                            //     //let arr = [];
+                            // }
+                            // // if (item.items[i].imagesBase64 && typeof item.items[i].imagesBase64[j] == "undefined") {
+                            // if (item.items[i].imagesBase64[i]==null) {
+                            //     //ctrl.value = item.items[i].imagesBase64[j];
+                            //     item.items[i].imagesBase64[j] = "img/not-available.jpg";
+                            // }
                         }
                     }
                     item.items.forEach(function(data) { data.userRequestID = item.userRequestID });

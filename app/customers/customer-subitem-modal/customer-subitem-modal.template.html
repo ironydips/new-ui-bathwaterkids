@@ -10,37 +10,44 @@
                         <div class="profileComponent">
                             <div class="container">
                                 <!-- <div class="profileBg"> -->
-                                    <div>
-                                        <!-- <h3>Image</h3> -->
-                                        <!-- <h3 style="clear: both;">Item Info</h3> -->
-                                        <form>
-                                            <table class="table-responsive">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="gap" for="SubItemCode">Sub Item Code</td>
-                                                        <td class="gap2 gap3">
-                                                            <input type="text" name="SubItemCode" class="form-controls" ng-model="$ctrl.subItem.itemCode">
-                                                        </td>
-                                                        <td class="gap gap4" for="Sub Item Name">Sub Item Name</td>
-                                                        <td class="gap2">
-                                                            <input type="text" class="form-controls" ng-model="$ctrl.subItem.itemName">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="gap" for="description">Sub Item Description</td>
-                                                        <td class="gap2 gap3">
-                                                            <input type="text" class="form-controls" ng-model="$ctrl.subItem.description">
-                                                        </td>
-                                                    </tr>
-                                                    <!-- <tr ng-if="!$ctrl.isSubItem">
+                                <div>
+                                    <div ng-hide="$ctrl.viewItems" class="inner-adjust">
+                                        <h3>Product Information</h3>
+                                        <div class="image">
+                                            <img src="{{$ctrl.imageUrl || ''}}" alt="Select Sub Item Image" style="width: 208px;height: 200px" />
+                                        </div>
+                                        <input style="margin-left:250px" ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.subItemImage" base-sixty-four-input accept="image/*">
+                                    </div>
+                                    <!-- <h3>Image</h3> -->
+                                    <!-- <h3 style="clear: both;">Item Info</h3> -->
+                                    <form>
+                                        <table class="table-responsive">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="gap" for="SubItemCode">Sub Item Code</td>
+                                                    <td class="gap2 gap3">
+                                                        <input type="text" name="SubItemCode" class="form-controls" ng-model="$ctrl.subItem.itemCode">
+                                                    </td>
+                                                    <td class="gap gap4" for="Sub Item Name">Sub Item Name</td>
+                                                    <td class="gap2">
+                                                        <input type="text" class="form-controls" ng-model="$ctrl.subItem.itemName">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="gap" for="description">Sub Item Description</td>
+                                                    <td class="gap2 gap3">
+                                                        <input type="text" class="form-controls" ng-model="$ctrl.subItem.description">
+                                                    </td>
+                                                </tr>
+                                                <!-- <tr ng-if="!$ctrl.isSubItem">
                                             <td>
                                                 <button type="button" ng-click="$ctrl.addSubItem()" class="btn btn-sm btn-success">Add Sub Item</button>
                                             </td>
                                         </tr> -->
-                                                </tbody>
-                                            </table>
-                                        </form>
-                                    </div>
+                                            </tbody>
+                                        </table>
+                                    </form>
+                                </div>
                                 <!-- </div> -->
                             </div>
                         </div>

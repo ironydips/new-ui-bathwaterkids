@@ -40,6 +40,7 @@
         ctrl.viewItems = true;
         ctrl.showtable = false;
         ctrl.subItemArr = [];
+        ctrl.imageUrl = '';
         //ctrl.itemImage = {};
 
         ctrl.init = function() {

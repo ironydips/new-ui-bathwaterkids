@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    function customerSubItemModalController($state) {
+    function customerSubItemModalController($state, $scope) {
         var ctrl = this;
         ctrl.imageURLs = [];
         ctrl.subItem = {};
@@ -20,10 +20,22 @@
 
             }
         };
+        $scope.$watch(angular.bind(ctrl, function() {
+                return ctrl.subItemImage;
+            }), function(value) {
+                value ?
+                    (ctrl.imageUrl = 'data:image/jpeg;base64, ' + value.base64, ctrl.subItem.imagesBase64 = value.base64) : (ctrl.subItem.imagesBase64 = '');
+            });
         ctrl.cancel = function() {
             ctrl.modalInstance.close();
         };
         ctrl.save = function(){
+            if(ctrl.subItem.imagesBase64){
+                ctrl.subItem.imageURLs = [ctrl.subItem.imagesBase64];
+            }else{
+                ctrl.subItem.imageURLs = [""];
+            }
+            debugger;
             ctrl.modalInstance.close({ action: 'update', subItem: ctrl.subItem });
         }
         ctrl.init();
@@ -32,7 +44,7 @@
     angular.module('customerSubItemModal')
         .component('customerSubItemModal', {
             templateUrl: 'customers/customer-subitem-modal/customer-subitem-modal.template.html',
-            controller: ['$state', customerSubItemModalController],
+            controller: ['$state','$scope', customerSubItemModalController],
             bindings: {
                 modalInstance: '<',
                 resolve: '<'

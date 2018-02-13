@@ -29,7 +29,7 @@
                         <div ng-hide="$ctrl.viewItems" class="inner-adjust">
                             <h3>Product Information</h3>
                             <div class="image">
-                                <img src="{{$ctrl.imageUrl}}" alt="Select Product Image" style="width: 208px;height: 200px" />
+                                <img src="{{$ctrl.imageUrl || ''}}" alt="Select Product Image" style="width: 208px;height: 200px" />
                             </div>
                             <input style="margin-left:250px" ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.itemImage" base-sixty-four-input accept="image/*">
                             <!-- <h3>Image</h3> -->
