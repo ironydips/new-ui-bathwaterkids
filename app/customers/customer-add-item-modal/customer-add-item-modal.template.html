@@ -113,11 +113,13 @@
                             <br>
                             <table class="table table-hover" ng-show="$ctrl.subItemArr.length">
                                 <tr>
-                                    <th style="font-size: 13px;" class="col-md-1">Item Code</th>
-                                    <th style="font-size: 13px;" class="col-md-1">Item Name</th>
+                                    <th style="font-size: 13px;" class="col-md-1">Sub Item Image</th>
+                                    <th style="font-size: 13px;" class="col-md-1">Sub Item Code</th>
+                                    <th style="font-size: 13px;" class="col-md-1">Sub Item Name</th>
                                     <th style="font-size: 13px;" class="col-md-1">Description</th>
                                 </tr>
                                 <tr ng-repeat="item in $ctrl.subItemArr">
+                                    <td><img ng-src="{{item.imageUrl}}" alt="No Image Selected" style="margin-left: 140px;width: 70px;height: 60px" /></td>
                                     <td class="text-center">{{item.itemCode}}</td>
                                     <td class="text-center">{{item.itemName}}</td>
                                     <td class="text-center">{{item.description}}</td>

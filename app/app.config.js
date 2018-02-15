@@ -275,6 +275,29 @@ config(['$urlRouterProvider', '$stateProvider', '$httpProvider', 'ngToastProvide
                     }
                 }
             })
+            .state('history', {
+                url: '/history',
+                views: {
+                    '': {
+                        template: '<admin-layout></admin-layout>'
+                    },
+                    'adminPanel@history': {
+                        template: '<admin-panel></admin-panel>'
+                    },
+                    'adminSubPanel@history': {
+                        template: '<history-sub-panel></history-sub-panel>'
+                    }
+
+                }
+            })
+            .state('history.historyUserRequest', {
+                url: '/userRequests',
+                views: {
+                    'contentSection@history': {
+                        template: '<history-user-req-details></history-user-req-details>'
+                    }
+                }
+            })
     }
 
 ]);

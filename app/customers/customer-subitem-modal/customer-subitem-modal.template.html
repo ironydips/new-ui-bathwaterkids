@@ -8,13 +8,12 @@
                 <div class="table-responsive text-center">
                     <div>
                         <div class="profileComponent">
-                            <div class="container">
+                            <div class="">
                                 <!-- <div class="profileBg"> -->
                                 <div>
                                     <div ng-hide="$ctrl.viewItems" class="inner-adjust">
-                                        <h3>Product Information</h3>
                                         <div class="image">
-                                            <img src="{{$ctrl.imageUrl || ''}}" alt="Select Sub Item Image" style="width: 208px;height: 200px" />
+                                            <img src="{{$ctrl.imageUrl || ''}}" alt="Select Sub Item Image" style="width: 220px;height: 200px" />
                                         </div>
                                         <input style="margin-left:250px" ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.subItemImage" base-sixty-four-input accept="image/*">
                                     </div>
@@ -93,11 +92,13 @@
         <div ng-show="$ctrl.item.subItems">
             <table class="table table-hover">
                 <tr>
+                    <th style="font-size: 13px;" class="col-md-1">Item Image</th>
                     <th style="font-size: 13px;" class="col-md-1">Item Code</th>
                     <th style="font-size: 13px;" class="col-md-1">Item Name</th>
                     <th style="font-size: 13px;" class="col-md-1">Description</th>
                 </tr>
                 <tr ng-repeat="item in $ctrl.subItems">
+                    <td><img ng-src="{{item.imageUrl}}" alt="No Image Selected" style="margin-left: 150px;width: 70px;height: 60px" /></td>
                     <td class="text-center">{{item.itemCode}}</td>
                     <td class="text-center">{{item.itemName}}</td>
                     <td class="text-center">{{item.description}}</td>

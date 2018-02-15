@@ -127,15 +127,15 @@
 
         ctrl.receiveItem = function(storedItemId, location) {
 
-            warehouseMoveItemService.checkInStoredItem(storedItemId,"RECEIVED","2","as",12)
-                .then(function(result) {
+            // warehouseMoveItemService.checkInStoredItem(storedItemId,"RECEIVED","2","as",12)
+            //     .then(function(result) {
 
-                    debugger;
-                })
-                .catch(function(err) {
-                    console.log('Error updating status & location of item in warehouse');
-                    console.log(err);
-                });
+            //         debugger;
+            //     })
+            //     .catch(function(err) {
+            //         console.log('Error updating status & location of item in warehouse');
+            //         console.log(err);
+            //     });
 
         };
 

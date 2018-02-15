@@ -1,0 +1,63 @@
+<!-- / profileComponent \ -->
+<div class="profileComponent">
+    <div class="container">
+        <div class="profileBg">
+            <h2>Pickup Item Details</h2>
+            <div class="inner-adjust">
+                <div class="row">
+                    <div style="height:250px;overflow:auto;">
+                        <table class="table table-condensed text-center">
+                            <tr>
+                                <th class="col-md-1">Images</th>
+                                <th style="font-size: 13px;" class="col-md-2">Stored ItemID</th>
+                                <th style="font-size: 13px;" class="col-md-1">Item Name</th>
+                                <th style="font-size: 13px;" class="col-md-1">Item Code</th>
+                                <th style="font-size: 13px;" class="col-md-1">Location</th>
+                                <th style="font-size: 13px;" class="col-md-1">Brand Name</th>
+                                <th style="font-size: 13px;" class="col-md-2">Eventual Damage</th>
+                                <th style="font-size: 13px;" class="col-md-1">Condition</th>
+                                <th style="font-size: 13px;" class="col-md-1">Sub Items</th>
+                            </tr>
+                            <tr ng-repeat="item in $ctrl.item" ng-click="$ctrl.displayRow($index)" ng-class="{'highlight': item.userRequestID == $ctrl.selectedRow || $index == $ctrl.displayRowValue}">
+                                <td class="text-center">
+                                    <a href="" ng-click="$ctrl.openLightboxModal(item.imageUrl)">
+                                        <img style="width: 70px;height: 60px;" ng-src="{{item.imageUrl[0]}}" class="img-thumbnail">
+                                    </a>
+                                </td>
+                                <td class="col-md-2">{{item.storedItemID}}</td>
+                                <td class="col-md-1">{{item.itemName}}</td>
+                                <td class="col-md-1">{{item.itemCodes[0]}}</td>
+                                <td class="col-md-1">{{item.location}}</td>
+                                <td class="col-md-1">{{item.brandName}}</td>
+                                <td class="col-md-2">{{item.eventualDamages}}</td>
+                                <td class="col-md-1">{{item.condition}}</td>
+                                <td>
+                                    <button type="button" ng-if="item.subItems && item.subItems.length" ng-click="$ctrl.subItems(item)" class="btn btn-sm btn-primary">View</button>
+                                </td>
+                            </tr>
+                            <tr ng-show="$ctrl.noItemMessage">
+                                <td class="col-md-3"></td>
+                                <td class="col-md-2"></td>
+                                <td style="font-size: 15px;" class="col-md-4"><b>No Items to Display</b></td>
+                                <td class="col-md-1"></td>
+                                <td class="col-md-2"></td>
+                                <td class="col-md-1"></td>
+                                <td class="col-md-1"></td>
+                                <td class="col-md-1"></td>
+                                <td class="col-md-1"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div style="text-align:center">
+                    <button type="button" ng-click="$ctrl.cancel()" class="btn btn-lg btn-default">Cancel</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+<!-- \ profileComponent end / -->

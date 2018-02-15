@@ -8,7 +8,6 @@ function TimeslotModalController($state, TimeslotService) {
 	
 	ctrl.save = function(){
 		ctrl.loader = true;
-		debugger;
 		TimeslotService.createTimeSlotsRange(ctrl.timeslot)
 			.then(function(result){
 				ctrl.loader = false;

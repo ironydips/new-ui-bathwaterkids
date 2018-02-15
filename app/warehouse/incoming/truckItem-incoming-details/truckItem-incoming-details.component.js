@@ -143,26 +143,27 @@
         };
 
         ctrl.selectedDate = function(date) {
-            ctrl.loader = true;
-            warehouseMoveItemService.incomingItems(date)
-                .then(function(response) {
-                    ctrl.loader = false;
-                    if (angular.isArray(response.data)) {
-                        ctrl.message = false;
-                        ctrl.incomingItems = response.data;
-                        // for (var i = 0; i < ctrl.incomingItems.length; i++) {
-                        //         ctrl.incomingDetail = ctrl.incomingItems[i];
-                        //         console.log(ctrl.incomingDetail)
-                        // }
-                    } else {
-                        ctrl.message = true;
-                    }
+            ctrl.loader = false;
+            ctrl.message = true;
+            // warehouseMoveItemService.incomingItems(date)
+            //     .then(function(response) {
+            //         ctrl.loader = false;
+            //         if (angular.isArray(response.data)) {
+            //             ctrl.message = false;
+            //             ctrl.incomingItems = response.data;
+            //             // for (var i = 0; i < ctrl.incomingItems.length; i++) {
+            //             //         ctrl.incomingDetail = ctrl.incomingItems[i];
+            //             //         console.log(ctrl.incomingDetail)
+            //             // }
+            //         } else {
+            //             ctrl.message = true;
+            //         }
 
-                })
-                .catch(function(err) {
-                    console.log('Error getting incoming item status details:');
-                    console.log(err);
-                });
+            //     })
+            //     .catch(function(err) {
+            //         console.log('Error getting incoming item status details:');
+            //         console.log(err);
+            //     });
         }
 
         ctrl.init();

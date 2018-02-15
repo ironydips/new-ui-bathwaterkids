@@ -111,15 +111,13 @@
                         ctrl.notstartedRequest = ctrl.timeslots.filter(function(data) {
                             return data.status == "not started";
                         });
-                    }else{
+                    } else {
                         ctrl.loader = false;
-                        //debugger;
-                        //ctrl.message = 
                     }
 
 
 
-                    
+
                 })
                 .catch(function(err) {
                     console.log('Error User Request/Driver Service..')

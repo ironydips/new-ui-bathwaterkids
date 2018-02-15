@@ -51,26 +51,31 @@
             ctrl.getRequest();
         };
 
-        ctrl.getRequest = function (argument) {
+        ctrl.getRequest = function(argument) {
             customerUserService.getUserRequest(ctrl.customer.userID)
                 .then(function(response) {
                     ctrl.loader = false;
 
                     if (response && response.data.length > 0) {
 
-                        response.data.forEach(function(data) {
+                        var sortedData = response.data.sort(function(a, b) {
+                            var dateA = new Date(a.date),
+                                dateB = new Date(b.date);
+                            return dateB - dateA;
+                        });
+                        sortedData.forEach(function(data) {
                             data.isChecked = false;
                             //if(ctrl.selectedItem){
 
-                                // if(ctrl.selectedItem && ctrl.isChecked(data.userRequestID)){
-                                //     data.isChecked = true;
-                                // }
+                            // if(ctrl.selectedItem && ctrl.isChecked(data.userRequestID)){
+                            //     data.isChecked = true;
+                            // }
                             //}
                         });
 
                         ctrl.userReq = response.data; //uncheck
                         ctrl.UserReqmessage = false;
-                        if(ctrl.selectedItem){
+                        if (ctrl.selectedItem) {
                             ctrl.isChecked(ctrl.selectedItem.userRequestID);
                             // ctrl.getItems(ctrl.selectedItem);
                         }
@@ -85,14 +90,14 @@
                 });
         }
 
-        ctrl.isChecked = function(userRequestID){
+        ctrl.isChecked = function(userRequestID) {
             ctrl.userReq.forEach(function(data) {
-                if(data.userRequestID == userRequestID){
+                if (data.userRequestID == userRequestID) {
                     data.isChecked = true;
                     ctrl.getItems(data);
                 }
-                            
-                        });
+
+            });
             // var boolean = false;
             // if(userRequestID == ctrl.selectedItem.userRequestID){
             //     boolean = true;
@@ -105,41 +110,41 @@
             ctrl.selectedItem = item;
             if (item.items) {
                 // if (item.isChecked) {
-                    ctrl.noItemMessage = false;
-                    ctrl.noUserReqMessage = false;
-                    for (var i = 0; i < item.items.length; i++) {
-                        for (var j = 0; j <= i; j++) {
-                            if(item.items[i].hasOwnProperty('imageUrl') && item.items[i].imageUrl.length ){
-                                 item.items[i].imageUrl = item.items[i].imageUrl;
-                            }else{
-                                let arr = ["img/not-available.jpg"];
-                                item.items[i].imageUrl = arr;
-                            }
-                             // if(item.items[i].hasOwnProperty('imageUrl')){
-                             //     item.items[i].imageUrl = item.items[i].imageUrl;
-                             // }
-                            // // if (item.items[i].imagesBase64 && typeof item.items[i].imagesBase64[j] == "undefined") {
-                            // if (item.items[i].hasOwnProperty('imageUrl') && item.items[i].imageUrl[i]==null) {
-                            //     //ctrl.value = item.items[i].imagesBase64[j];
-                            //     item.items[i].imageUrl[j] = "img/not-available.jpg";
-                            // }
-                            // if(!item.items[i].hasOwnProperty('imagesBase64')){
-                            //     let arr = ["img/not-available.jpg"];
-                            //     item.items[i].imagesBase64 = arr;
-                            //     //let arr = [];
-                            // }
-                            // // if (item.items[i].imagesBase64 && typeof item.items[i].imagesBase64[j] == "undefined") {
-                            // if (item.items[i].imagesBase64[i]==null) {
-                            //     //ctrl.value = item.items[i].imagesBase64[j];
-                            //     item.items[i].imagesBase64[j] = "img/not-available.jpg";
-                            // }
+                ctrl.noItemMessage = false;
+                ctrl.noUserReqMessage = false;
+                for (var i = 0; i < item.items.length; i++) {
+                    for (var j = 0; j <= i; j++) {
+                        if (item.items[i].hasOwnProperty('imageUrl') && item.items[i].imageUrl.length) {
+                            item.items[i].imageUrl = item.items[i].imageUrl;
+                        } else {
+                            let arr = ["img/not-available.jpg"];
+                            item.items[i].imageUrl = arr;
                         }
+                        // if(item.items[i].hasOwnProperty('imageUrl')){
+                        //     item.items[i].imageUrl = item.items[i].imageUrl;
+                        // }
+                        // // if (item.items[i].imagesBase64 && typeof item.items[i].imagesBase64[j] == "undefined") {
+                        // if (item.items[i].hasOwnProperty('imageUrl') && item.items[i].imageUrl[i]==null) {
+                        //     //ctrl.value = item.items[i].imagesBase64[j];
+                        //     item.items[i].imageUrl[j] = "img/not-available.jpg";
+                        // }
+                        // if(!item.items[i].hasOwnProperty('imagesBase64')){
+                        //     let arr = ["img/not-available.jpg"];
+                        //     item.items[i].imagesBase64 = arr;
+                        //     //let arr = [];
+                        // }
+                        // // if (item.items[i].imagesBase64 && typeof item.items[i].imagesBase64[j] == "undefined") {
+                        // if (item.items[i].imagesBase64[i]==null) {
+                        //     //ctrl.value = item.items[i].imagesBase64[j];
+                        //     item.items[i].imagesBase64[j] = "img/not-available.jpg";
+                        // }
                     }
-                    item.items.forEach(function(data) { data.userRequestID = item.userRequestID });
-                    ctrl.itemsArray = [];
-                    // ctrl.itemsArray = ctrl.itemsArray.concat(item.items);
-                    ctrl.itemsArray = item.items;
-                    // ctrl.selectedRow = item.userRequestID;
+                }
+                item.items.forEach(function(data) { data.userRequestID = item.userRequestID });
+                ctrl.itemsArray = [];
+                // ctrl.itemsArray = ctrl.itemsArray.concat(item.items);
+                ctrl.itemsArray = item.items;
+                // ctrl.selectedRow = item.userRequestID;
                 // } else {
                 //     ctrl.itemsArray = ctrl.itemsArray.filter(function(data) {
                 //         return data.userRequestID != item.userRequestID });
@@ -152,7 +157,7 @@
                 ctrl.itemsArray = [];
                 // if (ctrl.itemsArray.length == 0) {
                 ctrl.noItemMessage = true;
-                if(ctrl.selectedItem.status!="cancelled"){
+                if (ctrl.selectedItem.status != "cancelled") {
                     ctrl.showAddButton = true;
                 }
                 // }
