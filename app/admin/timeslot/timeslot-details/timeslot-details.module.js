@@ -4,5 +4,7 @@ angular.module('timeslotDetails',[
 		'ui.bootstrap',
 		'bathwaterApp.services',
 	    'timeslotModal',
-	    'timeslotShowAllModal'
+	    'timeslotShowAllModal',
+	    'editDeleteTSModal',
+	    'timeslotResetModal'
 	]);

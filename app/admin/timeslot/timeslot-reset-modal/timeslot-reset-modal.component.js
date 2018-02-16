@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    function TimeslotModalController($state, moment, TimeslotService) {
+    function TimeslotResetModalController($state, moment, TimeslotService) {
         var ctrl = this;
         ctrl.timeslot = (ctrl.resolve && ctrl.resolve.details) || { days: {}, timeslots: {}, availables: {}, isDisabled : false };
 
@@ -27,10 +27,10 @@
         };
     }
 
-    angular.module('timeslotModal')
-        .component('timeslotModal', {
-            templateUrl: 'admin/timeslot/timeslot-modal/timeslot-modal.template.html',
-            controller: ['$state', 'moment', 'TimeslotService', TimeslotModalController],
+    angular.module('timeslotResetModal')
+        .component('timeslotResetModal', {
+            templateUrl: 'admin/timeslot/timeslot-reset-modal/timeslot-reset-modal.template.html',
+            controller: ['$state', 'moment', 'TimeslotService', TimeslotResetModalController],
             bindings: {
                 modalInstance: '<',
                 resolve: '<'

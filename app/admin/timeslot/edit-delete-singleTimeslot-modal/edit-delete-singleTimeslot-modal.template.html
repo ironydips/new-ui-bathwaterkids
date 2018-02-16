@@ -1,0 +1,41 @@
+<!-- / profileComponent \ -->
+<div class="profileComponent">
+    <div class="container">
+        <div class="profileSm">
+        <h2 ng-show="!$ctrl.enableDel">You can edit Slot</h2>
+        <h2 ng-show="$ctrl.enableDel">Are you sure you want to delete?</h2>
+            <h2>{{$ctrl.timeslot.date.value}}</h2>
+            <div class="inner-adjust">
+                <div class="input-main">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label>Time Slot :</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" disabled ng-model="$ctrl.timeslot.time" class="form-controls">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label>Availability Count :</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" ng-model="$ctrl.timeslot.availabilityCount" class="form-controls">
+                            <!-- <button style="color: red;">
+                                <span style="position: absolute;left: 280px;top: 8px;" ng-click="$ctrl.delete()" class="glyphicon glyphicon-trash"></span>
+                            </button> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                </div>
+                <div class="btn-main">
+                    <button type="button" ng-click="$ctrl.cancel()" class="btn btn-sm btn-default">Cancel</button>
+                    <button ng-show="!$ctrl.enableDel" type="button" ng-click="$ctrl.save()" class="btn btn-sm btn-success">Save</button>
+                    <button ng-show="$ctrl.enableDel" type="button" ng-click="$ctrl.save()" class="btn btn-sm btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- \ profileComponent end / -->

@@ -27,7 +27,8 @@
             <thead>
                 <tr>
                     <!--                     <th style="font-size: 15px;">Time Slot</th>
- -->
+ -->    
+                    <th style="font-size: 15px;">User ID</th>
                     <th style="font-size: 15px;">UserRequest ID</th>
                     <th style="font-size: 15px;">Time</th>
                     <th style="font-size: 15px;">Status</th>
@@ -42,6 +43,7 @@
             </thead>
             <tbody>
                 <tr ng-hide="$ctrl.message" ng-repeat="item in $ctrl.pickupRecords" ng-click="$ctrl.selectRow($index)" ng-class="{'highlight': $index == $ctrl.selectedRow}">
+                <td>{{item.user.userID}}</td>
                     <td>{{item.userRequestID}}</td>
                     <td>{{item.time}}</td>
                     <td>{{item.status}}</td>
