@@ -1,38 +1,41 @@
-<div class="slotComponent">
+<div class="profileComponent">
     <div class="container">
         <div class="loading" ng-show="$ctrl.loader">
             Loading&#8230;
         </div>
         <br>
-        <div class="slotBg">
+        <div class="profileSm">
             <h2>Reset Timeslots</h2>
-            <div class="inner-adjust" style="height: 350px;">
+            <div class="inner-adjust">
                 <form action="#" method="post">
                     <div class="same">
-                        <h3>Start Date</h3>
                         <datepicker date-format="MM.dd.yyyy" selector="form-control">
-                            <div class="input-group">
-                                <input ng-model="$ctrl.timeslot.start" class="form-control" placeholder="Choose a date" />
+                            <div class="input-group" style="margin:15px">
+                                <input ng-model="$ctrl.timeslot.start" class="form-control" placeholder="From date" />
                                 <span class="input-group-addon" style="cursor: pointer">
                         </span>
                             </div>
                         </datepicker>
                     </div>
                     <div class="same">
-                        <h3>End Date</h3>
                         <datepicker date-format="MM.dd.yyyy" selector="form-control">
-                            <div class="input-group">
-                                <input ng-model="$ctrl.timeslot.endDate" class="form-control" placeholder="Choose a date" />
+                            <div class="input-group" style="margin:15px">
+                                <input ng-model="$ctrl.timeslot.endDate" class="form-control" placeholder="To date" />
                                 <span class="input-group-addon" style="cursor: pointer">
-                        </span>
+                                </span>
                             </div>
                         </datepicker>
                     </div>
                     
             </div>
-            <div class="bottom-btn">
-                <input class="btn btn-primary cancel" style="margin-right: 15px;" ng-click="$ctrl.cancel()" value="Cancel" type="button">
-                <input class="btn btn-primary save" style="margin-right: 15px;" ng-click="$ctrl.save()" value="Reset" type="button">
+            <div class="col-sm-3">
+            </div>
+            <div class="btn-main">
+                <button type="button" ng-click="$ctrl.cancel()" class="btn btn-sm btn-default">Cancel</button>
+                <button type="button" ng-click="$ctrl.save()" class="btn btn-sm btn-success">Reset</button>
+            </div>
+            <div>
+                <h3 style="margin-top:20px">CAUTION: Once you press RESET, All the availabilities between "From Date" and "To Date" will be removed.</h3>
             </div>
             </form>
         </div>

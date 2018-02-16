@@ -34,7 +34,7 @@
         var popUpCtrl = this;
         var modalInstance = popUpCtrl.$uibModal.open({
             component: 'timeslotResetModal',
-            windowClass: 'app-modal-window-large',
+            windowClass: 'app-modal-window-small',
             keyboard: false,
             resolve: {
                 details: function() {

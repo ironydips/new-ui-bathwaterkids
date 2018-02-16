@@ -13,7 +13,6 @@ function EditDeleteTSModalController($rootScope,$state, TimeslotService) {
 			"slot" : ctrl.timeslot.time,
 			"availableCount": ctrl.timeslot.availabilityCount
 		};
-		debugger;
 		TimeslotService.createTimeslotForDate(ctrl.timeslot.date.value, ts)
 			.then(function(result){
 				ctrl.loader = false;
