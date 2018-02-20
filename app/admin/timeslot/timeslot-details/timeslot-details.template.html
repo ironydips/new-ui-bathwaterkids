@@ -4,12 +4,20 @@
             Loading&#8230;
         </div>
         <br>
-        <a ng-click="$ctrl.addTimeslot()" class="btn btn-sm btn-success">Add Timeslot</a>
-        <a ng-click="$ctrl.showallTimeslot()" class="btn btn-sm btn-success">Show All</a>
-        <a ng-click="$ctrl.resetTimeslot()" class="btn btn-sm btn-success">Reset Timeslots</a>
+        <div class="row">
+            <div class="col-sm-4">
+                <a ng-click="$ctrl.addTimeslot()" class="btn btn-sm btn-success">Add Timeslot</a>
+                <a ng-click="$ctrl.showallTimeslot()" class="btn btn-sm btn-success">Show All</a>
+                <a ng-click="$ctrl.resetTimeslot()" class="btn btn-sm btn-success">Reset Timeslots</a>
+            </div>
+            <div class="col-sm-5"></div>
+            <div class="col-sm-3">
+                <a ng-click="$ctrl.prevTimeslot()" style="margin-left: 43px;" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-backward"></span>&nbsp;Previous Week</a>
+                <a ng-click="$ctrl.nextTimeslot()" style="margin-left: 1px;" class="btn btn-sm btn-success">Next Week&nbsp;<span class="glyphicon glyphicon-forward"></span></a>
+            </div>
+        </div>
         <br>
-        <br>
-        <div style="height: 500px;max-height: 500px !important;overflow: auto;">
+        <!-- <div style="height: 500px;max-height: 500px !important;overflow: auto;"> -->
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -31,14 +39,6 @@
                     </tr>
                 </tbody>
             </table>
-            <div>
-                <a class="left carousel-control" ng-click="$ctrl.prevTimeslot()" style="height: 510px; max-height: 510px; margin:185px 0 15px 2%;width: 50px; border-radius: 50% 0% 0% 50%">
-                    <span class="glyphicon glyphicon-chevron-left" style="color: black; cursor:pointer;"></span>
-                </a>
-                <a class="right carousel-control" ng-click="$ctrl.nextTimeslot()" style="margin:185px 3% 15px 0;width: 50px; border-radius: 0% 50% 50% 0%; height: 510px; max-height: 510px">
-                    <span class="glyphicon glyphicon-chevron-right" style="color: black; cursor:pointer;"></span>
-                </a>
-            </div>
-        </div>
+        <!-- </div> -->
     </div>
 </div>

@@ -7,8 +7,8 @@
 
         ctrl.save = function() {
             ctrl.loader = true;
-            var today = moment(ctrl.timeslot.endDate);
-            ctrl.timeslot.until = moment(today).add(1, 'days').format("MM.DD.YYYY");
+            var today = moment(ctrl.timeslot.endDate, "MM.DD.YYYY", true);
+            ctrl.timeslot.until = today.add(1, 'days').format("MM.DD.YYYY");
             TimeslotService.createTimeSlotsRange(ctrl.timeslot)
                 .then(function(result) {
                     ctrl.loader = false;
@@ -25,13 +25,7 @@
             ctrl.modalInstance.close();
         };
         ctrl.currDate = function() {
-        	var d = new Date();
-            var date = ctrl.formateDate(d);
-            return date;
-        };
-        ctrl.formateDate = function(date) {
-            var date = ('0' + (date.getMonth() + 1)).slice(-2) + '.' + ('0' + date.getDate()).slice(-2) + '.' + date.getFullYear();
-            return date;
+        	return moment().format("MM.DD.YYYY");
         }
     }
 

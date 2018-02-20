@@ -142,14 +142,15 @@
 
         ctrl.prevTimeslot = function() {
             ctrl.loader = true;
-            var mDate = moment(ctrl.todayDate);
+            var mDate = moment(ctrl.todayDate, "MM.DD.YYYY", true);
             ctrl.todayDate = mDate.add(-7, 'days').format("MM.DD.YYYY");
             ctrl.getTimeslotsForTheWeek(ctrl.todayDate);
         };
         ctrl.nextTimeslot = function() {
             ctrl.loader = true;
-            var mDate = moment(ctrl.todayDate);
+            var mDate = moment(ctrl.todayDate, "MM.DD.YYYY", true);
             ctrl.todayDate = mDate.add(7, 'days').format("MM.DD.YYYY");
+
             ctrl.getTimeslotsForTheWeek(ctrl.todayDate);
         };
         ctrl.getTimeslotsForTheWeek = function(date) {
