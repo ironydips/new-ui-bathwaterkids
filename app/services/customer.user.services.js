@@ -51,6 +51,16 @@
 	            }
 	        });
 		};
+		var getCategories = function(categories){
+			return $http({
+		            url: '/rest/getCategories?parentID='+ categories,
+		            method: "GET",
+		            headers:{
+	            		"Authorization": 'Basic YWRtaW46YWRtaW4=',
+	            		"Content-Type": "application/x-www-form-urlencoded"
+	            }
+	        });
+		}
 		
 
 		//EXPORTED Object
@@ -59,7 +69,8 @@
 			getUserInventory,
 			getUserItems,
 			getUserRequest,
-			getTrucksByUserrequests
+			getTrucksByUserrequests,
+			getCategories
 		}
 	}
 

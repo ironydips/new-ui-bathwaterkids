@@ -29,7 +29,7 @@
             }
     }
 
-    function customerAddItemModalController($state, $scope, $uibModal, UserRequestService, DriverService) {
+    function customerAddItemModalController($state, $scope, $uibModal,customerUserService, UserRequestService, DriverService) {
         var ctrl = this;
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
@@ -45,6 +45,26 @@
         ctrl.init = function() {
 
 
+        };
+        ctrl.setCategory = function(category){
+            ctrl.loader = true;
+            customerUserService.getCategories(category)
+                .then(function(userlist) {
+                    ctrl.loader = false;
+                    if (userlist && userlist.data) {
+                        ctrl.message = false;
+                        ctrl.categoryArr = userlist.data;
+                    }else{
+                        ctrl.message = true;
+                    }
+                })
+                .catch(function(err) {
+                    console.log('Error getting user details:');
+                    console.log(err);
+                });
+        };
+        ctrl.setSubCategory = function(subCategory){
+            ctrl.pickup.categoryID = subCategory.categoryID;
         };
         $scope.$watch(angular.bind(ctrl, function() {
             return ctrl.itemImage;
@@ -78,6 +98,7 @@
                 "pickedupItems": ctrl.pickedupItems,
             }
             ctrl.loader = true;
+            debugger;
             DriverService.pickup(ctrl.data)
                 .then(function(result) {
                     ctrl.loader = false;
@@ -127,7 +148,7 @@
     angular.module('customerAddItemModal')
         .component('customerAddItemModal', {
             templateUrl: 'customers/customer-add-item-modal/customer-add-item-modal.template.html',
-            controller: ['$state', '$scope', '$uibModal', 'UserRequestService', 'DriverService', customerAddItemModalController],
+            controller: ['$state', '$scope', '$uibModal','customerUserService', 'UserRequestService', 'DriverService', customerAddItemModalController],
             bindings: {
                 modalInstance: '<',
                 resolve: '<'

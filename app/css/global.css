@@ -235,3 +235,6 @@ header, section, footer, aside, nav, main, article, figure { display: block; }
         transform: rotate(360deg);
     }
 }
+.prevWeek {
+    margin-left: 43px;
+}

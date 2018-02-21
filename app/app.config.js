@@ -196,6 +196,22 @@ config(['$urlRouterProvider', '$stateProvider', '$httpProvider', 'ngToastProvide
                     }
                 }
             })
+            .state('inventory.inventoryRejected', {
+                url: '/rejected',
+                views: {
+                    'contentSection@inventory': {
+                        template: '<inventory-rejected-details></inventory-rejected-details>'
+                    }
+                }
+            })
+            .state('inventory.viewInventory', {
+                url: '/items',
+                views: {
+                    'contentSection@inventory': {
+                        template: '<inventory-stored-records-details></inventory-stored-records-details>'
+                    }
+                }
+            })
             .state('inventory.swapped', {
                 url: '/swapped',
                 views: {

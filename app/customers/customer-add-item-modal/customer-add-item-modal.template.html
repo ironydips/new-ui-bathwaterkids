@@ -71,10 +71,9 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="gap">Sharable</td>
-                                        <td class="gap2 gap3" style="display: inline-flex; height: 40px; line-height: 20px; padding: 12px; width: 100%;">
-                                            <input type="radio" value="Yes" class="form-controls" ng-model="$ctrl.pickup.sharable" style="width: 40px"> Yes
-                                            <input type="radio" value="No" class="form-controls" style="width: 40px" ng-model="$ctrl.pickup.sharable"> No
+                                        <td class="gap">Location</td>
+                                        <td class="gap2 gap3">
+                                            <input type="text" class="form-controls" ng-model="$ctrl.pickup.location">
                                         </td>
                                         <td class="gap">Item Code</td>
                                         <td class="gap2 gap3">
@@ -82,9 +81,39 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="gap">Location</td>
+                                        <td class="gap">Sharable</td>
+                                        <td class="gap2 gap3" style="display: inline-flex; height: 40px; line-height: 20px; padding: 12px; width: 100%;">
+                                            <input type="radio" value="Yes" class="form-controls" ng-model="$ctrl.pickup.sharable" style="width: 40px"> Yes
+                                            <input type="radio" value="No" class="form-controls" style="width: 40px" ng-model="$ctrl.pickup.sharable"> No
+                                        </td>
+                                        <td class="gap" ng-if="$ctrl.pickup.sharable == 'Yes'">Category</td>
+                                        <td ng-if="$ctrl.pickup.sharable == 'Yes'" class="gap2 gap3">
+                                            <select class="form-control" ng-model="categories" ng-change="$ctrl.setCategory(categories)">
+                                                <option value="">Select Category</option>
+                                                <option value="1">Eat</option>
+                                                <option value="2">Sleep</option>
+                                                <option value="3">Stroll</option>
+                                                <option value="4">Travel</option>
+                                                <option value="5">Play</option>
+                                                <option value="6">Bath</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr ng-if="$ctrl.categoryArr">
+                                        <td class="gap">Sub Category</td>
                                         <td class="gap2 gap3">
-                                            <input type="text" class="form-controls" ng-model="$ctrl.pickup.location">
+                                            <select ng-model="subCategory" class="form-control" ng-change="$ctrl.setSubCategory(subCategory)" ng-options="category.title for category in $ctrl.categoryArr">
+                                                <option value="">Select Sub Category</option>
+                                            </select>
+                                            <!-- <select class="form-control" ng-model="categories" ng-change="$ctrl.setCategory(categories)">
+                                                <option value="">Select Category</option>
+                                                <option value="1">Eat</option>
+                                                <option value="2">Sleep</option>
+                                                <option value="3">Stroll</option>
+                                                <option value="4">Travel</option>
+                                                <option value="5">Play</option>
+                                                <option value="6">Bath</option>
+                                            </select> -->
                                         </td>
                                     </tr>
                                     <!-- <tr ng-if="!$ctrl.isSubItem">
@@ -130,7 +159,7 @@
                         <div class="inner-adjust">
                             <table ng-show="$ctrl.showtable && $ctrl.pickedupItems.length" class="table table-hover">
                                 <tr>
-                                <th style="font-size: 13px;" class="col-md-1">Product Image</th>
+                                    <th style="font-size: 13px;" class="col-md-1">Product Image</th>
                                     <th style="font-size: 13px;" class="col-md-1">Product Name</th>
                                     <th style="font-size: 13px;" class="col-md-1">Brand Name</th>
                                     <th style="font-size: 13px;" class="col-md-1">Location</th>
@@ -141,7 +170,7 @@
                                     <th style="font-size: 13px;" class="col-md-3 col-lg-2">Sub Item</th>
                                 </tr>
                                 <tr ng-repeat="item in $ctrl.pickedupItems">
-                                <td><img ng-src="{{item.imageUrl}}" alt="No Image Selected" style="width: 70px;height: 60px" /></td>
+                                    <td><img ng-src="{{item.imageUrl}}" alt="No Image Selected" style="width: 70px;height: 60px" /></td>
                                     <td>{{item.productName}}</td>
                                     <td>{{item.brandName}}</td>
                                     <td>{{item.location}}</td>
@@ -157,7 +186,7 @@
                         </div>
                         <div class="row">
                             <div class="btn-main">
-                                <button ng-show="$ctrl.viewItems"  type="button" ng-click="$ctrl.cancel()" class="btn btn-sm btn-default">Cancel</button>
+                                <button ng-show="$ctrl.viewItems" type="button" ng-click="$ctrl.cancel()" class="btn btn-sm btn-default">Cancel</button>
                                 <button ng-hide="$ctrl.viewItems" type="button" ng-click="$ctrl.back()" class="btn btn-sm btn-default">Back</button>
                                 <!-- <button style="padding: 8px 0px;" ng-if="!$ctrl.isSubItem" type="button" ng-click="$ctrl.addSubItem()" class="btn btn-sm btn-success">Add Sub Item</button> -->
                                 <button ng-hide="$ctrl.viewItems" type="button" ng-click="$ctrl.save()" class="btn btn-sm btn-success">Save</button>

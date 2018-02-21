@@ -40,6 +40,8 @@ angular.module('bathwaterApp', [
 	//Inventory Panel Module
 	'inventorySubPanel',
 	'inventoryIncomingDetails',
+	'inventoryRejectedDetails',
+	'inventoryStoredRecordsDetails',
 	//Warehouse Module
 	'warehouseSubPanel',
 	'incomingWarehouseDetails',
