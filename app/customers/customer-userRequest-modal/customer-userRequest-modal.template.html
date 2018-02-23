@@ -57,7 +57,9 @@
                             <tr>
                                 <th class="col-md-1">Images</th>
                                 <th style="font-size: 13px;" class="col-md-3">UserRequestID</th>
-                                <th style="font-size: 13px;" class="col-md-2">Stored ItemID</th>
+                                <!-- <th style="font-size: 13px;" class="col-md-2">Stored ItemID</th> -->
+                                <th style="font-size: 13px;" class="col-md-2">Sharable</th>
+                                <th style="font-size: 13px;" class="col-md-2">Category Name</th>
                                 <th style="font-size: 13px;" class="col-md-1">Item Name</th>
                                 <th style="font-size: 13px;" class="col-md-1">Item Code</th>
                                 <th style="font-size: 13px;" class="col-md-1">Brand Name</th>
@@ -76,7 +78,8 @@
                                     </a>
                                 </td>
                                 <td class="col-md-3">{{item.userRequestID}}</td>
-                                <td class="col-md-2">{{item.storedItemID}}</td>
+                                <td>{{item.sharable ? 'Yes' : 'No'}}</td>
+                                <td class="col-md-2">{{item.categoryName}}</td>
                                 <td class="col-md-1">{{item.itemName}}</td>
                                 <td class="col-md-1">{{item.itemCodes[0]}}</td>
                                 <td class="col-md-1">{{item.brandName}}</td>

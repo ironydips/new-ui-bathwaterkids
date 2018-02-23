@@ -1,6 +1,35 @@
 (function(angular) {
     'use strict';
 
+     function openPopUpDelete(details){
+
+        var popUpCtrl = this;
+        var modalInstance = popUpCtrl.$uibModal.open({
+            component:'deleteConfirmationModal',
+            windowClass: 'app-modal-window-small',
+            keyboard: false,
+            resolve: {
+                details: function(){
+                    return (details || {});
+            }
+                
+            },
+            backdrop: 'static'
+
+        });
+
+        modalInstance.result.then(function(data) {
+            if (data && data.action == "update") popUpCtrl.init();
+            // if(data && data.action == "delete") {
+            //     var index = data.details;
+            //     this.adminList.splice(index, 1);
+            // }
+
+        }), function(err){
+                    console.log('Error in manage-admin Modal');
+                    console.log(err);        }
+    };
+
     function openPopupCreditUpdate(details) {
 
         var popUpCtrl = this;
@@ -39,7 +68,10 @@
             inventoryService.getInventory()
                 .then(function(response) {
                     ctrl.loader = false;
-                    ctrl.Inventory = response.data;
+
+                    ctrl.Inventory = response.data.filter(function(data){
+                    	return data.status == 'RECEIVED';
+                    });
                     ctrl.message = ctrl.Inventory.length == 0;
                 })
                 .catch(function(err) {
@@ -60,6 +92,9 @@
         ctrl.addUpdateCredit = function(item) {
             angular.bind(ctrl, openPopupCreditUpdate, angular.copy(item))();
         };
+        ctrl.delete = function(inventory){
+        	angular.bind(ctrl, openPopUpDelete, angular.copy(inventory))();
+        }
 
         ctrl.init();
     }

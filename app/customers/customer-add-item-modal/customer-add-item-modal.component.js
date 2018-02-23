@@ -34,7 +34,7 @@
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
         ctrl.requestDetails = (ctrl.resolve && ctrl.resolve.details) || {};
-        ctrl.pickup = { "sharable": "No", "itemCode": [], imageUrl: '' };
+        ctrl.pickup = { "boolSharable": "No", "itemCode": [], imageUrl: '' };
         ctrl.pickedupItems = [];
         ctrl.isSubItem = false;
         ctrl.viewItems = true;
@@ -65,6 +65,7 @@
         };
         ctrl.setSubCategory = function(subCategory){
             ctrl.pickup.categoryID = subCategory.categoryID;
+            ctrl.pickup.categoryName = subCategory.title;
         };
         $scope.$watch(angular.bind(ctrl, function() {
             return ctrl.itemImage;
@@ -98,7 +99,6 @@
                 "pickedupItems": ctrl.pickedupItems,
             }
             ctrl.loader = true;
-            debugger;
             DriverService.pickup(ctrl.data)
                 .then(function(result) {
                     ctrl.loader = false;
@@ -116,7 +116,8 @@
             ctrl.itemImage = '';
             ctrl.imageUrl = "";
             ctrl.pickup.imagesBase64 = "";
-            ctrl.pickup = { "sharable": "No", "itemCode": [], imageUrl: '' };
+            ctrl.categoryArr = [];
+            ctrl.pickup = { "boolSharable": "No", "itemCode": [], imageUrl: '' };
         }
         ctrl.back = function() {
             ctrl.viewItems = true;
@@ -127,6 +128,7 @@
             ctrl.viewItems = true;
             ctrl.showtable = true;
             ctrl.pickup.subItems = ctrl.subItemArr;
+            ctrl.pickup.sharable = ctrl.pickup.boolSharable == 'Yes' ? 1 : 0;
             ctrl.pickup.itemCodes = [ctrl.pickup.itemCode];
             ctrl.pickup.imageUrl = ctrl.imageUrl.includes(", ") ? ctrl.imageUrl : "img/not-available.jpg";
             if (ctrl.itemImage.base64) {
@@ -134,8 +136,9 @@
             } else {
                 ctrl.pickup.imagesBase64 = [""];
             }
+            ctrl.categoryArr = [];
             ctrl.pickedupItems.push(ctrl.pickup);
-            ctrl.pickup = { "sharable": "No" };
+            ctrl.pickup = { "boolSharable": "No" };
             ctrl.subItemArr = [];
             ctrl.itemImage = '';
             ctrl.imageUrl = '';

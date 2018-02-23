@@ -83,11 +83,11 @@
                                     <tr>
                                         <td class="gap">Sharable</td>
                                         <td class="gap2 gap3" style="display: inline-flex; height: 40px; line-height: 20px; padding: 12px; width: 100%;">
-                                            <input type="radio" value="Yes" class="form-controls" ng-model="$ctrl.pickup.sharable" style="width: 40px"> Yes
-                                            <input type="radio" value="No" class="form-controls" style="width: 40px" ng-model="$ctrl.pickup.sharable"> No
+                                            <input type="radio" value="Yes" class="form-controls" ng-model="$ctrl.pickup.boolSharable" style="width: 40px"> Yes
+                                            <input type="radio" value="No" class="form-controls" style="width: 40px" ng-model="$ctrl.pickup.boolSharable"> No
                                         </td>
-                                        <td class="gap" ng-if="$ctrl.pickup.sharable == 'Yes'">Category</td>
-                                        <td ng-if="$ctrl.pickup.sharable == 'Yes'" class="gap2 gap3">
+                                        <td class="gap" ng-if="$ctrl.pickup.boolSharable == 'Yes'">Category</td>
+                                        <td ng-if="$ctrl.pickup.boolSharable == 'Yes'" class="gap2 gap3">
                                             <select class="form-control" ng-model="categories" ng-change="$ctrl.setCategory(categories)">
                                                 <option value="">Select Category</option>
                                                 <option value="1">Eat</option>
@@ -99,7 +99,7 @@
                                             </select>
                                         </td>
                                     </tr>
-                                    <tr ng-if="$ctrl.categoryArr">
+                                    <tr ng-if="$ctrl.categoryArr.length > 0">
                                         <td class="gap">Sub Category</td>
                                         <td class="gap2 gap3">
                                             <select ng-model="subCategory" class="form-control" ng-change="$ctrl.setSubCategory(subCategory)" ng-options="category.title for category in $ctrl.categoryArr">
@@ -159,7 +159,8 @@
                         <div class="inner-adjust">
                             <table ng-show="$ctrl.showtable && $ctrl.pickedupItems.length" class="table table-hover">
                                 <tr>
-                                    <th style="font-size: 13px;" class="col-md-1">Product Image</th>
+                                <th style="font-size: 13px;" class="col-md-1">Product Image</th>
+                                    <th style="font-size: 13px;" class="col-md-1"> Category</th>
                                     <th style="font-size: 13px;" class="col-md-1">Product Name</th>
                                     <th style="font-size: 13px;" class="col-md-1">Brand Name</th>
                                     <th style="font-size: 13px;" class="col-md-1">Location</th>
@@ -171,12 +172,13 @@
                                 </tr>
                                 <tr ng-repeat="item in $ctrl.pickedupItems">
                                     <td><img ng-src="{{item.imageUrl}}" alt="No Image Selected" style="width: 70px;height: 60px" /></td>
+                                    <td>{{item.categoryName}}</td>
                                     <td>{{item.productName}}</td>
                                     <td>{{item.brandName}}</td>
                                     <td>{{item.location}}</td>
                                     <td>{{item.condition}}</td>
                                     <td>{{item.eventualDamages}}</td>
-                                    <td>{{item.sharable}}</td>
+                                    <td>{{item.sharable ? 'Yes' : 'No'}}</td>
                                     <td>{{item.itemCodes[0]}}</td>
                                     <td>
                                         <button type="button" ng-show="item.subItems.length" ng-click="$ctrl.opensubItemModal(item)" class="btn btn-sm btn-primary">View</button>

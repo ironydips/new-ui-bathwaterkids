@@ -24,6 +24,16 @@
 	        });
 		};
 
+		var updateItemStatus = function(storedItemID , status){
+			return $http({
+		            url: '/rest/admin/updateItemInWarehouse?storedItemID=' + storedItemID + '&status=' + status ,
+		            method: "GET",
+		            headers:{
+	            		"Authorization": 'Basic YWRtaW46YWRtaW4='
+	            }
+	        });
+		};
+
 		
 		
 
@@ -31,7 +41,7 @@
 		return {
 			getInventory,
 			updateInventory,
-			
+			updateItemStatus
 		}
 	}
 

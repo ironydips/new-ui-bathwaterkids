@@ -39,8 +39,11 @@
             inventoryService.getInventory()
                 .then(function(response) {
                     ctrl.loader = false;
-                    ctrl.Inventory = response.data;
+                    ctrl.Inventory = response.data.filter(function(data){
+                        return data.status == 'REJECTED';
+                    });
                     ctrl.message = ctrl.Inventory.length == 0;
+
                 })
                 .catch(function(err) {
                     console.log('Error getting user-items details:');
