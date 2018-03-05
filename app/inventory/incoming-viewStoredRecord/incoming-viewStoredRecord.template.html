@@ -18,9 +18,10 @@
                     <th class="col-md-1">Status</th>
                     <th>Value(credits)</th>
                     <th class="col-md-1">Location</th>
-                    <th class="col-md-1">Date IN</th>
-                    <th class="col-md-3">Product Details</th>
-                    <th class="col-md-2">Actions</th>
+                    <!-- <th class="col-md-1">Date IN</th> -->
+                    <th class="col-md-2">Owner ID</th>
+                    <th class="col-md-2">Owner Email ID</th>
+                    <!-- <th class="col-md-2">Actions</th> -->
                 </tr>
                 <tr ng-hide="$ctrl.message" class="text-center" ng-repeat="inventory in $ctrl.Inventory | filter:searchInventory" ng-click="$ctrl.selectRow($index)" ng-class="{'highlight': $index == $ctrl.selectedRow}">
                     <td class="text-center">
@@ -34,14 +35,15 @@
                     <td class="col-md-1">{{inventory.itemName}}</td>
                     <td class="col-md-1">{{inventory.status}}</td>
                     <td>{{inventory.credits}}</td>
-                    <td class="col-md-1">{{inventory.storagePoints}}</td>
-                    <td class="col-md-1">{{inventory.storageTimestamp | date: 'dd/MM/yyyy'}}</td>
-                    <td class="col-md-3">{{inventory.description}}</td>
-                    <td class="col-md-2"><a ng-click="$ctrl.addUpdateCredit(inventory)" class="btn btn-sm btn-success">
+                    <td class="col-md-1">{{inventory.location ? inventory.location  : 'No Location'}}</td>
+                    <!-- <td class="col-md-1">{{inventory.storageTimestamp | date: 'dd/MM/yyyy'}}</td> -->
+                    <td class="col-md-2">{{inventory.ownerID}}</td>
+                    <td class="col-md-2">{{inventory.ownerEmail}}</td>
+                    <!-- <td class="col-md-2"><a ng-click="$ctrl.addUpdateCredit(inventory)" class="btn btn-sm btn-success">
                                   <span class="glyphicon glyphicon-ok"></span>
                                 </a>&nbsp;<a ng-click="$ctrl.addUpdateCredit(inventory)" class="btn btn-sm btn-danger">
                                   <span class="glyphicon glyphicon-remove"></span>
-                                </a></td>
+                                </a></td> -->
                 </tr>
                 <tr ng-show="$ctrl.message">
                     <td></td>

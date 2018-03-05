@@ -7,7 +7,7 @@ function updateCreditModalController($state,inventoryService) {
 
 	ctrl.save = function(credit){
 		ctrl.loader = true;
-		inventoryService.updateInventory(ctrl.item.storedItemId, credit)
+		inventoryService.updateInventory(ctrl.item.storedItemId, credit, "STORED")
 					.then(function(response){
 						ctrl.loader = false;
 						ctrl.modalInstance.close({action: 'update'});

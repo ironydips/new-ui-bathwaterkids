@@ -19,7 +19,8 @@
                     <th>Value(credits)</th>
                     <th class="col-md-1">Location</th>
                     <!-- <th class="col-md-1">Date IN</th> -->
-                    <th class="col-md-3">Product Details</th>
+                    <th class="col-md-2">Owner ID</th>
+                    <th class="col-md-2">Owner Email ID</th>
                     <th class="col-md-2">Actions</th>
                 </tr>
                 <tr ng-hide="$ctrl.message" class="text-center" ng-repeat="inventory in $ctrl.Inventory | filter:searchInventory" ng-click="$ctrl.selectRow($index)" ng-class="{'highlight': $index == $ctrl.selectedRow}">
@@ -36,7 +37,8 @@
                     <td>{{inventory.credits}}</td>
                     <td class="col-md-1">{{inventory.location}}</td>
                     <!-- <td class="col-md-1">{{inventory.storageTimestamp | date: 'dd/MM/yyyy'}}</td> -->
-                    <td class="col-md-3">{{inventory.description}}</td>
+                    <td class="col-md-2">{{inventory.ownerID}}</td>
+                    <td class="col-md-2">{{inventory.ownerEmail}}</td>
                     <td class="col-md-2"><a ng-click="$ctrl.addUpdateCredit(inventory)" class="btn btn-sm btn-success">
                                   <span class="glyphicon glyphicon-ok"></span>
                                 </a>&nbsp;<a ng-click="$ctrl.delete(inventory)" class="btn btn-sm btn-danger">
