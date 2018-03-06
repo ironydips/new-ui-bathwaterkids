@@ -5,7 +5,8 @@
 			'bathwaterApp.services',
 			'bootstrapLightbox',
 			'updateCreditModal',
-			'deleteConfirmationModal'
+			'deleteConfirmationModal',
+			'customerSubItemModal'
 		]);
 
 })(window.angular);

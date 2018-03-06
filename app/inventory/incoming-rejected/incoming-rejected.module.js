@@ -4,7 +4,8 @@
 			'ui.bootstrap',
 			'bathwaterApp.services',
 			'bootstrapLightbox',
-			'updateCreditModal'
+			'updateCreditModal',
+			'customerSubItemModal'
 		]);
 
 })(window.angular);

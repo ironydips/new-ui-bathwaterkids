@@ -1,33 +1,60 @@
 (function(angular) {
     'use strict';
 
-     function openPopUpDelete(details){
+    function openSubItem(details) {
 
         var popUpCtrl = this;
         var modalInstance = popUpCtrl.$uibModal.open({
-            component:'deleteConfirmationModal',
+            component: 'customerSubItemModal',
+            windowClass: 'app-modal-window-large',
+            keyboard: false,
+            resolve: {
+                details: function() {
+                    return (details || {});
+                }
+            },
+            backdrop: 'static'
+        });
+
+        modalInstance.result.then(function(data) {
+                //data passed when pop up closed.
+                //if (data && data.action == "update");
+
+            }),
+            function(err) {
+                console.log('Error in SubItem Modal');
+                console.log(err);
+            }
+    }
+    function openPopUpDelete(details) {
+
+        var popUpCtrl = this;
+        var modalInstance = popUpCtrl.$uibModal.open({
+            component: 'deleteConfirmationModal',
             windowClass: 'app-modal-window-small',
             keyboard: false,
             resolve: {
-                details: function(){
+                details: function() {
                     return (details || {});
-            }
-                
+                }
+
             },
             backdrop: 'static'
 
         });
 
         modalInstance.result.then(function(data) {
-            if (data && data.action == "update") popUpCtrl.init();
-            // if(data && data.action == "delete") {
-            //     var index = data.details;
-            //     this.adminList.splice(index, 1);
-            // }
+                if (data && data.action == "update") popUpCtrl.init();
+                // if(data && data.action == "delete") {
+                //     var index = data.details;
+                //     this.adminList.splice(index, 1);
+                // }
 
-        }), function(err){
-                    console.log('Error in manage-admin Modal');
-                    console.log(err);        }
+            }),
+            function(err) {
+                console.log('Error in manage-admin Modal');
+                console.log(err);
+            }
     };
 
     function openPopupCreditUpdate(details) {
@@ -69,9 +96,17 @@
                 .then(function(response) {
                     ctrl.loader = false;
 
-                    ctrl.Inventory = response.data.filter(function(data){
-                    	return data.status == 'RECEIVED';
+                    ctrl.Inventory = response.data.filter(function(data) {
+                        return data.status == 'RECEIVED';
                     });
+                    for (var i = 0; i < ctrl.Inventory.length; i++) {
+                        if (ctrl.Inventory[i].hasOwnProperty('imageURLs') && ctrl.Inventory[i].imageURLs.length) {
+                            ctrl.Inventory[i].imageUrl = ctrl.Inventory[i].imageURLs;
+                        } else {
+                            let arr = ["img/not-available.jpg"];
+                            ctrl.Inventory[i].imageUrl = arr;
+                        }
+                    }
                     ctrl.message = ctrl.Inventory.length == 0;
                 })
                 .catch(function(err) {
@@ -92,9 +127,12 @@
         ctrl.addUpdateCredit = function(item) {
             angular.bind(ctrl, openPopupCreditUpdate, angular.copy(item))();
         };
-        ctrl.delete = function(inventory){
-        	angular.bind(ctrl, openPopUpDelete, angular.copy(inventory))();
-        }
+        ctrl.delete = function(inventory) {
+            angular.bind(ctrl, openPopUpDelete, angular.copy(inventory))();
+        };
+        ctrl.subItems = function(subitem) {
+            angular.bind(ctrl, openSubItem, subitem)();
+        };
 
         ctrl.init();
     }

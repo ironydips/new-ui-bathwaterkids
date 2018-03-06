@@ -27,6 +27,31 @@
                 console.log(err);
             }
     }
+    function openSubItem(details) {
+
+        var popUpCtrl = this;
+        var modalInstance = popUpCtrl.$uibModal.open({
+            component: 'customerSubItemModal',
+            windowClass: 'app-modal-window-large',
+            keyboard: false,
+            resolve: {
+                details: function() {
+                    return (details || {});
+                }
+            },
+            backdrop: 'static'
+        });
+
+        modalInstance.result.then(function(data) {
+                //data passed when pop up closed.
+                //if (data && data.action == "update");
+
+            }),
+            function(err) {
+                console.log('Error in SubItem Modal');
+                console.log(err);
+            }
+    }
 
     function InventoryRejectedDetailsController($state, $uibModal, Lightbox, inventoryService) {
         var ctrl = this;
@@ -42,6 +67,14 @@
                     ctrl.Inventory = response.data.filter(function(data){
                         return data.status == 'REJECTED';
                     });
+                    for (var i = 0; i < ctrl.Inventory.length; i++) {
+                        if (ctrl.Inventory[i].hasOwnProperty('imageURLs') && ctrl.Inventory[i].imageURLs.length) {
+                            ctrl.Inventory[i].imageUrl = ctrl.Inventory[i].imageURLs;
+                        } else {
+                            let arr = ["img/not-available.jpg"];
+                            ctrl.Inventory[i].imageUrl = arr;
+                        }
+                    }
                     ctrl.message = ctrl.Inventory.length == 0;
 
                 })
@@ -58,6 +91,9 @@
         };
         ctrl.selectRow = function(rowIndex) {
             ctrl.selectedRow = rowIndex;
+        };
+        ctrl.subItems = function(subitem) {
+            angular.bind(ctrl, openSubItem, subitem)();
         };
 
         ctrl.addUpdateCredit = function(item) {

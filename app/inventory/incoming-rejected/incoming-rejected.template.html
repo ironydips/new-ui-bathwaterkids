@@ -21,12 +21,13 @@
                     <!-- <th class="col-md-1">Date IN</th> -->
                     <th class="col-md-2">Owner ID</th>
                     <th class="col-md-2">Owner Email ID</th>
+                    <th class="col-md-1">Sub Items</th>
                     <!-- <th class="col-md-2">Actions</th> -->
                 </tr>
                 <tr ng-hide="$ctrl.message" class="text-center" ng-repeat="inventory in $ctrl.Inventory | filter:searchInventory" ng-click="$ctrl.selectRow($index)" ng-class="{'highlight': $index == $ctrl.selectedRow}">
                     <td class="text-center">
-                        <a href="" ng-click="$ctrl.openLightboxModal(inventory.imageURLs)">
-                            <img ng-src="{{inventory.imageURLs[0]}}" class="img-thumbnail">
+                        <a href="" ng-click="$ctrl.openLightboxModal(inventory.imageUrl)">
+                            <img ng-src="{{inventory.imageUrl[0]}}" class="img-thumbnail">
                         </a>
                     </td>
                     <td>{{inventory.categoryID}}</td>
@@ -39,6 +40,9 @@
                     <!-- <td class="col-md-1">{{inventory.storageTimestamp | date: 'dd/MM/yyyy'}}</td> -->
                     <td class="col-md-2">{{inventory.ownerID}}</td>
                     <td class="col-md-2">{{inventory.ownerEmail}}</td>
+                    <td>
+                        <button type="button" ng-show="inventory.subItems.length" ng-click="$ctrl.subItems(inventory)" class="btn btn-sm btn-primary">View</button>
+                    </td>
                     <!-- <td class="col-md-2"><a ng-click="$ctrl.addUpdateCredit(inventory)" class="btn btn-sm btn-success">
                                   <span class="glyphicon glyphicon-ok"></span>
                                 </a>&nbsp;<a ng-click="$ctrl.addUpdateCredit(inventory)" class="btn btn-sm btn-danger">

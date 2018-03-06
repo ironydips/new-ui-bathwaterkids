@@ -27,6 +27,31 @@
                 console.log(err);
             }
     }
+       function openSubItem(details) {
+
+        var popUpCtrl = this;
+        var modalInstance = popUpCtrl.$uibModal.open({
+            component: 'customerSubItemModal',
+            windowClass: 'app-modal-window-large',
+            keyboard: false,
+            resolve: {
+                details: function() {
+                    return (details || {});
+                }
+            },
+            backdrop: 'static'
+        });
+
+        modalInstance.result.then(function(data) {
+                //data passed when pop up closed.
+                //if (data && data.action == "update");
+
+            }),
+            function(err) {
+                console.log('Error in SubItem Modal');
+                console.log(err);
+            }
+    }
 
     function InventoryStoredRecordsDetailsController($state, $uibModal, Lightbox, inventoryService) {
         var ctrl = this;
@@ -40,6 +65,14 @@
                 .then(function(response) {
                     ctrl.loader = false;
                     ctrl.Inventory = response.data;
+                    for (var i = 0; i < ctrl.Inventory.length; i++) {
+                        if (ctrl.Inventory[i].hasOwnProperty('imageURLs') && ctrl.Inventory[i].imageURLs.length) {
+                            ctrl.Inventory[i].imageUrl = ctrl.Inventory[i].imageURLs;
+                        } else {
+                            let arr = ["img/not-available.jpg"];
+                            ctrl.Inventory[i].imageUrl = arr;
+                        }
+                    }
                     ctrl.message = ctrl.Inventory.length == 0;
                 })
                 .catch(function(err) {
@@ -59,6 +92,9 @@
 
         ctrl.addUpdateCredit = function(item) {
             angular.bind(ctrl, openPopupCreditUpdate, angular.copy(item))();
+        };
+        ctrl.subItems = function(subitem) {
+            angular.bind(ctrl, openSubItem, subitem)();
         };
 
         ctrl.init();
