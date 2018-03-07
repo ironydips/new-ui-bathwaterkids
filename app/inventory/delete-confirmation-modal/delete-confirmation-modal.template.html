@@ -5,7 +5,8 @@
 
         <div class="profileSm">
         
-            <h2>Are you sure you want to reject {{$ctrl.inventory.itemName}}?</h2>
+            <h2 ng-if="$ctrl.inventory.msg == 'reject'" style="background-color: firebrick;">Are you sure you want to reject {{$ctrl.inventory.itemName}}?</h2>
+            <h2 ng-if="$ctrl.inventory.msg == 'success'" style="background-color: forestgreen;">Are you sure you want to approve {{$ctrl.inventory.itemName}}?</h2>
             
             <div class="inner-adjust">
                     
@@ -15,7 +16,9 @@
                         <div class="btn-main">
 
                           <button type="button" ng-click = "$ctrl.cancel()" class="btn btn-sm btn-default">Cancel</button>
-                          <button type="button" ng-click = "$ctrl.deleteAdmin()" class="btn btn-sm btn-danger">Reject</button>
+                          <button ng-if="$ctrl.inventory.msg == 'reject'" type="button" ng-click = "$ctrl.deleteAdmin()" class="btn btn-sm btn-danger">Reject</button>
+                          <button ng-if="$ctrl.inventory.msg == 'success'" type="button" ng-click = "$ctrl.acceptItem()" class="btn btn-sm btn-success">Accept</button>
+
 
                         </div>
               

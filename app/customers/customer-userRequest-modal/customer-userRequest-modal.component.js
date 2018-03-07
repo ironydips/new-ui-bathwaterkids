@@ -26,6 +26,34 @@
                 console.log(err);
             }
     }
+    function openPopupCreditUpdate(details) {
+
+        var popUpCtrl = this;
+        var modalInstance = popUpCtrl.$uibModal.open({
+            component: 'updateCreditModal',
+            windowClass: 'app-modal-window-small',
+            keyboard: false,
+            resolve: {
+                details: function() {
+                    return (details || {});
+                }
+            },
+            backdrop: 'static'
+        });
+
+        modalInstance.result.then(function(data) {
+                //data passed when pop up closed.
+                //if (data && data.action == "update");
+                if (data && data.action == "update") {
+                    popUpCtrl.init();
+                }
+
+            }),
+            function(err) {
+                console.log('Error in inventory-incoming-credit-update Modal');
+                console.log(err);
+            }
+    }
 
     function userReqModalController($state, $uibModal, customerUserService, Lightbox) {
         var ctrl = this;
@@ -185,6 +213,9 @@
 
         ctrl.cancel = function() {
             ctrl.modalInstance.close();
+        };
+        ctrl.updateCredit = function(item){
+            angular.bind(ctrl, openPopupCreditUpdate, angular.copy(item))();
         };
 
 

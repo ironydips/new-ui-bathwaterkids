@@ -127,7 +127,8 @@
         ctrl.addUpdateCredit = function(item) {
             angular.bind(ctrl, openPopupCreditUpdate, angular.copy(item))();
         };
-        ctrl.delete = function(inventory) {
+        ctrl.openPopUp = function(inventory, msg) {
+        	inventory.msg = msg;
             angular.bind(ctrl, openPopUpDelete, angular.copy(inventory))();
         };
         ctrl.subItems = function(subitem) {

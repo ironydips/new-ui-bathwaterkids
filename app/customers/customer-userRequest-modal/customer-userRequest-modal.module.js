@@ -5,7 +5,8 @@ angular.module('customerUserReqModal',[
 	'bathwaterApp.services',
 	'bootstrapLightbox',
 	'customerSubItemModal',
-	'customerAddItemModal'
+	'customerAddItemModal',
+	'updateCreditModal'
 	]);
 
 })(window.angular);

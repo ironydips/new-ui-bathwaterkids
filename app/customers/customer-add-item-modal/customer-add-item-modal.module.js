@@ -3,7 +3,8 @@
 
 angular.module('customerAddItemModal',[
 		'bathwaterApp.services',
-		'customerSubItemModal'
+		'customerSubItemModal',
+		'updateCreditModal'
 	]);
 
 })(window.angular);

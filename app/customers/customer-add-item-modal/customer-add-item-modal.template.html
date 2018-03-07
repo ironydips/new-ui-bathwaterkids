@@ -86,7 +86,13 @@
                                             <input type="radio" value="Yes" class="form-controls" ng-model="$ctrl.pickup.boolSharable" style="width: 40px"> Yes
                                             <input type="radio" value="No" class="form-controls" style="width: 40px" ng-model="$ctrl.pickup.boolSharable"> No
                                         </td>
-                                        <td class="gap" ng-if="$ctrl.pickup.boolSharable == 'Yes'">Category</td>
+                                        <td class="gap">Credit</td>
+                                        <td class="gap2 gap3">
+                                            <input type="number" class="form-controls" ng-model="$ctrl.pickup.newCredits">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                    <td class="gap" ng-if="$ctrl.pickup.boolSharable == 'Yes'">Category</td>
                                         <td ng-if="$ctrl.pickup.boolSharable == 'Yes'" class="gap2 gap3">
                                             <select class="form-control" ng-model="categories" ng-change="$ctrl.setCategory(categories)">
                                                 <option value="">Select Category</option>
@@ -98,29 +104,13 @@
                                                 <option value="6">Bath</option>
                                             </select>
                                         </td>
-                                    </tr>
-                                    <tr ng-if="$ctrl.categoryArr.length > 0">
-                                        <td class="gap">Sub Category</td>
-                                        <td class="gap2 gap3">
+                                        <td ng-if="$ctrl.categoryArr.length > 0" class="gap">Sub Category</td>
+                                        <td ng-if="$ctrl.categoryArr.length > 0" class="gap2 gap3">
                                             <select ng-model="subCategory" class="form-control" ng-change="$ctrl.setSubCategory(subCategory)" ng-options="category.title for category in $ctrl.categoryArr">
                                                 <option value="">Select Sub Category</option>
                                             </select>
-                                            <!-- <select class="form-control" ng-model="categories" ng-change="$ctrl.setCategory(categories)">
-                                                <option value="">Select Category</option>
-                                                <option value="1">Eat</option>
-                                                <option value="2">Sleep</option>
-                                                <option value="3">Stroll</option>
-                                                <option value="4">Travel</option>
-                                                <option value="5">Play</option>
-                                                <option value="6">Bath</option>
-                                            </select> -->
                                         </td>
                                     </tr>
-                                    <!-- <tr ng-if="!$ctrl.isSubItem">
-                                            <td>
-                                                <button type="button" ng-click="$ctrl.addSubItem()" class="btn btn-sm btn-success">Add Sub Item</button>
-                                            </td>
-                                        </tr> -->
                                     <tr ng-if="$ctrl.isSubItem">
                                         <td class="gap">Sub Item Code</td>
                                         <td class="gap2 gap3">
@@ -167,6 +157,7 @@
                                     <th style="font-size: 13px;" class="col-md-1">Condition</th>
                                     <th style="font-size: 13px;" class="col-md-3 col-lg-2">Eventual Damages</th>
                                     <th style="font-size: 13px;" class="col-md-1">Sharable</th>
+                                    <th style="font-size: 13px;" class="col-md-1">Credit</th>
                                     <th style="font-size: 13px;" class="col-md-3 col-lg-2">AssignedItem Code</th>
                                     <th style="font-size: 13px;" class="col-md-3 col-lg-2">Sub Item</th>
                                 </tr>
@@ -179,6 +170,7 @@
                                     <td>{{item.condition}}</td>
                                     <td>{{item.eventualDamages}}</td>
                                     <td>{{item.sharable ? 'Yes' : 'No'}}</td>
+                                    <td><a ng-click="$ctrl.updateCredit(item, $index)"><u>{{item.newCredits}}</u></a></td>
                                     <td>{{item.itemCodes[0]}}</td>
                                     <td>
                                         <button type="button" ng-show="item.subItems.length" ng-click="$ctrl.opensubItemModal(item)" class="btn btn-sm btn-primary">View</button>

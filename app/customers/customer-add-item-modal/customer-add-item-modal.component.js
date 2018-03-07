@@ -28,6 +28,34 @@
                 console.log(err);
             }
     }
+    function openPopupCreditUpdate(details) {
+
+        var popUpCtrl = this;
+        var modalInstance = popUpCtrl.$uibModal.open({
+            component: 'updateCreditModal',
+            windowClass: 'app-modal-window-small',
+            keyboard: false,
+            resolve: {
+                details: function() {
+                    return (details || {});
+                }
+            },
+            backdrop: 'static'
+        });
+
+        modalInstance.result.then(function(data) {
+                //data passed when pop up closed.
+                //if (data && data.action == "update");
+                if (data && data.action == "update") {
+                    popUpCtrl.pickedupItems[data.item.index] = data.item;
+                }
+
+            }),
+            function(err) {
+                console.log('Error in inventory-incoming-credit-update Modal');
+                console.log(err);
+            }
+    }
 
     function customerAddItemModalController($state, $scope, $uibModal,customerUserService, UserRequestService, DriverService) {
         var ctrl = this;
@@ -127,6 +155,7 @@
         ctrl.save = function() {
             ctrl.viewItems = true;
             ctrl.showtable = true;
+            ctrl.pickup.newCredits = ctrl.pickup.newCredits || 0;
             ctrl.pickup.subItems = ctrl.subItemArr;
             ctrl.pickup.sharable = ctrl.pickup.boolSharable == 'Yes' ? 1 : 0;
             ctrl.pickup.itemCodes = [ctrl.pickup.itemCode];
@@ -144,6 +173,13 @@
             ctrl.imageUrl = '';
             ctrl.pickup.imagesBase64 = '';
         };
+        ctrl.updateCredit = function(item, index){
+            item.index = index;
+            angular.bind(ctrl, openPopupCreditUpdate, angular.copy(item))();
+        };
+        ctrl.updateItemList = function(item){
+            ctrl.pickedupItems[data.item.index] = data.item;
+        }
 
         ctrl.init();
     }

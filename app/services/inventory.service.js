@@ -14,9 +14,9 @@
 	        });
 		};
 
-		var updateInventory = function(storedItemID, credit, status){
+		var updateInventory = function(storedItemID, oldCredits, newCredits, userRequestId){
 			return $http({
-		            url: '/rest/admin/updateCredits?storedID='+storedItemID+'&credits='+credit + '&status=' + status,
+		            url: '/rest/admin/updateCredits?userRequestID=' + userRequestId + '&storedID='+storedItemID +'&oldCredits=' + oldCredits + '&newCredits=' + newCredits,
 		            method: "GET",
 		            headers:{
 	            		"Authorization": 'Basic YWRtaW46YWRtaW4='

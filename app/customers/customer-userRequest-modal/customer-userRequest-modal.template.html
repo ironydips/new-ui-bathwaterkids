@@ -66,6 +66,7 @@
                                 <th style="font-size: 13px;" class="col-md-1">Location</th>
                                 <th style="font-size: 13px;" class="col-md-2">Eventual Damage</th>
                                 <th style="font-size: 13px;" class="col-md-1">Condition</th>
+                                <th style="font-size: 13px;" class="col-md-1">Credit</th>
                                 <th style="font-size: 13px;" class="col-md-1">Sub Items</th>
                             </tr>
                             <tr ng-repeat="item in $ctrl.itemsArray" ng-click="$ctrl.displayRow($index)" ng-class="{'highlight': item.userRequestID == $ctrl.selectedRow || $index == $ctrl.displayRowValue}">
@@ -86,6 +87,7 @@
                                 <td class="col-md-1">{{item.location}}</td>
                                 <td class="col-md-2">{{item.eventualDamages}}</td>
                                 <td class="col-md-1">{{item.condition}}</td>
+                                <td class="col-md-1"><a ng-click="$ctrl.updateCredit(item)"><u>{{item.credits}}</u></a></td>
                                 <td>
                                     <button type="button" ng-show="item.subItems.length" ng-click="$ctrl.subItems(item)" class="btn btn-sm btn-primary">View</button>
                                 </td>
@@ -104,6 +106,7 @@
                         </tr> -->
                             <tr ng-show="$ctrl.noItemMessage">
                                 <td class="col-md-3"></td>
+                                <td class="col-md-2"></td>
                                 <td class="col-md-2"></td>
                                 <td style="font-size: 15px;" class="col-md-4">
                                     <b>No Items to Display</b><br>

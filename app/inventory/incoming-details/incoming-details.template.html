@@ -43,9 +43,9 @@
                     <td>
                                     <button type="button" ng-show="inventory.subItems.length" ng-click="$ctrl.subItems(inventory)" class="btn btn-sm btn-primary">View</button>
                                 </td>
-                    <td class="col-md-2"><a ng-click="$ctrl.addUpdateCredit(inventory)" class="btn btn-sm btn-success">
+                    <td class="col-md-2"><a ng-click="$ctrl.openPopUp(inventory, 'success')" class="btn btn-sm btn-success">
                                   <span class="glyphicon glyphicon-ok"></span>
-                                </a>&nbsp;<a ng-click="$ctrl.delete(inventory)" class="btn btn-sm btn-danger">
+                                </a>&nbsp;<a ng-click="$ctrl.openPopUp(inventory, 'reject')" class="btn btn-sm btn-danger">
                                   <span class="glyphicon glyphicon-remove"></span>
                                 </a></td>
                 </tr>
