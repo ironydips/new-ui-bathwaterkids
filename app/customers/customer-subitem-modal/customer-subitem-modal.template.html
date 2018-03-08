@@ -11,12 +11,31 @@
                             <div class="">
                                 <!-- <div class="profileBg"> -->
                                 <div>
-                                    <div ng-hide="$ctrl.viewItems" class="inner-adjust">
+                                    <!-- <div ng-hide="$ctrl.viewItems" class="inner-adjust">
                                         <div class="image">
                                             <img src="{{$ctrl.imageUrl || ''}}" alt="Select Sub Item Image" style="width: 220px;height: 200px" />
                                         </div>
                                         <input style="margin-left:250px" ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.subItemImage" base-sixty-four-input accept="image/*">
-                                    </div>
+                                    </div> -->
+                                     <div ng-hide="$ctrl.viewItems" style='display: inline-flex; width: 100%; margin: 5px auto 40px; '>
+                                <div class="image" style="margin: 0 auto !important;text-align: center !important; width: 30% !important; ">
+                                    <img src="{{$ctrl.imageUrl1 || ''}}" alt="Select Sub Item Image" style="width:100%; height: 200px" />
+                                    <input ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.subItemImage" base-sixty-four-input accept="image/*" 
+                                    style="width: 99%;"> 
+                                </div>
+
+                                <div class="image" style="margin: 0 auto !important;text-align: center !important; width: 30% !important; ">
+                                    <img src="{{$ctrl.imageUrl2 || ''}}" alt="Select Sub Item Image" style="width:100%; height: 200px" />
+                                    <input ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.subItemImage2" base-sixty-four-input accept="image/*"
+                                    style="width: 99%;"> 
+                                </div>
+                                
+                                <div class="image" style="margin: 0 auto !important;text-align: center !important; width: 30% !important; ">
+                                    <img src="{{$ctrl.imageUrl3 || ''}}" alt="Select Sub Item Image" style="width:100%; height: 200px" />
+                                    <input ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.subItemImage3" base-sixty-four-input accept="image/*"
+                                    style="width: 99%;"> 
+                                </div>
+                            </div>
                                     <!-- <h3>Image</h3> -->
                                     <!-- <h3 style="clear: both;">Item Info</h3> -->
                                     <form>
@@ -98,7 +117,11 @@
                     <th style="font-size: 13px;" class="col-md-1">Description</th>
                 </tr>
                 <tr ng-repeat="item in $ctrl.subItems">
-                    <td><img ng-src="{{item.imageUrl}}" alt="No Image Selected" style="margin-left: 150px;width: 70px;height: 60px" /></td>
+                    <!-- <td><img ng-src="{{item.imageUrl}}" alt="No Image Selected" style="margin-left: 150px;width: 70px;height: 60px" /></td> -->
+                    <td>
+                        <a href="" ng-click="$ctrl.openLightboxModal(item.imageUrl)">
+                                        <img style="width: 70px;height: 60px;"  ng-src="{{item.imageUrl[0]}}" class="img-thumbnail">
+                    </td>
                     <td class="text-center">{{item.itemCode}}</td>
                     <td class="text-center">{{item.itemName}}</td>
                     <td class="text-center">{{item.description}}</td>

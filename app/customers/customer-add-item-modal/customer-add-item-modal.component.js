@@ -28,6 +28,7 @@
                 console.log(err);
             }
     }
+
     function openPopupCreditUpdate(details) {
 
         var popUpCtrl = this;
@@ -57,12 +58,12 @@
             }
     }
 
-    function customerAddItemModalController($state, $scope, $uibModal,customerUserService, UserRequestService, DriverService) {
+    function customerAddItemModalController($state, $scope, $uibModal,Lightbox, customerUserService, UserRequestService, DriverService) {
         var ctrl = this;
         ctrl.$uibModal = $uibModal;
         ctrl.$state = $state;
         ctrl.requestDetails = (ctrl.resolve && ctrl.resolve.details) || {};
-        ctrl.pickup = { "boolSharable": "No", "itemCode": [], imageUrl: '' };
+        ctrl.pickup = { "boolSharable": "No", "itemCode": [], imageUrl: [] };
         ctrl.pickedupItems = [];
         ctrl.isSubItem = false;
         ctrl.viewItems = true;
@@ -74,7 +75,7 @@
 
 
         };
-        ctrl.setCategory = function(category){
+        ctrl.setCategory = function(category) {
             ctrl.loader = true;
             customerUserService.getCategories(category)
                 .then(function(userlist) {
@@ -82,7 +83,7 @@
                     if (userlist && userlist.data) {
                         ctrl.message = false;
                         ctrl.categoryArr = userlist.data;
-                    }else{
+                    } else {
                         ctrl.message = true;
                     }
                 })
@@ -91,7 +92,7 @@
                     console.log(err);
                 });
         };
-        ctrl.setSubCategory = function(subCategory){
+        ctrl.setSubCategory = function(subCategory) {
             ctrl.pickup.categoryID = subCategory.categoryID;
             ctrl.pickup.categoryName = subCategory.title;
         };
@@ -99,7 +100,19 @@
             return ctrl.itemImage;
         }), function(value) {
             value ?
-                (ctrl.imageUrl = 'data:image/jpeg;base64, ' + value.base64, ctrl.pickup.imagesBase64 = value.base64) : (ctrl.pickup.imagesBase64 = '');
+                (ctrl.imageUrl1 = 'data:image/jpeg;base64, ' + value.base64, ctrl.pickup.imagesBase64 = value.base64) : (ctrl.pickup.imagesBase64 = '');
+        });
+        $scope.$watch(angular.bind(ctrl, function() {
+            return ctrl.itemImage2;
+        }), function(value) {
+            value ?
+                (ctrl.imageUrl2 = 'data:image/jpeg;base64, ' + value.base64, ctrl.pickup.imagesBase642 = value.base64) : (ctrl.pickup.imagesBase642 = '');
+        });
+        $scope.$watch(angular.bind(ctrl, function() {
+            return ctrl.itemImage3;
+        }), function(value) {
+            value ?
+                (ctrl.imageUrl3 = 'data:image/jpeg;base64, ' + value.base64, ctrl.pickup.imagesBase643 = value.base64) : (ctrl.pickup.imagesBase643 = '');
         });
 
         ctrl.updateSubitem = function(subItem) {
@@ -137,19 +150,28 @@
                     console.log(err);
                 });
             ctrl.viewItems = false;
-        }
+        };
+        ctrl.openLightboxModal = function(images) {
+            //LightBox Library used as Image Viewer.
+            Lightbox.openModal(images, 0);
+        };
         ctrl.addItem = function() {
             ctrl.viewItems = false;
             ctrl.showtable = false;
             ctrl.itemImage = '';
-            ctrl.imageUrl = "";
+            ctrl.itemImage2 = '';
+            ctrl.itemImage3 = '';
+            ctrl.imageUrl1 = "";
+            ctrl.imageUrl2 = "";
+            ctrl.imageUrl3 = "";
             ctrl.pickup.imagesBase64 = "";
             ctrl.categoryArr = [];
-            ctrl.pickup = { "boolSharable": "No", "itemCode": [], imageUrl: '' };
+            ctrl.pickup = { "boolSharable": "No", "itemCode": [], imageUrl: [] };
         }
         ctrl.back = function() {
             ctrl.viewItems = true;
             ctrl.showtable = true;
+            ctrl.subItemArr = [];
         }
 
         ctrl.save = function() {
@@ -159,25 +181,33 @@
             ctrl.pickup.subItems = ctrl.subItemArr;
             ctrl.pickup.sharable = ctrl.pickup.boolSharable == 'Yes' ? 1 : 0;
             ctrl.pickup.itemCodes = [ctrl.pickup.itemCode];
-            ctrl.pickup.imageUrl = ctrl.imageUrl.includes(", ") ? ctrl.imageUrl : "img/not-available.jpg";
-            if (ctrl.itemImage.base64) {
-                ctrl.pickup.imagesBase64 = [ctrl.itemImage.base64];
+            ctrl.imageUrl1 = ctrl.imageUrl1.includes(", ") ? ctrl.imageUrl1 : "img/not-available.jpg";
+            ctrl.imageUrl2 = ctrl.imageUrl2.includes(", ") ? ctrl.imageUrl2 : "img/not-available.jpg";
+            ctrl.imageUrl3 = ctrl.imageUrl3.includes(", ") ? ctrl.imageUrl3 : "img/not-available.jpg";
+            ctrl.pickup.imageUrl.push(ctrl.imageUrl1, ctrl.imageUrl2, ctrl.imageUrl3);
+            debugger;
+            //ctrl.pickup.imageUrl = ctrl.imageUrl1.includes(", ") ? ctrl.imageUrl : "img/not-available.jpg";
+            if (ctrl.itemImage.base64 || ctrl.itemImage2.base64 || ctrl.itemImage3.base64) {
+                ctrl.pickup.imagesBase64 = [ctrl.itemImage.base64, ctrl.itemImage2.base64, ctrl.itemImage3.base64];
             } else {
                 ctrl.pickup.imagesBase64 = [""];
             }
             ctrl.categoryArr = [];
             ctrl.pickedupItems.push(ctrl.pickup);
+            debugger;
             ctrl.pickup = { "boolSharable": "No" };
             ctrl.subItemArr = [];
             ctrl.itemImage = '';
+            ctrl.itemImage2 = '';
+            ctrl.itemImage3 = '';
             ctrl.imageUrl = '';
             ctrl.pickup.imagesBase64 = '';
         };
-        ctrl.updateCredit = function(item, index){
+        ctrl.updateCredit = function(item, index) {
             item.index = index;
             angular.bind(ctrl, openPopupCreditUpdate, angular.copy(item))();
         };
-        ctrl.updateItemList = function(item){
+        ctrl.updateItemList = function(item) {
             ctrl.pickedupItems[data.item.index] = data.item;
         }
 
@@ -187,7 +217,7 @@
     angular.module('customerAddItemModal')
         .component('customerAddItemModal', {
             templateUrl: 'customers/customer-add-item-modal/customer-add-item-modal.template.html',
-            controller: ['$state', '$scope', '$uibModal','customerUserService', 'UserRequestService', 'DriverService', customerAddItemModalController],
+            controller: ['$state', '$scope', '$uibModal','Lightbox', 'customerUserService', 'UserRequestService', 'DriverService', customerAddItemModalController],
             bindings: {
                 modalInstance: '<',
                 resolve: '<'

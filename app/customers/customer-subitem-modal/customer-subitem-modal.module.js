@@ -2,7 +2,8 @@
 'use strict';
 
 angular.module('customerSubItemModal',[
-		'ui.bootstrap'
+		'ui.bootstrap',
+		'bootstrapLightbox'
 	]);
 
 })(window.angular);
