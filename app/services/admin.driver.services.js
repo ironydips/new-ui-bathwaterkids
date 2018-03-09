@@ -8,7 +8,7 @@
 			    url: '/rest/getAllDrivers',
 			    method: "GET",
 			    headers:{
-			    	"Authorization": 'Basic YWRtaW46YWRtaW4='
+			    	// "Authorization": 'Basic YWRtaW46YWRtaW4='
 			    }
 			});
 		};
@@ -25,7 +25,7 @@
 					        return str.join("&");
 					    },
 			            headers: {
-			                'Authorization': "Basic YWRtaW46YWRtaW4=",
+			                // 'Authorization': "Basic YWRtaW46YWRtaW4=",
 			                "Content-Type": "application/x-www-form-urlencoded"
 			            }
 					});
@@ -44,7 +44,7 @@
 					    //     return str.join("&");
 					    // },
 			            headers: {
-			                'Authorization': "Basic YWRtaW46YWRtaW4=",
+			                // 'Authorization': "Basic YWRtaW46YWRtaW4=",
 			                "Content-Type": "application/json"
 			            }
 					});

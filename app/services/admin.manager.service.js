@@ -11,7 +11,7 @@
                     url: '/rest/admin/gloginsuccess?email='+ email +'&id=' + id,
                     method: "GET",
                     headers: {
-                        "Authorization": 'Basic YWRtaW46YWRtaW4='
+                        // "Authorization": 'Basic YWRtaW46YWRtaW4='
                     }
                 });
 			}
@@ -28,7 +28,7 @@
                     method: "POST",
                     data: params,
                     headers: {
-                        "Authorization": key
+                        // "Authorization": key
                     }
                 })
 		}
@@ -56,7 +56,7 @@
                     method: "POST",
                     data: params,
                     headers: {
-                        "Authorization": key
+                        // "Authorization": key
                     }
                 })
 		}
@@ -70,7 +70,7 @@
                     method: "POST",
                     data: params,
                     headers: {
-                        "Authorization": key
+                        // "Authorization": key
                     }
                 })
         }

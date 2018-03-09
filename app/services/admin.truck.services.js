@@ -8,7 +8,7 @@
 			    url: '/rest/getAllTrucks',
 			    method: "GET",
 			    headers:{
-			    	"Authorization": 'Basic YWRtaW46YWRtaW4='
+			    	// "Authorization": 'Basic YWRtaW46YWRtaW4='
 			    }
 			});
 		};
@@ -20,7 +20,7 @@
 				            method: "POST",
 				            data: angular.toJson(truck),
 				            headers: {
-				                'Authorization': "Basic YWRtaW46YWRtaW4=",
+				                // 'Authorization': "Basic YWRtaW46YWRtaW4=",
 				                'Content-Type': 'text/plain'
 				            }
 						});

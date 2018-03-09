@@ -63,7 +63,6 @@ function GoogleSignInController($state, $interval,$cookies, GAuth, AdminManagerS
                 if (response && response.data) {
                     ctrl.profile.role = response.data.role;
                     ctrl.profile.key = response.data.key;
-                    debugger;
                     $cookies.put('token', ctrl.profile.key);
                     switch (profile.role) {
                         case "0":

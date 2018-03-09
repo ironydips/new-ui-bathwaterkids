@@ -28,7 +28,8 @@
 
         }), function(err){
                     console.log('Error in manage-admin Modal');
-                    console.log(err);        }
+                    console.log(err);        
+        }
     };
 
     function openPopUpAdmin(details) {
@@ -95,9 +96,9 @@
 
            AdminManagerService.listofAdmin()
                 .then(function(response) {
-                    if (response && response.data) {
+                    ctrl.loader = false;                    
+                    if (response && response.data && angular.isObject(response.data)) {
                         ctrl.adminList = response.data;
-                        ctrl.loader = false;
                    }
                 })
                 .catch(function(err) {
