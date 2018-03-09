@@ -19,7 +19,7 @@
                     url: '/rest/admin/getItemsByStatus?status='+ status,
                     method: "GET",
                     headers:{
-                        "Authorization": 'Basic YWRtaW46YWRtaW4='
+                      //  "Authorization": 'Basic YWRtaW46YWRtaW4='
                 }
             });
         };
@@ -29,7 +29,7 @@
                     url: '/rest/admin/updateItemInWarehouse?storedItemID='+ storedItemID + '&status='+ status + '&location=' + location,
                     method: "GET",
                     headers:{
-                        "Authorization": 'Basic YWRtaW46YWRtaW4='
+                       // "Authorization": 'Basic YWRtaW46YWRtaW4='
                 }
             });
         };
@@ -39,7 +39,7 @@
                     url: '/rest/admin/updateDropItemStatus?storedItemID='+ storedItemID + '&status='+ status + '&subitemCode=' +subitemCode+ '&location=' + location,
                     method: "GET",
                     headers:{
-                        "Authorization": 'Basic YWRtaW46YWRtaW4='
+                        //"Authorization": 'Basic YWRtaW46YWRtaW4='
                 }
             });
         };
@@ -49,7 +49,7 @@
                     url: '/rest/admin/outgoingItems?date='+ date,
                     method: "GET",
                     headers:{
-                        "Authorization": 'Basic YWRtaW46YWRtaW4='
+                       // "Authorization": 'Basic YWRtaW46YWRtaW4='
                 }
             });
         };
@@ -59,7 +59,7 @@
                     url: '/rest/admin/incomingItems?date='+ date,
                     method: "GET",
                     headers:{
-                        "Authorization": 'Basic YWRtaW46YWRtaW4='
+                      //  "Authorization": 'Basic YWRtaW46YWRtaW4='
                 }
             });
         };
@@ -75,7 +75,7 @@
                     method: "POST",
                     data: JSON.stringify(data),
                     headers:{
-                        "Authorization": 'Basic YWRtaW46YWRtaW4='
+                       // "Authorization": 'Basic YWRtaW46YWRtaW4='
                 }
             });
         };
@@ -86,7 +86,7 @@
                     url: '/rest/admin/checkInStoredItem?storedID='+ storedID + '&credits=' + credit + '&status='+ status + '&categoryID=' + categoryID+ '&location=' + location,
                     method: "GET",
                     headers:{
-                        "Authorization": 'Basic YWRtaW46YWRtaW4='
+                       // "Authorization": 'Basic YWRtaW46YWRtaW4='
                 }
             });
         };

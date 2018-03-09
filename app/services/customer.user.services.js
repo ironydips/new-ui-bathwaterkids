@@ -8,7 +8,7 @@
 		            url: '/rest/getUsers',
 		            method: "GET",
 		            headers:{
-	            		"Authorization": 'Basic YWRtaW46YWRtaW4='
+	            		//"Authorization": 'Basic YWRtaW46YWRtaW4='
 	            }
 	        });
 		};
@@ -18,7 +18,7 @@
 		            url: '/rest/getUserInventory?userid='+ userID,
 		            method: "GET",
 		            headers:{
-	            		"Authorization": 'Basic YWRtaW46YWRtaW4='
+	            		//"Authorization": 'Basic YWRtaW46YWRtaW4='
 	            }
 	        });
 		};
@@ -28,7 +28,7 @@
 		            url: '/rest/getUserItems?userid='+ userID,
 		            method: "GET",
 		            headers:{
-	            		"Authorization": 'Basic YWRtaW46YWRtaW4='
+	            		//"Authorization": 'Basic YWRtaW46YWRtaW4='
 	            }
 	        });
 		};
@@ -38,7 +38,7 @@
 		            url: '/rest/getUserRequests?userid='+ userID,
 		            method: "GET",
 		            headers:{
-	            		"Authorization": 'Basic YWRtaW46YWRtaW4='
+	            		//"Authorization": 'Basic YWRtaW46YWRtaW4='
 	            }
 	        });
 		};
@@ -47,7 +47,7 @@
 		            url: '/admin/getTrucksByUserrequests?date='+ "21/03/2017",
 		            method: "GET",
 		            headers:{
-	            		"Authorization": 'Basic YWRtaW46YWRtaW4='
+	            		//"Authorization": 'Basic YWRtaW46YWRtaW4='
 	            }
 	        });
 		};
@@ -56,7 +56,7 @@
 		            url: '/rest/getCategories?parentID='+ categories,
 		            method: "GET",
 		            headers:{
-	            		"Authorization": 'Basic YWRtaW46YWRtaW4=',
+	            		//"Authorization": 'Basic YWRtaW46YWRtaW4=',
 	            		"Content-Type": "application/x-www-form-urlencoded"
 	            }
 	        });

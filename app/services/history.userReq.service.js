@@ -9,7 +9,7 @@
 		            url: '/rest/getUserRequest/' + date,
 		            method: "GET",
 		            headers:{
-	            		"Authorization": 'Basic YWRtaW46YWRtaW4='
+	            		//"Authorization": 'Basic YWRtaW46YWRtaW4='
 	            }
 	        });
 		};

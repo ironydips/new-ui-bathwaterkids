@@ -42,7 +42,7 @@
                     method: "POST",
                     data: params,
                     headers: {
-                        "Authorization": key
+                        //"Authorization": key
                     }
                 })
 		}

@@ -21,19 +21,19 @@
                                         </div>
                                         <input style="margin-left:250px" ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.subItemImage" base-sixty-four-input accept="image/*">
                                     </div> -->
-                                    <div ng-hide="$ctrl.viewItems" class="inner-adjust">
-                                        <div class="image">
-                                            <img src="{{$ctrl.imageUrl || ''}}" alt="Select Sub Item Image" style="width: 220px;height: 200px" />
-                                        </div>
-                                        <input style="margin-left:250px" ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.subItemImage" base-sixty-four-input accept="image/*">
-                                    </div>
-                                    <!-- <div ng-hide="$ctrl.viewItems" class='item-information-container'>
+                                    <!-- <div ng-hide="$ctrl.viewItems" class="item-information-container">
                                         <div class="image item-custom-styling">
-                                            <img src="{{$ctrl.imageUrl1 || ''}}" alt="Select Sub Item Image" style="width:100%; height: 200px" />
+                                            <img src="{{$ctrl.imageUrl || ''}}" alt="Select Sub Item Image" style="height: 200px" />
+                                        </div>
+                                        <input  ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.subItemImage" base-sixty-four-input accept="image/*">
+                                    </div> -->
+                                    <div ng-hide="$ctrl.viewItems" class='item-information-container'>
+                                        <div class="image item-custom-styling">
+                                            <img src="{{$ctrl.imageUrl || ''}}" alt="Select Sub Item Image" style="width:100%; height: 200px" />
                                             <input ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.subItemImage" base-sixty-four-input accept="image/*" style="width: 99%;">
                                         </div>
 
-                                        <div class="image item-custom-styling">
+                                        <!-- <div class="image item-custom-styling">
                                             <img src="{{$ctrl.imageUrl2 || ''}}" alt="Select Sub Item Image" style="width:100%; height: 200px" />
                                             <input ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.subItemImage2" base-sixty-four-input accept="image/*" style="width: 99%;">
                                         </div>
@@ -41,8 +41,8 @@
                                         <div class="image item-custom-styling">
                                             <img src="{{$ctrl.imageUrl3 || ''}}" alt="Select Sub Item Image" style="width:100%; height: 200px" />
                                             <input ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.subItemImage3" base-sixty-four-input accept="image/*" style="width: 99%;">
-                                        </div>
-                                    </div> -->
+                                        </div> -->
+                                    </div>
                                     <!-- <h3>Image</h3> -->
                                     <!-- <h3 style="clear: both;">Item Info</h3> -->
                                     <div class='detail-container'>

@@ -7,7 +7,7 @@
 			return $http({
 					        url: "/rest/getUserTS",
 					        headers: {
-					            'Authorization': "Basic YWRtaW46YWRtaW4=",
+					            //'Authorization': "Basic YWRtaW46YWRtaW4=",
 					            'Content-Type':'application/json'
 					        },
 					        method: "GET"
@@ -19,7 +19,7 @@
 				            url: '/rest/assignDriverToUserRequest/' + driver.driverID + '?userReqID=' + reqId,
 				            headers: {
 				                'Content-Type': 'text/plain',
-				                'Authorization': "Basic YWRtaW46YWRtaW4="
+				                //'Authorization': "Basic YWRtaW46YWRtaW4="
 				            },
 				            method: "GET"
         				});

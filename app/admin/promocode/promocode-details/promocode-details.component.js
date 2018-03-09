@@ -35,14 +35,14 @@ function PromoCodeDetailsController($state,$uibModal, PromocodeService){
 
 	ctrl.init = function(){
 		//get promocode details.
-		PromocodeService.getPromos()
-		.then(function(promoCodes){
-			ctrl.promocode = promoCodes.data;
-		})
-		.catch(function(err){
-			console.log('Error getting promocode details:');
-			console.log(err);
-		})
+		// PromocodeService.getPromos()
+		// .then(function(promoCodes){
+		// 	ctrl.promocode = promoCodes.data;
+		// })
+		// .catch(function(err){
+		// 	console.log('Error getting promocode details:');
+		// 	console.log(err);
+		// })
 	};
 
 	//Add Promo Modal

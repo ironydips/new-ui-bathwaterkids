@@ -8,7 +8,7 @@
 						    url: '/rest/getPromos',
 						    method: "GET",
 						    headers:{
-						    	"Authorization": 'Basic YWRtaW46YWRtaW4='
+						    	//"Authorization": 'Basic YWRtaW46YWRtaW4='
 						    }
 						});
 					};
@@ -26,7 +26,7 @@
 						        return str.join("&");
 						    },
 				            headers: {
-				                'Authorization': "Basic YWRtaW46YWRtaW4=",
+				                //'Authorization': "Basic YWRtaW46YWRtaW4=",
 				                "Content-Type": "application/x-www-form-urlencoded"
 				            }
 						});
@@ -37,7 +37,7 @@
 						    url: '/rest/deletePromoCode/' + promocode,
 						    method: "GET",
 						    headers:{
-						    	"Authorization": 'Basic YWRtaW46YWRtaW4='
+						    	//"Authorization": 'Basic YWRtaW46YWRtaW4='
 						    }
 						});
 					};

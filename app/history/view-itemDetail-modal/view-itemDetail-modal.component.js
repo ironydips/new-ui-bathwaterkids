@@ -24,7 +24,7 @@
             }
     }
 
-    function ViewItemDetailModalController($state, $uibModal, inventoryService) {
+    function ViewItemDetailModalController($state, $uibModal,Lightbox, inventoryService) {
         var ctrl = this;
         ctrl.$uibModal = $uibModal;
 
@@ -49,14 +49,17 @@
             angular.bind(ctrl, openSubItem, subitem)();
         }
 
-
+        ctrl.openLightboxModal = function(images) {
+            //LightBox Library used as Image Viewer.
+            Lightbox.openModal(images, 0);
+        };
         ctrl.init();
     }
 
     angular.module('viewItemDetailModal')
         .component('viewItemDetailModal', {
             templateUrl: 'history/view-itemDetail-modal/view-itemDetail-modal.template.html',
-            controller: ['$state', '$uibModal', 'inventoryService', ViewItemDetailModalController],
+            controller: ['$state', '$uibModal','Lightbox', 'inventoryService', ViewItemDetailModalController],
             bindings: {
                 modalInstance: '<',
                 resolve: '<'

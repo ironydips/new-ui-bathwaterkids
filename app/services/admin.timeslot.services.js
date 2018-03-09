@@ -8,7 +8,7 @@
                 url: '/rest/getTimeslotsForTheWeek/' + todayDate,
                 method: "GET",
                 headers: {
-                    "Authorization": 'Basic YWRtaW46YWRtaW4='
+                    //"Authorization": 'Basic YWRtaW46YWRtaW4='
                 }
             });
         };
@@ -51,7 +51,7 @@
                     return str.join("&");
                 },
                 headers: {
-                    "Authorization": "Basic YWRtaW46YWRtaW4=",
+                   // "Authorization": "Basic YWRtaW46YWRtaW4=",
                     "Content-Type": "application/x-www-form-urlencoded"
                 }
             });
@@ -62,7 +62,7 @@
                 url: '/rest/getTimeslots',
                 method: "GET",
                 headers: {
-                    'Authorization': "Basic YWRtaW46YWRtaW4="
+                    //'Authorization': "Basic YWRtaW46YWRtaW4="
                 }
             });
         }
@@ -79,7 +79,7 @@
 					        return str.join("&");
 					    },
                 headers: {
-                    "Authorization": 'Basic YWRtaW46YWRtaW4=',
+                   // "Authorization": 'Basic YWRtaW46YWRtaW4=',
                     "Content-Type": "application/x-www-form-urlencoded"
                 },
             });

@@ -8,7 +8,7 @@
 							url: '/rest/assignDriverToTruck/'+ truckid + '?driverID=' + driverid,
 				            method: "GET",
 				            headers: {
-				                'Authorization': "Basic YWRtaW46YWRtaW4="
+				               // 'Authorization': "Basic YWRtaW46YWRtaW4="
 				                
 				            }
 						});
@@ -19,7 +19,7 @@
 				            url: '/rest/getAllDriverTruckHistory',
 				            method: "GET",
 				            headers:{
-				            	"Authorization": 'Basic YWRtaW46YWRtaW4='
+				            	//"Authorization": 'Basic YWRtaW46YWRtaW4='
 				         }
 	        		});
 				};
