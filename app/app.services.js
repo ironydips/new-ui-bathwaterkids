@@ -9,7 +9,7 @@ angular.module('bathwaterApp')
 				if(["GET","POST"].indexOf(config.method) > -1 && !config.url.includes('.html')){
 					config.url = angular.config.baseUrl + config.url;
 					//config
-					var token = $cookies.get('myFavorite');
+					var token = $cookies.get('token');
 					if(token) debugger;
 				}
 
