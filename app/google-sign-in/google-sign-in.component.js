@@ -1,6 +1,6 @@
 'use strict';
 
-function GoogleSignInController($state, $interval, GAuth, AdminManagerService, AdminRightsService) {
+function GoogleSignInController($state, $interval,$cookies, GAuth, AdminManagerService, AdminRightsService) {
 
     var ctrl = this;
     ctrl.isSuperAdmin = false;
@@ -63,7 +63,8 @@ function GoogleSignInController($state, $interval, GAuth, AdminManagerService, A
                 if (response && response.data) {
                     ctrl.profile.role = response.data.role;
                     ctrl.profile.key = response.data.key;
-
+                    debugger;
+                    $cookies.put('token', ctrl.profile.key);
                     switch (profile.role) {
                         case "0":
                             rights.Pickup = true;
@@ -121,5 +122,5 @@ function GoogleSignInController($state, $interval, GAuth, AdminManagerService, A
 angular.module('googleSignIn')
     .component('gSign', {
         templateUrl: 'google-sign-in/google-sign-in.template.html',
-        controller: ['$state', '$interval', 'GAuth', 'AdminManagerService', 'AdminRightsService', GoogleSignInController]
+        controller: ['$state', '$interval','$cookies', 'GAuth', 'AdminManagerService', 'AdminRightsService', GoogleSignInController]
     });

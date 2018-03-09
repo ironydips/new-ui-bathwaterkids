@@ -1,0 +1,38 @@
+{
+  "name": "xlsx-model",
+  "main": "xlsx-model.js",
+  "authors": [
+    "Helvio Pedreschi <helvio88@gmail.com>"
+  ],
+  "description": "Angular model to convert XLSX files into JSON directly into the model",
+  "moduleType": [],
+  "keywords": [
+    "excel",
+    "xlsx",
+    "angular",
+    "file",
+    "json"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Helvio88/angular-xlsx-model",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "js-xlsx": "~0.8.0"
+  },
+  "_release": "958a14a069",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "958a14a06921f713220f95c1100195639cdbc2c9"
+  },
+  "_source": "https://github.com/Helvio88/angular-xlsx-model.git",
+  "_target": "*",
+  "_originalSource": "angular-xlsx-model",
+  "_direct": true
+}

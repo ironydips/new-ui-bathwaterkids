@@ -14,9 +14,11 @@ angular.module('bathwaterApp', [
 	'ngSanitize',
 	// For Notification
 	'ngToast',
+	'ngCookies',
 	//LightBox Library used as Image Viewer.
 	'angularMoment', //moment.js for date formatting
 	'bootstrapLightbox',
+	'xlsx-model',
 	'manageAdmin',
 	'index',
 	'adminLayout',
@@ -52,5 +54,7 @@ angular.module('bathwaterApp', [
 	'truckItemIncomingWarehouseDetails',
 	'truckItemOutgoingWarehouseDetails',
 	'historySubPanel',
-	'historyUserReqDetails'
+	'historyUserReqDetails',
+	'uploadExcelSubPanel',
+	'uploadExcelDetails'
 ]);

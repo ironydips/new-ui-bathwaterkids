@@ -8,25 +8,27 @@
                             Loading&#8230;
                         </div>
                         <h2>Pickup Details</h2>
-                        <table class="table table-hover">
-                            <tr>
-                                <th style="font-size: 13px;" class="col-md-1">Date</th>
-                                <th style="font-size: 13px;" class="col-md-1">Time</th>
-                                <th style="font-size: 13px;" class="col-md-1">Request Type</th>
-                                <th style="font-size: 13px;" class="col-md-3 col-lg-2">User Name</th>
-                                <th style="font-size: 13px;" class="col-md-1">Zip Code</th>
-                                <!-- <th style="font-size: 13px;" class="col-md-3 col-lg-2">Assigned Driver</th> -->
-                            </tr>
-                            <tr>
-                                <td>{{$ctrl.requestDetails.date}}</td>
-                                <td>{{$ctrl.requestDetails.time}}</td>
-                                <td>{{$ctrl.requestDetails.type}}</td>
-                                <td>{{$ctrl.requestDetails.user.firstName}} {{$ctrl.requestDetails.user.lastName}}</td>
-                                <td>{{$ctrl.requestDetails.user.address.zipCode}}</td>
-                                <!-- <td>{{$ctrl.requestDetails.driver.firstName}} {{$ctrl.requestDetails.driver.lastName}}</td> -->
-                            </tr>
-                        </table>
-                        <div ng-hide="$ctrl.viewItems" class="inner-adjust">
+                        <div class='detail-container'>
+                            <table class="table table-hover">
+                                <tr>
+                                    <th style="font-size: 13px;" class="col-md-1">Date</th>
+                                    <th style="font-size: 13px;" class="col-md-1">Time</th>
+                                    <th style="font-size: 13px;" class="col-md-1">Request Type</th>
+                                    <th style="font-size: 13px;" class="col-md-3 col-lg-2">User Name</th>
+                                    <th style="font-size: 13px;" class="col-md-1">Zip Code</th>
+                                    <!-- <th style="font-size: 13px;" class="col-md-3 col-lg-2">Assigned Driver</th> -->
+                                </tr>
+                                <tr>
+                                    <td>{{$ctrl.requestDetails.date}}</td>
+                                    <td>{{$ctrl.requestDetails.time}}</td>
+                                    <td>{{$ctrl.requestDetails.type}}</td>
+                                    <td>{{$ctrl.requestDetails.user.firstName}} {{$ctrl.requestDetails.user.lastName}}</td>
+                                    <td>{{$ctrl.requestDetails.user.address.zipCode}}</td>
+                                    <!-- <td>{{$ctrl.requestDetails.driver.firstName}} {{$ctrl.requestDetails.driver.lastName}}</td> -->
+                                </tr>
+                            </table>
+                        </div>
+                        <div ng-hide="$ctrl.viewItems">
                             <!-- <h3>Product Information</h3>
                             <div class="image">
                                 <img src="{{$ctrl.imageUrl || ''}}" alt="Select Product Image" style="width: 208px;height: 200px" />
@@ -38,26 +40,23 @@
                                 <a href="" class="drive">Add Item Image</a>
                                 <input ng-model="$ctrl.itemImage"  type="file" name="item" base-sixty-four-input>
                             </div> -->
-                            <div style='display: inline-flex; width: 100%; margin: 5px auto 40px; '>
-                                <div class="image" style="margin: 0 auto !important;text-align: center !important; width: 30% !important; ">
+                            <div class='item-information-container'>
+                                <div class="image item-custom-styling">
                                     <img src="{{$ctrl.imageUrl1 || ''}}" alt="Select Product Image" style="width:100%; height: 200px" />
-                                    <input ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.itemImage" base-sixty-four-input accept="image/*" 
-                                    style="width: 99%;"> 
+                                    <input ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.itemImage" base-sixty-four-input accept="image/*" style="width: 99%;">
                                 </div>
 
-                                <div class="image" style="margin: 0 auto !important;text-align: center !important; width: 30% !important; ">
+                                <div class="image item-custom-styling">
                                     <img src="{{$ctrl.imageUrl2 || ''}}" alt="Select Product Image" style="width:100%; height: 200px" />
-                                    <input ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.itemImage2" base-sixty-four-input accept="image/*"
-                                    style="width: 99%;"> 
+                                    <input ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.itemImage2" base-sixty-four-input accept="image/*" style="width: 99%;">
                                 </div>
-                                
-                                <div class="image" style="margin: 0 auto !important;text-align: center !important; width: 30% !important; ">
+
+                                <div class="image item-custom-styling">
                                     <img src="{{$ctrl.imageUrl3 || ''}}" alt="Select Product Image" style="width:100%; height: 200px" />
-                                    <input ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.itemImage3" base-sixty-four-input accept="image/*"
-                                    style="width: 99%;"> 
+                                    <input ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.itemImage3" base-sixty-four-input accept="image/*" style="width: 99%;">
                                 </div>
                             </div>
-                            
+
                             <!-- <div class="image" style="float: left;">
                                 <a href="" class="drive">Add Item Image</a>
                                 <input ng-model="$ctrl.file2" type="file" name="bin" base-sixty-four-input>
@@ -68,52 +67,52 @@
                             </div> -->
                             <!-- <h3 style="clear: both;">Item Info</h3> -->
                             <!-- <form> -->
-                            <table class="table-responsive">
-                                <tbody>
-                                    <tr>
-                                        <td class="gap" for="productName">Product Name</td>
-                                        <td class="gap2 gap3">
-                                            <input type="text" name="productName" class="form-controls" ng-model="$ctrl.pickup.productName">
-                                        </td>
-                                        <td class="gap gap4" for="brandName">Brand Name</td>
-                                        <td class="gap2">
-                                            <input type="text" class="form-controls" ng-model="$ctrl.pickup.brandName">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="gap" for="condition">Condition</td>
-                                        <td class="gap2 gap3">
-                                            <input type="text" class="form-controls" ng-model="$ctrl.pickup.condition">
-                                        </td>
-                                        <td class="gap gap3">Eventual Damages</td>
-                                        <td class="gap2">
-                                            <input type="text" class="form-controls" ng-model="$ctrl.pickup.eventualDamages">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="gap">Location</td>
-                                        <td class="gap2 gap3">
-                                            <input type="text" class="form-controls" ng-model="$ctrl.pickup.location">
-                                        </td>
-                                        <td class="gap">Item Code</td>
-                                        <td class="gap2 gap3">
-                                            <input type="text" class="form-controls" ng-model="$ctrl.pickup.itemCode">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="gap">Sharable</td>
-                                        <td class="gap2 gap3" style="display: inline-flex; height: 40px; line-height: 20px; padding: 12px; width: 100%;">
-                                            <input type="radio" value="Yes" class="form-controls" ng-model="$ctrl.pickup.boolSharable" style="width: 40px"> Yes
-                                            <input type="radio" value="No" class="form-controls" style="width: 40px" ng-model="$ctrl.pickup.boolSharable"> No
-                                        </td>
-                                        <td class="gap">Credit</td>
-                                        <td class="gap2 gap3">
-                                            <input type="number" class="form-controls" ng-model="$ctrl.pickup.newCredits">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                    <td class="gap" ng-if="$ctrl.pickup.boolSharable == 'Yes'">Category</td>
-                                        <td ng-if="$ctrl.pickup.boolSharable == 'Yes'" class="gap2 gap3">
+                            <div class='detail-container'>
+                                <div>
+                                    <div class='col-sm-12 col-lg-6'>
+                                        <div class="form-group">
+                                            <label for="productName">Product Name</label>
+                                            <input type="text" class="form-control" id="productName" ng-model="$ctrl.pickup.productName" name="productName">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="brandName">Brand Name</label>
+                                            <input type="text" class="form-control" id="brandName" ng-model="$ctrl.pickup.brandName" name="productName">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Condition">Condition</label>
+                                            <input type="text" class="form-control" id="Condition" ng-model="$ctrl.pickup.condition" name="productName">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="eventualDamages">Eventual Damages</label>
+                                            <input type="text" class="form-control" id="eventualDamages" ng-model="$ctrl.pickup.eventualDamages" name="productName">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="location">Location</label>
+                                            <input type="text" class="form-control" id="location" ng-model="$ctrl.pickup.location" name="location">
+                                        </div>
+                                    </div>
+                                    <div class='col-sm-12 col-lg-6'>
+                                        <div class="form-group">
+                                            <label for="itemCode">Item Code</label>
+                                            <input type="text" class="form-control" id="itemCode" ng-model="$ctrl.pickup.itemCode" name="itemCode">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Credit">Credit</label>
+                                            <input type="number" class="form-control" id="Credit" ng-model="$ctrl.pickup.credit" name="Credit">
+                                        </div>
+                                        <div class="form-group">
+                                            <p for="Sharable">Sharable</p>
+                                            <label style="display:inline-flex">
+                                                <input type="radio" value='Yes' ng-model="$ctrl.pickup.boolSharable" style="margin:0 10px"> Yes 
+                                            </label>
+                                            <label style="display:inline-flex">
+                                                <input type="radio" value='No' ng-model="$ctrl.pickup.boolSharable" style="margin:0 10px"> No 
+                                            </label>
+                                            <!-- <input type="radio" value="Yes" class="form-controls" ng-model="$ctrl.pickup.boolSharable" style="width: 40px"> Yes
+                                            <input type="radio" value="No" class="form-controls" style="width: 40px" ng-model="$ctrl.pickup.boolSharable"> No -->
+                                        </div>
+                                        <div class="form-group" ng-if="$ctrl.pickup.boolSharable == 'Yes'">
+                                            <label for="Category">Category</label>
                                             <select class="form-control" ng-model="categories" ng-change="$ctrl.setCategory(categories)">
                                                 <option value="">Select Category</option>
                                                 <option value="1">Eat</option>
@@ -123,58 +122,138 @@
                                                 <option value="5">Play</option>
                                                 <option value="6">Bath</option>
                                             </select>
-                                        </td>
-                                        <td ng-if="$ctrl.pickup.boolSharable == 'Yes' && $ctrl.categoryArr.length > 0" class="gap">Sub Category</td>
-                                        <td ng-if="$ctrl.pickup.boolSharable == 'Yes' && $ctrl.categoryArr.length > 0" class="gap2 gap3">
+                                        </div>
+                                        <div class="form-group" ng-if="$ctrl.pickup.boolSharable == 'Yes' && $ctrl.categoryArr.length > 0">
+                                            <label for="subCategory">Sub Category</label>
                                             <select ng-model="subCategory" class="form-control" ng-change="$ctrl.setSubCategory(subCategory)" ng-options="category.title for category in $ctrl.categoryArr">
                                                 <option value="">Select Sub Category</option>
                                             </select>
-                                        </td>
-                                    </tr>
-                                    <tr ng-if="$ctrl.isSubItem">
-                                        <td class="gap">Sub Item Code</td>
-                                        <td class="gap2 gap3">
+                                        </div>
+                                        <div class="form-group" ng-if="$ctrl.isSubItem">
+                                            <label for="subCategory">Sub Item Code</label>
                                             <input type="text" class="form-controls" ng-model="$ctrl.subItemCode">
-                                        </td>
-                                        <td class="gap">Sub Item Name</td>
-                                        <td class="gap2 gap3">
+                                        </div>
+                                        <div class="form-group" ng-if="$ctrl.isSubItem">
+                                            <label for="subCategory">Sub Item Name</label>
                                             <input type="text" class="form-controls" ng-model="$ctrl.subItemName">
-                                        </td>
-                                    </tr>
-                                    <tr ng-if="$ctrl.isSubItem">
-                                        <td class="gap">Sub Item Description</td>
-                                        <td class="gap2 gap3">
+                                        </div>
+                                        <div class="form-group" ng-if="$ctrl.isSubItem">
+                                            <label for="subCategory">Sub Item Description</label>
                                             <input type="text" class="form-controls" ng-model="$ctrl.description">
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- This (working)code is commented  because we replace this Table with Bootstrap responsive form.-->
+                                <!-- <table class="table-responsive">
+                                    <tbody>
+                                        <tr>
+                                            <td class="gap" for="productName">Product Name</td>
+                                            <td class="gap2 gap3">
+                                                <input type="text" name="productName" class="form-controls" ng-model="$ctrl.pickup.productName">
+                                            </td>
+                                            <td class="gap gap4" for="brandName">Brand Name</td>
+                                            <td class="gap2">
+                                                <input type="text" class="form-controls" ng-model="$ctrl.pickup.brandName">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="gap" for="condition">Condition</td>
+                                            <td class="gap2 gap3">
+                                                <input type="text" class="form-controls" ng-model="$ctrl.pickup.condition">
+                                            </td>
+                                            <td class="gap gap3">Eventual Damages</td>
+                                            <td class="gap2">
+                                                <input type="text" class="form-controls" ng-model="$ctrl.pickup.eventualDamages">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="gap">Location</td>
+                                            <td class="gap2 gap3">
+                                                <input type="text" class="form-controls" ng-model="$ctrl.pickup.location">
+                                            </td>
+                                            <td class="gap">Item Code</td>
+                                            <td class="gap2 gap3">
+                                                <input type="text" class="form-controls" ng-model="$ctrl.pickup.itemCode">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="gap">Sharable</td>
+                                            <td class="gap2 gap3" style="display: inline-flex; height: 40px; line-height: 20px; padding: 12px; width: 100%;">
+                                                <input type="radio" value="Yes" class="form-controls" ng-model="$ctrl.pickup.boolSharable" style="width: 40px"> Yes
+                                                <input type="radio" value="No" class="form-controls" style="width: 40px" ng-model="$ctrl.pickup.boolSharable"> No
+                                            </td>
+                                            <td class="gap">Credit</td>
+                                            <td class="gap2 gap3">
+                                                <input type="number" class="form-controls" ng-model="$ctrl.pickup.newCredits">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="gap" ng-if="$ctrl.pickup.boolSharable == 'Yes'">Category</td>
+                                            <td ng-if="$ctrl.pickup.boolSharable == 'Yes'" class="gap2 gap3">
+                                                <select class="form-control" ng-model="categories" ng-change="$ctrl.setCategory(categories)">
+                                                <option value="">Select Category</option>
+                                                <option value="1">Eat</option>
+                                                <option value="2">Sleep</option>
+                                                <option value="3">Stroll</option>
+                                                <option value="4">Travel</option>
+                                                <option value="5">Play</option>
+                                                <option value="6">Bath</option>
+                                            </select>
+                                            </td>
+                                            <td ng-if="$ctrl.pickup.boolSharable == 'Yes' && $ctrl.categoryArr.length > 0" class="gap">Sub Category</td>
+                                            <td ng-if="$ctrl.pickup.boolSharable == 'Yes' && $ctrl.categoryArr.length > 0" class="gap2 gap3">
+                                                <select ng-model="subCategory" class="form-control" ng-change="$ctrl.setSubCategory(subCategory)" ng-options="category.title for category in $ctrl.categoryArr">
+                                                <option value="">Select Sub Category</option>
+                                            </select>
+                                            </td>
+                                        </tr>
+                                        <tr ng-if="$ctrl.isSubItem">
+                                            <td class="gap">Sub Item Code</td>
+                                            <td class="gap2 gap3">
+                                                <input type="text" class="form-controls" ng-model="$ctrl.subItemCode">
+                                            </td>
+                                            <td class="gap">Sub Item Name</td>
+                                            <td class="gap2 gap3">
+                                                <input type="text" class="form-controls" ng-model="$ctrl.subItemName">
+                                            </td>
+                                        </tr>
+                                        <tr ng-if="$ctrl.isSubItem">
+                                            <td class="gap">Sub Item Description</td>
+                                            <td class="gap2 gap3">
+                                                <input type="text" class="form-controls" ng-model="$ctrl.description">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table> -->
+                            </div>
                             <br>
-                            <table class="table table-hover" ng-show="$ctrl.subItemArr.length">
-                                <tr>
-                                    <th style="font-size: 13px;" class="col-md-1">Sub Item Image</th>
-                                    <th style="font-size: 13px;" class="col-md-1">Sub Item Code</th>
-                                    <th style="font-size: 13px;" class="col-md-1">Sub Item Name</th>
-                                    <th style="font-size: 13px;" class="col-md-1">Description</th>
-                                </tr>
-                                <tr ng-repeat="item in $ctrl.subItemArr">
-                                    <!-- <td><img ng-src="{{item.imageUrl}}" alt="No Image Selected" style="margin-left: 140px;width: 70px;height: 60px" /></td> -->
-                                    <td>
-                                        <a href="" ng-click="$ctrl.openLightboxModal(item.imageUrl)">
-                                        <img style="width: 70px;height: 60px;"  ng-src="{{item.imageUrl[0]}}" class="img-thumbnail">
-                                    </a>
-                                    </td>
-                                    <td class="text-center">{{item.itemCode}}</td>
-                                    <td class="text-center">{{item.itemName}}</td>
-                                    <td class="text-center">{{item.description}}</td>
-                                </tr>
-                            </table>
+                            <div class='detail-container'>
+                                <table class="table table-hover" ng-show="$ctrl.subItemArr.length">
+                                    <tr>
+                                        <th style="font-size: 13px;" class="col-md-1">Sub Item Image</th>
+                                        <th style="font-size: 13px;" class="col-md-1">Sub Item Code</th>
+                                        <th style="font-size: 13px;" class="col-md-1">Sub Item Name</th>
+                                        <th style="font-size: 13px;" class="col-md-1">Description</th>
+                                    </tr>
+                                    <tr ng-repeat="item in $ctrl.subItemArr">
+                                        <td><img ng-src="{{item.imageUrl}}" alt="No Image Selected" style="margin-left: 140px;width: 70px;height: 60px" /></td>
+                                        <!-- <td>
+                                            <a href="" ng-click="$ctrl.openLightboxModal(item.imageUrl)">
+                                                <img style="width: 70px;height: 60px;" ng-src="{{item.imageUrl}}" class="img-thumbnail">
+                                            </a>
+                                        </td> -->
+                                        <td class="text-center">{{item.itemCode}}</td>
+                                        <td class="text-center">{{item.itemName}}</td>
+                                        <td class="text-center">{{item.description}}</td>
+                                    </tr>
+                                </table>
+                            </div>
                             <!-- </form> -->
                         </div>
                         <div class="inner-adjust">
                             <table ng-show="$ctrl.showtable && $ctrl.pickedupItems.length" class="table table-hover">
                                 <tr>
-                                <th style="font-size: 13px;" class="col-md-1">Product Image</th>
+                                    <th style="font-size: 13px;" class="col-md-1">Product Image</th>
                                     <th style="font-size: 13px;" class="col-md-1"> Category</th>
                                     <th style="font-size: 13px;" class="col-md-1">Product Name</th>
                                     <th style="font-size: 13px;" class="col-md-1">Brand Name</th>
@@ -190,8 +269,8 @@
                                     <!-- <td><img ng-src="{{item.imageUrl}}" alt="No Image Selected" style="width: 70px;height: 60px" /></td> -->
                                     <td>
                                         <a href="" ng-click="$ctrl.openLightboxModal(item.imageUrl)">
-                                        <img style="width: 70px;height: 60px;"  ng-src="{{item.imageUrl[0]}}" class="img-thumbnail">
-                                    </a>
+                                            <img style="width: 70px;height: 60px;" ng-src="{{item.imageUrl[0]}}" class="img-thumbnail">
+                                        </a>
                                     </td>
                                     <td>{{item.categoryName}}</td>
                                     <td>{{item.productName}}</td>
@@ -225,3 +304,32 @@
         </div>
     </div>
 </div>
+
+
+<style>
+    .detail-container {
+        overflow: auto;
+    }
+    
+    .item-information-container {
+        display: inline-block;
+    }
+    
+    .item-custom-styling {
+        width: 100% !important;
+        margin: 15px 0 !important;
+    }
+    
+    @media(min-width:640px) {
+        .item-information-container {
+            display: inline-flex;
+            width: 100%;
+            margin: 5px auto 40px;
+        }
+        .item-custom-styling {
+            margin: 0 auto !important;
+            text-align: center !important;
+            width: 30% !important;
+        }
+    }
+</style>

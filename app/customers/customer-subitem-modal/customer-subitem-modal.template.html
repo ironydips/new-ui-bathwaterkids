@@ -1,3 +1,7 @@
+
+
+
+
 <div class="panel panel-primary">
     <div class="panel-heading">
         <h2>Sub Item Details</h2>
@@ -17,54 +21,77 @@
                                         </div>
                                         <input style="margin-left:250px" ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.subItemImage" base-sixty-four-input accept="image/*">
                                     </div> -->
-                                     <div ng-hide="$ctrl.viewItems" style='display: inline-flex; width: 100%; margin: 5px auto 40px; '>
-                                <div class="image" style="margin: 0 auto !important;text-align: center !important; width: 30% !important; ">
-                                    <img src="{{$ctrl.imageUrl1 || ''}}" alt="Select Sub Item Image" style="width:100%; height: 200px" />
-                                    <input ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.subItemImage" base-sixty-four-input accept="image/*" 
-                                    style="width: 99%;"> 
-                                </div>
+                                    <div ng-hide="$ctrl.viewItems" class="inner-adjust">
+                                        <div class="image">
+                                            <img src="{{$ctrl.imageUrl || ''}}" alt="Select Sub Item Image" style="width: 220px;height: 200px" />
+                                        </div>
+                                        <input style="margin-left:250px" ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.subItemImage" base-sixty-four-input accept="image/*">
+                                    </div>
+                                    <!-- <div ng-hide="$ctrl.viewItems" class='item-information-container'>
+                                        <div class="image item-custom-styling">
+                                            <img src="{{$ctrl.imageUrl1 || ''}}" alt="Select Sub Item Image" style="width:100%; height: 200px" />
+                                            <input ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.subItemImage" base-sixty-four-input accept="image/*" style="width: 99%;">
+                                        </div>
 
-                                <div class="image" style="margin: 0 auto !important;text-align: center !important; width: 30% !important; ">
-                                    <img src="{{$ctrl.imageUrl2 || ''}}" alt="Select Sub Item Image" style="width:100%; height: 200px" />
-                                    <input ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.subItemImage2" base-sixty-four-input accept="image/*"
-                                    style="width: 99%;"> 
-                                </div>
-                                
-                                <div class="image" style="margin: 0 auto !important;text-align: center !important; width: 30% !important; ">
-                                    <img src="{{$ctrl.imageUrl3 || ''}}" alt="Select Sub Item Image" style="width:100%; height: 200px" />
-                                    <input ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.subItemImage3" base-sixty-four-input accept="image/*"
-                                    style="width: 99%;"> 
-                                </div>
-                            </div>
+                                        <div class="image item-custom-styling">
+                                            <img src="{{$ctrl.imageUrl2 || ''}}" alt="Select Sub Item Image" style="width:100%; height: 200px" />
+                                            <input ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.subItemImage2" base-sixty-four-input accept="image/*" style="width: 99%;">
+                                        </div>
+
+                                        <div class="image item-custom-styling">
+                                            <img src="{{$ctrl.imageUrl3 || ''}}" alt="Select Sub Item Image" style="width:100%; height: 200px" />
+                                            <input ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.subItemImage3" base-sixty-four-input accept="image/*" style="width: 99%;">
+                                        </div>
+                                    </div> -->
                                     <!-- <h3>Image</h3> -->
                                     <!-- <h3 style="clear: both;">Item Info</h3> -->
-                                    <form>
-                                        <table class="table-responsive">
-                                            <tbody>
-                                                <tr>
-                                                    <td class="gap" for="SubItemCode">Sub Item Code</td>
-                                                    <td class="gap2 gap3">
-                                                        <input type="text" name="SubItemCode" class="form-controls" ng-model="$ctrl.subItem.itemCode">
-                                                    </td>
-                                                    <td class="gap gap4" for="Sub Item Name">Sub Item Name</td>
-                                                    <td class="gap2">
-                                                        <input type="text" class="form-controls" ng-model="$ctrl.subItem.itemName">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="gap" for="description">Sub Item Description</td>
-                                                    <td class="gap2 gap3">
-                                                        <input type="text" class="form-controls" ng-model="$ctrl.subItem.description">
-                                                    </td>
-                                                </tr>
-                                                <!-- <tr ng-if="!$ctrl.isSubItem">
+                                    <div class='detail-container'>
+                                        <div>
+                                            <div class='col-sm-12 col-lg-6'>
+                                                <div class="form-group">
+                                                    <label for="subCategory">Sub Item Code</label>
+                                                    <input type="text" class="form-control" ng-model="$ctrl.subItem.itemCode">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="subCategory">Sub Item Name</label>
+                                                    <input type="text" class="form-control" ng-model="$ctrl.subItem.itemName">
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-12 col-lg-6'>
+                                                <div class="form-group">
+                                                    <label for="subCategory">Sub Item Description</label>
+                                                    <input type="text" class="form-control" ng-model="$ctrl.subItem.description">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <form>
+                                            <table class="table-responsive">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="gap" for="SubItemCode">Sub Item Code</td>
+                                                        <td class="gap2 gap3">
+                                                            <input type="text" name="SubItemCode" class="form-controls" ng-model="$ctrl.subItem.itemCode">
+                                                        </td>
+                                                        <td class="gap gap4" for="Sub Item Name">Sub Item Name</td>
+                                                        <td class="gap2">
+                                                            <input type="text" class="form-controls" ng-model="$ctrl.subItem.itemName">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="gap" for="description">Sub Item Description</td>
+                                                        <td class="gap2 gap3">
+                                                            <input type="text" class="form-controls" ng-model="$ctrl.subItem.description">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </form> -->
+                                        <!-- <tr ng-if="!$ctrl.isSubItem">
                                             <td>
                                                 <button type="button" ng-click="$ctrl.addSubItem()" class="btn btn-sm btn-success">Add Sub Item</button>
                                             </td>
                                         </tr> -->
-                                            </tbody>
-                                        </table>
-                                    </form>
+                                    </div>
                                 </div>
                                 <!-- </div> -->
                             </div>
@@ -118,10 +145,11 @@
                 </tr>
                 <tr ng-repeat="item in $ctrl.subItems">
                     <!-- <td><img ng-src="{{item.imageUrl}}" alt="No Image Selected" style="margin-left: 150px;width: 70px;height: 60px" /></td> -->
-                    <td>
+                    <td><img ng-src="{{item.imageUrl}}" alt="No Image Selected" style="margin-left: 150px;width: 70px;height: 60px" /></td>
+                    <!-- <td>
                         <a href="" ng-click="$ctrl.openLightboxModal(item.imageUrl)">
-                                        <img style="width: 70px;height: 60px;"  ng-src="{{item.imageUrl[0]}}" class="img-thumbnail">
-                    </td>
+                            <img style="width: 70px;height: 60px;" ng-src="{{item.imageUrl[0]}}" class="img-thumbnail">
+                    </td> -->
                     <td class="text-center">{{item.itemCode}}</td>
                     <td class="text-center">{{item.itemName}}</td>
                     <td class="text-center">{{item.description}}</td>
@@ -136,3 +164,31 @@
     <button type="button" ng-click="$ctrl.cancel()" class="btn btn-lg btn-default">Cancel</button>
     <button type="button" ng-show="!$ctrl.item.subItems" ng-click="$ctrl.save()" class="btn btn-lg btn-success">Save</button>
 </div>
+
+<style>
+    .detail-container {
+        overflow: auto;
+    }
+    
+    .item-information-container {
+        display: inline-block;
+    }
+    
+    .item-custom-styling {
+        width: 100% !important;
+        margin: 15px 0 !important;
+    }
+    
+    @media(min-width:640px) {
+        .item-information-container {
+            display: inline-flex;
+            width: 100%;
+            margin: 5px auto 40px;
+        }
+        .item-custom-styling {
+            margin: 0 auto !important;
+            text-align: center !important;
+            width: 30% !important;
+        }
+    }
+</style>

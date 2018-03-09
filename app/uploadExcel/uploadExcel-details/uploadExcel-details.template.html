@@ -1,0 +1,75 @@
+<div class="timeslotComponent">
+    <div class="container">
+        <div class="loading" ng-show="$ctrl.loader">
+            Loading&#8230;
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-2" style="margin: -2px">
+                <label><b>Select Date:</b></label>
+
+                <!-- <input type="file" class="form-control" ng-click="$ctrl.parseExcel()" xlsx-model="excel"> -->
+                <!-- <input type="file" id="file" ng-model="csvFile"  
+    ng-change="$ctrl.ExcelExport($event)">
+                <pre ng-show="csvFile">{{csvFile | json}}</pre> -->
+                <!-- <input type="file" id="files" name="files"/> -->
+                <input type="file" import-sheet-js="" on-sheet-load="$ctrl.loadWorksheet(e)" multiple="false" class="mb-4" />{{$ctrl.sheet}}
+                <!-- <datepicker date-format="MM.dd.yyyy" selector="form-control">
+                    <div class="input-group">
+                        <input style="width: 180px;" ng-model="$ctrl.date"  ng-change="$ctrl.selectedDate($ctrl.date)"  class="form-control" placeholder="Choose a date" />
+                        <! <span class="input-group-addon" style="cursor: pointer">Go
+                        </span> -->
+                <!-- </div>
+                </datepicker>  -->
+            </div>
+            <!-- <div class="col-sm-3 text-center">
+                <a href="" class="btn btn-sm btn-success" style="margin: 0 20px"> Pick Up</a>
+                <a href="" class="btn btn-sm btn-default">Drop Off</a>
+            </div> -->
+        </div>
+        <br>
+        <br>
+        <div style="height:440px;overflow:auto;">
+            <table class="table table-condensed text-center">
+                <thead>
+                    <tr>
+                        <!--                     <th style="font-size: 15px;">Time Slot</th>
+ -->
+                        <th style="font-size: 15px;">User ID</th>
+                        <th style="font-size: 15px;">UserRequest ID</th>
+                        <th style="font-size: 15px;">Time</th>
+                        <th style="font-size: 15px;">Status</th>
+                        <!--                     <th style="font-size: 15px;">Status</th>
+ -->
+                        <!-- <th style="font-size: 15px;">User RequestID</th>
+                    <th style="font-size: 15px;">User Detail</th>-->
+                        <th style="font-size: 15px;">Type</th>
+                        <th style="font-size: 15px;">User Detail</th>
+                        <th style="font-size: 15px;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-hide="$ctrl.message" ng-repeat="item in $ctrl.pickupRecords" ng-click="$ctrl.selectRow($index)" ng-class="{'highlight': $index == $ctrl.selectedRow}">
+                        <td>{{item.user.userID}}</td>
+                        <td>{{item.userRequestID}}</td>
+                        <td>{{item.time}}</td>
+                        <td>{{item.status}}</td>
+                        <td>{{item.type}}</td>
+                        <!-- <td>{{item.status}}</td>
+                    <td>{{item.userRequestID}}</td> -->
+                        <td><a ng-click="$ctrl.viewUserDetail(item)" class="btn btn-primary btn-sm">View User Detail</a></td>
+                        <td><a ng-show="item.items" ng-click="$ctrl.viewItemDetail(item.items)" class="btn btn-primary btn-sm">View Items</a></td>
+                        <!-- <td><a ng-click="$ctrl.viewItems(item)" class="btn btn-primary btn-sm">View Items</a></td> -->
+                    </tr>
+                    <tr ng-show="$ctrl.message">
+                        <td></td>
+                        <td></td>
+                        <td><b style="font-size: 15px;">No Records Found</b></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

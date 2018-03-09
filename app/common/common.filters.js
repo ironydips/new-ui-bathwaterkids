@@ -7,5 +7,6 @@
 				return value ? 'YES' : 'NO';
 			}
 		});
+
 		
 })(window.angular)

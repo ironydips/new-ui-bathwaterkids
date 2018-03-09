@@ -314,6 +314,29 @@ config(['$urlRouterProvider', '$stateProvider', '$httpProvider', 'ngToastProvide
                     }
                 }
             })
+            .state('uploadExcel', {
+                url: '/uploadExcel',
+                views: {
+                    '': {
+                        template: '<admin-layout></admin-layout>'
+                    },
+                    'adminPanel@uploadExcel': {
+                        template: '<admin-panel></admin-panel>'
+                    },
+                    'adminSubPanel@uploadExcel': {
+                        template: '<upload-excel-sub-panel></upload-excel-sub-panel>'
+                    }
+
+                }
+            })
+            .state('uploadExcel.viewAddExcel', {
+                url: '/viewExcel',
+                views: {
+                    'contentSection@uploadExcel': {
+                        template: '<upload-excel-details></upload-excel-details>'
+                    }
+                }
+            })
     }
 
 ]);
