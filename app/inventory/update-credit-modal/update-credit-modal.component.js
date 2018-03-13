@@ -5,7 +5,7 @@
         var ctrl = this;
         ctrl.item = (ctrl.resolve && ctrl.resolve.details) || {};
         ctrl.item.oldCredits = ctrl.item.newCredits;
-        if(ctrl.item.credits) ctrl.item.newCredits = ctrl.item.credits;
+        if(ctrl.item.credits) ctrl.item.newCredits = ctrl.item.credits ? ctrl.item.credits : 0;
 
         ctrl.save = function(credit) {
             //ctrl.loader = true;

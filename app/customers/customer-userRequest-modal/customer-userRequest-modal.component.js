@@ -142,6 +142,7 @@
                 ctrl.noUserReqMessage = false;
                 for (var i = 0; i < item.items.length; i++) {
                     for (var j = 0; j <= i; j++) {
+                        if(!item.items[i].hasOwnProperty('credits')) item.items[i].credits = 0;
                         if (item.items[i].hasOwnProperty('imageUrl') && item.items[i].imageUrl.length) {
                             item.items[i].imageUrl = item.items[i].imageUrl;
                         } else {

@@ -87,7 +87,7 @@
                                 <td class="col-md-1">{{item.location}}</td>
                                 <td class="col-md-2">{{item.eventualDamages}}</td>
                                 <td class="col-md-1">{{item.condition}}</td>
-                                <td class="col-md-1"><a ng-click="$ctrl.updateCredit(item)"><u>{{item.credits}}</u></a></td>
+                                <td class="col-md-1"><a ng-click="$ctrl.updateCredit(item)"><u>{{item.credits ? item.credits : 0}}</u></a></td>
                                 <td>
                                     <button type="button" ng-show="item.subItems.length" ng-click="$ctrl.subItems(item)" class="btn btn-sm btn-primary">View</button>
                                 </td>
