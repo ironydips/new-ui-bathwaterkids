@@ -3,7 +3,7 @@
         <h2>Sub Item Details</h2>
     </div>
     <div class="panel-body">
-        <div ng-show="!$ctrl.item.subItems">
+        <div ng-show="!$ctrl.item.subItems || $ctrl.bool">
             <div class="userRequestinProgressModal">
                 <div class="table-responsive text-center">
                     <div>
@@ -26,18 +26,18 @@
                                     <div ng-hide="$ctrl.viewItems" class='item-information-container'>
                                         <div class="image item-custom-styling">
                                             <img src="{{$ctrl.imageUrl || ''}}" alt="Select Sub Item Image" style="width:100%; height: 200px" />
-                                            <input ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.subItemImage" base-sixty-four-input accept="image/*" style="width: 99%;">
+                                            <input type="file" class="form-controls" ng-model="$ctrl.subItemImage"  ng-change="$ctrl.imageUpload($ctrl.subItemImage.base64, 'firstImage')" base-sixty-four-input accept="image/*" style="width: 99%;">
                                         </div>
 
-                                        <!-- <div class="image item-custom-styling">
+                                        <div class="image item-custom-styling">
                                             <img src="{{$ctrl.imageUrl2 || ''}}" alt="Select Sub Item Image" style="width:100%; height: 200px" />
-                                            <input ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.subItemImage2" base-sixty-four-input accept="image/*" style="width: 99%;">
+                                            <input ng-change="$ctrl.imageUpload($ctrl.subItemImage2.base64, 'secondImage')" type="file" class="form-controls" ng-model="$ctrl.subItemImage2" base-sixty-four-input accept="image/*" style="width: 99%;">
                                         </div>
 
                                         <div class="image item-custom-styling">
                                             <img src="{{$ctrl.imageUrl3 || ''}}" alt="Select Sub Item Image" style="width:100%; height: 200px" />
-                                            <input ng-disabled={{$ctrl.isDisabled}} type="file" class="form-controls" ng-model="$ctrl.subItemImage3" base-sixty-four-input accept="image/*" style="width: 99%;">
-                                        </div> -->
+                                            <input type="file" class="form-controls" ng-change="$ctrl.imageUpload($ctrl.subItemImage3.base64, 'thirdImage')"  ng-model="$ctrl.subItemImage3" base-sixty-four-input accept="image/*" style="width: 99%;">
+                                        </div>
                                     </div>
                                     <!-- <h3>Image</h3> -->
                                     <!-- <h3 style="clear: both;">Item Info</h3> -->
@@ -131,7 +131,7 @@
             </div>
             <br>
         </div> -->
-        <div ng-show="$ctrl.item.subItems" class="detail-container">
+        <div ng-show="$ctrl.item.subItems && !$ctrl.item.itemToEdit" class="detail-container">
             <table class="table table-hover">
                 <tr>
                     <th style="font-size: 13px;" class="col-md-1">Item Image</th>
@@ -141,11 +141,11 @@
                 </tr>
                 <tr ng-repeat="item in $ctrl.subItems">
                     <!-- <td><img ng-src="{{item.imageUrl}}" alt="No Image Selected" style="margin-left: 150px;width: 70px;height: 60px" /></td> -->
-                    <td><img ng-src="{{item.imageUrl}}" alt="No Image Selected" style="margin-left: 150px;width: 70px;height: 60px" /></td>
-                    <!-- <td>
+                    <!-- <td><img ng-src="{{item.imageUrl}}" alt="No Image Selected" style="margin-left: 150px;width: 70px;height: 60px" /></td> -->
+                    <td>
                         <a href="" ng-click="$ctrl.openLightboxModal(item.imageUrl)">
                             <img style="width: 70px;height: 60px;" ng-src="{{item.imageUrl[0]}}" class="img-thumbnail">
-                    </td> -->
+                    </td>
                     <td class="text-center">{{item.itemCode}}</td>
                     <td class="text-center">{{item.itemName}}</td>
                     <td class="text-center">{{item.description}}</td>

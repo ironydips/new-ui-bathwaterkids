@@ -207,7 +207,8 @@
             angular.bind(ctrl, openSubItem, subitem)();
         };
 
-        ctrl.addItems = function() {
+        ctrl.addItems = function(item) {
+            if(item) ctrl.selectedItem.itemToEdit = item;
             // console.log(userRequestID)
             angular.bind(ctrl, openPopUpAddItem, ctrl.selectedItem)();
         };

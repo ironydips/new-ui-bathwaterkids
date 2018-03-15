@@ -68,6 +68,7 @@
                                 <th style="font-size: 13px;" class="col-md-1">Condition</th>
                                 <th style="font-size: 13px;" class="col-md-1">Credit</th>
                                 <th style="font-size: 13px;" class="col-md-1">Sub Items</th>
+                                <th style="font-size: 13px;" class="col-md-1">Action</th>
                             </tr>
                             <tr ng-repeat="item in $ctrl.itemsArray" ng-click="$ctrl.displayRow($index)" ng-class="{'highlight': item.userRequestID == $ctrl.selectedRow || $index == $ctrl.displayRowValue}">
                                 <td class="text-center">
@@ -91,6 +92,9 @@
                                 <td>
                                     <button type="button" ng-show="item.subItems.length" ng-click="$ctrl.subItems(item)" class="btn btn-sm btn-primary">View</button>
                                 </td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm" ng-click="$ctrl.addItems(item)">Edit Item</button>   
+                                </td>
                             </tr>
                             <!-- <tr ng-show="$ctrl.noUserReqMessage">
                            <td class="col-md-3"></td>
@@ -110,7 +114,7 @@
                                 <td class="col-md-2"></td>
                                 <td style="font-size: 15px;" class="col-md-4">
                                     <b>No Items to Display</b><br>
-                                    <button ng-if="$ctrl.showAddButton" class="btn btn-primary btn-sm" ng-click="$ctrl.addItems($ctrl.selectedRow)">Add Item</button>
+                                    <button ng-if="$ctrl.showAddButton" class="btn btn-primary btn-sm" ng-click="$ctrl.addItems()">Add Item</button>
                                 </td>
                                 <td class="col-md-1"></td>
                                 <td class="col-md-2"></td>
