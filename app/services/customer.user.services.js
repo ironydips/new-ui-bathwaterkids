@@ -32,6 +32,15 @@
                 }
             });
         };
+        var canChangeSharable = function(storedItemID) {
+            return $http({
+                url: '/rest/canChangeSharable?storedItemID=' + storedItemID,
+                method: "GET",
+                headers: {
+                    //"Authorization": 'Basic YWRtaW46YWRtaW4='
+                }
+            });
+        };
 
         var getUserRequest = function(userID) {
             return $http({
@@ -94,7 +103,8 @@
             getTrucksByUserrequests,
             getCategories,
             saveImage,
-            editUserItem
+            editUserItem,
+            canChangeSharable
         }
     }
 

@@ -41,16 +41,17 @@
                                 <input ng-model="$ctrl.itemImage"  type="file" name="item" base-sixty-four-input>
                             </div> -->
                             <div class='item-information-container'>
+                            <img ng-click="$ctrl.removeImage('first')" style="width: 20px; height: 20px;float: left; margin-left:1px; margin-top: -18px" src="img/DeleteIcon.png">
                                 <div class="image item-custom-styling">
                                     <img src="{{$ctrl.imageUrl1 || ''}}" alt="Select Product Image"  style="width:100%; height: 200px" />
                                     <input type="file" class="form-controls" ng-change="$ctrl.imageUpload($ctrl.itemImage.base64, 'firstImage')" ng-model="$ctrl.itemImage" base-sixty-four-input accept="image/*" style="width: 99%;">
                                 </div>
-
+                                <img ng-click="$ctrl.removeImage('second')" style="width: 20px; height: 20px;float: left; margin-left:1px; margin-top: -18px" src="img/DeleteIcon.png">
                                 <div class="image item-custom-styling">
                                     <img src="{{$ctrl.imageUrl2 || ''}}" alt="Select Product Image" style="width:100%; height: 200px" />
                                     <input type="file" ng-change="$ctrl.imageUpload($ctrl.itemImage2.base64, 'secondImage')" class="form-controls" ng-model="$ctrl.itemImage2" base-sixty-four-input accept="image/*" style="width: 99%;">
                                 </div>
-
+                                <img ng-click="$ctrl.removeImage('third')" style="width: 20px; height: 20px;float: left; margin-left:1px; margin-top: -18px" src="img/DeleteIcon.png">
                                 <div class="image item-custom-styling">
                                     <img src="{{$ctrl.imageUrl3 || ''}}" alt="Select Product Image" style="width:100%; height: 200px" />
                                     <input type="file" class="form-controls" ng-change="$ctrl.imageUpload($ctrl.itemImage3.base64, 'thirdImage')" ng-model="$ctrl.itemImage3" base-sixty-four-input accept="image/*" style="width: 99%;">
@@ -92,15 +93,16 @@
                                         <div class="form-group">
                                             <label for="Sharable">Sharable</label>
                                             <label style="display:inline-flex">
-                                                <input type="radio" value='Yes' ng-model="$ctrl.pickup.boolSharable" style="margin:0 10px"> Yes 
+                                                <input ng-disabled="$ctrl.disableCategory"  type="radio" value='Yes' ng-model="$ctrl.pickup.boolSharable" style="margin:0 10px"> Yes 
                                             </label>
                                             <label style="display:inline-flex">
-                                                <input type="radio" value='No' ng-model="$ctrl.pickup.boolSharable" style="margin:0 10px"> No 
+                                                <input ng-disabled="$ctrl.disableCategory"  type="radio" value='No' ng-model="$ctrl.pickup.boolSharable" style="margin:0 10px"> No 
                                             </label>
                                         </div>
+                                        <span style="color: red;" ng-if="$ctrl.disableCategory"><b>Item Moved To Inventory, So You Can't Change</b></span>
                                         <div class="form-group" ng-if="$ctrl.pickup.boolSharable == 'Yes'">
                                             <label for="Category">Category</label>
-                                            <select class="form-control" ng-model="$ctrl.categories" ng-change="$ctrl.setCategory($ctrl.categories)">
+                                            <select ng-disabled="$ctrl.disableCategory" class="form-control" ng-model="$ctrl.categories" ng-change="$ctrl.setCategory($ctrl.categories)">
                                                 <option value="">Select Category</option>
                                                 <option value="1">Eat</option>
                                                 <option value="2">Sleep</option>
@@ -112,7 +114,7 @@
                                         </div>
                                         <div class="form-group" ng-if="$ctrl.pickup.boolSharable == 'Yes' && $ctrl.categoryArr.length > 0">
                                             <label for="subCategory">Sub Category</label>
-                                            <select ng-model="$ctrl.subCategory" class="form-control" ng-change="$ctrl.setSubCategory($ctrl.subCategory)" ng-options="category.title for category in $ctrl.categoryArr">
+                                            <select ng-disabled="$ctrl.disableCategory" ng-model="$ctrl.subCategory" class="form-control" ng-change="$ctrl.setSubCategory($ctrl.subCategory)" ng-options="category.title for category in $ctrl.categoryArr track by category.categoryID">
                                                 <option value="">Select Sub Category</option>
                                             </select>
                                         </div>

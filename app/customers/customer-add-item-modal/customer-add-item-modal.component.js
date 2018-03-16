@@ -21,6 +21,10 @@
                 if (data && data.action == "update") {
                     popUpCtrl.updateSubitem(data.subItem);
                 }
+                if (data && data.action == 'updateSubitem') {
+                    popUpCtrl.showUpdate = true;
+                    popUpCtrl.updateSubitem(data.subItem);
+                }
 
             }),
             function(err) {
@@ -71,26 +75,58 @@
         ctrl.subItemArr = [];
         ctrl.imageUrl = '';
         ctrl.txt = "Add";
-        ctrl.showUpdate = false;
+        ctrl.disableCategory = false;
 
 
         ctrl.init = function() {
+            ctrl.showUpdate = false;
+            //if (ctrl.requestDetails.items && ctrl.requestDetails.items.length > 0) {
+            if (ctrl.requestDetails.itemToEdit && ctrl.requestDetails.itemToEdit.sharable) {
+                debugger;
+                customerUserService.canChangeSharable(ctrl.requestDetails.itemToEdit.storedItemID)
+                    .then(function(userlist) {
+                        ctrl.loader = false;
+                        if (userlist.data && !userlist.data.message) {
+                            ctrl.editFunction();
+                        }
+                        if (userlist.data.message && userlist.data.statusCode == 103) {
+                            debugger;
+                            ctrl.disableCategory = true;
+                            ctrl.editFunction();
+                        }
 
+                    })
+                    .catch(function(err) {
+                        console.log('Error getting user details:');
+                        console.log(err);
+                    });
+            } else {
+                ctrl.editFunction();
+            }
             if (ctrl.requestDetails.items && ctrl.requestDetails.items.length > 0) {
+                ctrl.editFunction();
+            }
+
+        };
+        ctrl.editFunction = function() {
+            if (ctrl.requestDetails.itemToEdit) {
                 ctrl.addItem();
                 ctrl.pickup = ctrl.requestDetails.itemToEdit;
                 ctrl.pickup.productName = ctrl.requestDetails.itemToEdit.itemName;
                 ctrl.pickup.itemCode = ctrl.requestDetails.itemToEdit.itemCodes[0];
                 ctrl.pickup.newCredits = ctrl.requestDetails.itemToEdit.credits;
                 ctrl.pickup.boolSharable = ctrl.requestDetails.itemToEdit.sharable ? 'Yes' : 'No';
-                //ctrl.txt = "Edit";
                 ctrl.showUpdate = true;
-                // ctrl.viewItems = true;
+
+                if (ctrl.requestDetails.itemToEdit.subItems) {
+                    ctrl.showUpdate = true;
+                    ctrl.viewItems = false;
+                    //    ctrl.txt = "Edit"; 
+                }
                 if (ctrl.requestDetails.itemToEdit.sharable) {
                     ctrl.categories = ctrl.requestDetails.itemToEdit.parentCategoryID;
                     ctrl.setCategory(ctrl.requestDetails.itemToEdit.parentCategoryID);
                     ctrl.pickup.boolSharable = 'Yes';
-                    debugger;
                 }
 
 
@@ -101,9 +137,11 @@
                 }
                 if (ctrl.requestDetails.itemToEdit.subItems && ctrl.requestDetails.itemToEdit.subItems.length > 0) {
                     ctrl.viewItems = false;
+                    ctrl.showUpdate = true;
                 }
+                debugger;
             }
-        };
+        }
         ctrl.setCategory = function(category) {
             ctrl.loader = true;
             ctrl.pickup.parentCategoryID = category;
@@ -114,13 +152,13 @@
                         ctrl.message = false;
                         ctrl.categoryArr = userlist.data;
                         if (ctrl.requestDetails.itemToEdit) {
-                            ctrl.subCategory = ctrl.categoryArr.filter(function(data) {
+                            var val = ctrl.categoryArr.filter(function(data) {
                                 if (ctrl.requestDetails.itemToEdit.categoryID == data.categoryID) {
                                     return data;
                                 }
                             });
+                            ctrl.subCategory = val[0];
                         }
-                        debugger;
                     } else {
                         ctrl.message = true;
                     }
@@ -163,20 +201,20 @@
                         switch (txt) {
                             case 'firstImage':
                                 ctrl.imageUrl1 = result.data.imageUrl;
-                                if(ctrl.pickup.imageUrl && ctrl.pickup.imageUrl[0]){
+                                if (ctrl.requestDetails.itemToEdit && ctrl.pickup.imageUrl || ctrl.pickup.imageUrl[0]) {
                                     ctrl.pickup.imageUrl[0] = result.data.imageUrl;
                                 }
                                 break;
                             case 'secondImage':
                                 ctrl.imageUrl2 = result.data.imageUrl;
-                                if(ctrl.pickup.imageUrl && ctrl.pickup.imageUrl[1]){
-                                    ctrl.pickup.imageUrl[1] = ctrl.imageUrl1;
+                                if (ctrl.requestDetails.itemToEdit && ctrl.pickup.imageUrl || ctrl.pickup.imageUrl[1]) {
+                                    ctrl.pickup.imageUrl[1] = result.data.imageUrl;
                                 }
                                 break;
                             case 'thirdImage':
                                 ctrl.imageUrl3 = result.data.imageUrl;
-                                if(ctrl.pickup.imageUrl && ctrl.pickup.imageUrl[2]){
-                                    ctrl.pickup.imageUrl[2] = ctrl.imageUrl1;
+                                if (ctrl.requestDetails.itemToEdit && ctrl.pickup.imageUrl || ctrl.pickup.imageUrl[2]) {
+                                    ctrl.pickup.imageUrl[2] = result.data.imageUrl;
                                 }
                                 break;
 
@@ -205,7 +243,10 @@
             angular.bind(ctrl, openSubItem, subitem)();
         }
         ctrl.subItems = function() {
-            //if (ctrl.requestDetails.itemToEdit) ctrl.requestDetails.subItems = ctrl.requestDetails;
+            if (ctrl.requestDetails.itemToEdit) {
+                debugger;
+                ctrl.requestDetails.subItems = ctrl.requestDetails.itemToEdit.subItems;
+            }
             angular.bind(ctrl, openSubItem, ctrl.requestDetails.subItems)();
         };
 
@@ -238,30 +279,7 @@
 
                 ctrl.pickedupItemsArr.push(ctrl.selectedItemObj);
             }
-            // ctrl.pickedupItems.forEach(function(data) {
-            //     ctrl.selectedItemObj.productName = data.productName;
-            //     ctrl.selectedItemObj.brandName = data.brandName;
-            //     ctrl.selectedItemObj.condition = data.condition;
-            //     ctrl.selectedItemObj.eventualDamages = data.eventualDamages;
-            //     ctrl.selectedItemObj.itemCodes = data.itemCodes;
-            //     ctrl.selectedItemObj.imageUrl = data.imageUrl;
-            //     ctrl.selectedItemObj.parentCategoryID = data.parentCategoryID;
-            //     ctrl.selectedItemObj.categoryID = data.categoryID;
-            //     ctrl.selectedItemObj.categoryName = data.categoryName;
-            //     ctrl.selectedItemObj.sharable = data.sharable;
-            //     ctrl.selectedItemObj.location = data.location;
-            //     ctrl.selectedItemObj.newCredits = data.newCredits;
-            //     data.subItems.forEach(function(subItem) {
-            //         ctrl.subItemObj = {};
-            //         ctrl.subItemObj.description = subItem.description;
-            //         ctrl.subItemObj.imageUrl = subItem.imageUrl;
-            //         ctrl.subItemObj.itemName = subItem.itemName;
-            //         ctrl.subItemObj.itemCode = subItem.itemCode;
-            //         ctrl.selectedItemObj.subItems.push(ctrl.subItemObj);
-            //     });
-            //     debugger;
-            //     ctrl.pickedupItemsArr.push(ctrl.selectedItemObj);
-            // });
+            debugger;
             ctrl.data = {
                 "userRequestID": ctrl.requestDetails.userRequestID,
                 "pickedupItems": ctrl.pickedupItemsArr,
@@ -328,8 +346,8 @@
             //     ctrl.pickup.imagesBase64 = [""];
             // }
             ctrl.categoryArr = [];
-            ctrl.pickedupItems.push(ctrl.pickup);
             debugger;
+            ctrl.pickedupItems.push(ctrl.pickup);
             ctrl.pickup = { "boolSharable": "No" };
             ctrl.subItemArr = [];
             ctrl.itemImage = '';
@@ -346,8 +364,8 @@
             ctrl.pickedupItems[data.item.index] = data.item;
         }
         ctrl.editItemObj = function() {
-            var a = ctrl.pickup;
-            var obj = {};
+            //ctrl.loader = true;
+            var obj = { subItems: [] };
             obj.userRequestID = ctrl.requestDetails.userRequestID;
             obj.storedItemID = ctrl.pickup.storedItemID;
             obj.productName = ctrl.pickup.productName;
@@ -358,21 +376,33 @@
             // if (ctrl.imageUrl1 || ctrl.imageUrl2 || ctrl.imageUrl3) {
             //     ctrl.pickup.imageUrl.push(ctrl.imageUrl1, ctrl.imageUrl2, ctrl.imageUrl3);
             // } 
-            obj.imageUrl = ctrl.pickup.imageUrl;
-            obj.parentCategoryID = ctrl.categories;
-            //obj.categoryID = ctrl.pickedupItems[i].categoryID;
-            //obj.categoryName = ctrl.pickedupItems[i].categoryName;
-            obj.sharable = ctrl.pickup.boolSharable == 'Yes' ? 1 : 0;;
+            obj.imagesUrl = ctrl.pickup.imageUrl;
+
+            obj.sharable = ctrl.pickup.boolSharable == 'Yes' ? 1 : 0;
+            if (obj.sharable) {
+                obj.parentCategoryID = ctrl.categories;
+                obj.categoryID = ctrl.pickup.categoryID;
+                obj.categoryName = ctrl.pickup.categoryName;
+            }
             obj.location = ctrl.pickup.location;
             obj.newCredits = ctrl.pickup.newCredits;
+            // for (var j = 0; j < ctrl.pickup.subItems.length; j++) {
+            //     ctrl.subItemSelectedObj = {};
+            //     ctrl.subItemSelectedObj.description = ctrl.subItemArr[j].description;
+            //     ctrl.subItemSelectedObj.imagesUrl = ctrl.subItemArr[j].imageUrl;
+            //     ctrl.subItemSelectedObj.itemName = ctrl.subItemArr[j].itemName;
+            //     ctrl.subItemSelectedObj.itemCode = ctrl.subItemArr[j].itemCode;
+            //     debugger;
+            //     obj.subItems.push(ctrl.subItemSelectedObj);
+            // }
+            obj.subItems = ctrl.pickup.subItems;
             debugger;
             customerUserService.editUserItem(obj)
                 .then(function(userlist) {
-                    debugger;
                     ctrl.loader = false;
                     if (userlist && userlist.data) {
-
                         debugger;
+                        ctrl.modalInstance.close({ action: 'update' });
                     } else {
                         ctrl.message = true;
                     }
@@ -381,6 +411,26 @@
                     console.log('Error getting user details:');
                     console.log(err);
                 });
+        };
+        ctrl.removeImage = function(txt){
+            switch (txt) {
+                            case 'first':
+                                ctrl.imageUrl1 = '';
+                                ctrl.itemImage = '';
+                                //ctrl.pickup.imageUrl[0] = '';
+                                break;
+                            case 'second':
+                                ctrl.imageUrl2 = '';
+                                ctrl.itemImage2 = '';
+                                //ctrl.pickup.imageUrl[1] = '';
+                                break;
+                            case 'third':
+                                ctrl.imageUrl3 = '';
+                                ctrl.itemImage3 = '';
+                                //ctrl.pickup.imageUrl[2] = '';
+                                break;
+
+                        }
         }
 
         ctrl.init();

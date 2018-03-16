@@ -11,7 +11,7 @@
                 ctrl.subItems = ctrl.item.subItems;
                 for (var i = 0; i < ctrl.subItems.length; i++) {
                     for (var j = 0; j <= i; j++) {
-
+                        debugger;
                         if (!ctrl.item.subItems[i].hasOwnProperty("imageUrl") && ctrl.item.subItems[i].hasOwnProperty("imageURLs") && ctrl.item.subItems[i].imageURLs.length > 0) {
                             ctrl.item.subItems[i].imageUrl = ctrl.item.subItems[i].imageURLs;
                         }
@@ -22,14 +22,23 @@
                         //     ctrl.item.subItems[i].imageUrl = ["img/not-available.jpg"];
                         // }
                         if (!ctrl.item.subItems[i].hasOwnProperty("imageURLs") && ctrl.item.subItems[i].hasOwnProperty("imageUrl") && ctrl.item.subItems[i].imageUrl.length > 0 ) {
-                            ctrl.item.subItems[i].imageUrl = ctrl.item.subItems[i].imageUrl;;
+                            ctrl.item.subItems[i].imageUrl = ctrl.item.subItems[i].imageUrl;
                         }
                     }
                 }
             } else {
                 //display no record found
             }
-            if(ctrl.item.itemToEdit && ctrl.item.itemToEdit.subItems[0]){ debugger; ctrl.bool = true; ctrl.subItems = ctrl.item.itemToEdit.subItems[0]; }
+            if(ctrl.item && ctrl.item.length > 0 && ctrl.item[0].imageURLs.length > 0){
+             ctrl.bool = true; ctrl.subItem = ctrl.item[0]; 
+             ctrl.item.subItems = true;
+             if (ctrl.item[0] && ctrl.item[0].imageURLs.length > 0) {
+                    if (ctrl.item[0].imageURLs[0]) ctrl.imageUrl = ctrl.item[0].imageURLs[0];
+                    if (ctrl.item[0].imageURLs[1]) ctrl.imageUrl2 = ctrl.item[0].imageURLs[1];
+                    if (ctrl.item[0].imageURLs[2]) ctrl.imageUrl3 = ctrl.item[0].imageURLs[2];
+                }
+             debugger; 
+            }
         };
         $scope.$watch(angular.bind(ctrl, function() {
             return ctrl.subItemImage;
@@ -57,16 +66,29 @@
                         switch (txt) {
                             case 'firstImage':
                                 ctrl.imageUrl = result.data.imageUrl;
+                                if(ctrl.subItem.imageUrl && ctrl.subItem.imageUrl[0]){
+                                    ctrl.subItem.imageUrl[0] = result.data.imageUrl;
+                                }
+                                ctrl.loader = false;
+
                                 break;
                             case 'secondImage':
                                 ctrl.imageUrl2 = result.data.imageUrl;
+                                if(ctrl.subItem.imageUrl && ctrl.subItem.imageUrl[1]){
+                                    ctrl.subItem.imageUrl[1] = result.data.imageUrl;
+                                }
+                                ctrl.loader = false;
                                 break;
                             case 'thirdImage':
                                 ctrl.imageUrl3 = result.data.imageUrl;
+                                if(ctrl.subItem.imageUrl && ctrl.subItem.imageUrl[2]){
+                                    ctrl.subItem.imageUrl[2] = result.data.imageUrl;
+                                }
+                                ctrl.loader = false;
                                 break;
 
                         }
-                        ctrl.loader = false;
+                        
                     }else{
                         ctrl.loader = false;
                     }
@@ -93,6 +115,20 @@
             //ctrl.subItem.imageUrl = ctrl.imageUrlls;
             ctrl.modalInstance.close({ action: 'update', subItem: ctrl.subItem });
         };
+        ctrl.updateSubItem = function(){
+            ctrl.loader = true;
+            if (ctrl.imageUrl || ctrl.imageUrl2 || ctrl.imageUrl3) {
+                ctrl.loader = false;
+                debugger;
+                ctrl.subItem.imageUrl = [ctrl.imageUrl, ctrl.imageUrl2, ctrl.imageUrl3];
+                //ctrl.imageUrlls = [ctrl.imageUrl,ctrl.imageUrl2,ctrl.imageUrl3];
+            } else {
+                ctrl.subItem.imageUrl = [];
+                //ctrl.imageUrlls = ["img/not-available.jpg","img/not-available.jpg","img/not-available.jpg"];
+            }
+            //ctrl.subItem.imageUrl = ctrl.imageUrlls;
+            ctrl.modalInstance.close({ action: 'updateSubitem', subItem: ctrl.subItem });
+        }
         ctrl.openLightboxModal = function(images) {
             //LightBox Library used as Image Viewer.
             debugger;
