@@ -41,17 +41,17 @@
                                 <input ng-model="$ctrl.itemImage"  type="file" name="item" base-sixty-four-input>
                             </div> -->
                             <div class='item-information-container'>
-                            <img ng-click="$ctrl.removeImage('first')" style="width: 20px; height: 20px;float: left; margin-left:1px; margin-top: -18px" src="img/DeleteIcon.png">
+                            <img ng-click="$ctrl.removeImage('first')" style="width: 20px; height: 20px;float: left; margin-left:1px; margin-top: -18px;cursor: pointer;" src="img/DeleteIcon.png">
                                 <div class="image item-custom-styling">
                                     <img src="{{$ctrl.imageUrl1 || ''}}" alt="Select Product Image"  style="width:100%; height: 200px" />
                                     <input type="file" class="form-controls" ng-change="$ctrl.imageUpload($ctrl.itemImage.base64, 'firstImage')" ng-model="$ctrl.itemImage" base-sixty-four-input accept="image/*" style="width: 99%;">
                                 </div>
-                                <img ng-click="$ctrl.removeImage('second')" style="width: 20px; height: 20px;float: left; margin-left:1px; margin-top: -18px" src="img/DeleteIcon.png">
+                                <img ng-click="$ctrl.removeImage('second')" style="width: 20px; height: 20px;float: left; margin-left:1px; margin-top: -18px;cursor: pointer;" src="img/DeleteIcon.png">
                                 <div class="image item-custom-styling">
                                     <img src="{{$ctrl.imageUrl2 || ''}}" alt="Select Product Image" style="width:100%; height: 200px" />
                                     <input type="file" ng-change="$ctrl.imageUpload($ctrl.itemImage2.base64, 'secondImage')" class="form-controls" ng-model="$ctrl.itemImage2" base-sixty-four-input accept="image/*" style="width: 99%;">
                                 </div>
-                                <img ng-click="$ctrl.removeImage('third')" style="width: 20px; height: 20px;float: left; margin-left:1px; margin-top: -18px" src="img/DeleteIcon.png">
+                                <img  ng-click="$ctrl.removeImage('third')" style="width: 20px; height: 20px;float: left; margin-left:1px; margin-top: -18px;cursor: pointer;" src="img/DeleteIcon.png">
                                 <div class="image item-custom-styling">
                                     <img src="{{$ctrl.imageUrl3 || ''}}" alt="Select Product Image" style="width:100%; height: 200px" />
                                     <input type="file" class="form-controls" ng-change="$ctrl.imageUpload($ctrl.itemImage3.base64, 'thirdImage')" ng-model="$ctrl.itemImage3" base-sixty-four-input accept="image/*" style="width: 99%;">
@@ -86,10 +86,10 @@
                                             <label for="itemCode">Item Code<span style="color: red;">*</span></label>
                                             <input type="text" class="form-control" id="itemCode" ng-model="$ctrl.pickup.itemCode" name="itemCode">
                                         </div>
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <label for="Credit">Credit</label>
                                             <input type="number" class="form-control" id="Credit" ng-model="$ctrl.pickup.newCredits" name="Credit">
-                                        </div>
+                                        </div> -->
                                         <div class="form-group">
                                             <label for="Sharable">Sharable</label>
                                             <label style="display:inline-flex">
@@ -168,7 +168,7 @@
                                     <th style="font-size: 13px;" class="col-md-1">Condition</th>
                                     <th style="font-size: 13px;" class="col-md-3 col-lg-2">Eventual Damages</th>
                                     <th style="font-size: 13px;" class="col-md-1">Sharable</th>
-                                    <th style="font-size: 13px;" class="col-md-1">Credit</th>
+                                    <!-- <th style="font-size: 13px;" class="col-md-1">Credit</th> -->
                                     <th style="font-size: 13px;" class="col-md-3 col-lg-2">AssignedItem Code</th>
                                     <th style="font-size: 13px;" class="col-md-3 col-lg-2">Sub Item</th>
                                 </tr>
@@ -186,7 +186,8 @@
                                     <td>{{item.condition}}</td>
                                     <td>{{item.eventualDamages}}</td>
                                     <td>{{item.sharable ? 'Yes' : 'No'}}</td>
-                                    <td><a ng-click="$ctrl.updateCredit(item, $index)"><u>{{item.newCredits}}</u></a></td>
+                                    <!-- <td><a ng-click="$ctrl.updateCredit(item, $index)"><u>{{item.newCredits}}</u></a></td> -->
+                                    <!-- <td>{{item.newCredits}}</td> -->
                                     <td>{{item.itemCodes[0].length == 0 ? '' : item.itemCodes[0]}}</td>
                                     <td>
                                         <button type="button" ng-show="item.subItems.length" ng-click="$ctrl.opensubItemModal(item)" class="btn btn-sm btn-primary">View</button>

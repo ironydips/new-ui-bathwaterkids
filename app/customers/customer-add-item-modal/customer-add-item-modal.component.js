@@ -113,7 +113,7 @@
                 ctrl.addItem();
                 ctrl.pickup = ctrl.requestDetails.itemToEdit;
                 ctrl.pickup.productName = ctrl.requestDetails.itemToEdit.itemName;
-                ctrl.pickup.itemCode = ctrl.requestDetails.itemToEdit.itemCodes[0];
+                ctrl.pickup.itemCode = ctrl.requestDetails.itemToEdit.itemCodes && ctrl.requestDetails.itemToEdit.itemCodes.length > 0 ? ctrl.requestDetails.itemToEdit.itemCodes[0] : '';
                 ctrl.pickup.newCredits = ctrl.requestDetails.itemToEdit.credits;
                 ctrl.pickup.boolSharable = ctrl.requestDetails.itemToEdit.sharable ? 'Yes' : 'No';
                 ctrl.showUpdate = true;
@@ -327,7 +327,7 @@
         ctrl.save = function() {
             ctrl.viewItems = true;
             ctrl.showtable = true;
-            ctrl.pickup.newCredits = ctrl.pickup.newCredits || 0;
+            //ctrl.pickup.newCredits = ctrl.pickup.newCredits || 0;
             ctrl.pickup.subItems = ctrl.subItemArr;
             ctrl.pickup.sharable = ctrl.pickup.boolSharable == 'Yes' ? 1 : 0;
             ctrl.pickup.itemCodes = [ctrl.pickup.itemCode];
@@ -338,6 +338,9 @@
                 ctrl.pickup.imageUrl.push(ctrl.imageUrl1, ctrl.imageUrl2, ctrl.imageUrl3);
             } else {
                 ctrl.pickup.imageUrl = ["img/not-available.jpg"];
+            }
+            if(ctrl.pickup.imageUrl && ctrl.pickup.imageUrl.length > 0 && ctrl.pickup.imageUrl[0] == ""){
+                ctrl.pickup.imageUrl[0] = "img/not-available.jpg";
             }
             //ctrl.pickup.imageUrl = ctrl.imageUrl1.includes(", ") ? ctrl.imageUrl : "img/not-available.jpg";
             // if (ctrl.itemImage.base64 || ctrl.itemImage2.base64 || ctrl.itemImage3.base64) {
@@ -364,7 +367,7 @@
             ctrl.pickedupItems[data.item.index] = data.item;
         }
         ctrl.editItemObj = function() {
-            //ctrl.loader = true;
+            ctrl.loader = true;
             var obj = { subItems: [] };
             obj.userRequestID = ctrl.requestDetails.userRequestID;
             obj.storedItemID = ctrl.pickup.storedItemID;
@@ -412,25 +415,32 @@
                     console.log(err);
                 });
         };
-        ctrl.removeImage = function(txt){
+        ctrl.removeImage = function(txt) {
             switch (txt) {
-                            case 'first':
-                                ctrl.imageUrl1 = '';
-                                ctrl.itemImage = '';
-                                //ctrl.pickup.imageUrl[0] = '';
-                                break;
-                            case 'second':
-                                ctrl.imageUrl2 = '';
-                                ctrl.itemImage2 = '';
-                                //ctrl.pickup.imageUrl[1] = '';
-                                break;
-                            case 'third':
-                                ctrl.imageUrl3 = '';
-                                ctrl.itemImage3 = '';
-                                //ctrl.pickup.imageUrl[2] = '';
-                                break;
+                case 'first':
+                    ctrl.imageUrl1 = '';
+                    ctrl.itemImage = '';
+                    if (ctrl.requestDetails.itemToEdit && ctrl.pickup.imageUrl || ctrl.pickup.imageUrl[0]) {
+                        ctrl.pickup.imageUrl[0] = '';
+                    }
+                    break;
+                case 'second':
+                    ctrl.imageUrl2 = '';
+                    ctrl.itemImage2 = '';
+                    if (ctrl.requestDetails.itemToEdit && ctrl.pickup.imageUrl || ctrl.pickup.imageUrl[0]) {
+                        ctrl.pickup.imageUrl[1] = '';
+                    }
+                    break;
+                case 'third':
+                    ctrl.imageUrl3 = '';
+                    ctrl.itemImage3 = '';
+                    if (ctrl.requestDetails.itemToEdit && ctrl.pickup.imageUrl || ctrl.pickup.imageUrl[0]) {
+                        ctrl.pickup.imageUrl[2] = '';
+                    }
+                    break;
 
-                        }
+            }
+            debugger;
         }
 
         ctrl.init();

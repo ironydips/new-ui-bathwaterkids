@@ -26,6 +26,7 @@
                 console.log(err);
             }
     }
+
     function openPopupCreditUpdate(details) {
 
         var popUpCtrl = this;
@@ -142,13 +143,14 @@
                 ctrl.noUserReqMessage = false;
                 for (var i = 0; i < item.items.length; i++) {
                     for (var j = 0; j <= i; j++) {
-                        if(!item.items[i].hasOwnProperty('credits')) item.items[i].credits = 0;
+                        if (!item.items[i].hasOwnProperty('credits')) item.items[i].credits = 0;
                         if (item.items[i].hasOwnProperty('imageUrl') && item.items[i].imageUrl.length) {
                             item.items[i].imageUrl = item.items[i].imageUrl;
                         } else {
                             let arr = ["img/not-available.jpg"];
                             item.items[i].imageUrl = arr;
                         }
+
                         // if(item.items[i].hasOwnProperty('imageUrl')){
                         //     item.items[i].imageUrl = item.items[i].imageUrl;
                         // }
@@ -169,7 +171,10 @@
                         // }
                     }
                 }
-                item.items.forEach(function(data) { data.userRequestID = item.userRequestID });
+                item.items.forEach(function(data) {
+                    data.userRequestID = item.userRequestID;
+                    if(data.imageUrl && data.imageUrl[0] == "blank image") data.imageUrl[0] = "img/not-available.jpg" ;
+                });
                 ctrl.itemsArray = [];
                 // ctrl.itemsArray = ctrl.itemsArray.concat(item.items);
                 ctrl.itemsArray = item.items;
@@ -195,7 +200,10 @@
         };
         ctrl.openLightboxModal = function(images) {
             //LightBox Library used as Image Viewer.
-            Lightbox.openModal(images, 0);
+            var imagArr = images.filter(function(data) {
+                if (data != "blank image") return data;
+            });
+            Lightbox.openModal(imagArr, 0);
         };
 
         ctrl.displayRow = function(index) {
@@ -208,7 +216,7 @@
         };
 
         ctrl.addItems = function(item) {
-            if(item) ctrl.selectedItem.itemToEdit = item;
+            if (item) ctrl.selectedItem.itemToEdit = item;
             // console.log(userRequestID)
             angular.bind(ctrl, openPopUpAddItem, ctrl.selectedItem)();
         };
@@ -216,7 +224,7 @@
         ctrl.cancel = function() {
             ctrl.modalInstance.close();
         };
-        ctrl.updateCredit = function(item){
+        ctrl.updateCredit = function(item) {
             angular.bind(ctrl, openPopupCreditUpdate, angular.copy(item))();
         };
 

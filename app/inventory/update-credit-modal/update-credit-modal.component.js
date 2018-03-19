@@ -4,14 +4,14 @@
     function updateCreditModalController($state, inventoryService) {
         var ctrl = this;
         ctrl.item = (ctrl.resolve && ctrl.resolve.details) || {};
-        ctrl.item.oldCredits = ctrl.item.newCredits;
-        if(ctrl.item.credits) ctrl.item.newCredits = ctrl.item.credits ? ctrl.item.credits : 0;
+        //ctrl.item.oldCredits = ctrl.item.newCredits;
+        //if(ctrl.item.credits) ctrl.item.newCredits = ctrl.item.credits ? ctrl.item.credits : 0;
 
         ctrl.save = function(credit) {
             //ctrl.loader = true;
-            if (ctrl.item.storedItemID) {
-            	ctrl.item.oldCredits = ctrl.item.credits;
-                inventoryService.updateInventory(ctrl.item.storedItemID, ctrl.item.oldCredits, ctrl.item.newCredits, ctrl.item.userRequestID)
+            if (ctrl.item.storedItemId) {
+            	ctrl.item.oldCredits = 0;
+                inventoryService.updateInventory(ctrl.item.storedItemId, ctrl.item.oldCredits, ctrl.item.newCredits)
                     .then(function(response) {
                         ctrl.loader = false;
                         ctrl.modalInstance.close({ action: 'update' });
