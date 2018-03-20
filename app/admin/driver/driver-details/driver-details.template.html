@@ -9,7 +9,7 @@
             <ul>
                 <li><a href="" ng-click="$ctrl.addDriver()" class="drive">Add Drivers</a></li>
                 <li class="full" ng-repeat="driver in $ctrl.drivers" ng-click="$ctrl.showDetails(driver)">
-                    <a href=""><img style="width: 209px; height: 207px" src="img/list_img.jpg"></a>
+                    <a href=""><img class="fullPanel" src="img/list_img.jpg"></a>
                     <h2><a href="">{{driver.firstName || 'No Name'}}</a></h2>
                 </li>
             </ul>
@@ -18,3 +18,19 @@
     </div>
 </div>
 <!-- \ component4 end / -->
+<style>
+.fullPanel {width: 209px; height: 207px;}
+/*.component-bg h2 a { font-size: 8px; }*/
+@media only screen and (max-width:767px) {
+    .fullPanel {width: 0px; height: 0px;}
+    .component-bg li {margin-right: 1%;position: relative;margin-bottom: 1%;width: 48.2%;float: left;min-height: 183px;border: 1px dashed #969697;}
+
+    .component-bg .drive {margin: 45px auto 0 auto;display: block;line-height: 17px;text-align: center;color: #fff;font-size: 13px;width: 86px;height: 29px;background: #b0b0b0;border-radius: 4px;}
+    .component-bg h2 a {color: #706f75;text-decoration: none;font-size: 8px;}
+    .component-bg li.full {margin-right: 1%;margin-bottom: 1%;width: 48.2%;float: left;border: none;}
+
+}
+
+
+/*}*/
+</style>

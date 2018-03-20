@@ -13,7 +13,63 @@
                     <a href="" class="drive">Add License Image</a>
                 </div>
                 <h3>General Info</h3>
-                <form action="#" method="post">
+                <div class='detail-container'>
+                                <div>
+                                    <div class='col-sm-12 col-lg-6'>
+                                        <div class="form-group">
+                                            <label for="firstName">First Name*</label>
+                                            <input ng-disabled={{$ctrl.isDisabled}} type="text" name="firstName" class="form-controls" ng-model="$ctrl.driver.firstName">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="lastName">Last Name*</label>
+                                            <input ng-disabled={{$ctrl.isDisabled}} type="text" class="form-controls" ng-model="$ctrl.driver.lastName">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Driver License ID*</label>
+                                            <input ng-disabled={{$ctrl.isDisabled}} type="text" class="form-controls" ng-model="$ctrl.driver.licenseId">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Street Address*</label>
+                                            <input ng-disabled={{$ctrl.isDisabled}} type="text" class="form-controls" ng-model="$ctrl.driver.streetAddress">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Apt*</label>
+                                            <input ng-disabled={{$ctrl.isDisabled}} type="text" class="form-controls" ng-model="$ctrl.driver.apartment">
+                                        </div>
+                                    </div>
+                                    <div class='col-sm-12 col-lg-6'>
+                                        <div class="form-group">
+                                            <label>City*</label>
+                                             <input ng-disabled={{$ctrl.isDisabled}} type="text" class="form-controls" ng-model="$ctrl.driver.city">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Credit">State*</label>
+                                            <input ng-disabled={{$ctrl.isDisabled}} type="text" class="form-controls" ng-model="$ctrl.driver.state">
+                                        </div>
+                                    </div>
+                                    <div class='col-sm-12 col-lg-6'>
+                                        <div class="form-group">
+                                            <label>Zip*</label>
+                                             <input ng-disabled={{$ctrl.isDisabled}} type="text" class="form-controls" ng-model="$ctrl.driver.zipCode">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Credit">Phone Number*</label>
+                                            <input ng-disabled={{$ctrl.isDisabled}} type="text" class="form-controls" ng-model="$ctrl.driver.phoneNumber">
+                                        </div>
+                                    </div>
+                                    <div class='col-sm-12 col-lg-6'>
+                                        <div class="form-group">
+                                            <label>Emergency Phone Number</label>
+                                            <input ng-disabled={{$ctrl.isDisabled}} type="text" class="form-controls" ng-model="$ctrl.driver.emergencyPhoneNumber">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Credit">Email ID*</label>
+                                            <input ng-disabled={{$ctrl.isDisabled}} type="text" class="form-controls" ng-model="$ctrl.driver.emailAddress">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                <!-- <form action="#" method="post">
                     <table class="table-responsive">
                         <tbody>
                             <tr>
@@ -84,9 +140,24 @@
                             <button type="button" ng-disabled={{$ctrl.isDisabled}} ng-click="$ctrl.save()" class="btn btn-sm btn-success">Save</button>
                         </div>
                     </div>
-                </form>
+                </form> -->
+                <div class="row">
+                        <div class="col-sm-2">
+                        </div>
+                        <div class="col-sm-2">
+                        </div>
+                        <div class="btn-main">
+                            <button type="button" ng-click="$ctrl.cancel()" class="btn btn-sm btn-default">Cancel</button>
+                            <button type="button" ng-disabled={{$ctrl.isDisabled}} ng-click="$ctrl.save()" class="btn btn-sm btn-success">Save</button>
+                        </div>
+                    </div>
             </div>
         </div>
     </div>
 </div>
+<style>
+    .detail-container {
+        overflow: auto;
+    }
+</style>
 <!-- \ profileComponent end / -->
