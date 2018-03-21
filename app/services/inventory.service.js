@@ -6,7 +6,7 @@
 		
 		var getInventory = function(){
 			return $http({
-		            url: '/rest/getItems',
+		            url: '/rest/getAllItems',
 		            method: "GET",
 		            headers:{
 	            		//"Authorization": 'Basic YWRtaW46YWRtaW4='
