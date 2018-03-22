@@ -76,7 +76,7 @@
         ctrl.imageUrl = '';
         ctrl.txt = "Add";
         ctrl.disableCategory = false;
-
+        ctrl.enableSubItemEdit = false;
 
         ctrl.init = function() {
             ctrl.showUpdate = false;
@@ -138,6 +138,12 @@
                 if (ctrl.requestDetails.itemToEdit.subItems && ctrl.requestDetails.itemToEdit.subItems.length > 0) {
                     ctrl.viewItems = false;
                     ctrl.showUpdate = true;
+                    ctrl.enableSubItemEdit = true;
+                    ctrl.subItemArr = ctrl.requestDetails.itemToEdit.subItems;
+                    ctrl.subItemArr.forEach(function(data) {
+                        data.imageUrl = data.imageURLs;
+                    });
+                    debugger;
                 }
                 debugger;
             }
@@ -226,10 +232,14 @@
                     console.log(err);
                 });
         }
-        ctrl.updateSubitem = function(subItem) {
-            if (subItem.imageUrl && subItem.imageUrl.length == 0) { subItem.imageUrl[0] = "img/not-available.jpg"; };
-            ctrl.subItemArr.push(subItem);
+        ctrl.updateSubitem = function(subItem, index) {
 
+            if (subItem.imageUrl && subItem.imageUrl.length == 0) { subItem.imageUrl[0] = "img/not-available.jpg"; };
+            if (subItem.hasOwnProperty('index') && subItem.index >= 0) {
+                ctrl.subItemArr[subItem.index] = subItem;
+            } else {
+                ctrl.subItemArr.push(subItem)
+            };
         }
         ctrl.cancel = function() {
             ctrl.modalInstance.close();
@@ -242,11 +252,12 @@
         ctrl.opensubItemModal = function(subitem) {
             angular.bind(ctrl, openSubItem, subitem)();
         }
-        ctrl.subItems = function() {
-            if (ctrl.requestDetails.itemToEdit) {
-                debugger;
-                ctrl.requestDetails.subItems = ctrl.requestDetails.itemToEdit.subItems;
+        ctrl.subItems = function(subitem, index) {
+            if (subitem && ctrl.requestDetails.itemToEdit && ctrl.enableSubItemEdit) {
+                ctrl.requestDetails.subItems = subitem;
+                ctrl.requestDetails.subItems.index = index;
             }
+            // if(ctrl.enableSubItemEdit) 
             angular.bind(ctrl, openSubItem, ctrl.requestDetails.subItems)();
         };
 
@@ -279,11 +290,12 @@
 
                 ctrl.pickedupItemsArr.push(ctrl.selectedItemObj);
             }
-            debugger;
             ctrl.data = {
                 "userRequestID": ctrl.requestDetails.userRequestID,
-                "pickedupItems": ctrl.pickedupItemsArr,
+                "pickedupItems": ctrl.pickedupItemsArr
             }
+            if (ctrl.requestDetails.status && ctrl.requestDetails.status == "completed") ctrl.data.storedItemID = ""; //DB check,In case of adding item in completed status item 
+            debugger;
             ctrl.loader = true;
             DriverService.pickup(ctrl.data)
                 .then(function(result) {
@@ -298,7 +310,7 @@
         };
         ctrl.openLightboxModal = function(images) {
             var imagArr = images.filter(function(data) {
-                if (data) return data;
+                if (data && data != "blank image") return data;
             });
             //LightBox Library used as Image Viewer.
             Lightbox.openModal(imagArr, 0);
@@ -339,7 +351,7 @@
             } else {
                 ctrl.pickup.imageUrl = ["img/not-available.jpg"];
             }
-            if(ctrl.pickup.imageUrl && ctrl.pickup.imageUrl.length > 0 && ctrl.pickup.imageUrl[0] == ""){
+            if (ctrl.pickup.imageUrl && ctrl.pickup.imageUrl.length > 0 && ctrl.pickup.imageUrl[0] == "") {
                 ctrl.pickup.imageUrl[0] = "img/not-available.jpg";
             }
             //ctrl.pickup.imageUrl = ctrl.imageUrl1.includes(", ") ? ctrl.imageUrl : "img/not-available.jpg";

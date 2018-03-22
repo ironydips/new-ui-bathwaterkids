@@ -92,13 +92,14 @@
         ctrl.init = function() {
             ctrl.loader = true;
             ctrl.message = false;
-            inventoryService.getInventory()
+            inventoryService.getInventory("RECEIVED")
                 .then(function(response) {
                     ctrl.loader = false;
 
-                    ctrl.Inventory = response.data.filter(function(data) {
-                        return data.status == 'RECEIVED';
-                    });
+                    // ctrl.Inventory = response.data.filter(function(data) {
+                    //     return data.status == 'RECEIVED';
+                    // });
+                    ctrl.Inventory = response.data;
                     for (var i = 0; i < ctrl.Inventory.length; i++) {
                         if (ctrl.Inventory[i].hasOwnProperty('imageURLs') && ctrl.Inventory[i].imageURLs.length) {
                             ctrl.Inventory[i].imageUrl = ctrl.Inventory[i].imageURLs;

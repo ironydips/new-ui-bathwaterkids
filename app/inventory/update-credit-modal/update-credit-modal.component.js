@@ -5,13 +5,13 @@
         var ctrl = this;
         ctrl.item = (ctrl.resolve && ctrl.resolve.details) || {};
         //ctrl.item.oldCredits = ctrl.item.newCredits;
-        //if(ctrl.item.credits) ctrl.item.newCredits = ctrl.item.credits ? ctrl.item.credits : 0;
+        if(ctrl.item.credits) ctrl.item.newCredits = ctrl.item.credits;
 
         ctrl.save = function(credit) {
             //ctrl.loader = true;
             if (ctrl.item.storedItemId) {
-            	ctrl.item.oldCredits = 0;
-                inventoryService.updateInventory(ctrl.item.storedItemId, ctrl.item.oldCredits, ctrl.item.newCredits)
+            	//ctrl.item.oldCredits = 0;
+                inventoryService.updateInventory(ctrl.item.storedItemId, ctrl.item.newCredits)
                     .then(function(response) {
                         ctrl.loader = false;
                         ctrl.modalInstance.close({ action: 'update' });

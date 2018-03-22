@@ -71,6 +71,7 @@
         ctrl.UserReqmessage = true;
         ctrl.noItemMessage = true;
         ctrl.showAddButton = false;
+        ctrl.showcompleteButton = false;
 
 
 
@@ -137,6 +138,8 @@
         ctrl.getItems = function(item) {
             ctrl.selectedRow = item.userRequestID;
             ctrl.selectedItem = item;
+            debugger;
+            if(item.status == "completed") ctrl.showcompleteButton = true;
             if (item.items) {
                 // if (item.isChecked) {
                 ctrl.noItemMessage = false;
@@ -150,7 +153,7 @@
                             let arr = ["img/not-available.jpg"];
                             item.items[i].imageUrl = arr;
                         }
-
+                        debugger;
                         // if(item.items[i].hasOwnProperty('imageUrl')){
                         //     item.items[i].imageUrl = item.items[i].imageUrl;
                         // }
@@ -189,6 +192,7 @@
             } else {
                 //No subitems in the array
                 ctrl.itemsArray = [];
+                ctrl.showcompleteButton = false;
                 // if (ctrl.itemsArray.length == 0) {
                 ctrl.noItemMessage = true;
                 if (ctrl.selectedItem.status != "cancelled") {
@@ -196,6 +200,8 @@
                 }
                 // }
             }
+            //if(item.items && item.items.length == 0) ctrl.noItemMessage = true;
+
 
         };
         ctrl.openLightboxModal = function(images) {
@@ -215,8 +221,10 @@
             angular.bind(ctrl, openSubItem, subitem)();
         };
 
-        ctrl.addItems = function(item) {
-            if (item) ctrl.selectedItem.itemToEdit = item;
+        ctrl.addItems = function(item, txt) {
+            if (item && txt && txt == 'edit') ctrl.selectedItem.itemToEdit = item;
+            //else ctrl.selectedItem = item;
+            debugger;
             // console.log(userRequestID)
             angular.bind(ctrl, openPopUpAddItem, ctrl.selectedItem)();
         };

@@ -35,7 +35,7 @@
                     <td>{{inventory.storedItemId}}</td>
                     <td class="col-md-1">{{inventory.itemName}}</td>
                     <td class="col-md-1">{{inventory.status}}</td>
-                    <td>{{inventory.credits}}</td>
+                    <td>{{inventory.credits}}<span ng-click="$ctrl.addUpdateCredit(inventory)" style="cursor:pointer" class="glyphicon glyphicon-pencil" ></span></td>
                     <td class="col-md-1">{{inventory.location ? inventory.location  : 'No Location'}}</td>
                     <!-- <td class="col-md-1">{{inventory.storageTimestamp | date: 'dd/MM/yyyy'}}</td> -->
                     <td class="col-md-2">{{inventory.ownerID}}</td>

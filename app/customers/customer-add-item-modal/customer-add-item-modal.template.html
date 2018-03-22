@@ -4,6 +4,7 @@
             <div class="profileComponent">
                 <div class="container">
                     <div class="profileBg">
+                    <form name="userDetail" novalidate>
                         <div class="loading" ng-show="$ctrl.loader">
                             Loading&#8230;
                         </div>
@@ -62,7 +63,7 @@
                                     <div class='col-sm-12 col-lg-6'>
                                         <div class="form-group">
                                             <label for="productName">Product Name<span style="color: red;">*</span></label>
-                                            <input type="text" class="form-control" id="productName" ng-model="$ctrl.pickup.productName" name="productName">
+                                            <input type="text" class="form-control" id="productName" ng-model="$ctrl.pickup.productName" name="productName" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="brandName">Brand Name</label>
@@ -84,7 +85,7 @@
                                     <div class='col-sm-12 col-lg-6'>
                                         <div class="form-group">
                                             <label for="itemCode">Item Code<span style="color: red;">*</span></label>
-                                            <input type="text" class="form-control" id="itemCode" ng-model="$ctrl.pickup.itemCode" name="itemCode">
+                                            <input type="text" class="form-control" id="itemCode" ng-model="$ctrl.pickup.itemCode" name="itemCode" required>
                                         </div>
                                         <!-- <div class="form-group">
                                             <label for="Credit">Credit</label>
@@ -101,8 +102,8 @@
                                         </div>
                                         <span style="color: red;" ng-if="$ctrl.disableCategory"><b>Item Moved To Inventory, So You Can't Change</b></span>
                                         <div class="form-group" ng-if="$ctrl.pickup.boolSharable == 'Yes'">
-                                            <label for="Category">Category</label>
-                                            <select ng-disabled="$ctrl.disableCategory" class="form-control" ng-model="$ctrl.categories" ng-change="$ctrl.setCategory($ctrl.categories)">
+                                            <label for="Category">Category<span style="color: red;">*</span></label>
+                                            <select ng-disabled="$ctrl.disableCategory" class="form-control" ng-model="$ctrl.categories" ng-change="$ctrl.setCategory($ctrl.categories)" required>
                                                 <option value="">Select Category</option>
                                                 <option value="1">Eat</option>
                                                 <option value="2">Sleep</option>
@@ -113,8 +114,8 @@
                                             </select>
                                         </div>
                                         <div class="form-group" ng-if="$ctrl.pickup.boolSharable == 'Yes' && $ctrl.categoryArr.length > 0">
-                                            <label for="subCategory">Sub Category</label>
-                                            <select ng-disabled="$ctrl.disableCategory" ng-model="$ctrl.subCategory" class="form-control" ng-change="$ctrl.setSubCategory($ctrl.subCategory)" ng-options="category.title for category in $ctrl.categoryArr track by category.categoryID">
+                                            <label for="subCategory">Sub Category<span style="color: red;">*</span></label>
+                                            <select ng-disabled="$ctrl.disableCategory" ng-model="$ctrl.subCategory" class="form-control" ng-change="$ctrl.setSubCategory($ctrl.subCategory)" ng-options="category.title for category in $ctrl.categoryArr track by category.categoryID" required>
                                                 <option value="">Select Sub Category</option>
                                             </select>
                                         </div>
@@ -141,6 +142,7 @@
                                         <th style="font-size: 13px;" class="col-md-1">Sub Item Code</th>
                                         <th style="font-size: 13px;" class="col-md-1">Sub Item Name</th>
                                         <th style="font-size: 13px;" class="col-md-1">Description</th>
+                                        <th ng-if="$ctrl.enableSubItemEdit" style="font-size: 13px;" class="col-md-1">Action</th>
                                     </tr>
                                     <tr ng-repeat="item in $ctrl.subItemArr">
                                         <!-- <td><img ng-src="{{item.imageUrl}}" alt="No Image Selected" style="margin-left: 140px;width: 70px;height: 60px" /></td> -->
@@ -152,6 +154,7 @@
                                         <td class="text-center">{{item.itemCode}}</td>
                                         <td class="text-center">{{item.itemName}}</td>
                                         <td class="text-center">{{item.description}}</td>
+                                        <td ng-if="$ctrl.enableSubItemEdit"><button type="button" ng-click="$ctrl.subItems(item, $index)" class="btn btn-sm btn-primary">Edit</button></td>
                                     </tr>
                                 </table>
                             </div>
@@ -200,13 +203,14 @@
                                 <button ng-show="$ctrl.viewItems" type="button" ng-click="$ctrl.cancel()" class="btn btn-sm btn-default">Cancel</button>
                                 <button ng-hide="$ctrl.viewItems" type="button" ng-click="$ctrl.back()" ng-if="!$ctrl.showUpdate" class="btn btn-sm btn-default">Back</button>
                                 <!-- <button style="padding: 8px 0px;" ng-if="!$ctrl.isSubItem" type="button" ng-click="$ctrl.addSubItem()" class="btn btn-sm btn-success">Add Sub Item</button> -->
-                                <button ng-hide="$ctrl.viewItems" type="button" ng-click="$ctrl.save()" ng-if="!$ctrl.showUpdate" class="btn btn-sm btn-success">Save</button>
+                                <button ng-disabled="userDetail.$invalid" ng-hide="$ctrl.viewItems" type="submit" ng-click="$ctrl.save()" ng-if="!$ctrl.showUpdate" class="btn btn-sm btn-success">Save</button>
                                 <button ng-if="!$ctrl.showUpdate" ng-show="$ctrl.viewItems" type="button" ng-click="$ctrl.addItem()" style="padding: 8px 20px" class="btn btn-sm btn-success">Add Item</button>
                                 <button ng-if="!$ctrl.showUpdate" ng-hide="$ctrl.viewItems" type="button" ng-click="$ctrl.subItems()" style="padding: 8px" class="btn btn-sm btn-success">{{$ctrl.txt}} SubItem</button>
                                 <button ng-click="$ctrl.submitItems()" ng-show="$ctrl.showtable" class="btn btn-sm btn-success">Submit</button>
                                 <button ng-click="$ctrl.editItemObj()" ng-show="$ctrl.showUpdate" class="btn btn-sm btn-success">Update</button>
                                 <button type="button" ng-click="$ctrl.cancel()" ng-if="$ctrl.showUpdate" class="btn btn-sm btn-default">Cancel</button>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>

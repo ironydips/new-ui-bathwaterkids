@@ -61,7 +61,7 @@
         ctrl.init = function() {
             ctrl.loader = true;
             ctrl.message = false;
-            inventoryService.getInventory()
+            inventoryService.getInventory("others")
                 .then(function(response) {
                     ctrl.loader = false;
                     ctrl.Inventory = response.data;

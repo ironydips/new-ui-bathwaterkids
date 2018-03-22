@@ -4,9 +4,9 @@
 	function InventoryServiceHandler($http){
 
 		
-		var getInventory = function(){
+		var getInventory = function(status){
 			return $http({
-		            url: '/rest/getAllItems',
+		            url: '/rest/getAllItems?status=' +status,
 		            method: "GET",
 		            headers:{
 	            		//"Authorization": 'Basic YWRtaW46YWRtaW4='
@@ -14,9 +14,9 @@
 	        });
 		};
 
-		var updateInventory = function(storedItemID, oldCredits, newCredits, userRequestId){
+		var updateInventory = function(storedItemID, newCredits, userRequestId){
 			return $http({
-		            url: '/rest/admin/updateCredits?storedID='+storedItemID +'&oldCredits=' + oldCredits + '&newCredits=' + newCredits,
+		            url: '/rest/admin/updateCredits?storedID='+storedItemID  + '&newCredits=' + newCredits,
 		            method: "GET",
 		            headers:{
 	            		//"Authorization": 'Basic YWRtaW46YWRtaW4='
